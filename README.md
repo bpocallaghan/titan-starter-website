@@ -1,2 +1,8 @@
-# titan-starter
-A Laravel Website and Admin starter project to help you with the setup.
+# Laravel CMS Starter
+A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.
+
+- Under Development
+
+
+## Features
+ - Test Driven Development
