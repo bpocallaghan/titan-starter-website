@@ -1,24 +1,37 @@
 {
-    "name": "laravel/laravel",
+    "name": "bpocallaghan/titan-starter",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "A Laravel Website with Admin access Starter project with AdminLTE theme and basic features..",
     "keywords": [
+        "cms",
+        "admin",
+        "titan",
+        "website",
+        "laravel",
         "framework",
-        "laravel"
+        "bpocallaghan"
     ],
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "bpocallaghan/alert": "^1.1",
+        "bpocallaghan/impersonate": "^1.0",
+        "bpocallaghan/log-activity": "^0.0.5",
+        "bpocallaghan/notify": "^2.1",
+        "bpocallaghan/sluggable": "^1.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "bpocallaghan/generators": "^5.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.0",
+        "spatie/laravel-web-tinker": "^1.6"
     },
     "config": {
         "optimize-autoloader": true,
