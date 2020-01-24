@@ -1,0 +1,45 @@
+// Fonts - Google Font: Source Sans Pro
+//@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
+
+// AdminLTE
+@import '~admin-lte/build/scss/AdminLTE';
+//@import '~admin-lte/build/scss/AdminLTE-core';
+//@import '~admin-lte/build/scss/parts/components';
+
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
+// vendor packages
+@import '~select2';
+@import '~@ttskch/select2-bootstrap4-theme/src/layout';
+@import '~datatables.net-bs4';
+
+// titan
+@import 'titan/notify';
+
+// overrides
+table.dataTable {
+  border-collapse: collapse !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+  padding-top: 0.45em;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0px;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+  margin-bottom: 0px;
+}
+div.dataTables_wrapper div.dataTables_length label {
+  margin-bottom: 0px;
+}
+
+.dt-toolbar-footer .pagination .page-link {
+  padding: 0.3rem 0.75rem;
+}

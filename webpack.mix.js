@@ -11,5 +11,27 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+var publicPath = 'public';
+var resourcesPath = 'resources/assets';
+var pathJS = resourcesPath + '/js';
+
+var COMPILE = 'all';
+
+if(COMPILE == 'all' || COMPILE == 'js') {
+    // update public path for app.js to compile into /resources
+    mix.js('resources/assets/js/app.js', 'js/vendor/app_compiled.js');
+
+    mix.scripts([
+        'public/js/vendor/app_compiled.js',
+        pathJS + '/titan/buttons.js',
+        pathJS + '/titan/notifications.js',
+        pathJS + '/titan/notify.js',
+        pathJS + '/titan/datatables.js',
+
+        pathJS + '/titan/titan.js',
+    ], publicPath + '/js/app.js');
+}
+
+if(COMPILE == 'all' || COMPILE == 'css') {
+    mix.sass('resources/assets/sass/app.scss', 'public/css');
+}
