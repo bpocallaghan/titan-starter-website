@@ -2,6 +2,14 @@
 
 return [
 
+    'description' => env('APP_DESCRIPTION', ''),
+    'author'      => env('APP_AUTHOR', ''),
+    'keywords'    => env('APP_KEYWORDS', 'laravel,titan'),
+
+    'assets_version' => env('ASSETS_VERSION', '1'),
+
+    'google_analytics' => env('GOOGLE_ANALYTICS', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -165,6 +173,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\HelperServiceProvider::class,
 
         /*
          * Application Service Providers...
