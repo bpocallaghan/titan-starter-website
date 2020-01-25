@@ -19,9 +19,8 @@ Route::redirect('/home', '/');
 |------------------------------------------
 */
 
-Route::view('/', 'welcome')->name('home');
 Route::group(['namespace' => 'Website'], function () {
-    //Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 });
 
 /*
@@ -61,8 +60,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 |------------------------------------------
 */
 Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    //Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
-    //    Route::resource('roles', 'RolesController');
-    //    Route::resource('navigations', 'NavigationsController');
-    //});
+
+    Route::get('/', 'DashboardController@index');
+
+    Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
+        Route::resource('roles', 'RolesController');
+        Route::resource('navigations', 'NavigationsController');
+    });
 });
