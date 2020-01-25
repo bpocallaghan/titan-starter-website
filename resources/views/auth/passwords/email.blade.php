@@ -1,4 +1,4 @@
-@extends('auth')
+@extends('auth.auth')
 
 @section('content')
     <div class="login-box">

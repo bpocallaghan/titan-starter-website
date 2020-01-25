@@ -2,16 +2,17 @@
 
 namespace App;
 
+use App\Models\Traits\UserAdmin;
 use App\Models\Traits\UserHelper;
 use App\Models\Traits\UserRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, SoftDeletes, UserHelper, UserRoles;
+    use Notifiable, SoftDeletes, UserHelper, UserRoles, UserAdmin;
 
     protected $appends = ['fullname'];
 

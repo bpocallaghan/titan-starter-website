@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\User;
 use Tests\TestCase;
+use App\Models\LogLogin;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -76,8 +77,26 @@ class LoginTest extends TestCase
             'password' => 'password',
         ]);
 
+        $user->refresh(); // refresh
         $response->assertRedirect($this->successfulLoginRoute());
         $this->assertAuthenticatedAs($user);
+    }
+
+    /** @test */
+    public function save_log_logins_entry_on_successful_login()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->post($this->loginPostRoute(), [
+            'email'    => $user->email,
+            'password' => 'password',
+        ]);
+
+        $logins = LogLogin::where('username', $user->email)->get();
+
+        $user->refresh(); // refresh
+        $this->assertNotNull($user->logged_in_at);
+        $this->assertCount(1, $logins);
     }
 
     /** @test */
@@ -94,11 +113,12 @@ class LoginTest extends TestCase
         $user = $user->fresh();
 
         $response->assertRedirect($this->successfulLoginRoute());
-        $response->assertCookie(\Illuminate\Support\Facades\Auth::guard()->getRecallerName(), vsprintf('%s|%s|%s', [
-            $user->id,
-            $user->getRememberToken(),
-            $user->password,
-        ]));
+        $response->assertCookie(\Illuminate\Support\Facades\Auth::guard()->getRecallerName(),
+            vsprintf('%s|%s|%s', [
+                $user->id,
+                $user->getRememberToken(),
+                $user->password,
+            ]));
         $this->assertAuthenticatedAs($user);
     }
 
