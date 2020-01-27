@@ -1,0 +1,5 @@
+id,icon,name,slug,keyword,summary,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
+"1","user","User","/","user",,"2020-01-23 14:23:30","2020-01-23 14:23:30",,"0","0",
+"2","user-secret","Admin","/admin","admin",,"2020-01-23 14:23:30","2020-01-23 14:23:30",,"0","0",
+"3","comments","Admin Notifications","/admin","admin_notify",,"2020-01-23 17:32:00","2020-01-23 09:55:26",,"1","1",
+"4","universal-access","Developer","/admin","developer",,"2020-01-23 14:23:30","2020-01-23 14:23:30",,"0","0",

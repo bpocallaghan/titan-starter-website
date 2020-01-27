@@ -1,0 +1,13 @@
+id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id
+1,Dashboard,Dashboard,/,/admin,dashboard,,,,,,,1,0,0,0
+2,Latest Activity,Latest Activity,latest-activity,/admin/latest-activity,history,,,,,,,2,0,0,0
+3,Website,,website,/admin/latest-activity/website,home,,,,,,,1,0,2,2
+4,Admin,Admin,admin,/admin/latest-activity/admin,lock,,,,,,,2,0,2,2
+5,Accounts,Accounts,accounts,/admin/accounts,users,,,,,,,3,1,0,0
+6,Clients,Clients,clients,/admin/accounts/clients,users,,,,,,,1,0,5,5
+7,Administrators,,administrators,/admin/accounts/administrators,users,,,,,,,2,0,5,5
+8,Profile,,profile,/admin/profile,user,,,,,,,1,1,0,0
+9,Settings,,settings,/admin/settings,cogs,,,,,,,4,0,0,0
+10,Navigation,,navigations,/admin/settings/navigations,align-center,Help,Helpful text here - explaining what u can do here...,Information,Please complete the form to create the navigation,,,4,0,9,9
+11,Navigation Order,Navigation Order,order,/admin/settings/navigation/order,list-ol,,,,,,,1,1,10,10
+12,Roles,Roles,roles,/admin/settings/roles,universal-access,,,,,,,1,0,9,9
