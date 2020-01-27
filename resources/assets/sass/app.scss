@@ -19,27 +19,29 @@
 
 // titan
 @import 'titan/notify';
+@import 'titan/nestable';
 
 // overrides
 table.dataTable {
-  border-collapse: collapse !important;
+    border-collapse: collapse !important;
 }
 
 div.dataTables_wrapper div.dataTables_info {
-  padding-top: 0.45em;
+    padding-top: 0.45em;
 }
 
 div.dataTables_wrapper div.dataTables_filter input {
-  margin-left: 0px;
+    margin-left: 0px;
 }
 
 div.dataTables_wrapper div.dataTables_filter label {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
+
 div.dataTables_wrapper div.dataTables_length label {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .dt-toolbar-footer .pagination .page-link {
-  padding: 0.3rem 0.75rem;
+    padding: 0.3rem 0.75rem;
 }

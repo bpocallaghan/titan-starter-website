@@ -70,8 +70,22 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('/website', 'LatestActivitiesController@website');
     });
 
+    // accounts
+    Route::group(['prefix' => 'accounts', 'namespace' => 'Accounts'], function () {
+        // clients
+        Route::resource('clients', 'ClientsController');
+
+        // users
+        Route::get('administrators', 'AdministratorsController@index');
+        Route::delete('administrators', 'AdministratorsController@destroy');
+    });
+
+    // settings
     Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
         Route::resource('roles', 'RolesController');
+        // navigation
+        Route::get('navigations/order', 'NavigationOrderController@index');
+        Route::post('navigations/order', 'NavigationOrderController@updateOrder');
         Route::resource('navigations', 'NavigationsController');
     });
 });

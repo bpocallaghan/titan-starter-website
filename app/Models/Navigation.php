@@ -17,7 +17,7 @@ class Navigation extends AdminModel
     protected $guarded = ['id'];
 
     // prefix path
-    protected $prefixPath = '';
+    protected $prefixPath = '/admin';
 
     /**
      * Validation rules for this model

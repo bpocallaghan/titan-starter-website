@@ -8,9 +8,7 @@ require('datatables.net-bs4');
 
 require('admin-lte');
 
-
-
-
+require('nestable');
 
 /*
 window.Vue = require('vue');

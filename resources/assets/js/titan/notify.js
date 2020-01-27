@@ -17,8 +17,8 @@ function notify(title, content, level)
         title: title,
         content: content,
         level: level ? level : 'success',
-        icon: "fa fa-thumbs-o-up bounce animated",
-        iconSmall: "fa fa-thumbs-o-up bounce animated",
+        icon: "far fa-thumbs-up bounce animated",
+        iconSmall: "far fa-thumbs-up bounce animated",
     });
 }
 
@@ -33,8 +33,8 @@ function notifyError(title, content)
         title: title,
         content: content,
         level: 'danger',
-        icon: "fa fa-thumbs-o-down shake animated",
-        iconSmall: "fa fa-thumbs-o-down spin animated",
+        icon: "far fa-thumbs-down shake animated",
+        iconSmall: "far fa-thumbs-down spin animated",
     });
 }
 
