@@ -24,6 +24,23 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now()
         ]);
         $this->addAllRolesToUser($user);
+
+        // dummy users
+        /*for ($i = 0; $i < 10; $i++) {
+            $user = User::create([
+                'firstname'         => $faker->firstName,
+                'lastname'          => $faker->lastName,
+                'cellphone'         => $faker->phoneNumber,
+                'email'             => $faker->email,
+                'gender'            => $faker->randomElement(['male', 'female']),
+                'password'          => bcrypt('secret'),
+                'email_verified_at' => now()
+            ]);
+
+            $user->syncRoles([
+                \App\Models\Role::$USER,
+            ]);
+        }*/
     }
 
     /**

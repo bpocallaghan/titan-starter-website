@@ -3,9 +3,9 @@ id,name,description,slug,url,icon,help_index_title,help_index_content,help_creat
 2,Latest Activity,Latest Activity,activities,/admin/activities,history,,,,,,,2,0,0,0
 3,Website,,website,/admin/activities/website,home,,,,,,,1,0,2,2
 4,Admin,Admin,admin,/admin/activities/admin,lock,,,,,,,2,0,2,2
-5,Accounts,Accounts,accounts,/admin/accounts,users,,,,,,,3,1,0,0
-6,Clients,Clients,clients,/admin/accounts/clients,users,,,,,,,1,0,5,5
-7,Administrators,,administrators,/admin/accounts/administrators,users,,,,,,,2,0,5,5
+5,Accounts,Accounts,accounts,/admin/accounts,users,,,,,,,3,0,0,0
+6,Clients,Clients,clients,/admin/accounts/clients,user,,,,,,,1,0,5,5
+7,Administrators,,administrators,/admin/accounts/administrators,universal-access,,,,,,,2,0,5,5
 8,Profile,,profile,/admin/profile,user,,,,,,,1,1,0,0
 9,Settings,,settings,/admin/settings,cogs,,,,,,,4,0,0,0
 10,Navigation,,navigations,/admin/settings/navigations,align-center,Help,Helpful text here - explaining what u can do here...,Information,Please complete the form to create the navigation,,,4,0,9,9
