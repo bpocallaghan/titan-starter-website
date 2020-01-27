@@ -1,8 +1,8 @@
 id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id
 1,Dashboard,Dashboard,/,/admin,dashboard,,,,,,,1,0,0,0
-2,Latest Activity,Latest Activity,latest-activity,/admin/latest-activity,history,,,,,,,2,0,0,0
-3,Website,,website,/admin/latest-activity/website,home,,,,,,,1,0,2,2
-4,Admin,Admin,admin,/admin/latest-activity/admin,lock,,,,,,,2,0,2,2
+2,Latest Activity,Latest Activity,activities,/admin/activities,history,,,,,,,2,0,0,0
+3,Website,,website,/admin/activities/website,home,,,,,,,1,0,2,2
+4,Admin,Admin,admin,/admin/activities/admin,lock,,,,,,,2,0,2,2
 5,Accounts,Accounts,accounts,/admin/accounts,users,,,,,,,3,1,0,0
 6,Clients,Clients,clients,/admin/accounts/clients,users,,,,,,,1,0,5,5
 7,Administrators,,administrators,/admin/accounts/administrators,users,,,,,,,2,0,5,5

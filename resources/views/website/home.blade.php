@@ -5,12 +5,12 @@
         <div class="col-sm-3">
             <div class="card h-100">
                 <div class="card-header">
-                    <h4 class="card-title"><i class="fa fa-fw fa-check"></i> Laravel v6.0</h4>
+                    <h4 class="card-title"><i class="fa fa-fw fa-check"></i> Laravel & AdminLTE</h4>
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Laravel v6.0</strong></li>
-                        <li><strong>AdminLTE v2.4.2</strong></li>
+                        <li><strong>Laravel v6.12</strong></li>
+                        <li><strong>AdminLTE v3.0.2</strong></li>
                         <li><strong>Bootstrap v4.1.3</strong></li>
                         <li><strong>jQuery v3.2.1</strong></li>
                     </ul>
@@ -21,8 +21,7 @@
         <div class="col-sm-6">
             <div class="card h-100">
                 <div class="card-header">
-                    <h4 class="card-title"><i class="fa fa-fw fa-gift"></i> Free &amp; Open
-                        Source & Many Features</h4>
+                    <h4 class="card-title"><i class="fa fa-fw fa-gift"></i> Free &amp; Open Source</h4>
                 </div>
                 <div class="card-body">
 
@@ -34,14 +33,13 @@
                                 <li>Log Activity (website and admin)</li>
                                 <li>Notifications</li>
                                 <li>Google Analytics Reports</li>
-                                <li>Website Page Builder (4 components)</li>
+                                <li>Website Page Builder</li>
                             </ul>
                         </div>
 
                         <div class="col-md-4">
                             <ul>
                                 <li>Banners</li>
-                                <li>Page Builder</li>
                                 <li>Photos</li>
                                 <li>Documents</li>
                                 <li>Blog</li>

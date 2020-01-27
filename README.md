@@ -33,6 +33,25 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - setup your virtual host (preview: http://titan.test)
  - open .env and update app information, database, mail
  - open `database\seeds\UsersTableSeeder.php` and set your admin user credentials
+ 
+ ## Setup (Advanced)
+ - `config\app.php` -> set timezone
+ - create Facebook Website App https://developers.facebook.com/
+ - create a Mailgun account and set custom domain
+ - google Captcha https://www.google.com/recaptcha/admin#list
+ - google Analytics Account https://analytics.google.com/analytics/web
+ - google Console Developer account for google maps and google analytics API
+    - https://console.developers.google.com
+    - Enable the 'google analytics' API
+ 	- Create api browser key for google maps
+ 	- Get and Setup Laravel Analytics [Laravel Analytics (Spatie)](https://github.com/spatie/laravel-analytics/tree/3.1.0)
+         - create new service account key (JSON)
+         - download and rename the json to 'service-account-credentials.json'
+         - store the file under /storage/app/analytics
+         - go to (google analytics)[https://analytics.google.com/analytics/]
+         - go to admin - property - user management and add the service account's email as a user
+         - go to admin - view - settings and copy the 'site id' to your .env
+ - get a Google Maps js API key https://developers.google.com/maps/documentation/javascript/get-api-key 
 
 ## Thank you
 - All [contributors](https://github.com/bpocallaghan/titan-starter/graphs/contributors)

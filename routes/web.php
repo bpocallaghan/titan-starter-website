@@ -63,6 +63,13 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
     Route::get('/', 'DashboardController@index');
 
+    // history
+    Route::group(['prefix' => 'activities', 'namespace' => 'LatestActivities'], function () {
+        Route::get('/', 'LatestActivitiesController@website');
+        Route::get('/admin', 'LatestActivitiesController@admin');
+        Route::get('/website', 'LatestActivitiesController@website');
+    });
+
     Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
         Route::resource('roles', 'RolesController');
         Route::resource('navigations', 'NavigationsController');

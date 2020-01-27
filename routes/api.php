@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+/*
+|------------------------------------------
+| PUBLIC API
+|------------------------------------------
+*/
+Route::group(['namespace' => 'Api'], function () { // 'middleware' => ['auth:api'],
+    // notifications
+    Route::group(['prefix' => 'notifications',], function () {
+        Route::post('/{user}', 'NotificationsController@index');
+        Route::post('/{user}/unread', 'NotificationsController@unread');
+        Route::post('/{user}/read/{notification}', 'NotificationsController@read');
+
+        Route::post('/actions/latest', 'NotificationsController@getLatestActions');
+    });
+});

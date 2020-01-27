@@ -72,7 +72,7 @@ function getHeaderNotifications()
             }
 
             var html = '<div class="dropdown-divider"></div>\n' +
-                '            <a href="/activities/all" class="dropdown-item dropdown-footer">\n' +
+                '            <a href="/activities" class="dropdown-item dropdown-footer">\n' +
                 '                See All Activities\n' +
                 '            </a>';
             $('#js-' + type + '-list').append(html);
