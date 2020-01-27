@@ -53,6 +53,6 @@ class NavigationTest extends TestCase
         ]);
 
         $navigation->updateUrl();
-        $this->assertEquals('/slug', $navigation->url);
+        $this->assertEquals('/admin/slug', $navigation->url);
     }
 }

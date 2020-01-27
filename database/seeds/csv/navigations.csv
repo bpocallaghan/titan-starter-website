@@ -1,13 +1,14 @@
-id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id
-1,Dashboard,Dashboard,/,/admin,dashboard,,,,,,,1,0,0,0
-2,Latest Activity,Latest Activity,activities,/admin/activities,history,,,,,,,2,0,0,0
-3,Website,,website,/admin/activities/website,home,,,,,,,1,0,2,2
-4,Admin,Admin,admin,/admin/activities/admin,lock,,,,,,,2,0,2,2
-5,Accounts,Accounts,accounts,/admin/accounts,users,,,,,,,3,0,0,0
-6,Clients,Clients,clients,/admin/accounts/clients,user,,,,,,,1,0,5,5
-7,Administrators,,administrators,/admin/accounts/administrators,universal-access,,,,,,,2,0,5,5
-8,Profile,,profile,/admin/profile,user,,,,,,,1,1,0,0
-9,Settings,,settings,/admin/settings,cogs,,,,,,,4,0,0,0
-10,Navigation,,navigations,/admin/settings/navigations,align-center,Help,Helpful text here - explaining what u can do here...,Information,Please complete the form to create the navigation,,,4,0,9,9
-11,Navigation Order,Navigation Order,order,/admin/settings/navigation/order,list-ol,,,,,,,1,1,10,10
-12,Roles,Roles,roles,/admin/settings/roles,universal-access,,,,,,,1,0,9,9
+id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
+"1","Dashboard","Dashboard","/","/admin","dashboard","","","","","","","1","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"2","Latest Activity","Latest Activity","activities","/admin/activities","history","","","","","","","3","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","1",
+"3","Website","","website","/admin/activities/website","home","","","","","","","1","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"4","Admin","Admin","admin","/admin/activities/admin","lock","","","","","","","2","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"5","Accounts","Accounts","accounts","/admin/accounts","users","","","","","","","4","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","1",
+"6","Clients","Clients","clients","/admin/accounts/clients","user","","","","","","","1","0","5","5","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"7","Administrators","","administrators","/admin/accounts/administrators","universal-access","","","","","","","2","0","5","5","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"8","Profile","","profile","/admin/profile","user","","","","","","","2","1","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","1",
+"9","Settings","","settings","/admin/settings","cogs","","","","","","","5","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","1",
+"10","Navigation","","navigations","/admin/settings/navigations","align-center","Help","Helpful text here - explaining what u can do here...","Information","Please complete the form to create the navigation","","","3","0","9","9","2020-01-27 12:11:41","2020-01-27 13:59:10",,"0","1",
+"11","Navigation Order","Navigation Order","order","/admin/settings/navigations/order","list-ol","","","","","","","1","1","10","10","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","1",
+"12","Roles","Roles","roles","/admin/settings/roles","universal-access","","","","","","","1","0","9","9","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"13","Settings","Settings","settings","/admin/settings/settings","cog",,,,,,,"2","0","9","9","2020-01-27 13:58:56","2020-01-27 13:59:10",,"1","1",

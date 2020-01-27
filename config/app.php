@@ -8,7 +8,11 @@ return [
 
     'assets_version' => env('ASSETS_VERSION', '1'),
 
-    'google_analytics' => env('GOOGLE_ANALYTICS', ''),
+    'facebook_app_id'       => env('FACEBOOK_APP_ID', ''),
+    'google_map_key'        => env('GOOGLE_MAP_KEY', ''),
+    'google_analytics'      => env('GOOGLE_ANALYTICS', ''),
+    'recaptcha_public_key'  => env('RECAPTCHA_PUBLIC_KEY', ''),
+    'recaptcha_private_key' => env('RECAPTCHA_PRIVATE_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.
 
 - Under Development
-- Test Driven Development `(82 tests, 362 assertions)`
+- Test Driven Development `(90 tests, 408 assertions)`
 
 ## Features
  - Admin LTE theme
@@ -11,11 +11,9 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Admin Navigation
  - Log and View Activities (website actions and admin resource changes)
  - Accounts
+ - App Settings
  
 ## TODO
- - Navigation Order
- - Notify Style Fixes
- - Settings/Settings
  - Website Pages
  - Banners
  - Dashboard

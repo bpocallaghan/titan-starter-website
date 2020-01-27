@@ -24,9 +24,13 @@ if(COMPILE == 'all' || COMPILE == 'js') {
     mix.scripts([
         'public/js/vendor/app_compiled.js',
         pathJS + '/titan/buttons.js',
+        pathJS + '/titan/datatables.js',
+        pathJS + '/titan/forms.js',
+        pathJS + '/titan/google_maps.js',
         pathJS + '/titan/notifications.js',
         pathJS + '/titan/notify.js',
-        pathJS + '/titan/datatables.js',
+        pathJS + '/titan/pagination.js',
+        pathJS + '/titan/social_media.js',
 
         pathJS + '/titan/titan.js',
     ], publicPath + '/js/app.js');

@@ -83,6 +83,9 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     // settings
     Route::group(['prefix' => 'settings', 'namespace' => 'Settings'], function () {
         Route::resource('roles', 'RolesController');
+
+        Route::resource('settings', 'SettingsController');
+
         // navigation
         Route::get('navigations/order', 'NavigationOrderController@index');
         Route::post('navigations/order', 'NavigationOrderController@updateOrder');
