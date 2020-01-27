@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97493fe6f15d609514642b329f6bf0b2",
+    "content-hash": "bcbf900806579a40396feaabe1f4fb8f",
     "packages": [
         {
             "name": "bpocallaghan/alert",
@@ -6118,68 +6118,6 @@
                 "phra"
             ],
             "time": "2020-01-13T10:41:09+00:00"
-        },
-        {
-            "name": "spatie/laravel-web-tinker",
-            "version": "1.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-web-tinker.git",
-                "reference": "ba84d4334e340163dcee046aca482511c83eeaee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-web-tinker/zipball/ba84d4334e340163dcee046aca482511c83eeaee",
-                "reference": "ba84d4334e340163dcee046aca482511c83eeaee",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/cookie": "^5.8|^6.0",
-                "illuminate/session": "^5.8|^6.0",
-                "illuminate/support": "^5.8|^6.0",
-                "laravel/tinker": "^1.0|^2.0",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.8|^4.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\WebTinker\\WebTinkerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\WebTinker\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Artisan Tinker in your browser",
-            "homepage": "https://github.com/spatie/laravel-web-tinker",
-            "keywords": [
-                "Tinker",
-                "debug",
-                "development",
-                "laravel",
-                "spatie",
-                "web-tinker"
-            ],
-            "time": "2019-12-03T08:57:47+00:00"
         },
         {
             "name": "symfony/filesystem",
