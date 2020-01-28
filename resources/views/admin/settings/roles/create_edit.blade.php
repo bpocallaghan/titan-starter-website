@@ -71,7 +71,7 @@
                 </fieldset>
             </div>
             <div class="card-footer">
-                @include('admin.partials.form_footer')
+                @include('admin.partials.form.form_footer')
             </div>
         </form>
     </div>

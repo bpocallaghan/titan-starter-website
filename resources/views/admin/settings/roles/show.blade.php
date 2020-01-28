@@ -36,7 +36,7 @@
             </form>
         </div>
         <div class="card-footer">
-            @include('admin.partials.form_footer', ['submit' => false])
+            @include('admin.partials.form.form_footer', ['submit' => false])
         </div>
     </div>
 @endsection

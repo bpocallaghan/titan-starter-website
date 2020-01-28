@@ -22,10 +22,6 @@
 
         <title>{{ $title ?? config('app.name') }}</title>
 
-        @if(config('app.env') != 'local')
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        @endif
-
         <link rel="stylesheet" href="/css/app.css?v=2">
 
         @yield('styles')
@@ -51,8 +47,6 @@
         </div>
 
         @include('website.partials.footer')
-
-        @include('website.partials.popups')
 
         {{-- back to top --}}
         <a href="#top" class="back-to-top jumper btn btn-secondary">

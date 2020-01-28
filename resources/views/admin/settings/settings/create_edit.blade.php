@@ -196,7 +196,7 @@
                     </div>
                 </fieldset>
 
-                @include('admin.partials.form_footer')
+                @include('admin.partials.form.form_footer')
             </form>
         </div>
     </div>
