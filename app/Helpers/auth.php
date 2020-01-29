@@ -40,3 +40,20 @@ if (!function_exists('profile_image')) {
         return "/images/avatars/$gender.png";
     }
 }
+
+if (!function_exists('token')) {
+    /**
+     * Generates a random token
+     *
+     * @param String $str
+     *
+     * @return String
+     */
+    function token($str = null)
+    {
+        $str = $str ?? Str::random();
+        $value = str_shuffle(sha1($str . microtime(true)));
+
+        return hash_hmac('sha1', $value, env('APP_KEY'));
+    }
+}

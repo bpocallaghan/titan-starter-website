@@ -15,7 +15,8 @@
 // vendor packages
 @import '~select2';
 @import '~@ttskch/select2-bootstrap4-theme/src/layout';
-@import '~datatables.net-bs4';
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import "~pc-bootstrap4-datetimepicker/src/sass/bootstrap-datetimepicker-build";
 
 // titan
 @import 'titan/notify';

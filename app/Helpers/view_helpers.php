@@ -14,22 +14,31 @@ if (!function_exists('format_date')) {
     }
 }
 
-if (!function_exists('activitiy_after')) {
+if (!function_exists('activity_after')) {
     /**
      * Get the After Title of model
      * @param $activity
      * @return string
      */
-    function activitiy_after($activity)
+    function activity_after($activity)
     {
         if (strlen($activity->after) > 3) {
             return $activity->after;
         }
-        else if (isset($activity->subject->title)) {
-            return $activity->subject->title;
-        }
 
-        return '';
+        return $activity->subject->title ?? '';
+    }
+}
+
+function image_row_link($thumb, $image = null)
+{
+    return "<a target='_blank' href='" . uploaded_images_url(($image ? $image : $thumb)) . "'><img src='" . uploaded_images_url($thumb) . "' style='height: 50px'/></a>";
+}
+
+if (!function_exists('photo_url')) {
+    function photo_url($name)
+    {
+        return config('app.url') . '/uploads/photos/' . $name;
     }
 }
 

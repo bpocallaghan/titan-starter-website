@@ -34,6 +34,7 @@
         "datatables.net-responsive": "^2.2.3",
         "datatables.net-responsive-bs4": "^2.2.3",
         "nestable": "^0.2.0",
+        "pc-bootstrap4-datetimepicker": "^4.17.50",
         "select2": "^4.0.12"
     }
 }

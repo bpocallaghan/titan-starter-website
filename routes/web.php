@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/home', '/');
 
 /*
@@ -62,6 +64,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('/', 'DashboardController@index');
+
+    Route::resource('banners', 'Banners\BannersController');
 
     // history
     Route::group(['prefix' => 'activities', 'namespace' => 'LatestActivities'], function () {

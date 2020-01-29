@@ -1,0 +1,102 @@
+<?php
+
+namespace Tests\Unit\Traits;
+
+use Tests\TestCase;
+use App\Models\Banner;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class ImageThumbTest extends TestCase
+{
+    /** @test */
+    public function can_get_active_badge()
+    {
+        $banner = factory(Banner::class)->make([
+            'name' => 'Banner',
+        ]);
+
+        $this->assertEquals("<span class='badge badge-success'>Active</span>",
+            $banner->is_active_label);
+    }
+
+    /** @test */
+    public function can_get_thumb()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals('image-tn.jpg', $banner->thumb);
+    }
+
+    /** @test */
+    public function can_get_original_filename()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals('image-o.jpg', $banner->original_filename);
+    }
+
+    /** @test */
+    public function can_get_extension()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals('.jpg', $banner->extension);
+    }
+
+    /** @test */
+    public function can_get_image_thumb()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals('image-tn.jpg', $banner->image_thumb);
+    }
+
+    /** @test */
+    public function can_get_image_original()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals('image-o.jpg', $banner->image_original);
+    }
+
+    /** @test */
+    public function can_get_image_url()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals(config('app.url') . '/uploads/images/image.jpg', $banner->image_url);
+    }
+
+    /** @test */
+    public function can_get_thumb_url()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals(config('app.url') . '/uploads/images/image-tn.jpg', $banner->thumb_url);
+    }
+
+    /** @test */
+    public function can_get_original_url()
+    {
+        $banner = factory(Banner::class)->make([
+            'image' => 'image.jpg',
+        ]);
+
+        $this->assertEquals(config('app.url') . '/uploads/images/image-o.jpg', $banner->original_url);
+    }
+}

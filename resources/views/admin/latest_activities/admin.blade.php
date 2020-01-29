@@ -30,7 +30,7 @@
                         <td>{{ $activity->id }}</td>
                         <td>{{ isset($activity->user)? $activity->user->fullname:'System' }}</td>
                         <td>{!! $activity->name !!}</td>
-                        <td>{!! activitiy_after($activity) !!}</td>
+                        <td>{!! activity_after($activity) !!}</td>
                         <td>{!! $activity->before !!}</td>
                         {{--<td>{{ isset($activity->subject)? isset($activity->subject->title)? $activity->subject->title:'':'' }}</td>--}}
                         <td>{{ $activity->created_at->diffForHumans() }}</td>

@@ -9,6 +9,7 @@ require('datatables.net-bs4');
 require('admin-lte');
 
 require('nestable');
+require('pc-bootstrap4-datetimepicker');
 
 /*
 window.Vue = require('vue');

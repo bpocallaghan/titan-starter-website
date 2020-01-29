@@ -47,19 +47,19 @@ if (!function_exists('action_row')) {
         $url = rtrim($url, '/') . '/'; // remove last / and add it again (if it was not there)
 
         $show = '<a href="' . $url . $id . '" class="btn btn-default btn-xs" data-toggle="tooltip" title="Show ' . $title . '">
-                        <i class="fa fa-eye"></i>
-                    </a>';
+                        <i class="fa fa-fw fa-eye"></i>
+                    </a> ';
 
         $edit = '<a href="' . $url . $id . '/edit' . '" class="btn btn-info btn-xs" data-toggle="tooltip" title="Edit ' . $title . '">
-                        <i class="fa fa-edit text-white"></i>
-                    </a>';
+                        <i class="fa fa-fw fa-edit text-white"></i>
+                    </a> ';
 
         $delete = '<form class="d-inline" id="form-delete-row' . $id . '" method="POST" action="' . $url . $id . '">
                         <input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <input name="_id" type="hidden" value="' . $id . '">
                         <a data-form="form-delete-row' . $id . '" class="btn btn-danger btn-xs btn-delete-row" data-toggle="tooltip" title="Delete ' . $title . '">
-                            <i class="fa fa-trash text-white"></i>
+                            <i class="fa fa-fw fa-trash text-white"></i>
                         </a>
                         </form>';
 
