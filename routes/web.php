@@ -91,6 +91,60 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     });
     Route::resource('pages', 'Pages\PagesController');
 
+    // gallery / photos
+    Route::group(['prefix' => 'photos', 'namespace' => 'Photos'], function () {
+        Route::get('/', 'PhotosController@index');
+        Route::delete('/{photo}', 'PhotosController@destroy');
+        Route::post('/upload', 'PhotosController@uploadPhotos');
+        Route::post('/{photo}/edit/name', 'PhotosController@updatePhotoName');
+        Route::post('/{photo}/cover', 'PhotosController@updatePhotoCover');
+
+        Route::resource('/albums', 'AlbumsController', ['except' => 'show']);
+        // photoables
+        Route::get('/show/{photoable}', 'PhotosController@showPhotos');
+        //photos order
+        Route::get('/show/{photoable}/order', 'PhotosOrderController@showPhotos');
+        Route::post('/order', 'PhotosOrderController@update');
+        // croppers
+        Route::post('/crop/{photo}', 'CropperController@cropPhoto');
+        Route::get('/show/{photoable}/crop/{photo}', 'CropperController@showPhotos');
+
+        // resource image crop
+        Route::post('/crop-resource', 'CropResourceController@cropPhoto');
+        Route::get('/banners/{banner}/crop-resource/', 'CropResourceController@showBanner');
+
+        //videos
+        Route::resource('/albums/{album}/videos', 'VideosController', ['except' => 'show']);
+
+        Route::get('/videos', 'VideosController@index');
+        Route::post('/videos/create', 'VideosController@store');
+        Route::post('/videos/{video}/edit', 'VideosController@update');
+        Route::delete('/videos/{video}', 'VideosController@destroy');
+        Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
+        Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
+        //videos order
+        Route::get('/show/{videoable}/videos/order', 'VideosOrderController@showVideos');
+        Route::post('/videos/order', 'VideosOrderController@update');
+    });
+
+    // documents
+    Route::group(['prefix' => 'documents', 'namespace' => 'Documents'], function () {
+        // documents
+        Route::get('/', 'DocumentsController@index');
+        Route::delete('/{document}', 'DocumentsController@destroy');
+        Route::post('/upload', 'DocumentsController@upload');
+        Route::post('/{document}/edit/name', 'DocumentsController@updateName');
+
+        // documentable
+        Route::get('/category/{category}', 'DocumentsController@showCategory');
+
+        //show documents for other components
+        Route::get('/show/{documentable}', 'DocumentsController@showDocuments');
+
+        // categories
+        Route::resource('/categories', 'CategoriesController');
+    });
+
     // accounts
     Route::group(['prefix' => 'accounts', 'namespace' => 'Accounts'], function () {
         // clients

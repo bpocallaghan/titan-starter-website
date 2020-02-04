@@ -9,6 +9,7 @@ use App\Models\Page;
 use App\Models\PageContent;
 use App\Models\Traits\ImageThumb;
 use App\Http\Controllers\Admin\AdminController;
+use Intervention\Image\Facades\Image;
 
 class PageContentController extends AdminController
 {
@@ -35,8 +36,7 @@ class PageContentController extends AdminController
      */
     public function create(Page $page)
     {
-        return $this->view('pages.components.content')
-            ->with('page', $page);
+        return $this->view('pages.components.content')->with('page', $page);
     }
 
     /**
@@ -47,7 +47,7 @@ class PageContentController extends AdminController
      */
     public function store(Request $request)
     {
-        if (is_null(request()->file('media'))) {
+        if (request()->file('media') === null) {
             $attributes = request()->validate(Arr::except(PageContent::$rules, 'media'),
                 PageContent::$messages);
         }
@@ -62,7 +62,7 @@ class PageContentController extends AdminController
 
         $pageContent = $this->createEntry(PageContent::class, $attributes);
 
-        return redirect('admin/pages/'.$request->page_id.'/sections/content/'.$pageContent->id.'/edit');
+        return redirect('admin/pages/' . $request->page_id . '/sections/content/' . $pageContent->id . '/edit');
     }
 
     /**
@@ -74,9 +74,7 @@ class PageContentController extends AdminController
      */
     public function edit(Page $page, PageContent $content)
     {
-        return $this->view('pages.components.content')
-            ->with('page', $page)
-            ->with('item', $content);
+        return $this->view('pages.components.content')->with('page', $page)->with('item', $content);
     }
 
     /**
@@ -120,7 +118,8 @@ class PageContentController extends AdminController
         // delete page_content
         $this->deleteEntry($section, request());
 
-        log_activity('Page Component Deleted', 'A Page Content was successfully removed from the Page', $section);
+        log_activity('Page Component Deleted',
+            'A Page Content was successfully removed from the Page', $section);
 
         return redirect_to_resource();
     }
@@ -136,7 +135,7 @@ class PageContentController extends AdminController
         foreach ($items as $key => $item) {
 
             $row = PageContent::find($item['id']);
-            if($row) {
+            if ($row) {
                 $row->update([
                     'list_order' => ($key + 1)
                 ]);
@@ -147,7 +146,7 @@ class PageContentController extends AdminController
     }
 
     /**
-     * @param Page $page
+     * @param Page        $page
      * @param PageContent $content
      * @return array
      */
@@ -163,11 +162,10 @@ class PageContentController extends AdminController
      * Save Image in Storage, crop image and save in public/uploads/images
      * @param UploadedFile $file
      * @param array        $size
-     * @return \Illuminate\Http\JsonResponse|static
+     * @return PageContentController|bool|\Illuminate\Http\JsonResponse
      */
     private function moveAndCreatePhoto(
-        UploadedFile $file,
-        $size = ['l' => [1000, 1000], 's' => [300, 300]]
+        UploadedFile $file, $size = ['l' => [1000, 1000], 's' => [300, 300]]
     ) {
         $extension = '.' . $file->extension();
 

@@ -33,8 +33,11 @@
         "datatables.net-bs4": "^1.10.20",
         "datatables.net-responsive": "^2.2.3",
         "datatables.net-responsive-bs4": "^2.2.3",
+        "dropzone": "^5.5.1",
+        "lightbox2": "^2.11.1",
         "nestable": "^0.2.0",
         "pc-bootstrap4-datetimepicker": "^4.17.50",
-        "select2": "^4.0.12"
+        "select2": "^4.0.12",
+        "summernote": "^0.8.15"
     }
 }

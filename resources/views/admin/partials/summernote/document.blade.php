@@ -56,7 +56,7 @@
         var DocumentButton = function (context) {
             var ui = $.summernote.ui;
             var button = ui.button({
-                contents: '<i class="fa fa-files-o"/>',
+                contents: '<i class="far fa-fw fa-file-pdf"/>',
                 tooltip: 'Insert link to a document',
                 click: function () {
                     // open modal
