@@ -24,23 +24,23 @@
 
                 <fieldset>
                     <div class="row">
-                        <section class="col col-3">
+                        <div class="col col-3">
                             <div class="form-group">
                                 <label for="icon">Icon</label>
                                 <input type="text" class="form-control {{ form_error_class('icon', $errors) }}" id="icon" name="icon" placeholder="Enter icon" value="{{ ($errors && $errors->any()? old('icon') : (isset($item)? $item->icon : '')) }}">
                                 {!! form_error_message('icon', $errors) !!}
                             </div>
-                        </section>
+                        </div>
 
-                        <section class="col col-6">
+                        <div class="col col-6">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control input-generate-slug {{ form_error_class('name', $errors) }}" id="name" name="name" placeholder="Enter Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                                 {!! form_error_message('name', $errors) !!}
                             </div>
-                        </section>
+                        </div>
 
-                        <section class="col col-3">
+                        <div class="col col-3">
                             <div class="form-group">
                                 <label for="slug">Slug</label>
                                 <div class="input-group">
@@ -51,7 +51,7 @@
                                     {!! form_error_message('slug', $errors) !!}
                                 </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -85,22 +85,21 @@
                         </div>
 
                         <div class="col col-5">
-                            <section class="form-group">
+                            <div class="form-group">
                                 <label for="id-parent_id">Parent (navigation parent, under
                                     which navigation it will display)</label>
                                 {!! form_select('parent_id', ([0 => 'Please select a Parent'] + $parents), isset($item)? ($errors && $errors->any()? old('parent_id') : $item->parent_id) : old('parent_id'), ['class' => 'select2 form-control ' . form_error_class('parent_id', $errors)]) !!}
                                 {!! form_error_message('parent_id', $errors) !!}
-                            </section>
+                            </div>
                         </div>
 
                         <div class="col col-5">
-                            <section class="form-group">
-                                <label for="id-parent_id">Url Parent (parent that will be
-                                    used to generate the url, same as parent if
-                                    empty)</label>
-                                {!! form_select('url_parent_id', ([0 => 'Please select a Url Parent'] + $parents), ($errors && $errors->any()? old('url_parent_id') : (isset($item)? $item->url_parent_id : '')), ['class' => 'select2 form-control ' . form_error_class('url_parent_id', $errors)]) !!}
+                            <div class="form-group {{ form_error_class('url_parent_id', $errors) }}">
+                                <label for="id-url_parent_id">Url Parent (parent to generate the
+                                    url, same as parent if empty)</label>
+                                {!! form_select('url_parent_id', ([0 => 'Please select an Url Parent'] + $parents), ($errors && $errors->any()? old('url_parent_id') : (isset($item)? $item->url_parent_id : '')), ['class' => 'select2 form-control']) !!}
                                 {!! form_error_message('url_parent_id', $errors) !!}
-                            </section>
+                            </div>
                         </div>
                     </div>
 

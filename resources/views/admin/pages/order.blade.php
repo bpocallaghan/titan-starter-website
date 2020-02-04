@@ -53,7 +53,7 @@
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initNestableMenu(4, "{{ request()->url() }}");
+            initNestableMenu(3, "{{ request()->url() }}");
         })
     </script>
 @endsection

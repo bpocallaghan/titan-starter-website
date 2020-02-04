@@ -74,6 +74,23 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('/website', 'LatestActivitiesController@website');
     });
 
+    // pages
+    Route::group(['prefix' => 'pages', 'namespace' => 'Pages'], function () {
+        Route::get('/order/{type?}', 'OrderController@index');
+        Route::post('/order/{type?}', 'OrderController@updateOrder');
+
+        // manage page sections list order
+        Route::get('/{page}/sections', 'PageContentController@index');
+        Route::post('/{page}/sections/order', 'PageContentController@updateOrder');
+        Route::delete('/{page}/sections/{section}', 'PageContentController@destroy');
+
+        // page components
+        Route::resource('/{page}/sections/content', 'PageContentController');
+        //remove content media
+        Route::post('/{page}/sections/content/{content}/removeMedia', 'PageContentController@removeMedia');
+    });
+    Route::resource('pages', 'Pages\PagesController');
+
     // accounts
     Route::group(['prefix' => 'accounts', 'namespace' => 'Accounts'], function () {
         // clients

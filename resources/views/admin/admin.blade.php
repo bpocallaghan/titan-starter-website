@@ -40,17 +40,7 @@
             @include('admin.partials.navigation')
 
             <div class="content-wrapper">
-                <section class="content-header">
-                    {{--<div class="container-fluid">
-                        <div class="row">
-                            @include('admin.partials.pagecrumb')
-
-                            @include('admin.partials.breadcrumb')
-                        </div>
-                    </div>--}}
-                </section>
-
-                <section class="content">
+                <section class="content mt-2">
                     <h2 class="d-none">Page</h2>
                     @yield('content')
                 </section>
