@@ -24,11 +24,16 @@ if (!function_exists('profile_image')) {
     function profile_image()
     {
         if (!auth()->check()) {
-            return "/images/logo_small.png";
+            return '/images/logo_small.png';
         }
 
         $image = user()->image;
-        $gender = user()->gender;
+        if(isset(user()->gender)){
+            $default_image = user()->gender;
+        }else {
+            $default_image = 'default';
+        }
+
         if ($image && strlen($image) > 5) {
             if (is_slug_url($image)) {
                 return $image;
@@ -37,7 +42,7 @@ if (!function_exists('profile_image')) {
             return '/uploads/images/' . $image;
         }
 
-        return "/images/avatars/$gender.png";
+        return '/images/avatars/'.$default_image.'.png';
     }
 }
 
