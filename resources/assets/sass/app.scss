@@ -50,3 +50,6 @@ div.dataTables_wrapper div.dataTables_length label {
 .dt-toolbar-footer .pagination .page-link {
     padding: 0.3rem 0.75rem;
 }
+table.dataTable.table-sm .sorting:before, table.dataTable.table-sm .sorting_asc:before, table.dataTable.table-sm .sorting_desc:before {
+  right: 1.2em;
+}

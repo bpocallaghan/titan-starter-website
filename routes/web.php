@@ -65,7 +65,16 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
     Route::get('/', 'DashboardController@index');
 
-    Route::resource('banners', 'Banners\BannersController');
+    // profile
+    Route::get('/profile', 'ProfileController@index');
+    Route::put('/profile/{user}', 'ProfileController@update');
+
+    // banners
+    Route::namespace('Banners')->group(function(){
+        Route::get('/banners/order', 'OrderController@index');
+        Route::post('/banners/order', 'OrderController@update');
+        Route::resource('/banners', 'BannersController');
+    });
 
     // history
     Route::group(['prefix' => 'activities', 'namespace' => 'LatestActivities'], function () {
