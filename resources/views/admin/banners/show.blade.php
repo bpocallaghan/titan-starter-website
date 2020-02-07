@@ -11,12 +11,12 @@
                 </button>
             </div>
         </div>
+        <form>
+            <div class="card-body">
 
-        <div class="card-body">
+                @include('admin.partials.info')
 
-            @include('admin.partials.info')
 
-            <form>
                 <fieldset>
                     <div class="row">
                         <section class="col col-6">
@@ -74,8 +74,9 @@
                     @endif
                 </fieldset>
 
-                @include('admin.partials.form.form_footer', ['submit' => false])
-            </form>
-        </div>
+
+            </div>
+            @include('admin.partials.form.form_footer', ['submit' => false])
+        </form>
     </div>
 @endsection

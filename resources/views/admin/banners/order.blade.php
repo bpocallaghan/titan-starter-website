@@ -1,9 +1,10 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+    <div class="card card-secondary">
         <div class="card-header">
-            <h3 class="card-title">List All Roles</h3>
+            <h3 class="card-title">List All Banners</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -20,7 +21,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-12">
                     <div class="dd" id="dd-navigation" style="max-width: 100%">
                         <ol class="dd-list">
                             @foreach($items as $item)
@@ -42,8 +43,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
     @include('admin.partials.nestable')
