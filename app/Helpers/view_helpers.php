@@ -23,10 +23,38 @@ if (!function_exists('activity_after')) {
     function activity_after($activity)
     {
         if (strlen($activity->after) > 3) {
-            return $activity->after;
+            $after = json_decode($activity->after);
+            $after_txt = '';
+
+            foreach($after as $k => $v){
+                $after_txt .= ucfirst($k).': '.$v.'<br>';
+            }
+            return $after_txt;
         }
 
         return $activity->subject->title ?? '';
+    }
+}
+
+if (!function_exists('activity_before')) {
+    /**
+     * Get the After Title of model
+     * @param $activity
+     * @return string
+     */
+    function activity_before($activity)
+    {
+        $before_txt = '';
+        if (strlen($activity->before) > 3) {
+            $before = json_decode($activity->before);
+
+
+            foreach($before as $k => $v){
+                $before_txt .= ucfirst($k).': '.$v.'<br>';
+            }
+        }
+        return $before_txt;
+
     }
 }
 

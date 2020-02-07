@@ -1,5 +1,5 @@
 id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
-"1","Dashboard","Dashboard","/","/admin","dashboard","","","","","","","1","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
+"1","Dashboard","Dashboard","/","/admin","tachometer-alt","","","","","","","1","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
 "2","Latest Activity","Latest Activity","activities","/admin/activities","history","","","","","","","3","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","0",
 "3","Website","","website","/admin/activities/website","home","","","","","","","1","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
 "4","Admin","Admin","admin","/admin/activities/admin","lock","","","","","","","2","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",

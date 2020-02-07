@@ -49,7 +49,7 @@ function getHeaderNotifications()
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
 
-                var html = '<div class="text-sm"><a style="overflow: hidden;" href="#" class="dropdown-item">';
+                var html = '<div class="text-xs"><a style="overflow: hidden;" href="#" class="dropdown-item">';
                 html += '<div class="row"><div class="col-md-8">' + item['name'];
                 html += '</div><div class="col-md-4"><span class="text-muted text-right">' + item['created_at'] + '</span></div></div>';
                 html += '<span class="text-muted">' + item['message'] + '</span>';
@@ -72,7 +72,7 @@ function getHeaderNotifications()
             }
 
             var html = '<div class="dropdown-divider"></div>\n' +
-                '            <a href="/activities" class="dropdown-item dropdown-footer">\n' +
+                '            <a href="/admin/activities/website" class="dropdown-item dropdown-footer">\n' +
                 '                See All Activities\n' +
                 '            </a>';
             $('#js-' + type + '-list').append(html);

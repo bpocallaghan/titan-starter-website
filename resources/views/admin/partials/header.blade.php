@@ -34,7 +34,7 @@
                 <span id="js-activities-badge" class="badge badge-warning navbar-badge" style="display: none;"></span>
             </a>
             <div id="js-activities-list" class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div class="text-sm">
+                <div class="text-xs">
                     <a href="#" class="dropdown-item">
                         <div class="row">
                             <div class="col-md-8">
@@ -66,7 +66,7 @@
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="{{ url('/profile') }}" class="btn btn-default btn-flat">Profile</a>
+                    <a href="{{ url('/admin/profile') }}" class="btn btn-default btn-flat">Profile</a>
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                         out</a>
 
