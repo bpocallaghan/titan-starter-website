@@ -1,7 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+    <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">
                 <span><i class="fa fa-edit"></i></span>
@@ -14,9 +15,9 @@
                 </button>
             </div>
         </div>
+        <form method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8">
+            <div class="card-body">
 
-        <div class="card-body">
-            <form method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8">
                 <input name="_token" type="hidden" value="{{ csrf_token() }}">
                 <input name="_method" type="hidden" value="{{isset($item)? 'PUT':'POST'}}">
 
@@ -196,12 +197,12 @@
                     </div>
                 </fieldset>
 
-                @include('admin.partials.form.form_footer')
-            </form>
-        </div>
+            </div>
+            @include('admin.partials.form.form_footer')
+        </form>
     </div>
-
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+    <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">Google Map</h3>
 
@@ -212,14 +213,12 @@
             </div>
         </div>
 
-        <div class="card-body">
-
-            <div class="box-body no-padding">
-                <input id="pac-input" class="controls" type="text" placeholder="Enter Address">
-                <div id="map_canvas" class="google_maps" style="height: 450px;">
-                    &nbsp;
-                </div>
+        <div class="card-body p-0">
+            <input id="pac-input" class="controls" type="text" placeholder="Enter Address">
+            <div id="map_canvas" class="google_maps" style="height: 450px;">
+                &nbsp;
             </div>
+
         </div>
     </div>
 @endsection

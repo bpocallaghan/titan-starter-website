@@ -9,9 +9,12 @@ require('datatables.net-bs4');
 require('admin-lte');
 
 require('nestable');
-require('dropzone');
+
+window.Dropzone = require('dropzone');
+Dropzone.autoDiscover = false;
+
 require('lightbox2');
-require('summernote');
+require('summernote/dist/summernote-bs4.js');
 require('pc-bootstrap4-datetimepicker');
 
 /*

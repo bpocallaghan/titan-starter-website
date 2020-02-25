@@ -1,10 +1,12 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+
+    <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">
-                List All Navigations
+                List All Navigation's
             </h3>
 
             <div class="card-tools">

@@ -14,9 +14,9 @@
         </div>
 
         <div class="card-body">
-            <div class="well well-sm well-toolbar" id="nestable-menu">
-                <a href="javascript:window.history.back();" class="btn btn-labeled btn-default">
-                    <span class="btn-label"><i class="fa fa-fw fa-chevron-left"></i></span>Back
+            <div class="mb-3" id="nestable-menu">
+                <a href="javascript:window.history.back();" class="btn btn-secondary">
+                    <span class="label"><i class="fa fa-fw fa-chevron-left"></i></span>Back
                 </a>
             </div>
 

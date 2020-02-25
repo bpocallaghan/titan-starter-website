@@ -66,8 +66,8 @@
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="{{ url('/admin/profile') }}" class="btn btn-default btn-flat">Profile</a>
-                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                    <a href="{{ url('/admin/profile') }}" class="btn btn-light btn-flat">Profile</a>
+                    <a href="{{ route('logout') }}" class="btn btn-light btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                         out</a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

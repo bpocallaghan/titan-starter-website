@@ -1,64 +1,6 @@
-<div class="card card-outline card-secondary">
+<div class="card card-outline card-light m-0">
     <div class="card-header">
-        <h3 class="card-title">{!! $photoable->name !!} Photos</h3>
-
-        <div class="card-tools">
-            <a class="btn btn-warning btn-sm" href="/admin/photos/show/{{ $photoable->id }}/order">
-                <span><i class="fa fa-sort" aria-hidden="true"></i></span></a>
-        </div>
-    </div>
-
-    <div class="card-body superbox">
-        @forelse($photos->sortBy('list_order') as $photo)
-            <div class="superbox-list">
-                <table class="dt-table">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <label class="radio" style="margin-top: -10px;;">
-                                <input class="photo-cover-radio" data-id="{{ $photo->id }}" type="radio" name="is_cover" {!! $photo->is_cover == 1? 'checked' : '' !!}>
-                                <i></i>
-                            </label>
-                        </td>
-                        <td style="width: 100%; text-align: center">
-                            <a id="image-row-clicker-{{ $photo->id }}" class="dropzone-image-click" href="#" data-id="{{ $photo->id }}" data-title="{{ $photo->name }}">
-                                <span id="image-row-title-span-{{ $photo->id }}" class="image-row-title-span">{{ $photo->name }}</span>
-                            </a>
-                        </td>
-                        <td style="min-width: 55px;">
-                            <form id="form-delete-row{{ $photo->id }}" method="POST" action="/admin/photos/{{ $photo->id }}" class="dt-titan">
-                                <input name="_method" type="hidden" value="DELETE">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input name="_id" type="hidden" value="{{ $photo->id }}">
-
-                                <a data-form="form-delete-row{{ $photo->id }}" class="btn btn-danger btn-xs btn-delete-row" data-toggle="tooltip" title="Delete photo - {{ $photo->name }}"
-                                   style="float:right; padding: 0px 6px;">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </form>
-                            <a href="{{ request()->url() }}/crop/{{ $photo->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $photo->name }}"
-                               style="float:right; padding: 0px 6px; margin-right: 3px;">
-                                <i class="fa fa-crop"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <a href="{{ $photo->url }}" data-lightbox="images" data-title="{{ $photo->name }}">
-                    <img src="{{ $photo->thumb_url }}" title="{{ $photo->name }}" class="superbox-img">
-                </a>
-            </div>
-        @empty
-            <p class="text-muted">Please click on the panel below to upload photos
-                to {!! $photoable->name !!}.
-            </p>
-        @endforelse
-    </div>
-</div>
-
-<div class="card card-secondary">
-    <div class="card-header">
-        <h3 class="card-title">Upload a Photo</h3>
+        <span>Upload a Photo</span>
 
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -75,6 +17,7 @@
                 Refresh the page when upload is complete<br/>
                 Click on the photo name to change it<br/>
                 Click on the radio button to set the cover photo<br/>
+                <b>Note:</b> Batch upload limit of 10, refresh to add more images
             </p>
         </div>
 
@@ -89,6 +32,7 @@
             </div>
         </form>
 
+        <!-- Upload pannel -->
         <div id="preview-template" style="display: none">
             <div class="dz-preview dz-file-preview">
                 <a class="dropzone-image-click" href="#">
@@ -115,7 +59,7 @@
                     </div>
                     <div class="dz-error-mark">
                         <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                            n <title>Error</title>n
+                            <title>Error</title>n
                             <defs></defs>
                             n
                             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -130,21 +74,71 @@
                 </a>
             </div>
         </div>
+
+        <!-- Images -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <a class="btn btn-light mb-3" href="/admin/photos/show/{{ $photoable->id }}/order">
+                    <span><i class="fa fa-align-center" aria-hidden="true"></i> Photo Order</span>
+                </a>
+            </div>
+            @forelse($photos->sortBy('list_order') as $photo)
+                <div class="col-2 mb-3">
+                    <div class="card h-100 dt-table">
+                        <div class="card-header d-flex text-center p-2">
+
+                            <label class="radio flex-fill">
+                                <input class="photo-cover-radio" data-id="{{ $photo->id }}" type="radio" name="is_cover" {!! $photo->is_cover == 1? 'checked' : '' !!}>
+                                <i></i>
+                            </label>
+
+                            <a id="image-row-clicker-{{ $photo->id }}" class="flex-fill text-truncate  flex-grow-1 dropzone-image-click" href="javascript:void(0)" data-id="{{ $photo->id }}" data-toggle="tooltip" data-title="{{ $photo->name }}">
+                                <span id="image-row-title-span-{{ $photo->id }}" class="image-row-title-span">{{ $photo->name }}</span>
+                            </a>
+
+                            <div class="flex-fill text-right w-25">
+                                <a href="{{ request()->url() }}/crop/{{ $photo->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $photo->name }}">
+                                    <i class="fa fa-crop"></i>
+                                </a>
+                                <form id="form-delete-row{{ $photo->id }}" method="POST" action="/admin/photos/{{ $photo->id }}" class="dt-titan d-inline-block">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <input name="_id" type="hidden" value="{{ $photo->id }}">
+
+                                    <a data-form="form-delete-row{{ $photo->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete photo - {{ $photo->name }}">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <a class="card-img-top" href="{{ $photo->url }}" data-lightbox="Photo gallery" data-title="{{ $photo->name }}">
+                            <img src="{{ $photo->thumb_url }}" title="{{ $photo->name }}" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">
+                    <p class="text-muted">Please click on the panel above to upload photos
+                        to {!! $photoable->name !!}.
+                    </p>
+                </div>
+            @endforelse
+        </div>
+        <!-- END Images -->
     </div>
 
-    <div class="box-footer">
-        @include('admin.partials.form.form_footer', ['submit' => false])
-    </div>
+    @include('admin.partials.form.form_footer', ['submit' => false])
 </div>
 
 <div class="modal fade" id="modal-photo" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header alert-success">
+                <h4 class="modal-title">Update Photo Name</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title">Update Photo Name</h4>
             </div>
             <div class="modal-body">
                 <form>

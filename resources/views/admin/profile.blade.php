@@ -5,16 +5,14 @@
 
             <div class="card card-secondary">
                 <div class="card-header">
-
-                        <span>Update Profile</span>
-
-
+                    <span>Update Profile</span>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
                 </div>
+
                 <form method="POST" action="{{ $selectedNavigation->url . "/" . user()->id }}" accept-charset="UTF-8" enctype="multipart/form-data">
 
                     <div class="card-body">
@@ -74,8 +72,6 @@
                             </div>
 
                             <div class="row">
-
-
                                 <div class="col-md-6">
                                     <div class="form-group {{ form_error_class('born_at', $errors) }}">
                                         <label for="password">Date of Birth</label>
@@ -137,10 +133,11 @@
                                 <label>Profile image (250 x 250)</label>
                                 <div class="input-group input-group-sm">
                                     <input id="photo-label" type="text" class="form-control" readonly placeholder="Browse for an image">
-                                    <div class="input-group-append">
-                                   <button type="button" class="btn btn-default" onclick="document.getElementById('photo').click();">Browse</button>
-                                </div>
                                     <input id="photo" style="display: none" accept="{{ get_file_extensions('image') }}" type="file" name="photo" onchange="document.getElementById('photo-label').value = this.value">
+
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('photo').click();">Browse</button>
+                                    </div>
                                 </div>
                                 {!! form_error_message('photo', $errors) !!}
                             </section>

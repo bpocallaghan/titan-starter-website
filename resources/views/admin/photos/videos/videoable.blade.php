@@ -1,54 +1,56 @@
-<div class="card card-outline card-secondary">
+<div class="card card-outline card-light m-0">
     <div class="card-header">
-        <h3 class="card-title">{!! $videoable->name !!} Videos</h3>
+        <span>Upload a Video</span>
 
         <div class="card-tools">
-            <a class="btn btn-warning btn-sm" href="/admin/photos/show/{{ $videoable->id }}/videos/order">
-                <span><i class="fa fa-sort" aria-hidden="true"></i></span></a>
+
+
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
         </div>
     </div>
 
     <div class="card-body">
-        <div class="well well-sm well-toolbar">
+        <div class="mb-3">
             <a class="btn btn-labeled btn-primary video-click-create" href="#" data-modal-title="Create Video">
                 <span class="btn-label"><i class="fa fa-fw fa-plus"></i></span>Create Video
+            </a>
+
+            <a class="btn btn-light" href="/admin/photos/show/{{ $videoable->id }}/videos/order">
+                <span><i class="fa fa-align-center" aria-hidden="true"></i> Video Order</span>
             </a>
         </div>
 
         <div class="row dt-table video-collection">
-
             @if(isset($videos))
                 @foreach($videos->sortBy('list_order') as $item)
-                    <div class="col-sm-3" style="margin-bottom: 15px;">
+                    <div class="col-3 mb-3">
+                        <div class="card">
+                            <div class="card-header d-flex text-center">
+                                <label class="radio flex-fill text-left">
+                                    <input class="video-cover-radio" data-id="{{$item->id}}" type="radio" name="is_cover" @if($item->is_cover) checked @endif><i></i>
+                                </label>
 
-                        <div class="text-center">
-                            <label class="radio" style="margin-top: -10px;;">
-                                <input class="video-cover-radio" data-id="{{$item->id}}" type="radio" name="is_cover" @if($item->is_cover) checked @endif><i></i>
-                            </label>
+                                <a title="{{ $item->name }}" data-toggle="tooltip" href="javascript:void(0)" class="flex-fill text-truncate video-click video-name-{{$item->id}}" data-id="{{$item->id}}" data-modal-title="Update Video">{{ $item->name }}</a>
 
-                            <form id="form-delete-row{{ $item->id }}" method="POST" action="/admin/photos/videos/{{ $item->id }}" class="dt-titan">
-                                <input name="_method" type="hidden" value="DELETE">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input name="_id" type="hidden" value="{{ $item->id }}">
+                                <form id="form-delete-row{{ $item->id }}" method="POST" action="/admin/photos/videos/{{ $item->id }}" class="flex-fill text-right dt-titan">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <input name="_id" type="hidden" value="{{ $item->id }}">
 
-                                <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger btn-xs btn-delete-row pull-right" data-toggle="tooltip" title="Delete video - {{ $item->name }}"
-                                   style="float:right; padding: 0px 6px;">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </form>
+                                    <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - {{ $item->name }}">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </form>
+                            </div>
 
-                            <br>
-                            <a href="#" class="video-click video-name-{{$item->id}}" data-id="{{$item->id}}" data-modal-title="Update Video">{{ $item->name }}</a>
+                            <iframe class="card-img-top" width="315" height="177" src="@if($item->is_youtube) {{ 'https://www.youtube.com/embed/'.$item->link}} @else {{ $item->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        <figure>
-                            <iframe width="315" height="177" src="@if($item->is_youtube) {{ 'https://www.youtube.com/embed/'.$item->link}} @else {{ $item->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </figure>
                     </div>
                 @endforeach
             @endif
-
         </div>
-
     </div>
 </div>
 
@@ -57,28 +59,23 @@
         <div class="modal-content">
             <form id="video-modal-form" method="POST" enctype="multipart/form-data">
                 <div class="modal-header alert-success">
+                    <h4 class="modal-title">Update Video</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title">Update Video</h4>
                 </div>
                 <div class="modal-body">
-
                     <input type="hidden" id="modal-video-id"/>
-
                     <fieldset>
                         <div class="row">
-
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="modal-video-name">Name</label>
                                     <input type="text" class="form-control" id="modal-video-name" name="name" placeholder="Name of the Video" value="">
-
                                 </div>
                             </div>
-
                             <div class="col-md-4 form-group">
-                                <label for="modal-video-youtube">YouTube Video?</label>
+                                <label for="modal-video-youtube">Is YouTube Video?</label>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" id="modal-video-youtube" name="is_youtube" checked>
@@ -91,51 +88,48 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="modal-video-desc">Description</label>
+                                    <label for="modal-video-link">Link</label>
+                                    <input type="text" class="form-control" id="modal-video-link" name="link" placeholder="Link of the Video" value="">
+                                    <span class="text-muted small">If this is a youtube video, please only add the code shown below in bold:
+                                                <br>https://www.youtube.com/watch?v=<b class="text-red">XXxxXxX</b>
+                                                <br>https://youtu.be/<b class="text-red">XXxxXxX</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="modal-video-desc">Description <span class="small"> (Optional)</span></label>
                                     <textarea class="form-control" id="modal-video-desc" name="content" placeholder="Description of the Video"></textarea>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="modal-video-link">Link</label>
-                                    <input type="text" class="form-control" id="modal-video-link" name="link" placeholder="Link of the Video" value="">
-                                    <span class="text-muted small">If this is a youtube video, please only add the code shown below in bold:
-                                                <br>https://www.youtube.com/watch?v=<b>XXxxXxX</b>
-                                                <br>https://youtu.be/<b>XXxxXxX</b></span>
-                                </div>
-                            </div>
                             <div class="col col-12">
                                 <section class="form-group">
-                                    <label>Browse for an Image (1600 x 500)</label>
+                                    <label>Browse for an Image (800 x 452) <span class="small"> (Optional)</span></label>
                                     <div class="input-group input-group-sm">
                                         <input id="photo-label" type="text" class="form-control" readonly placeholder="Browse for an image">
-                                        <span class="input-group-btn">
-                                              <button type="button" class="btn btn-default" onclick="document.getElementById('photo').click();">Browse</button>
-                                            </span>
                                         <input id="photo" style="display: none" accept="{{ get_file_extensions('image') }}" type="file" name="photo" onchange="document.getElementById('photo-label').value = this.value">
+
+                                        <span class="input-group-append">
+                                              <button type="button" class="btn btn-default" onclick="document.getElementById('photo').click();">Browse</button>
+                                        </span>
                                     </div>
+                                    <span class="text-muted small">In place of using the default image of the video, you can upload a custom image that you think reflects the video better. </span>
                                 </section>
 
                                 <div class="vid-image"></div>
                             </div>
                         </div>
-
                     </fieldset>
-
-                    {{--<button id="video-btn-form" type="submit" class="btn btn-primary create pull-right">--}}
-                    {{--Submit--}}
-                    {{--</button>--}}
-
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button id="video-btn-form" type="submit" class="btn btn-primary video-save-create pull-right">
+                    <button id="video-btn-form" type="submit" class="btn btn-primary video-save-create">
                         Submit
                     </button>
                 </div>
@@ -269,30 +263,25 @@
                                 $link = data['data']['link'];
                             }
 
-                            $text = '<div class="col-sm-3">\n' +
-                                '<div class="text-center">\n' +
-                                '<label class="radio" style="margin-top: -10px;;">\n' +
-                                '<input class="video-cover-radio" data-id="' + data['data']['id'] + '" type="radio" name="is_cover"><i></i>\n' +
-                                '</label>\n' +
-                                '<form id="form-delete-row' + data['data']['id'] + '" method="POST" action="/admin/photos/videos/' + data['data']['id'] + '" class="dt-titan">\n' +
-                                '<input name="_method" type="hidden" value="DELETE">\n' +
-                                '<input name="_token" type="hidden" value="{{ csrf_token() }}">\n' +
-                                '<input name="_id" type="hidden" value="' + data['data']['id'] + '">\n' +
-                                '<a data-form="form-delete-row' + data['data']['id'] + '" class="btn btn-danger btn-xs btn-delete-row pull-right" data-toggle="tooltip" title="Delete video - ' + data['data']['name'] + '"\n' +
-                                'style="float:right; padding: 0px 6px;">\n' +
-                                '<i class="fa fa-times"></i>\n' +
-                                '</a>\n' +
-                                '</form>\n' +
-                                '<br>\n' +
-                                '<a href="#" class="video-click video-name-' + data['data']['id'] + '" data-id="' + data['data']['id'] + '" data-modal-title="Update Video">' + data['data']['name'] + '</a>\n' +
-                                '</div>\n' +
-                                '<iframe width="315" height="177" src="' + $link + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n' +
-                                '</div>';
+                            $text = '<div class="col-3"> <div class="card"> <div class="card-header d-flex text-center">\n' +
+                                        '<label class="radio flex-fill">\n' +
+                                            '<input class="video-cover-radio" data-id="' + data['data']['id'] + '" type="radio" name="is_cover"><i></i>\n' +
+                                        '</label>\n' +
+                                        '<a href="javascript:void(0)" title="' + data['data']['name'] + '" data-toggle="tooltip" class="flex-fill text-truncate video-click video-name-' + data['data']['id'] + '" data-id="' + data['data']['id'] + '" data-modal-title="Update Video">' + data['data']['name'] + '</a>\n' +
+                                        '<form id="form-delete-row' + data['data']['id'] + '" method="POST" action="/admin/photos/videos/' + data['data']['id'] + '" class="flex-fill dt-titan">\n' +
+                                            '<input name="_method" type="hidden" value="DELETE">\n' +
+                                            '<input name="_token" type="hidden" value="{{ csrf_token() }}">\n' +
+                                            '<input name="_id" type="hidden" value="' + data['data']['id'] + '">\n' +
+                                            '<a data-form="form-delete-row' + data['data']['id'] + '" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - ' + data['data']['name'] + '">\n' +
+                                                '<i class="fa fa-times"></i>\n' +
+                                            '</a>\n' +
+                                        '</form>\n' +
+                                    '</div>\n' +
+                                        '<iframe class="card-img-top" width="200" height="112" src="' + $link + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n' +
+                                    '</div></div>';
 
                             $('.video-collection').append($text);
-
                         }
-
                         $('#modal-video').modal('hide');
                     }
                 });
@@ -341,7 +330,7 @@
                         if (data.error) {
                             notifyError(data.error.title, data.error.content);
                         } else {
-                            notify('Successfully', 'The photo name was updated.', null, null, 5000);
+                            notify('Successfully', 'The video name was updated.', null, null, 5000);
                         }
                         console.log(data['data']);
 

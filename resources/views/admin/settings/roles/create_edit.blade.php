@@ -70,9 +70,7 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="card-footer">
-                @include('admin.partials.form.form_footer')
-            </div>
+            @include('admin.partials.form.form_footer')
         </form>
     </div>
 @endsection
