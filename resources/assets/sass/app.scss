@@ -26,7 +26,7 @@
 @import 'titan/nestable';
 @import 'titan/google_maps';
 
-// overrides
+// overrides - datatables
 table.dataTable {
     border-collapse: collapse !important;
 }
@@ -53,3 +53,5 @@ div.dataTables_wrapper div.dataTables_length label {
 table.dataTable.table-sm .sorting:before, table.dataTable.table-sm .sorting_asc:before, table.dataTable.table-sm .sorting_desc:before {
   right: 1.2em;
 }
+// overrides - nestable for images & videos
+.inline-dd .dd-item, .inline-dd .dd-empty, .inline-dd .dd-placeholder { display:inline-block; min-width: 5px; margin: 5px; }

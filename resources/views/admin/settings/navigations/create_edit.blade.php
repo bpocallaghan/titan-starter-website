@@ -65,8 +65,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group ">
-                                <label for="roles">Roles (which user roles have access to
-                                    navigation)</label>
+                                <label for="roles">Roles <span class="small">(which user roles have access to navigation)</span></label>
                                 {!! form_select('roles[]', $roles, ($errors && $errors->any()? old('roles') : (isset($item)? $item->roles->pluck('id')->all() : '')), ['class' => 'select2 form-control ' . form_error_class('roles', $errors), 'multiple']) !!}
                                 {!! form_error_message('roles', $errors) !!}
                             </div>
@@ -77,17 +76,16 @@
                         <div class="col col-2">
                             <div class="form-group clearfix">
                                 <label for="id-is_hidden">Set Visibility</label>
-                                <div class="icheck-primary" style="margin-top: 5px">
-                                    <input type="checkbox" id="is_hidden" name="is_hidden" {!! ($errors && $errors->any()? (old('is_hidden') == 'on'? 'checked':'') : (isset($item)? $item->is_hidden == 1? 'checked' : '' : '')) !!}>
-                                    <label for="is_hidden">Is Hidden</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="is_hidden" name="is_hidden" {!! ($errors && $errors->any()? (old('is_hidden') == 'on'? 'checked':'') : (isset($item)? $item->is_hidden == 1? 'checked' : '' : '')) !!}>
+                                    <label for="is_hidden" class="custom-control-label">Is Hidden</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col col-5">
                             <div class="form-group">
-                                <label for="id-parent_id">Parent (navigation parent, under
-                                    which navigation it will display)</label>
+                                <label for="id-parent_id">Parent <span class="small">(navigation parent, under which navigation it will display)</span></label>
                                 {!! form_select('parent_id', ([0 => 'Please select a Parent'] + $parents), isset($item)? ($errors && $errors->any()? old('parent_id') : $item->parent_id) : old('parent_id'), ['class' => 'select2 form-control ' . form_error_class('parent_id', $errors)]) !!}
                                 {!! form_error_message('parent_id', $errors) !!}
                             </div>
@@ -95,8 +93,7 @@
 
                         <div class="col col-5">
                             <div class="form-group {{ form_error_class('url_parent_id', $errors) }}">
-                                <label for="id-url_parent_id">Url Parent (parent to generate the
-                                    url, same as parent if empty)</label>
+                                <label for="id-url_parent_id">Url Parent <span class="small">(parent to generate the url, same as parent if empty)</span></label>
                                 {!! form_select('url_parent_id', ([0 => 'Please select an Url Parent'] + $parents), ($errors && $errors->any()? old('url_parent_id') : (isset($item)? $item->url_parent_id : '')), ['class' => 'select2 form-control']) !!}
                                 {!! form_error_message('url_parent_id', $errors) !!}
                             </div>
@@ -158,9 +155,8 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="card-footer">
-                @include('admin.partials.form.form_footer')
-            </div>
+            @include('admin.partials.form.form_footer')
+
         </form>
     </div>
 @endsection

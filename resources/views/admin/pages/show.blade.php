@@ -1,50 +1,47 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        <span><i class="fa fa-eye"></i></span>
-                        <span>Pages - {{ $item->name }}</span>
-                    </h3>
-                </div>
 
-                <div class="box-body no-padding">
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">
+                <span><i class="fa fa-eye"></i></span>
+                <span>Pages - {{ $item->name }}</span>
+            </h3>
+        </div>
 
-                    @include('admin.partials.info')
+        <div class="card-body">
 
-                    <form>
-						<fieldset>
-							<div class="row">
-								<section class="col col-6">
-									<section class="form-group">
-										<label>Page</label>
-										<input type="text" class="form-control" value="{{ $item->name }}" readonly>
-									</section>
-								</section>
+            @include('admin.partials.info')
 
-								<section class="col col-6">
-									<section class="form-group">
-										<label>Slug</label>
-										<input type="text" class="form-control" value="{{ $item->slug }}" readonly>
-									</section>
-								</section>
-							</div>
+            <form>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <section class="form-group">
+                                <label>Page</label>
+                                <input type="text" class="form-control" value="{{ $item->name }}" readonly>
+                            </section>
+                        </section>
 
-							<section class="form-group">
-								<label>Description</label>
-								<div class="well well-light well-form-description">
-									{!! $item->description !!}
-								</div>
-							</section>
-						</fieldset>
+                        <section class="col col-6">
+                            <section class="form-group">
+                                <label>Slug</label>
+                                <input type="text" class="form-control" value="{{ $item->slug }}" readonly>
+                            </section>
+                        </section>
+                    </div>
 
-                    	@include('admin.partials.form.form_footer', ['submit' => false])
-                    </form>
-                </div>
-            </div>
+                    <section class="form-group">
+                        <label>Description</label>
+                        <div class="well well-light well-form-description">
+                            {!! $item->description !!}
+                        </div>
+                    </section>
+                </fieldset>
+
+                @include('admin.partials.form.form_footer', ['submit' => false])
+            </form>
         </div>
     </div>
 @endsection

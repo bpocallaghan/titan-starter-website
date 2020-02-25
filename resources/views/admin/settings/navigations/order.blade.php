@@ -18,26 +18,26 @@
 
             @include('admin.partials.info')
 
-            <div class="card" id="nestable-menu">
-                <div class="card-body">
-                    <a href="javascript:window.history.back();" class="btn btn-labeled btn-default">
-                        <span class="btn-label"><i class="fa fa-fw fa-chevron-left"></i></span>Back
-                    </a>
+            <div class="mb-3" role="group" id="nestable-menu">
 
-                    <button type="button" class="btn btn-labeled btn-default text-primary" data-action="expand-all">
-                        <span class="btn-label"><i class="fa fa-fw fa-plus-circle"></i></span>Expand
-                        All
-                    </button>
+                <a href="javascript:window.history.back();" class="btn btn-secondary">
+                    <span class="label"><i class="fa fa-fw fa-chevron-left"></i></span>Back
+                </a>
 
-                    <button type="button" class="btn btn-labeled btn-default text-primary" data-action="collapse-all">
-                        <span class="btn-label"><i class="fa fa-fw fa-minus-circle text-red"></i></span>Collapse
-                        All
-                    </button>
-                </div>
+                <button type="button" class="btn btn-light" data-action="expand-all">
+                    <span class="label"><i class="fa fa-fw fa-plus-circle text-primary"></i></span>Expand
+                    All
+                </button>
+
+                <button type="button" class="btn btn-light" data-action="collapse-all">
+                    <span class="label"><i class="fa fa-fw fa-minus-circle text-red"></i></span>Collapse
+                    All
+                </button>
+
             </div>
 
             <div class="row">
-                <div class="col col-xs-12">
+                <div class="col col-12">
                     <div class="dd" id="dd-navigation" style="max-width: 100%">
                         {!! $itemsHtml !!}
                     </div>
