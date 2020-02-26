@@ -13,9 +13,10 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Accounts
  - App Settings
  - Banners
+ - Page Builder
  
 ## TODO
- - Website Pages
+ - Unit Tests for Page Builder
  - Dashboard
  - Google Analytics
  - Contact Us
