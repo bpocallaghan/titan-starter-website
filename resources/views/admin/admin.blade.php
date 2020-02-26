@@ -39,8 +39,8 @@
 
             @include('admin.partials.navigation')
 
-            <div class="content-wrapper">
-                <section class="content mt-2">
+            <div class="content-wrapper pt-3 pb-1">
+                <section class="content">
                     <h2 class="d-none">Page</h2>
                     @yield('content')
                 </section>

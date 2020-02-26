@@ -1,7 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+    <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">List All Website Activities</h3>
 
@@ -30,8 +31,8 @@
                         <td>{{ $activity->id }}</td>
                         <td>{{ isset($activity->user)? $activity->user->fullname:'System' }}</td>
                         <td>{!! $activity->name !!}</td>
-                        <td>{!! activity_after($activity) !!}</td>
-                        <td>{!! $activity->before !!}</td>
+                        <td><p>{!! activity_after($activity) !!}</p></td>
+                        <td><p>{!! activity_before($activity) !!}</p></td>
                         {{--<td>{{ isset($activity->subject)? isset($activity->subject->title)? $activity->subject->title:'':'' }}</td>--}}
                         <td>{{ $activity->created_at->diffForHumans() }}</td>
                     </tr>

@@ -1,7 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="card <!--card-outline--> card-secondary">
+    <!--card-outline-->
+    <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">
                 List All Pages
@@ -17,33 +18,52 @@
         <div class="card-body">
             @include('admin.partials.info')
 
-            <div class="card">
-                <div class="card-body">
-                    <a class="btn btn-labeled btn-primary" href="{{ request()->url().'/create' }}">
-                        <span class="btn-label"><i class="fa fa-fw fa-plus"></i></span>Create {{ ucfirst($resource) }}
-                    </a>
+            <div class="mb-3" role="group" aria-label="Page functionality">
+                <a href="{{ request()->url().'/create' }}"  class="btn btn-primary">
+                    <i class="fa fa-fw fa-plus"></i> Create {{ ucfirst($resource) }}
+                </a>
 
-                    <a class="btn btn-labeled btn-default text-black" href="{{ request()->url().'/order' }}">
-                        <span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>General
-                        Order
-                    </a>
-
-                    <a class="btn btn-labeled btn-default text-black" href="{{ Request::url().'/order/featured' }}">
-                        <span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>
-                        Featured Order
-                    </a>
-
-                    <a class="btn btn-labeled btn-default text-black" href="{{ request()->url().'/order/header' }}">
-                        <span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>
-                        Header Order
-                    </a>
-
-                    <a class="btn btn-labeled btn-default text-black" href="{{ request()->url().'/order/footer' }}">
-                        <span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>
-                        Footer Order
-                    </a>
-                </div>
+                <a href="{{ request()->url().'/order' }}" class="btn btn-light">
+                    <i class="fa fa-fw fa-align-center"></i> General Order
+                </a>
+                <a href="{{ request()->url().'/order/featured' }}"class="btn btn-light">
+                    <i class="fa fa-fw fa-align-center"></i> Featured Order
+                </a>
+                <a href="{{ request()->url().'/order/header' }}" class="btn btn-light">
+                    <i class="fa fa-fw fa-align-center"></i> Header Order
+                </a>
+                <a href="{{ request()->url().'/order/footer' }}" class="btn btn-light">
+                    <i class="fa fa-fw fa-align-center"></i> Footer Order
+                </a>
             </div>
+
+            {{--<div class="card">--}}
+                {{--<div class="card-body">--}}
+                    {{--<a class="btn btn-labeled btn-primary mb-3" href="{{ request()->url().'/create' }}">--}}
+                        {{--<span class="btn-label"><i class="fa fa-fw fa-plus"></i></span>Create {{ ucfirst($resource) }}--}}
+                    {{--</a>--}}
+
+                    {{--<a class="btn btn-labeled btn-default text-black mb-3" href="{{ request()->url().'/order' }}">--}}
+                        {{--<span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>General--}}
+                        {{--Order--}}
+                    {{--</a>--}}
+
+                    {{--<a class="btn btn-labeled btn-default text-black mb-3" href="{{ Request::url().'/order/featured' }}">--}}
+                        {{--<span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>--}}
+                        {{--Featured Order--}}
+                    {{--</a>--}}
+
+                    {{--<a class="btn btn-labeled btn-default text-black mb-3" href="{{ request()->url().'/order/header' }}">--}}
+                        {{--<span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>--}}
+                        {{--Header Order--}}
+                    {{--</a>--}}
+
+                    {{--<a class="btn btn-labeled btn-default text-black mb-3" href="{{ request()->url().'/order/footer' }}">--}}
+                        {{--<span class="btn-label"><i class="fa fa-fw fa-align-center"></i></span>--}}
+                        {{--Footer Order--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">
                 <thead>

@@ -1,49 +1,11 @@
-<div class="card card-outline card-secondary">
+<div class="card card-outline card-light m-0">
     <div class="card-header">
-        <h3 class="card-title">{!! $documentable->name !!} Documents</h3>
-    </div>
-
-    <div class="card-body documents-container">
-
-        <div class="row">
-            @forelse($documents as $document)
-                <div class="col-md-2">
-                    <div class="well">
-                        <a class="btn btn-info btn-xs" href="{{ $document->url }}" target="_blank" title="View Document" data-toggle="tooltip">
-                            <i class="fa fa-eye"></i>
-                        </a>
-
-                        <a id="image-row-clicker-{{ $document->id }}" class="dropzone-document-click" href="#" data-id="{{ $document->id }}" data-title="{{ $document->name }}">
-                            <span id="image-row-title-span-{{ $document->id }}" class="image-row-title-span">{{ $document->name }}</span>
-                        </a>
-
-                        <form id="form-delete-row{{ $document->id }}" method="POST" action="/admin/documents/{{ $document->id }}" class="dt-titan" style="display: inline-block;">
-                            <input name="_method" type="hidden" value="DELETE">
-                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input name="_id" type="hidden" value="{{ $document->id }}">
-
-                            <a data-form="form-delete-row{{ $document->id }}" class="btn btn-danger btn-xs btn-delete-row" data-toggle="tooltip" title="Delete document - {{ $document->name }}"
-                               style="padding: 0px 6px;">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </form>
-                    </div>
-                </div>
-            @empty
-                <div class="col-md-12">
-                    <p class="text-muted">Please click on the panel below to upload
-                        documents
-                        to {!! $documentable->name !!}.
-                    </p>
-                </div>
-            @endforelse
+        <span>Upload a Document</span>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
         </div>
-    </div>
-</div>
-
-<div class="card card-secondary">
-    <div class="card-header">
-        <h3 class="card-title">Upload a Document</h3>
     </div>
 
     <div class="card-body">
@@ -53,7 +15,7 @@
                 Click on the button below to browse for documents<br/>
                 Refresh the page when upload is complete<br/>
                 Click on the document name to change it<br/>
-                Click on the radio button to set the cover document<br/>
+                <b>Note:</b> Batch upload limit of 10, refresh to add more images
             </p>
         </div>
 
@@ -71,13 +33,13 @@
         <div id="preview-template" style="display: none">
             <div class="dz-preview dz-file-preview">
                 <a class="dropzone-document-click" href="#">
-                    <div class="dz-image">
+                    <div class="dz-document">
                         <img data-dz-thumbnail/>
                     </div>
                     <div class="dz-details">
                         <div class="dz-size"><span data-dz-size></span></div>
                         <!--<div class="dz-filename"><span data-dz-name></span></div>-->
-                        <span class="image-row-title-span"></span>
+                        <span class="document-row-title-span"></span>
                     </div>
                     <div class="dz-progress">
                         <span class="dz-upload" data-dz-uploadprogress></span></div>
@@ -109,6 +71,45 @@
                 </a>
             </div>
         </div>
+
+        <!-- Documents -->
+        <div class="row mt-3">
+            @forelse($documents as $document)
+                <div class="col-2">
+                    <div class="card">
+                        <div class="card-header d-flex text-center">
+                            <span class="flex-fill text-left">
+                                <a class="btn btn-info btn-xs" href="{{ $document->url }}" target="_blank" title="View Document" data-toggle="tooltip">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </span>
+
+                            <a id="document-row-clicker-{{ $document->id }}" class="flex-fill text-truncate dropzone-document-click" href="javascript:void(0)" data-id="{{ $document->id }}" data-toggle="tooltip" data-title="{{ $document->name }}">
+                                <span id="document-row-title-span-{{ $document->id }}" class="document-row-title-span">{{ $document->name }}</span>
+                            </a>
+
+                            <form id="form-delete-row{{ $document->id }}" method="POST" action="/admin/documents/{{ $document->id }}" class="dt-titan text-right flex-fill" style="display: inline-block;">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                <input name="_id" type="hidden" value="{{ $document->id }}">
+
+                                <a data-form="form-delete-row{{ $document->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete document - {{ $document->name }}">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">
+                    <p class="text-muted">Please click on the panel below to upload
+                        documents
+                        to {!! $documentable->name !!}.
+                    </p>
+                </div>
+            @endforelse
+        </div>
+        <!-- END Documents -->
     </div>
 
     <div class="box-footer">
@@ -120,10 +121,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header alert-success">
+                <h4 class="modal-title">Update Document Name</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title">Update Document Name</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -169,15 +170,15 @@
                 if (response.data && response.success) {
                     var data = response.data;
 
-                    file.hiddenInputs = Dropzone.createElement('<input class="image-row-title" type="hidden" value=""/>');
+                    file.hiddenInputs = Dropzone.createElement('<input class="document-row-title" type="hidden" value=""/>');
                     file.previewElement.appendChild(file.hiddenInputs);
-                    file.hiddenInputs = Dropzone.createElement('<input class="image-row-id" type="hidden" id="image-row-' + data['id'] + '" value="' + data['id'] + '"/>');
+                    file.hiddenInputs = Dropzone.createElement('<input class="document-row-id" type="hidden" id="document-row-' + data['id'] + '" value="' + data['id'] + '"/>');
                     file.previewElement.appendChild(file.hiddenInputs);
 
                     notify('Successfully', 'The document has been uploaded and saved in the database.', null, null, 5000);
                 } else {
                     notifyError(response.error['title'], response.error['content']);
-                    //notifyError('Oops!', 'Something went wrong (hover over image for more information', null, null, 5000);
+                    //notifyError('Oops!', 'Something went wrong (hover over document for more information', null, null, 5000);
                 }
             });
 
@@ -187,8 +188,8 @@
                 $('.dropzone-document-click').on('click', function (e) {
                     e.preventDefault();
 
-                    var id = $($(this).parent().find('.image-row-id')).val();
-                    var title = $($(this).parent().find('.image-row-title')).val();
+                    var id = $($(this).parent().find('.document-row-id')).val();
+                    var title = $($(this).parent().find('.document-row-title')).val();
 
                     if ($(this).attr('data-id')) {
                         id = $(this).attr('data-id');
@@ -229,14 +230,14 @@
                         // update the title tag's input
                         var id = $('#modal-document-id').val();
                         var title = $('#modal-document-name').val();
-                        var idInput = $('#image-row-' + id);
 
-                        idInput.parent().find('.image-row-title-span').html(title);
-                        $('#image-row-title-span-' + id).html(title);
-                        $('#image-row-clicker-' + id).attr('data-title', title);
+                        $('#document-row-title-span-' + id).html(title);
+                        $('#document-row-title-span-' + id).html(title);
+                        $('#document-row-clicker-' + id).attr('data-title', title).attr('title', title).attr('data-original-title', title);
 
                         // reset
                         $('#modal-document-name').val('');
+                        $('#modal-document-id').val('');
                     }
                 });
             })
