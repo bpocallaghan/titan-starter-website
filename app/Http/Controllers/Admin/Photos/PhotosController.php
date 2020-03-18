@@ -137,7 +137,7 @@ class PhotosController extends AdminController
     private function moveAndCreatePhoto(
         UploadedFile $file,
         $photoable,
-        $size = ['l' => [1024, 800], 's' => [250, 195]]
+        $size = ['l' => [1024, 768], 's' => [320, 240]]
     ) {
         $extension = '.' . $file->extension();
 
@@ -160,24 +160,11 @@ class PhotosController extends AdminController
             $thumbSize = $size['s'];
         }
 
-        // get file size
-        //$bytes = $imageTmp->filesize();
-        //if ($bytes && $bytes > 4000000) {
-        //    return json_response_error('Sorry', 'The image is to large (max 3MB)');
-        //}
-
         // save original
         $imageTmp->save($path . $name . Photo::$originalAppend . $extension);
 
-        /*// save large
-        $imageTmp->fit($largeSize[0], $largeSize[1])->save($path . $filename);
-
-        // save thumbnail from the original image
-        $imageTmp->fit($thumbSize[0], $thumbSize[1])
-            ->save($path . $name . Photo::$thumbAppend . $extension);*/
-
-        // if width is the biggest - resize on max width
-        if ($imageTmp->width() > $imageTmp->height()) {
+        // if height is the biggest - resize on max height
+        if ($imageTmp->width() < $imageTmp->height()) {
 
             // resize the image to the large height and constrain aspect ratio (auto width)
             $imageTmp->resize(null, $largeSize[1], function ($constraint) {
