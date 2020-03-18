@@ -84,6 +84,7 @@
             </div>
             @forelse($photos->sortBy('list_order') as $photo)
                 <div class="col-2 mb-3">
+{{--                    {{ $photo->photoable_type }}--}}
                     <div class="card h-100 dt-table">
                         <div class="card-header d-flex text-center p-2">
 
@@ -97,7 +98,7 @@
                             </a>
 
                             <div class="flex-fill text-right w-25">
-                                <a href="{{ request()->url() }}/crop/{{ $photo->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $photo->name }}">
+                                <a href="/admin/photos/show/crop/{{ $photo->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $photo->name }}">
                                     <i class="fa fa-crop"></i>
                                 </a>
                                 <form id="form-delete-row{{ $photo->id }}" method="POST" action="/admin/photos/{{ $photo->id }}" class="dt-titan d-inline-block">

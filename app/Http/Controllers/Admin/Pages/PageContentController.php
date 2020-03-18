@@ -165,7 +165,7 @@ class PageContentController extends AdminController
      * @return PageContentController|bool|\Illuminate\Http\JsonResponse
      */
     private function moveAndCreatePhoto(
-        UploadedFile $file, $size = ['l' => [1000, 1000], 's' => [300, 300]]
+        UploadedFile $file, $size = ['l' => [1024, 768], 's' => [320, 240]]
     ) {
         $extension = '.' . $file->extension();
 
@@ -185,8 +185,8 @@ class PageContentController extends AdminController
         // save original
         $imageTmp->save($path . $name . ImageThumb::$originalAppend . $extension);
 
-        // if width is the biggest - resize on max width
-        if ($imageTmp->width() > $imageTmp->height()) {
+        // if height is the biggest - resize on max height
+        if ($imageTmp->width() < $imageTmp->height()) {
             // resize the image to the large height and constrain aspect ratio (auto width)
             $imageTmp->resize(null, $largeSize[1], function ($constraint) {
                 $constraint->aspectRatio();

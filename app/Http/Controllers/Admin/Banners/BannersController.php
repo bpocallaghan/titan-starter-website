@@ -128,7 +128,7 @@ class BannersController extends AdminController
      * @return string|void
      */
     private function uploadBanner(
-        UploadedFile $file, $path = '', $size = ['o' => [1920, 1000], 'tn' => [960, 500]]
+        UploadedFile $file, $path = '', $size = ['o' => [1920, 1080], 'tn' => [960, 500]]
     ) {
         $name = token();
         $extension = $file->guessClientExtension();

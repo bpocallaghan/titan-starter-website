@@ -86,7 +86,7 @@ $.notify = function (settings)
 
     // append html markup to container
     $("#notify-container").append(html);
-    if (notifyCount == 1 || $(".notify").size() <= 0) {
+    if (notifyCount == 1) {
         notifyHeight = $("#" + notifyId).height() + 40;
     } else {
         $("#" + notifyId).css("top", notifyHeight);

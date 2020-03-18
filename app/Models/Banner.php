@@ -23,7 +23,7 @@ class Banner extends AdminModel
 
     public static $LARGE_SIZE = [1920, 500];
 
-    public static $THUMB_SIZE = [576, 150];
+    public static $THUMB_SIZE = [576, 324];
 
     /**
      * Validation rules for this model

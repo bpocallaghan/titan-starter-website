@@ -26,7 +26,7 @@ var ButtonClass = function ()
             // console.log('loading loading');
             buttonDisable($(this));
         })
-    }
+    };
 
     /**
      * Reset the status of the button
@@ -39,7 +39,7 @@ var ButtonClass = function ()
             buttonEnable(btn);
             //$(this).button('reset');
         })
-    }
+    };
 
     // enable all buttons
     this.activate = function ()
@@ -71,7 +71,7 @@ var ButtonClass = function ()
         // {
         //     root.loading($(this));
         // });
-    }
+    };
 
     // enable a specific button
     var buttonEnable = function (btn)
@@ -87,7 +87,7 @@ var ButtonClass = function ()
 
             $(this).attr('data-is-loading', false);
         })
-    }
+    };
 
     // disable and show loading button
     var buttonDisable = function (btn)
@@ -108,7 +108,7 @@ var ButtonClass = function ()
             // show loading
             //$(this).button('loading');
         })
-    }
+    };
 
     /*
      * Pass options when class instantiated

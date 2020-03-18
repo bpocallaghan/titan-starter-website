@@ -17,6 +17,8 @@ require('lightbox2');
 require('summernote/dist/summernote-bs4.js');
 require('pc-bootstrap4-datetimepicker');
 
+require('cropperjs');
+require('jquery-cropper');
 /*
 window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
@@ -27,3 +29,11 @@ const app = new Vue({
     el: '#app'
 });
 */
+$(function () {
+    'use strict';
+
+    // Tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
+});
+

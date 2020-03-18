@@ -13,9 +13,9 @@ use App\Http\Controllers\Admin\AdminController;
 
 class CropperController extends AdminController
 {
-    private $LARGE_SIZE = [800, 800];
+    private $LARGE_SIZE = [1024, 768];
 
-    private $THUMB_SIZE = [400, 400];
+    private $THUMB_SIZE = [320, 240];
 
     /**
      * @param       $photoable
@@ -31,10 +31,11 @@ class CropperController extends AdminController
      * Show the Photoables' photos
      * @return mixed
      */
-    public function showPhotos($id, Photo $photo)
+    public function showPhotos(Photo $photo)
     {
-        $model = app(session('photoable_type'));
-        $model = $model->find($id);
+        //$model = app(session('photoable_type'));
+        $model = app($photo->photoable_type);
+        $model = $model->find($photo->photoable_id);
 
         return $this->showCropper($model, $photo);
     }
@@ -64,7 +65,7 @@ class CropperController extends AdminController
         }
 
         // open file image resource
-        $path = upload_path('photos');
+        $path = upload_path_images();
         $originalImage = Image::make($photo->original_url);
 
         // get the crop data
@@ -72,6 +73,9 @@ class CropperController extends AdminController
         $y = intval(input('y'));
         $width = intval(input('width'));
         $height = intval(input('height'));
+        $scaleX = intval(input('scaleX'));
+        $scaleY = intval(input('scaleY'));
+        $rotate = intval(input('rotate'));
 
         // generate new name (bypass cache)
         $photo->update([
@@ -85,10 +89,34 @@ class CropperController extends AdminController
         //$imageTmp = $originalImage->crop($width, $height, $x, $y);
 
         //ensure the background color is white (if cropping outside the actual image)
-        $imageTmp = Image::canvas($width * 3, $height * 3);
+        $imageTmp = Image::canvas($width *3 , $height *3);
         $imageTmp->fill('#fff');
         $image11 = Image::make($photo->original_url);
-        $imageTmp->insert($image11, 'top-left',$width,$height);
+
+        if($scaleX == -1 && $scaleY == 1){
+            // flip image horizontally
+            $image11->flip('h');
+        } else if($scaleX == 1 && $scaleY == -1){
+            // flip image vertically
+            $image11->flip('v');
+        }
+
+        if($rotate != 0){
+            // if number is negative - make positive (cropper js values are invert of what image intervention uses)
+            if($rotate < 0 ){
+                $num = -1 * (int)$rotate;
+            }
+            // if number is positive - make negative (cropper js values are invert of what image intervention uses)
+            if($rotate > 0){
+                $num = - (int)$rotate;
+            }
+
+            $image11->rotate($num);
+        }
+
+        $imageTmp->insert($image11, 'top-left', $width, $height);
+
+
         $imageTmp->crop($width, $height, $width+$x, $height+$y);
 
         // resize the image to large size

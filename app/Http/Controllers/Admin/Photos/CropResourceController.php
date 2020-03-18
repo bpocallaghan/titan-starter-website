@@ -9,9 +9,9 @@ use App\Http\Controllers\Admin\AdminController;
 
 class CropResourceController extends AdminController
 {
-    private $LARGE_SIZE = [800, 800];
+    private $LARGE_SIZE = [1600, 1200];
 
-    private $THUMB_SIZE = [400, 400];
+    private $THUMB_SIZE = [1024, 768];
 
     /**
      * @param       $photoable
@@ -55,7 +55,7 @@ class CropResourceController extends AdminController
         }
 
         // open file image resource
-        $path = upload_path('images');
+        $path = upload_path_images();
         $originalImage = Image::make($photoable->original_url);
 
         // get the crop data
@@ -63,6 +63,9 @@ class CropResourceController extends AdminController
         $y = intval(input('y'));
         $width = intval(input('width'));
         $height = intval(input('height'));
+        $scaleX = intval(input('scaleX'));
+        $scaleY = intval(input('scaleY'));
+        $rotate = intval(input('rotate'));
 
         // generate new name (bypass cache)
         $photoable->update([
@@ -71,6 +74,27 @@ class CropResourceController extends AdminController
 
         // save original image with new name
         $originalImage->save($path . $photoable->original_filename);
+
+        if($scaleX == -1 && $scaleY == 1){
+            // flip image horizontally
+            $originalImage->flip('h');
+        } else if($scaleX == 1 && $scaleY == -1){
+            // flip image vertically
+            $originalImage->flip('v');
+        }
+
+        if($rotate != 0){
+            // if number is negative - make positive (cropper js values are invert of what image intervention uses)
+            if($rotate < 0 ){
+                $num = -1 * (int)$rotate;
+            }
+            // if number is positive - make negative (cropper js values are invert of what image intervention uses)
+            if($rotate > 0){
+                $num = - (int)$rotate;
+            }
+
+            $originalImage->rotate($num);
+        }
 
         // crop image on cropped area
         $imageTmp = $originalImage->crop($width, $height, $x, $y);
