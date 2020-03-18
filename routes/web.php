@@ -115,12 +115,12 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('/show/{photoable}/order', 'PhotosOrderController@showPhotos');
         Route::post('/order', 'PhotosOrderController@update');
         // croppers
+        Route::get('/show/crop/{photo}', 'CropperController@showPhotos');
         Route::post('/crop/{photo}', 'CropperController@cropPhoto');
-        Route::get('/show/{photoable}/crop/{photo}', 'CropperController@showPhotos');
 
         // resource image crop
-        Route::post('/crop-resource', 'CropResourceController@cropPhoto');
         Route::get('/banners/{banner}/crop-resource/', 'CropResourceController@showBanner');
+        Route::post('/crop-resource', 'CropResourceController@cropPhoto');
 
         //videos
         Route::resource('/albums/{album}/videos', 'VideosController', ['except' => 'show']);
