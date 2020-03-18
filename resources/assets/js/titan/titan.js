@@ -30,9 +30,7 @@ function initTitan()
     {
         var v = convertStringToSlug($(this).val());
         $("form input[name='slug']").val(v);
-    })
-
-
+    });
 
     function convertStringToSlug(text)
     {
