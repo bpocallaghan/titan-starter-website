@@ -34,7 +34,7 @@ function get_file_extensions($type = 'image')
 {
     switch ($type) {
         case 'image':
-            return 'image/x-png, image/jpeg, image/jpg';
+            return 'image/x-png, image/jpeg, image/jpg, image/png';
     }
 
     return '';
