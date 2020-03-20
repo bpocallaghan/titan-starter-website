@@ -7,7 +7,11 @@
         {!! method_field(isset($item)? 'put':'post') !!}
 
         <div class="card-header">
-            <span>{{ isset($item)? 'Edit the ' . $item->name . ' entry': 'Create a new Page' }}</span>
+            <h3 class="card-title">
+                <span><i class="fa fa-edit"></i></span>
+                <span>{{ isset($item)? 'Edit the ' . $item->name . ' entry': 'Create a new Page' }}</span>
+            </h3>
+
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">

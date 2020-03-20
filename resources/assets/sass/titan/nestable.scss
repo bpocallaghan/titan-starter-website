@@ -46,8 +46,9 @@
     padding: 7px 15px;
     color: #333333;
     text-decoration: none;
-    border: 1px solid #cfcfcf;
+    border-radius: 0.25rem;
     background: #fbfbfb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .dd-handle:hover {
     color: #2ea8e5;

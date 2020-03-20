@@ -5,7 +5,8 @@
     <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">
-                Update {{ ucfirst($resource) }} List Order
+                <span><i class="fa fa-align-center"></i></span>
+                <span>Update {{ ucfirst($resource) }} List Order</span>
             </h3>
 
             <div class="card-tools">
