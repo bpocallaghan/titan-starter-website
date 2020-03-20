@@ -1,16 +1,22 @@
-id,name,description,slug,url,icon,help_index_title,help_index_content,help_create_title,help_create_content,help_edit_title,help_edit_content,list_order,is_hidden,parent_id,url_parent_id,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
-"1","Dashboard","Dashboard","/","/admin","tachometer-alt","","","","","","","1","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"2","Latest Activity","Latest Activity","activities","/admin/activities","history","","","","","","","3","0","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","0",
-"3","Website","","website","/admin/activities/website","home","","","","","","","1","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"4","Admin","Admin","admin","/admin/activities/admin","lock","","","","","","","2","0","2","2","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"5","Accounts","Accounts","accounts","/admin/accounts","users","","","","","","","6","0","0","0","2020-01-27 12:11:41","2020-01-29 06:30:28",,"0","1",
-"6","Clients","Clients","clients","/admin/accounts/clients","user","","","","","","","1","0","5","5","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"7","Administrators","","administrators","/admin/accounts/administrators","universal-access","","","","","","","2","0","5","5","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"8","Profile","","profile","/admin/profile","user","","","","","","","2","1","0","0","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","0",
-"9","Settings","","settings","/admin/settings","cogs","","","","","","","7","0","0","0","2020-01-27 12:11:41","2020-01-29 06:30:28",,"0","1",
-"10","Navigation","","navigations","/admin/settings/navigations","align-center","Help","Helpful text here - explaining what u can do here...","Information","Please complete the form to create the navigation","","","3","0","9","9","2020-01-27 12:11:41","2020-01-27 13:59:10",,"0","0",
-"11","Navigation Order","Navigation Order","order","/admin/settings/navigations/order","list-ol","","","","","","","1","1","10","10","2020-01-27 12:11:41","2020-01-27 12:11:43",,"0","0",
-"12","Roles","Roles","roles","/admin/settings/roles","universal-access","","","","","","","1","0","9","9","2020-01-27 12:11:41","2020-01-27 12:11:41",,"0","0",
-"13","Settings","Settings","settings","/admin/settings/settings","cog","","","","","","","2","0","9","9","2020-01-27 13:58:56","2020-01-27 13:59:10",,"0","0",
-"14","Pages","Pages","pages","/admin/pages","bars","Note:","All the Navigation and the page's content for the website",,,,,"5","0","0","0","2020-01-29 06:25:55","2020-01-29 06:30:28",,"1","1",
-"15","Banners","Banners","banners","/admin/banners","image",,,,,,,"4","0","0","0","2020-01-29 06:30:23","2020-01-29 06:30:28",,"1","1",
+id,"name","description","slug","url","icon","help_index_title","help_index_content","help_create_title","help_create_content","help_edit_title","help_edit_content",list_order,is_hidden,parent_id,url_parent_id,"created_at","updated_at","deleted_at",created_by,updated_by,deleted_by
+1,"Dashboard","Dashboard","/","/admin","tachometer-alt","","","","","","",1,0,0,0,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+2,"Latest Activity","Latest Activity","activities","/admin/activities","history","","","","","","",3,0,0,0,"2020-01-27 12:11:41","2020-01-27 12:11:43","",0,0,""
+3,"Website","","website","/admin/activities/website","home","","","","","","",1,0,2,2,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+4,"Admin","Admin","admin","/admin/activities/admin","lock","","","","","","",2,0,2,2,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+5,"Accounts","Accounts","accounts","/admin/accounts","users","","","","","","",6,0,0,0,"2020-01-27 12:11:41","2020-01-29 06:30:28","",0,1,""
+6,"Clients","Clients","clients","/admin/accounts/clients","user","","","","","","",1,0,5,5,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+7,"Administrators","","administrators","/admin/accounts/administrators","universal-access","","","","","","",2,0,5,5,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+8,"Profile","","profile","/admin/profile","user","","","","","","",2,1,0,0,"2020-01-27 12:11:41","2020-01-27 12:11:43","",0,0,""
+9,"Settings","","settings","/admin/settings","cogs","","","","","","",7,0,0,0,"2020-01-27 12:11:41","2020-01-29 06:30:28","",0,1,""
+10,"Navigation","","navigations","/admin/settings/navigations","align-center","Help","Helpful text here - explaining what u can do here...","Information","Please complete the form to create the navigation","","",3,0,9,9,"2020-01-27 12:11:41","2020-01-27 13:59:10","",0,0,""
+11,"Navigation Order","Navigation Order","order","/admin/settings/navigations/order","list-ol","","","","","","",1,1,10,10,"2020-01-27 12:11:41","2020-01-27 12:11:43","",0,0,""
+12,"Roles","Roles","roles","/admin/settings/roles","universal-access","","","","","","",1,0,9,9,"2020-01-27 12:11:41","2020-01-27 12:11:41","",0,0,""
+13,"Settings","Settings","settings","/admin/settings/settings","cog","","","","","","",2,0,9,9,"2020-01-27 13:58:56","2020-01-27 13:59:10","",0,0,""
+14,"Pages","Pages","pages","/admin/pages","bars","Note:","All the Navigation and the page's content for the website","","","","",5,0,0,0,"2020-01-29 06:25:55","2020-01-29 06:30:28","",1,1,""
+15,"Banners","Banners","banners","/admin/banners","image","","","","","","",4,0,0,0,"2020-01-29 06:30:23","2020-01-29 06:30:28","",1,1,""
+16,"Analytics","Website Analytics","analytics","/admin/analytics","chart-line","","","","","","",7,0,0,0,"2020-03-20 10:04:00","2020-03-20 10:07:00","",2,2,""
+17,"Summary","Analytics Summary","summary","/admin/analytics/summary","star-half-alt","","","","","","",1,0,17,17,"2020-03-20 10:05:00","2020-03-20 10:07:00","",2,2,""
+18,"Devices","Analytics on Devices used","devices","/admin/analytics/devices","mobile-alt","","","","","","",2,0,17,17,"2020-03-20 10:06:00","2020-03-20 10:07:00","",2,2,""
+19,"Visits and Referrals","Visits and Referrals","visits-and-referrals","/admin/analytics/visits-and-referrals","link","","","","","","",3,0,17,17,"2020-03-20 10:07:00","2020-03-20 10:07:00","",2,2,""
+20,"Interests","Interests","interests","/admin/analytics/interests","heart","","","","","","",4,0,17,17,"2020-03-20 11:27:00","2020-03-20 11:27:00","",2,2,""
+21,"Demographics","Demographics","demographics","/admin/analytics/demographics","female","","","","","","",5,0,17,17,"2020-03-20 11:28:00","2020-03-20 11:28:00","",2,2,""
