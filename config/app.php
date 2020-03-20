@@ -11,6 +11,7 @@ return [
     'facebook_app_id'       => env('FACEBOOK_APP_ID', ''),
     'google_map_key'        => env('GOOGLE_MAP_KEY', ''),
     'google_analytics'      => env('GOOGLE_ANALYTICS', ''),
+    'analytics_view_id'     => env('ANALYTICS_VIEW_ID', ''),
     'recaptcha_public_key'  => env('RECAPTCHA_PUBLIC_KEY', ''),
     'recaptcha_private_key' => env('RECAPTCHA_PRIVATE_KEY', ''),
 

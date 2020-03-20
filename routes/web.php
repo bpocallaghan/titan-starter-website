@@ -69,6 +69,15 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     Route::get('/profile', 'ProfileController@index');
     Route::put('/profile/{user}', 'ProfileController@update');
 
+    // analytics
+    Route::group(['prefix' => 'analytics'], function () {
+        Route::get('/summary', 'AnalyticsController@summary');
+        Route::get('/devices', 'AnalyticsController@devices');
+        Route::get('/visits-and-referrals', 'AnalyticsController@visitsReferrals');
+        Route::get('/interests', 'AnalyticsController@interests');
+        Route::get('/demographics', 'AnalyticsController@demographics');
+    });
+
     // banners
     Route::namespace('Banners')->group(function(){
         Route::get('/banners/order', 'OrderController@index');

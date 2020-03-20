@@ -1,8 +1,11 @@
 require('./bootstrap');
 
+window.moment = require('moment');
+
 require('pace-js');
 require('select2');
 require('jquery.cookie');
+
 require('datatables.net');
 require('datatables.net-bs4');
 
@@ -15,10 +18,14 @@ Dropzone.autoDiscover = false;
 
 require('lightbox2');
 require('summernote/dist/summernote-bs4.js');
+
 require('pc-bootstrap4-datetimepicker');
+require('daterangepicker');
 
 require('cropperjs');
 require('jquery-cropper');
+
+require('chart.js');
 /*
 window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
