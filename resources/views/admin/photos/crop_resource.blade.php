@@ -11,7 +11,7 @@
             width: 100%;
             margin: auto;
             overflow: hidden;
-            min-height: 200px;
+            min-height: 100px;
             border: 1px solid lightgrey;
         }
 
