@@ -20,7 +20,7 @@
 
             @include('admin.partials.info')
 
-            <div class="mb-3" role="group" aria-label="Page functionality">
+            <div class="mb-3" role="group" aria-label="Page functionality" id="sortable-menu">
                 <a href="javascript:window.history.back();" class="btn btn-secondary">
                     <span class="label"><i class="fa fa-fw fa-chevron-left"></i></span>Back
                 </a>
@@ -46,14 +46,14 @@
         </div>
     </div>
 
-    @include('admin.partials.nestable')
+    @include('admin.partials.sortable')
 @endsection
 
 @section('scripts')
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initNestableMenu(3, "{{ request()->url() }}");
+            initSortableMenu("{{ request()->url() }}", "pageOrderSortable");
         })
     </script>
 @endsection

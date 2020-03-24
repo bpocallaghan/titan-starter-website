@@ -92,24 +92,24 @@
             <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="resources" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="resources-photos-tab" data-toggle="pill" href="#resources-photos" role="tab" aria-controls="resources-photos" aria-selected="true">Photos</a>
+                        <a class="toggle-sortable nav-link active" id="resources-photos-tab" data-url="/admin/photos/order" data-type="photoGridSortable" data-toggle="pill" href="#resources-photos" role="tab" aria-controls="resources-photos" aria-selected="true"><i class="fas fa-images"></i> Photos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="resources-videos-tab" data-toggle="pill" href="#resources-videos" role="tab" aria-controls="resources-videos" aria-selected="false">Videos</a>
+                        <a class="toggle-sortable nav-link" id="resources-videos-tab" data-url="/admin/photos/videos/order" data-type="videoGridSortable" data-toggle="pill" href="#resources-videos" role="tab" aria-controls="resources-videos" aria-selected="false"><i class="fa fa-film"></i> Videos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="resources-documents-tab" data-toggle="pill" href="#resources-documents" role="tab" aria-controls="resources-documents" aria-selected="false">Documents</a>
+                        <a class="nav-link" id="resources-documents-tab" data-toggle="pill" href="#resources-documents" role="tab" aria-controls="resources-documents" aria-selected="false"><i class="fas fa-file-pdf"></i> Documents</a>
                     </li>
                 </ul>
             </div>
 
             <div class="card-body p-0">
                 <div class="tab-content" id="resources-tabContent">
-                    <div class="tab-pane fade show active" id="resources-photos" role="tabpanel" aria-labelledby="resources-photos-tab">
+                    <div class="tab-pane fade show active" data-url="/admin/photos/order" data-type="photoGridSortable" id="resources-photos" role="tabpanel" aria-labelledby="resources-photos-tab">
                         @include('admin.photos.photoable', ['photoable' => $item, 'photos' => $item->photos])
                     </div>
 
-                    <div class="tab-pane fade" id="resources-videos" role="tabpanel" aria-labelledby="resources-videos-tab">
+                    <div class="tab-pane fade" data-url="/admin/photos/videos/order" data-type="videoGridSortable" id="resources-videos" role="tabpanel" aria-labelledby="resources-videos-tab">
                         @include('admin.photos.videos.videoable', ['videoable' => $item, 'videos' => $item->videos])
                     </div>
 
@@ -118,21 +118,31 @@
                     </div>
                 </div>
             </div>
-
-
-            {{--@include('admin.photos.photoable', ['photoable' => $item, 'photos' => $item->photos])--}}
-
-            {{--@include('admin.photos.videos.videoable', ['videoable' => $item, 'videos' => $item->videos])--}}
-
-            {{--@include('admin.documents.documentable', ['documentable' => $item, 'documents' => $item->documents])--}}
         </div>
     @endif
 @endsection
+
+@include('admin.partials.sortable')
 
 @section('scripts')
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
+
+            initSortableMenu("/admin/photos/order", "photoGridSortable");
+
+            $('.toggle-sortable').on('shown.bs.tab', function (e) {
+                $newTab = e.target; // newly activated tab
+                $oldTab = e.relatedTarget; // previous active tab
+
+                sort.destroy();
+
+                $type = $newTab.getAttribute('data-type');
+                $url = $newTab.getAttribute('data-url');
+
+                initSortableMenu($url, $type);
+            });
+
             $('.btn-delete-row').on('click', function (e) {
                 e.preventDefault();
 

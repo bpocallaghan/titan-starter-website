@@ -17,7 +17,7 @@
                 <ul>
                     <li>Click on Create Content</li>
                     <li>To update the page content click on the blue edit icon on the right hand side of the heading. </li>
-                    <li>Update the list order by dragging the headings up or down.</li>
+                    <li>Update the list order by dragging the elements up or down. </li>
                     <li>Remove the content section by clicking on the red trash icon, also on the right hand side of the heading.  </li>
                 </ul>
             </div>
@@ -35,60 +35,66 @@
 
         <div class="row">
             <div class="col col-12">
-                <div class="dd" id="dd-navigation" style="max-width: 100%">
-                    <ol class="dd-list">
-                        @foreach($page->sections as $item)
-                            <li class="dd-item" data-id="{{ $item->id }}">
-                                <div class="dt-table float-right mt-3 mr-3" data-server="true">
-                                    <div class="btn-group">
-                                        <a href="{{ "/admin/pages/{$page->id}/sections/content/{$item->id}/edit" }}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Edit {{ $item->heading }}">
-                                            <i class="fa fa-fw fa-edit"></i>
-                                        </a>
-                                    </div>
 
-                                    <div class="btn-group">
-                                        <form id="form-delete-row{{ $item->id }}" method="POST" action="{{ "/admin/pages/{$page->id}/sections/{$item->id}" }}">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <input name="_id" type="hidden" value="{{ $item->id }}">
-                                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                            <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger text-light btn-xs btn-delete-row" data-toggle="tooltip" title="Delete {{ $item->heading }}">
-                                                <i class="far fa-fw fa-trash-alt"></i>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="dd-handle">
-                                    <div>
-                                        <span class="text-bold text-lg">
-                                            {{ $item->heading }}
-                                            <span class="text-muted">
-                                                ({{ $item->heading_element }})
-                                            </span>
+                <div class="dd-list list-group" id="pageContent">
+                    @foreach($page->sections as $item)
+                        <div class="dd-item list-group-item card mb-2" data-id="{{ $item->id }}">
+
+                            <div class="d-flex">
+                                <button type="button" class="dd-handle btn btn-outline-secondary float-left mr-3" href="#"> <i class="fa fa-list"></i> </button>
+
+                                <div class="float-left flex-fill">
+
+                                    <h5 class="mb-1">{{ $item->heading }}
+                                        <span class="text-muted">
+                                            ({{ $item->heading_element }})
                                         </span>
-                                    </div>
-                                    <div>
-                                        <div class="media">
-                                            @if($item->media)
-                                                <a href="{{ $item->url }}" data-lightbox="Featured Image"><img class=img-fluid" src="{{ $item->thumbUrl }}" style="height: 30px;"></a>
-                                            @endif
-                                            <div class="media-body ml-1">
-                                                {!! $item->summary !!}
-                                            </div>
-                                        </div>
+                                    </h5>
+
+                                    @if($item->media)
+                                        <a href="{{ $item->imageUrl }}" data-lightbox="Featured Image" title="{{ $item->caption }}"><img class="img-fluid mr-2 float-left" src="{{ $item->thumbUrl }}" alt="{{ $item->caption }}" style="height: 25px;"></a>
+                                    @endif
+                                    <p class="mb-1">{!! $item->summary !!}</p>
+
+                                    <div class="resources">
 
                                         @foreach($item->documents as $document)
-                                            <a href="{{ $document->url }}" target="_blank">{{ $document->name }}</a>{{ $loop->last?'':' | ' }}
+                                            <a href="{{ $document->url }}" title="{{ $document->name }}" target="_blank" class="btn btn-xs btn-outline-secondary">{{ $document->name }}</a>
                                         @endforeach
 
-                                        @foreach($item->photos as $photo)
-                                            <a href="{{ $item->url }}" data-lightbox="Content Gallery"><img class=img-fluid" data-lightbox="Featured Image" src="{{ $photo->thumb_url }}" style="height: 30px;"></a>
+                                        @foreach($item->photos->sortBy('list_order') as $photo)
+                                            <a href="{{ $item->url }}" title="{{ $photo->name }}" data-lightbox="Content Gallery"><img class=img-fluid" src="{{ $photo->thumb_url }}" alt="{{ $photo->name }}" style="height: 30px;"></a>
                                         @endforeach
+
+                                    </div>
+
+                                </div>
+
+                                <div class="float-right">
+                                    <div class="dt-table text-right mb-1" data-server="true">
+                                        <div class="btn-group">
+                                            <a href="{{ "/admin/pages/{$page->id}/sections/content/{$item->id}/edit" }}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Edit {{ $item->heading }}">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <form id="form-delete-row{{ $item->id }}" method="POST" action="{{ "/admin/pages/{$page->id}/sections/{$item->id}" }}">
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <input name="_id" type="hidden" value="{{ $item->id }}">
+                                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                                <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger text-light btn-xs btn-delete-row" data-toggle="tooltip" title="Delete {{ $item->heading }}">
+                                                    <i class="far fa-fw fa-trash-alt"></i>
+                                                </a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </li>
-                        @endforeach
-                    </ol>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+
             </div>
         </div>
     </div>
@@ -96,10 +102,10 @@
 
 @section('scripts')
     @parent
-    @include('admin.partials.nestable')
+    @include('admin.partials.sortable')
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initNestableMenu(1, "{{ (isset($url)? $url : request()->url()) }}/order");
+            initSortableMenu("{{ (isset($url)? $url : request()->url()) }}/order", 'pageContent');
         })
     </script>
 @endsection

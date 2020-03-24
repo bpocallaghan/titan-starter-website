@@ -11,7 +11,8 @@ require('datatables.net-bs4');
 
 require('admin-lte');
 
-require('nestable');
+import Sortable from 'sortablejs'
+window.Sortable = Sortable;
 
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;

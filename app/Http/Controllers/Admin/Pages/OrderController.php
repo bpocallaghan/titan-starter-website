@@ -64,29 +64,46 @@ class OrderController extends AdminController
      * Generate the nestable html
      *
      * @param null $parent
+     * @param $id
      *
      * @return string
      */
-    private function getNavigationHtml($parent = null)
+    private function getNavigationHtml($parent = null, $id = 0)
     {
-        $html = '<ol class="dd-list">';
-
-        $parentId = ($parent ? $parent->id : 0);
+        if (!(isset($parent) && $parent)) {
+            $parentId = 0;
+            $collapseClass = '';
+            $collapseIdClass = '';
+        }
+        else {
+            $parentId = $parent->id;
+            $collapseClass = ' collapse show';
+            $collapseIdClass = ' collapse'.$parent->id.' ';
+        }
         $items = Page::whereParentIdORM($parentId, $this->navigationType, $this->orderProperty);
 
-        foreach ($items as $key => $nav) {
-            $html .= '<li class="dd-item" data-id="' . $nav->id . '">';
-            $html .= '<div class="dd-handle">' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');
-            $html .= $nav->name . ' ' . ($nav->is_hidden == 1 ? '(HIDDEN)' : '') . ' <span style="float:right"> ' . $nav->url . ' </span></div>';
-            // featured - ignore parent_id (only one level)
-            if ($this->orderProperty != "featured_order") {
-                $html .= $this->getNavigationHtml($nav);
-            }
-
-            $html .= '</li>';
+        if($id == 0){
+            $html_id = 'id="pageOrderSortable"';
+        }else {
+            $html_id = '';
         }
 
-        $html .= '</ol>';
+        $html = '<div class="dd-list list-group '.$collapseIdClass.$collapseClass.'" '.$html_id.'>';
+
+        foreach ($items as $key => $nav) {
+            $html .= '<div class="list-group-item mt-2 mb-2 card dd-item nested-'.$key.'" data-id="' . $nav->id . '" >';
+            $html .= '<button type="button" class="dd-handle btn btn-sm  btn-outline-secondary mr-3" href="#"> <i class="fa fa-list"></i> </button>  ' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');
+            $html .= '<a data-toggle="collapse" href=".collapse' . $nav->id . '" aria-expanded="true" aria-controls="collapse' . $key . '">'.$nav->name . '</a> ' . ($nav->is_hidden == 1 ? '(HIDDEN)' : '') . ' <span class="text-muted float-right"> ' . $nav->url . ' </span>';
+            // featured - ignore parent_id (only one level)
+            if ($this->orderProperty != "featured_order") {
+                $html .= $this->getNavigationHtml($nav, ($key+1));
+            }
+            $html .= '<div class="dd-list list-group collapse' . $nav->id.$collapseClass.'"></div>';
+
+            $html .= '</div>';
+        }
+
+        $html .= '</div>';
 
         return (count($items) >= 1 ? $html : '');
     }
@@ -121,10 +138,6 @@ class OrderController extends AdminController
     {
         $row = Page::find($id);
         $row->parent_id = $parentId;
-        //if ($row->url_parent_id != 0) {
-            // update the url parent id as well
-            $row->url_parent_id = $parentId;
-        //}
 
         $row->updateUrl();
         $row[$this->orderProperty] = $listOrder;

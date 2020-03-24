@@ -41,29 +41,42 @@ class NavigationOrderController extends AdminController
      * Generate the nestable html
      *
      * @param null $parent
+     * @param $id
      *
      * @return string
      */
-    private function getNavigationHtml($parent = null)
+    private function getNavigationHtml($parent = null, $id = 0)
     {
-        $html = '<ol class="dd-list">';
-
         if (!(isset($parent) && $parent)) {
             $items = Navigation::whereParentIdORM(0, true);
+            $collapseClass = '';
+            $collapseIdClass = '';
         }
         else {
             $items = Navigation::whereParentIdORM($parent->id, true);
+            $collapseClass = ' collapse show';
+            $collapseIdClass = ' collapse'.$parent->id.' ';
         }
 
+        if($id == 0){
+            $html_id = 'id="navigationOrderSortable"';
+        }else {
+            $html_id = '';
+        }
+
+        $html = '<div class="dd-list list-group '.$collapseClass.$collapseIdClass.'" '.$html_id.'>';
         foreach ($items as $key => $nav) {
-            $html .= '<li class="dd-item" data-id="' . $nav->id . '">';
-            $html .= '<div class="dd-handle">' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');
-            $html .= $nav->name . ' ' . ($nav->is_hidden == 1 ? '(HIDDEN)' : '') . ' <span style="float:right"> ' . $nav->url . ' </span></div>';
-            $html .= $this->getNavigationHtml($nav);
-            $html .= '</li>';
+            $html .= '<div class="list-group-item mt-2 mb-2 card dd-item nested-'.$key.'" data-id="' . $nav->id . '">';
+            $html .= '<button type="button" class="dd-handle btn btn-sm  btn-outline-secondary mr-3" href="#"> <i class="fa fa-list"></i> </button> ' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');
+            $html .= '<a data-toggle="collapse" href=".collapse' . $nav->id . '" aria-expanded="true" aria-controls="collapse' . $key . '">'.$nav->name . '</a> ' . ($nav->is_hidden == 1 ? '(HIDDEN)' : '') . ' <span style="float:right"> ' . $nav->url . ' </span>';
+
+            $html .= $this->getNavigationHtml($nav, ($key+1));
+            $html .= '<div class="dd-list list-group collapse' . $nav->id.$collapseClass.'"></div>';
+
+            $html .= '</div>';
         }
 
-        $html .= '</ol>';
+        $html .= '</div>';
 
         return (count($items) >= 1 ? $html : '');
     }
@@ -99,7 +112,7 @@ class NavigationOrderController extends AdminController
         $row = Navigation::find($id);
         $row->list_order = $listOrder;
         $row->parent_id = $parentId;
-        $row->url_parent_id = $parentId; // update the url parent id as well
+        //$row->url_parent_id = $parentId; // update the url parent id as well
         $row->updateUrl();
         $row->save();
 
