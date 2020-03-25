@@ -16,18 +16,19 @@
             <a class="btn btn-labeled btn-primary video-click-create" href="#" data-modal-title="Create Video">
                 <span class="btn-label"><i class="fa fa-fw fa-plus"></i></span>Create Video
             </a>
-
-            <a class="btn btn-light" href="/admin/photos/show/{{ $videoable->id }}/videos/order">
-                <span><i class="fa fa-align-center" aria-hidden="true"></i> Video Order</span>
-            </a>
         </div>
 
-        <div class="row dt-table video-collection">
+        <div class="row d-flex dd-list video-collection" id="videoGridSortable">
             @if(isset($videos))
                 @foreach($videos->sortBy('list_order') as $item)
-                    <div class="col-3 mb-3">
-                        <div class="card">
+                    <div class="col-3 mb-3" data-id="{{ $item->id }}">
+                        <div class="dd-item card dt-table">
                             <div class="card-header d-flex text-center">
+
+                                <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
+                                    <i class="fas fa-list"></i>
+                                </button>
+
                                 <label class="radio flex-fill text-left">
                                     <input class="video-cover-radio" data-id="{{$item->id}}" type="radio" name="is_cover" @if($item->is_cover) checked @endif><i></i>
                                 </label>
@@ -52,6 +53,8 @@
             @endif
         </div>
     </div>
+
+    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Videos', 'orderUrl' => '/admin/photos/show/'.$videoable->id .'/videos/order'])
 </div>
 
 <div class="modal fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">

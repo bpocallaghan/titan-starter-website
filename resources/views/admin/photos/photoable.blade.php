@@ -76,28 +76,25 @@
         </div>
 
         <!-- Images -->
-        <div class="row mt-3">
-            <div class="col-12">
-                <a class="btn btn-light mb-3" href="/admin/photos/show/{{ $photoable->id }}/order">
-                    <span><i class="fa fa-align-center" aria-hidden="true"></i> Photo Order</span>
-                </a>
-            </div>
+
+        <div class="row d-flex dd-list mt-3" id="photoGridSortable">
             @forelse($photos->sortBy('list_order') as $photo)
-                <div class="col-2 mb-3">
-{{--                    {{ $photo->photoable_type }}--}}
-                    <div class="card h-100 dt-table">
-                        <div class="card-header d-flex text-center p-2">
+                <div class="col-2" data-id="{{ $photo->id }}">
+                    <div class="dd-item card dt-table">
+                        <div class="card-header d-flex text-center p-2 align-items-center">
 
-                            <label class="radio flex-fill">
-                                <input class="photo-cover-radio" data-id="{{ $photo->id }}" type="radio" name="is_cover" {!! $photo->is_cover == 1? 'checked' : '' !!}>
-                                <i></i>
-                            </label>
+                            <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
+                                <i class="fas fa-list"></i>
+                            </button>
 
-                            <a id="image-row-clicker-{{ $photo->id }}" class="flex-fill text-truncate  flex-grow-1 dropzone-image-click" href="javascript:void(0)" data-id="{{ $photo->id }}" data-toggle="tooltip" data-title="{{ $photo->name }}">
-                                <span id="image-row-title-span-{{ $photo->id }}" class="image-row-title-span">{{ $photo->name }}</span>
-                            </a>
+                            <div class="form-check text-center m-0 pl-1 flex-fill">
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input photo-cover-radio" id="cover_photo{{ $photo->id }}" data-id="{{ $photo->id }}" type="radio" name="is_cover" {!! $photo->is_cover == 1? 'checked' : '' !!}>
+                                    <label for="cover_photo{{ $photo->id }}" class="custom-control-label">Cover</label>
+                                </div>
+                            </div>
 
-                            <div class="flex-fill text-right w-25">
+                            <div class=" text-right w-25">
                                 <a href="/admin/photos/show/crop/{{ $photo->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $photo->name }}">
                                     <i class="fa fa-crop"></i>
                                 </a>
@@ -116,20 +113,29 @@
                         <a class="card-img-top" href="{{ $photo->url }}" data-lightbox="Photo gallery" data-title="{{ $photo->name }}">
                             <img src="{{ $photo->thumb_url }}" title="{{ $photo->name }}" class="img-fluid">
                         </a>
+
+                        <div class="card-footer">
+                            <a id="image-row-clicker-{{ $photo->id }}" class="text-truncate dropzone-image-click" href="javascript:void(0)" data-id="{{ $photo->id }}" data-toggle="tooltip" data-title="{{ $photo->name }}">
+                                <div id="image-row-title-span-{{ $photo->id }}" class="image-row-title-span text-truncate">{{ $photo->name }}</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @empty
                 <div class="col-12">
+
                     <p class="text-muted">Please click on the panel above to upload photos
                         to {!! $photoable->name !!}.
                     </p>
+
                 </div>
             @endforelse
         </div>
+
         <!-- END Images -->
     </div>
 
-    @include('admin.partials.form.form_footer', ['submit' => false])
+    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Photos', 'orderUrl' => '/admin/photos/show/'.$photoable->id .'/order'])
 </div>
 
 <div class="modal fade" id="modal-photo" tabindex="-1" role="dialog" aria-hidden="true">

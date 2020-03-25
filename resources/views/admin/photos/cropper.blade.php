@@ -11,7 +11,7 @@
             width: 100%;
             margin: auto;
             overflow: hidden;
-            min-height: 200px;
+            min-height: 100px;
             border: 1px solid lightgrey;
         }
 
@@ -230,10 +230,10 @@
 
             if(photoableMinWidth != '' && photoableMinHeight != ''){
                 minWidth = parseInt(photoableMinWidth);
-                minHeight = parseInt(photoableMinHeight) + 25;
+                minHeight = parseInt(photoableMinHeight) + 15;
             }else {
                 minWidth = $image.width();
-                minHeight = $image.height() + 25;
+                minHeight = $image.height() + 15;
             }
 
             $('.preview').css({
@@ -253,6 +253,7 @@
             // Cropper
             $image.on({
                 ready: function () {
+
                     cropperData = $(this).cropper('getData', true);
 
                     // add restrictions when natural image is bigger than minimum allowed
@@ -283,6 +284,15 @@
                 },
                 cropmove: function (e) {
                     if (minCropWidth > 0) {
+
+                        $('.preview').css({
+                            width: '100%', //width,  sets the starting size to the same as orig image
+                            overflow: 'hidden',
+                            height:    minHeight,
+                            maxWidth:  minWidth,
+                            maxHeight: minHeight
+                        });
+
                         var imageData = $image.cropper('getData', true);
 
                         // if image width is less than minimum

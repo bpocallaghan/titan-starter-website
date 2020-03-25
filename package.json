@@ -40,9 +40,9 @@
         "jquery-cropper": "^1.0.1",
         "lightbox2": "^2.11.1",
         "moment": "^2.24.0",
-        "nestable": "^0.2.0",
         "pc-bootstrap4-datetimepicker": "^4.17.50",
         "select2": "^4.0.12",
+        "sortablejs": "^1.10.2",
         "summernote": "^0.8.15"
     }
 }

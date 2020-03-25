@@ -4,27 +4,27 @@
     }
 
     .small-charts {
-        width: 60px !important;
+        width: 90px !important;
         height: 60px;
     }
 
     .small-box .icon-chart {
         position: absolute;
         top: 15px;
-        right: 15px;
+        right: 5px;
         z-index: 0;
     }
 </style>
 
 <div class="row">
     <div class="col-lg col-6">
-        <div class="small-box bg-yellow">
+        <div class="small-box bg-blue">
             <div class="inner">
                 <h3 id="visitors">&nbsp;</h3>
                 <p>Visitors this Month</p>
 
                 <div class="icon-chart">
-                    <canvas class="small-charts" id="chart-visitors" width="50px" height="50px"></canvas>
+                    <canvas class="small-charts" id="chart-visitors" width="80px" height="50px"></canvas>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <p>Unique Visitors this Month</p>
 
                 <div class="icon-chart">
-                    <canvas class="small-charts" id="chart-unique-visitors" width="50px" height="50px"></canvas>
+                    <canvas class="small-charts" id="chart-unique-visitors" width=80px" height="50px"></canvas>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <p>Bounce Rate this Month</p>
 
                 <div class="icon-chart">
-                    <canvas class="small-charts" id="chart-bounce-rate" width="50px" height="50px"></canvas>
+                    <canvas class="small-charts" id="chart-bounce-rate" width="80px" height="50px"></canvas>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
 
     @if(isset($activeUsers))
         <div class="col-lg col-6">
-            <div class="small-box bg-blue">
+            <div class="small-box bg-info">
                 <div class="inner">
                     <h3 id="page-active-visitors">&nbsp;</h3>
                     <p>Current Active Visitors</p>

@@ -1,8 +1,8 @@
 <div class="card card-outline card-primary" id="box-referrers" style="min-height: 400px;">
     <div class="card-header">
         <h4 class="float-left m-0">
-            <span><i class="fa fa-file-text"></i></span>
-            <span>Top Refarrals</span>
+            <span><i class="far fa-link"></i></span>
+            <span>Top Referrals</span>
         </h4>
 
         @include('admin.partials.boxes.toolbar')

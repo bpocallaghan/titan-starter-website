@@ -5,7 +5,11 @@
     <form class="card card-secondary" method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
 
         <div class="card-header">
-            <span>{{ isset($item)? 'Edit the ' . $item->title . ' entry': 'Create a new Banner' }}</span>
+            <h3 class="card-title">
+                <span><i class="fa fa-edit"></i></span>
+                <span>{{ isset($item)? 'Edit the ' . $item->title . ' entry': 'Create a new Banner' }}</span>
+            </h3>
+
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">

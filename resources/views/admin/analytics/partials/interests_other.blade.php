@@ -1,7 +1,7 @@
 <div class="card card-outline card-primary" id="box-interests-other" style="min-height: 400px;">
     <div class="card-header">
         <h4 class="float-left m-0">
-            <span><i class="fa fa-file-text"></i></span>
+            <span><i class="fa fa-outdent"></i></span>
             <span>Top Interests Other</span>
         </h4>
 
