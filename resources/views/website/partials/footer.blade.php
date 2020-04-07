@@ -7,7 +7,7 @@
                 </a>
                 <hr>
                 <small>
-                    Website by <a href="https://github.com/bpocallaghan" target="_blank">{!! env('APP_AUTHOR') !!}</a>
+                    Website by <a href="https://github.com/bpocallaghan" target="_blank">{!! config('app.author') !!}</a>
                 </small>
             </div>
             <div class="col-sm-8 text-center">
