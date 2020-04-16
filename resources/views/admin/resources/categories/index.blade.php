@@ -61,7 +61,7 @@
                         <td>
                             <div class="btn-group">
                                 <a href="/admin/resources/resource-category/{{ $item->id }}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Add Resources">
-                                    <i class="far fa-fw fa-photo-video"></i>
+                                    <i class="fas fa-fw fa-photo-video"></i>
                                 </a>
                             </div>
                             {!! action_row($selectedNavigation->url, $item->id, $item->name, ['edit', 'delete'], false) !!}

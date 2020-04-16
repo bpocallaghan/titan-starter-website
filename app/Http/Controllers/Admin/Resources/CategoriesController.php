@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
+use Illuminate\View\View;
 use App\Models\ResourceCategory;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
 use App\Http\Controllers\Admin\AdminController;
 
 class CategoriesController extends AdminController
@@ -10,7 +14,7 @@ class CategoriesController extends AdminController
     /**
      * Display a listing of document_category.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -22,7 +26,7 @@ class CategoriesController extends AdminController
     /**
      * Show the form for creating a new document_category.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -32,7 +36,7 @@ class CategoriesController extends AdminController
     /**
      * Store a newly created document_category in storage.
      *
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
     public function store()
     {
@@ -47,7 +51,7 @@ class CategoriesController extends AdminController
      * Show the form for editing the specified document_category.
      *
      * @param ResourceCategory $category
-     * @return Response
+     * @return Factory|View
      */
     public function edit(ResourceCategory $category)
     {
@@ -58,7 +62,7 @@ class CategoriesController extends AdminController
      * Update the specified document_category in storage.
      *
      * @param ResourceCategory $category
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
     public function update(ResourceCategory $category)
     {
@@ -73,7 +77,7 @@ class CategoriesController extends AdminController
      * Remove the specified document_category from storage.
      *
      * @param ResourceCategory $category
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
     public function destroy(ResourceCategory $category)
     {

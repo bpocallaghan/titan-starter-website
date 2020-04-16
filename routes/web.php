@@ -111,10 +111,11 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
     // resources
     Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
-        // get resources
-        Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
         // resource categories
         Route::resource('/categories', 'CategoriesController');
+        // get resources
+        Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
+
         //photos
         Route::get('/photos', 'PhotosController@index');
         Route::delete('/photos/{photo}', 'PhotosController@destroy');

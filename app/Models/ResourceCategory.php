@@ -32,7 +32,7 @@ class ResourceCategory extends AdminModel
      *
      * @return array
      */
-    public static function getAllList()
+    public static function getAllList(): array
     {
     	return self::orderBy('name')->get()->pluck('name', 'id')->toArray();
     }

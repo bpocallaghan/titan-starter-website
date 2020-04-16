@@ -2,12 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use App\Models\Video;
-use App\Models\Photo;
-use App\Models\Document;
-use Illuminate\Http\UploadedFile;
-use App\Models\Traits\ImageThumb;
-use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Admin\AdminController;
 
 class ResourceController extends AdminController
