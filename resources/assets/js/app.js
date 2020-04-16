@@ -37,11 +37,4 @@ const app = new Vue({
     el: '#app'
 });
 */
-$(function () {
-    'use strict';
-
-    // Tooltip
-    $('[data-toggle="tooltip"]').tooltip();
-
-});
 

@@ -30,28 +30,6 @@ trait Photoable
     }
 
     /**
-     * Get the cover photo attribute
-     * @return bool
-     */
-    public function getCoverVideoAttribute()
-    {
-        $videos = $this->videos;
-        if ($videos->count() >= 1) {
-            // get the cover photo
-            $video = $videos->where('is_cover', true)->first();
-            if ($video) {
-                return $video;
-            }
-
-            // no photo marked as cover - return first
-            return $videos->first();
-        }
-
-        // no photos uploaded yet
-        return false;
-    }
-
-    /**
      * Get all of the album's photos.
      */
     public function photos()
@@ -79,13 +57,5 @@ trait Photoable
     public function scopeHasPhotos($query)
     {
         return $query->whereHas('photos');
-    }
-
-    /**
-     * Get all of the album's photos.
-     */
-    public function videos()
-    {
-        return $this->morphMany(Video::class, 'videoable');
     }
 }
