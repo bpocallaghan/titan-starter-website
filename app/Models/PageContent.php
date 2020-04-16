@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\Photoable;
 use App\Models\Traits\Documentable;
 use App\Models\Traits\ImageThumb;
+use App\Models\Traits\Videoable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class PageContent extends AdminModel
 {
-    use SoftDeletes, Documentable, Photoable, ImageThumb;
+    use SoftDeletes, Documentable, Photoable, ImageThumb, Videoable;
 
     protected $table = 'page_content';
 

@@ -109,31 +109,31 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     });
     Route::resource('pages', 'Pages\PagesController');
 
-    // gallery / photos
-    Route::group(['prefix' => 'photos', 'namespace' => 'Photos'], function () {
-        Route::get('/', 'PhotosController@index');
-        Route::delete('/{photo}', 'PhotosController@destroy');
-        Route::post('/upload', 'PhotosController@uploadPhotos');
-        Route::post('/{photo}/edit/name', 'PhotosController@updatePhotoName');
-        Route::post('/{photo}/cover', 'PhotosController@updatePhotoCover');
-
-        Route::resource('/albums', 'AlbumsController', ['except' => 'show']);
+    // resources
+    Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
+        // get resources
+        Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
+        // resource categories
+        Route::resource('/categories', 'CategoriesController');
+        //photos
+        Route::get('/photos', 'PhotosController@index');
+        Route::delete('/photos/{photo}', 'PhotosController@destroy');
+        Route::post('/photos/upload', 'PhotosController@uploadPhotos');
+        Route::post('/photos/{photo}/edit/name', 'PhotosController@updatePhotoName');
+        Route::post('/photos/{photo}/cover', 'PhotosController@updatePhotoCover');
         // photoables
-        Route::get('/show/{photoable}', 'PhotosController@showPhotos');
+        Route::get('/photos/show/{photoable}', 'PhotosController@showPhotos');
         //photos order
-        Route::get('/show/{photoable}/order', 'PhotosOrderController@showPhotos');
-        Route::post('/order', 'PhotosOrderController@update');
+        Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
+        Route::post('/photos/order', 'PhotosOrderController@update');
         // croppers
-        Route::get('/show/crop/{photo}', 'CropperController@showPhotos');
-        Route::post('/crop/{photo}', 'CropperController@cropPhoto');
-
+        Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
+        Route::post('/photos/crop/{photo}', 'CropperController@cropPhoto');
         // resource image crop
         Route::get('/banners/{banner}/crop-resource/', 'CropResourceController@showBanner');
-        Route::post('/crop-resource', 'CropResourceController@cropPhoto');
+        Route::post('/photos/crop-resource', 'CropResourceController@cropPhoto');
 
         //videos
-        Route::resource('/albums/{album}/videos', 'VideosController', ['except' => 'show']);
-
         Route::get('/videos', 'VideosController@index');
         Route::post('/videos/create', 'VideosController@store');
         Route::post('/videos/{video}/edit', 'VideosController@update');
@@ -141,26 +141,17 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
         Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
         //videos order
-        Route::get('/show/{videoable}/videos/order', 'VideosOrderController@showVideos');
+        Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
         Route::post('/videos/order', 'VideosOrderController@update');
-    });
 
-    // documents
-    Route::group(['prefix' => 'documents', 'namespace' => 'Documents'], function () {
-        // documents
-        Route::get('/', 'DocumentsController@index');
-        Route::delete('/{document}', 'DocumentsController@destroy');
-        Route::post('/upload', 'DocumentsController@upload');
-        Route::post('/{document}/edit/name', 'DocumentsController@updateName');
-
+        //documents
+        Route::get('/documents', 'DocumentsController@index');
+        Route::delete('/documents/{document}', 'DocumentsController@destroy');
+        Route::post('/documents/upload', 'DocumentsController@upload');
+        Route::post('/documents/{document}/edit/name', 'DocumentsController@updateName');
         // documentable
-        Route::get('/category/{category}', 'DocumentsController@showCategory');
+        Route::get('/documents/{documentable}', 'DocumentsController@showDocuments');
 
-        //show documents for other components
-        Route::get('/show/{documentable}', 'DocumentsController@showDocuments');
-
-        // categories
-        Route::resource('/categories', 'CategoriesController');
     });
 
     // accounts

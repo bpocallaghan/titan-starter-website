@@ -63,7 +63,7 @@
                                         @endforeach
 
                                         @foreach($item->photos->sortBy('list_order') as $photo)
-                                            <a href="{{ $item->url }}" title="{{ $photo->name }}" data-lightbox="Content Gallery"><img class=img-fluid" src="{{ $photo->thumb_url }}" alt="{{ $photo->name }}" style="height: 30px;"></a>
+                                            <a href="{{ $photo->url }}" title="{{ $photo->name }}" data-lightbox="Content Gallery"><img class="img-fluid" src="{{ $photo->thumb_url }}" alt="{{ $photo->name }}" style="height: 30px;"></a>
                                         @endforeach
 
                                     </div>

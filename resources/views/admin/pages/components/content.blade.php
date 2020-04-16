@@ -35,7 +35,7 @@
                 @include('admin.pages.components.form_heading')
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="@if(isset($item) && $item->media) col-md-6 @else col-md-8 @endif">
                         <div class="form-group {{ form_error_class('media', $errors) }}">
                             <label>Upload your Photo - Maximum 2MB <span class="small">(Optional)</span> </label>
                             <div class="input-group">
@@ -57,12 +57,22 @@
                             {!! form_error_message('media_align', $errors) !!}
                         </div>
                     </div>
+
+                    @if(isset($item) && $item->media)
+                        <div class="col-md-2 text-center" id="media-box">
+                            <a data-lightbox="Feature Image" href="{{ $item->imageUrl }}">
+                                <img class="img-fluid mt-2" src="{{ $item->thumb_url }}" style="height:75px;"/>
+                            </a>
+                            <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right btn-delete-media" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-page-id="{{ $item->page_id }}">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="caption">Media Caption <span class="small">(Optional)</span></label>
+                            <label for="caption">Media Caption <span class="small">(Optional, good for SEO)</span></label>
                             <input type="text" class="form-control {{ form_error_class('caption', $errors) }}" id="caption" name="caption" placeholder="Enter Caption" value="{{ ($errors && $errors->any()? old('caption') : (isset($item)? $item->caption : '')) }}">
                             {!! form_error_message('caption', $errors) !!}
                         </div>
@@ -71,16 +81,6 @@
 
                 @include('admin.pages.components.form_content')
 
-                @if(isset($item) && $item->media)
-                    <div id="media-box">
-                        <a style="display:inline-block;" target="_blank" href="{{ $item->imageUrl }}">
-                            <img class="img-fluid" src="{{ $item->thumb_url }}" style="height:100px;"/>
-                            <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-page-id="{{ $item->page_id }}">
-                                <i class="fa fa-times"></i></button>
-                        </a>
-
-                    </div>
-                @endif
             </fieldset>
 
         </div>
@@ -88,62 +88,17 @@
     </form>
 
     @if(isset($item))
-        <div class="card card-secondary card-tabs">
-            <div class="card-header p-0 pt-1">
-                <ul class="nav nav-tabs" id="resources" role="tablist">
-                    <li class="nav-item">
-                        <a class="toggle-sortable nav-link active" id="resources-photos-tab" data-url="/admin/photos/order" data-type="photoGridSortable" data-toggle="pill" href="#resources-photos" role="tab" aria-controls="resources-photos" aria-selected="true"><i class="fas fa-images"></i> Photos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="toggle-sortable nav-link" id="resources-videos-tab" data-url="/admin/photos/videos/order" data-type="videoGridSortable" data-toggle="pill" href="#resources-videos" role="tab" aria-controls="resources-videos" aria-selected="false"><i class="fa fa-film"></i> Videos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="resources-documents-tab" data-toggle="pill" href="#resources-documents" role="tab" aria-controls="resources-documents" aria-selected="false"><i class="fas fa-file-pdf"></i> Documents</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="card-body p-0">
-                <div class="tab-content" id="resources-tabContent">
-                    <div class="tab-pane fade show active" data-url="/admin/photos/order" data-type="photoGridSortable" id="resources-photos" role="tabpanel" aria-labelledby="resources-photos-tab">
-                        @include('admin.photos.photoable', ['photoable' => $item, 'photos' => $item->photos])
-                    </div>
-
-                    <div class="tab-pane fade" data-url="/admin/photos/videos/order" data-type="videoGridSortable" id="resources-videos" role="tabpanel" aria-labelledby="resources-videos-tab">
-                        @include('admin.photos.videos.videoable', ['videoable' => $item, 'videos' => $item->videos])
-                    </div>
-
-                    <div class="tab-pane fade" id="resources-documents" role="tabpanel" aria-labelledby="resources-documents-tab">
-                        @include('admin.documents.documentable', ['documentable' => $item, 'documents' => $item->documents])
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.resources.resourceable', ['resource' => $item])
     @endif
 @endsection
 
-@include('admin.partials.sortable')
 
 @section('scripts')
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
 
-            initSortableMenu("/admin/photos/order", "photoGridSortable");
-
-            $('.toggle-sortable').on('shown.bs.tab', function (e) {
-                $newTab = e.target; // newly activated tab
-                $oldTab = e.relatedTarget; // previous active tab
-
-                sort.destroy();
-
-                $type = $newTab.getAttribute('data-type');
-                $url = $newTab.getAttribute('data-url');
-
-                initSortableMenu($url, $type);
-            });
-
-            $('.btn-delete-row').on('click', function (e) {
+            $('.btn-delete-media').on('click', function (e) {
                 e.preventDefault();
 
                 $id = $(this).attr('data-id');
