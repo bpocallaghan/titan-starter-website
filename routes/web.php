@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     });
     Route::resource('pages', 'Pages\PagesController');
 
-    // gallery / photos
+    // resources
     Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
         // get resources
         Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         // photoables
         Route::get('/photos/show/{photoable}', 'PhotosController@showPhotos');
         //photos order
-        Route::get('/photos/show/{photoable}/order', 'PhotosOrderController@showPhotos');
+        Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
         Route::post('/photos/order', 'PhotosOrderController@update');
         // croppers
         Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
@@ -141,7 +141,7 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
         Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
         //videos order
-        Route::get('/videos/show/{videoable}/order', 'VideosOrderController@showVideos');
+        Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
         Route::post('/videos/order', 'VideosOrderController@update');
 
         //documents

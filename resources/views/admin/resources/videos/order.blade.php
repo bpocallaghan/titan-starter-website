@@ -15,8 +15,8 @@
             </div>
 
             <div class="row d-flex dd-list video-collection mt-3" id="videoGridSortable">
-                @if(isset($items))
-                    @foreach($items->sortBy('list_order') as $item)
+                @if(isset($videoable))
+                    @foreach($videoable->videos->sortBy('list_order') as $item)
                         <div class="col-3 mb-3" data-id="{{ $item->id }}">
                             <div class="dd-item card dt-table">
                                 <div class="card-header d-flex text-center">

@@ -23,38 +23,41 @@ class PhotosOrderController extends AdminController
     {
         $items = Photo::orderBy('list_order')->get();
 
-        return $this->view('photos.order')->with('items', $items);
+        return $this->view('resources.photos.order')->with('items', $items);
     }
 
     /**
      * Show the Photoable's photos
      * Create / Edit / Delete the photos
      * @param $photoable
-     * @param $photos
      * @return mixed
      */
-    private function showPhotoable($photoable, $photos)
+    private function showPhotoable($photoable)
     {
         save_resource_url();
 
 
-        return $this->view('photos.order')
-            ->with('videos', $photoable->videos)
-            ->with('photoable', $photoable)
-            ->with('photos', $photos)
-            ->with('items', $photoable->photos);
+        return $this->view('resources.photos.order')
+            ->with('photoable', $photoable);
+
     }
 
     /**
      * Show the News' photos
+     * @param $resouceable
+     * @param $id
      * @return mixed
      */
-    public function showPhotos($id)
+    public function showPhotos($resouceable, $id)
     {
-        $model = app(session('photoable_type'));
+        $model_name = str_replace('-', ' ',ucwords($resouceable));
+        $model_name = str_replace(' ', '',ucwords($model_name));
+
+        $resource_type = 'App\Models\\'.$model_name;
+        $model = app($resource_type);
         $model = $model->find($id);
 
-        return $this->showPhotoable($model, $model->photos);
+        return $this->showPhotoable($model);
     }
 
     /**

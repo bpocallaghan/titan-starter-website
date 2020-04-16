@@ -24,36 +24,39 @@ class VideosOrderController extends AdminController
     {
         $items = Video::orderBy('list_order')->get();
 
-        return $this->view('photos.videos.order')->with('items', $items);
+        return $this->view('resources.videos.order')->with('items', $items);
     }
 
     /**
      * Show the Videoable's videos
      * Create / Edit / Delete the videos
      * @param $videoable
-     * @param $videos
      * @return mixed
      */
-    private function showVideoable($videoable, $videos)
+    private function showVideoable($videoable)
     {
         save_resource_url();
 
-        return $this->view('photos.videos.order')
-            ->with('videos', $videos)
-            ->with('videoable', $videoable)
-            ->with('items', $videos);
+        return $this->view('resources.videos.order')
+            ->with('videoable', $videoable);
     }
 
     /**
      * Show the News' photos
+     * @param $resouceable
+     * @param $id
      * @return mixed
      */
-    public function showVideos($id)
+    public function showVideos($resouceable, $id)
     {
-        $model = app(session('photoable_type'));
+        $model_name = str_replace('-', ' ',ucwords($resouceable));
+        $model_name = str_replace(' ', '',ucwords($model_name));
+
+        $resource_type = 'App\Models\\'.$model_name;
+        $model = app($resource_type);
         $model = $model->find($id);
 
-        return $this->showVideoable($model, $model->videos);
+        return $this->showVideoable($model);
     }
 
     /**

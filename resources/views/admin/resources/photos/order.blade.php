@@ -15,7 +15,7 @@
             </div>
 
             <div class="row d-flex dd-list mt-3" id="photoGridSortable">
-                @forelse($items->sortBy('list_order') as $photo)
+                @forelse($photoable->photos->sortBy('list_order') as $photo)
                     <div class="col-2" data-id="{{ $photo->id }}">
                         <div class="dd-item card dt-table">
                             <div class="card-header d-flex text-center p-2 align-items-center">

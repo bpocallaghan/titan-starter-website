@@ -57,7 +57,13 @@
         </div>
     </div>
 
-    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Videos', 'orderUrl' => '/admin/resources/videos/show/'.$videoable->id .'/order'])
+    @php
+        $resourceable_split = preg_split('/(?=[A-Z])/', (new \ReflectionClass($videoable))->getShortName(), -1, PREG_SPLIT_NO_EMPTY);
+        $resourceable_join = join('-', $resourceable_split);
+        $resourceable = strtolower($resourceable_join);
+    @endphp
+
+    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Videos', 'orderUrl' => '/admin/resources/videos/'. $resourceable  .'/'.$videoable->id .'/order'])
 </div>
 
 <div class="modal fade" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">

@@ -78,7 +78,7 @@
         <!-- Images -->
 
         <div class="row d-flex dd-list mt-3" id="photoGridSortable">
-            @forelse($photos->sortBy('list_order') as $photo)
+            @forelse($photoable->photos->sortBy('list_order') as $photo)
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2" data-id="{{ $photo->id }}">
                     <div class="dd-item card dt-table">
                         <div class="card-header d-flex text-center p-2 align-items-center">
@@ -135,7 +135,13 @@
         <!-- END Images -->
     </div>
 
-    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Photos', 'orderUrl' => '/admin/resources/photos/show/'.$photoable->id .'/order'])
+    @php
+        $resourceable_split = preg_split('/(?=[A-Z])/', (new \ReflectionClass($photoable))->getShortName(), -1, PREG_SPLIT_NO_EMPTY);
+        $resourceable_join = join('-', $resourceable_split);
+        $resourceable = strtolower($resourceable_join);
+    @endphp
+
+    @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Photos', 'orderUrl' => '/admin/resources/photos/'.$resourceable.'/'.$photoable->id .'/order'])
 </div>
 
 <div class="modal fade" id="modal-photo" tabindex="-1" role="dialog" aria-hidden="true">
