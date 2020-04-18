@@ -11,7 +11,7 @@ require('datatables.net-bs4');
 
 require('admin-lte');
 
-import Sortable from 'sortablejs'
+import Sortable from 'sortablejs';
 window.Sortable = Sortable;
 
 window.Dropzone = require('dropzone');

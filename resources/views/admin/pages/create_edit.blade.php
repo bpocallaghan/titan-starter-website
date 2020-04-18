@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <!--card-outline-->
-    <form method="POST" class="card card-secondary" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8">
+
+    <form method="POST" class="card card-primary" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8">
         {!! csrf_field() !!}
         {!! method_field(isset($item)? 'put':'post') !!}
 

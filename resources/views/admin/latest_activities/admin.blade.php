@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <!--card-outline-->
-    <div class="card card-secondary">
+
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">List All Website Activities</h3>
 

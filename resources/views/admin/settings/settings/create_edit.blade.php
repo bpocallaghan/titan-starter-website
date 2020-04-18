@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <!--card-outline-->
-    <div class="card card-secondary">
+
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
                 <span><i class="fa fa-edit"></i></span>
@@ -201,8 +201,8 @@
             @include('admin.partials.form.form_footer')
         </form>
     </div>
-    <!--card-outline-->
-    <div class="card card-secondary">
+
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Google Map</h3>
 

@@ -1,5 +1,5 @@
 @if(isset($resource))
-    <div class="card card-secondary card-tabs">
+    <div class="card card-primary card-tabs">
         <div class="card-header p-0 pt-1">
             <ul class="nav nav-tabs" id="resources" role="tablist">
                 @if(isset($resource->photos))

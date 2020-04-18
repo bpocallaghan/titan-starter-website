@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <!--card-outline-->
-    <form class="card card-secondary" method="POST" action="/admin/pages/{{ $page->id . '/sections/content' . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+    <form class="card card-primary" method="POST" action="/admin/pages/{{ $page->id . '/sections/content' . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! method_field(isset($item)? 'put':'post') !!}
         <input name="page_id" type="hidden" value="{{ $page->id }}">

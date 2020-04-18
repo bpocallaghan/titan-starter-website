@@ -7,7 +7,7 @@
 
     <section class="sidebar">
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent text-sm" data-widget="treeview" role="menu" data-accordion="false">
                 @include('admin.partials.navigation.navigation_list', ['collection' => $navigation['root']])
             </ul>
         </nav>

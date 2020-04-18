@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <!--card-outline-->
-    <form class="card card-secondary" method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+    <form class="card card-primary" method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
 
         <div class="card-header">
             <h3 class="card-title">

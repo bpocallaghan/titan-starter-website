@@ -39,7 +39,7 @@
 
             @include('admin.partials.navigation')
 
-            <div class="content-wrapper pt-3 pb-1">
+            <div class="content-wrapper text-sm pt-3 pb-1">
                 <section class="content">
                     <h2 class="d-none">Page</h2>
                     @yield('content')

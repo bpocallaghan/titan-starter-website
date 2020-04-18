@@ -1,5 +1,5 @@
-<!--card-outline-->
-<div class="card card-secondary">
+
+<div class="card card-primary">
     <div class="card-header">
         <span>{!! $page->name !!}</span>
 

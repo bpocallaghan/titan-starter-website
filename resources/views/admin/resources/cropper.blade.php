@@ -26,7 +26,7 @@
 @section('content')
     <div class="row ">
         <div class="col-12">
-            <div class="card card-secondary">
+            <div class="card card-primary">
                 <div class="card-header">
                     <span>Crop {{ $photo->name }}</span>
                 </div>

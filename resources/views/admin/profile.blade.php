@@ -3,7 +3,7 @@
 @section('content')
 
 
-            <div class="card card-secondary">
+            <div class="card card-primary">
                 <div class="card-header">
                     <span>Update Profile</span>
                     <div class="card-tools">
