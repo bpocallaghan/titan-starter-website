@@ -46,11 +46,11 @@ if (!function_exists('action_row')) {
     ) {
         $url = rtrim($url, '/') . '/'; // remove last / and add it again (if it was not there)
 
-        $show = '<a href="' . $url . $id . '" class="btn btn-default btn-xs" data-toggle="tooltip" title="Show ' . $title . '">
+        $show = '<a href="' . $url . $id . '" class="btn btn-light btn-xs" data-toggle="tooltip" title="Show ' . $title . '">
                         <i class="fa fa-fw fa-eye"></i>
                     </a> ';
 
-        $edit = '<a href="' . $url . $id . '/edit' . '" class="btn btn-info btn-xs" data-toggle="tooltip" title="Edit ' . $title . '">
+        $edit = '<a href="' . $url . $id . '/edit' . '" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Edit ' . $title . '">
                         <i class="fa fa-fw fa-edit text-white"></i>
                     </a> ';
 
@@ -80,7 +80,7 @@ if (!function_exists('action_row')) {
                 $urll = $action[$key];
 
                 $html .= '<div class="btn-group">
-                    <a href="' . $urll . '" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Show ' . $key . ' for ' . $title . '">
+                    <a href="' . $urll . '" class="btn btn-info btn-xs" data-toggle="tooltip" title="Show ' . $key . ' for ' . $title . '">
                         <i class="fa fa-' . $key . '"></i>
                     </a>
                 </div>';

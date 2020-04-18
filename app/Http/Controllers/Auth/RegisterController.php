@@ -2,24 +2,45 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
-use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends AuthController
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
     /**
-     * Show the application registration form.
+     * Where to redirect users after registration.
      *
-     * @param $token
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @var string
      */
-    public function showRegistrationForm($token = null)
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return $this->view('register');
+        $this->middleware('guest');
     }
 
     /**
@@ -31,17 +52,7 @@ class RegisterController extends AuthController
     {
         $attributes = request()->validate(User::$rules);
 
-        // create new user
-        $user = User::create([
-            'firstname'          => $attributes['firstname'],
-            'lastname'           => $attributes['lastname'],
-            'cellphone'          => $attributes['cellphone'],
-            'email'              => $attributes['email'],
-            'password'           => Hash::make($attributes['password']),
-            'confirmation_token' => 'confirmation_token', // will generate a new unique token
-        ]);
-
-        event(new Registered($user));
+        event(new Registered($user = $this->create($attributes)));
 
         Auth::guard()->login($user);
 
@@ -53,40 +64,20 @@ class RegisterController extends AuthController
     }
 
     /**
-     * User click on register confirmation link in mail
+     * Create a new user instance after a valid registration.
      *
-     * @param $token
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param  array  $data
+     * @return \App\User
      */
-    public function confirmAccount($token)
+    protected function create(array $data)
     {
-        $user = User::where('confirmation_token', $token)->first();
-        if ($user) {
-            if ($user->confirmed_at && strlen($user->confirmed_at) > 6) {
-                alert()->info('Account is Active',
-                    'Your account is already active, please try to sign in.');
-            }
-            else {
-                // confirm / activate user
-                $user->confirmation_token = null;
-                $user->confirmed_at = Carbon::now();
-                $user->update();
-
-                // notify
-                $user->notify(new UserConfirmedAccount());
-
-                alert()->success('Success',
-                    '<br/>Congratulations, your account has been activated. Please Sign In below.');
-
-                log_activity('User Confirmed', $user->fullname . ' confirmed their account', $user);
-            }
-        }
-        else {
-            alert()->error('Whoops!', 'Sorry, the token does not exist.');
-
-            log_activity('User Confirmed', 'INVALID TOKEN');
-        }
-
-        return redirect(route('login'));
+        return User::create([
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'cellphone' => $data['cellphone'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'confirmation_token' => 'confirmation_token',
+        ]);
     }
 }

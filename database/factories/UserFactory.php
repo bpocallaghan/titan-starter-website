@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Role;
 use App\User;
-use Faker\Generator as Faker;
+use App\Models\Role;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +30,12 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(App\User::class, 'admin', [
+$factory->state(User::class, 'admin', [
 
 ]);
 
 // sync admin roles to user
-$factory->afterCreatingState(App\User::class, 'admin', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'admin', function ($user, $faker) {
     $user->syncRoles([
         Role::$USER,
         Role::$ADMIN,

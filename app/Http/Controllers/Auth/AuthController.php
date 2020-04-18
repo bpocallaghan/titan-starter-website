@@ -12,8 +12,8 @@ class AuthController extends Controller
     protected $baseViewPath = 'auth.';
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param string                   $status
+     * @param Request $request
+     * @param string  $status
      */
     protected function logLogin(Request $request, $status = '')
     {
