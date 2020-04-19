@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card card-secondary">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
                 <span>List All Resource Categories</span>
@@ -60,7 +60,7 @@
                         <td>{{ $item->created_at->format('d M Y') }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="/admin/resources/resource-category/{{ $item->id }}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Add Resources">
+                                <a href="/admin/resources/resource-category/{{ $item->id }}" class="btn btn-info btn-xs" data-toggle="tooltip" title="Add Resources">
                                     <i class="fas fa-fw fa-photo-video"></i>
                                 </a>
                             </div>

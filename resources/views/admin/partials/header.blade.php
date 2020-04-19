@@ -1,5 +1,5 @@
 <h2 class="d-none">Header</h2>
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
@@ -24,14 +24,14 @@
         <li class="nav-item">
             <a id="js-notifications" href="#" class="nav-link" data-toggle="modal" data-target="#modal-notifications">
                 <i class="far fa-envelope"></i>
-                <span data-user="{{ user()->id }}" id="js-notifications-badge" class="badge badge-success" style="display: none;"></span>
+                <span data-user="{{ user()->id }}" id="js-notifications-badge" class="badge badge-success navbar-badge" style="display: none;"></span>
             </a>
         </li>
 
         <li class="nav-item dropdown">
             <a data-type="activities" class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span id="js-activities-badge" class="badge badge-warning navbar-badge" style="display: none;"></span>
+                <span id="js-activities-badge" class="badge badge-info navbar-badge" style="display: none;"></span>
             </a>
             <div id="js-activities-list" class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="text-xs">

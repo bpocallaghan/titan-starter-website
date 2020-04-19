@@ -3,11 +3,11 @@
 namespace App;
 
 use App\Models\Traits\UserAdmin;
-use App\Models\Traits\UserHelper;
 use App\Models\Traits\UserRoles;
+use App\Models\Traits\UserHelper;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -15,7 +15,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable, SoftDeletes, UserHelper, UserRoles, UserAdmin;
 
     protected $appends = ['fullname'];
-
     /**
      * The attributes that are mass assignable.
      *

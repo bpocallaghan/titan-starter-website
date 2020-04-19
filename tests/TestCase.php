@@ -4,9 +4,9 @@ namespace Tests;
 
 use App\User;
 use App\Models\Role;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use NavigationsTableSeeder;
 use RolesTableSeeder;
+use NavigationsTableSeeder;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
