@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
+use App\Models\Photo;
 use Image;
-use App\Models\Banner;
 use App\Http\Requests;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -14,7 +14,7 @@ class CropResourceController extends AdminController
     private $THUMB_SIZE = [1024, 768];
 
     /**
-     * @param       $photoable
+     * @param  $photoable
      * @return this
      */
     private function showCropper($photoable)
@@ -23,12 +23,21 @@ class CropResourceController extends AdminController
     }
 
     /**
-     * @param Banner $banner
+     * @param $resouceable
+     * @param $id
      * @return this
      */
-    public function showBanner(Banner $banner)
+    public function showPhoto($resouceable, $id)
     {
-        return $this->showCropper($banner);
+
+        $model_name = str_replace('-', ' ',ucwords($resouceable));
+        $model_name = str_replace(' ', '',ucwords($model_name));
+
+        $resource_type = 'App\Models\\'.$model_name;
+        $model = app($resource_type);
+        $model = $model->find($id);
+
+        return $this->showCropper($model);
     }
 
     /**
@@ -69,7 +78,7 @@ class CropResourceController extends AdminController
 
         // generate new name (bypass cache)
         $photoable->update([
-            'image' => token() . "{$photoable->extension}"
+            (isset($photoable->imageColumn)? $photoable->imageColumn: 'image')=> token() . "{$photoable->extension}"
         ]);
 
         // save original image with new name
@@ -102,7 +111,7 @@ class CropResourceController extends AdminController
         // resize the image to large size
         $imageTmp->resize($largeSize[0], null, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($path . $photoable->image);
+        })->save($path . (isset($photoable->image)? $photoable->image: $photoable->imageColumn));
 
         // resize the image to thumb size
         $imageTmp->resize($thumbSize[0], null, function ($constraint) {

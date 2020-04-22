@@ -16,6 +16,10 @@ class PageContent extends AdminModel
 {
     use SoftDeletes, Documentable, Photoable, ImageThumb, Videoable;
 
+    public static $LARGE_SIZE = [1024, 768];
+
+    public static $THUMB_SIZE = [320, 240];
+
     protected $table = 'page_content';
 
     protected $guarded = ['id'];
