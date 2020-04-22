@@ -33,7 +33,6 @@ class CropperController extends AdminController
      */
     public function showPhotos(Photo $photo)
     {
-        //$model = app(session('photoable_type'));
         $model = app($photo->photoable_type);
         $model = $model->find($photo->photoable_id);
 

@@ -95,28 +95,28 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
         // resource categories
         Route::resource('/categories', 'CategoriesController');
-        // get resources
+        // get resources - new photoable, documentable, videoable
         Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
 
-        //photos
+        //photos - list, delete, upload, edit, cover
         Route::get('/photos', 'PhotosController@index');
         Route::delete('/photos/{photo}', 'PhotosController@destroy');
         Route::post('/photos/upload', 'PhotosController@uploadPhotos');
         Route::post('/photos/{photo}/edit/name', 'PhotosController@updatePhotoName');
         Route::post('/photos/{photo}/cover', 'PhotosController@updatePhotoCover');
-        // photoables
-        Route::get('/photos/show/{photoable}', 'PhotosController@showPhotos');
+
         //photos order
         Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
         Route::post('/photos/order', 'PhotosOrderController@update');
         // croppers
         Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
         Route::post('/photos/crop/{photo}', 'CropperController@cropPhoto');
-        // resource image crop
-        Route::get('/banners/{banner}/crop-resource/', 'CropResourceController@showBanner');
+
+        // resource image crop - featured image (single image file name in resource table)
+        Route::get('/{resourceable}/{resource}/crop-resource/', 'CropResourceController@showPhoto');
         Route::post('/photos/crop-resource', 'CropResourceController@cropPhoto');
 
-        //videos
+        //videos - list, create, edit, destroy, getInfo, cover
         Route::get('/videos', 'VideosController@index');
         Route::post('/videos/create', 'VideosController@store');
         Route::post('/videos/{video}/edit', 'VideosController@update');
@@ -127,13 +127,11 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
         Route::post('/videos/order', 'VideosOrderController@update');
 
-        //documents
+        //documents - list, destroy, upload, edit
         Route::get('/documents', 'DocumentsController@index');
         Route::delete('/documents/{document}', 'DocumentsController@destroy');
         Route::post('/documents/upload', 'DocumentsController@upload');
         Route::post('/documents/{document}/edit/name', 'DocumentsController@updateName');
-        // documentable
-        Route::get('/documents/{documentable}', 'DocumentsController@showDocuments');
 
     });
 

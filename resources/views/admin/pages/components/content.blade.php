@@ -64,7 +64,9 @@
                                 <img class="img-fluid mt-2" src="{{ $item->thumb_url }}" style="height:75px;"/>
                             </a>
                             <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right btn-delete-media" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-page-id="{{ $item->page_id }}">
-                                <i class="fa fa-times"></i></button>
+                                <i class="fa fa-fw fa-times"></i></button>
+                            <a href="/admin/resources/page-content/{{ $item->id }}/crop-resource" title="Crop media" class="btn btn-info btn-xs pull-right">
+                                <i class="fa fa-fw fa-crop-alt"></i></a>
                         </div>
                     @endif
                 </div>

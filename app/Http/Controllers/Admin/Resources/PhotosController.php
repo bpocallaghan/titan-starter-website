@@ -25,35 +25,6 @@ class PhotosController extends AdminController
     }
 
     /**
-     * Show the Photoable's photos
-     * Create / Edit / Delete the photos
-     * @param $photoable
-     * @param $photos
-     * @return mixed
-     */
-    private function showPhotoable($photoable, $photos)
-    {
-        save_resource_url();
-
-        return $this->view('resources.photos.create_edit')
-            ->with('videos', $photoable->videos)
-            ->with('photoable', $photoable)
-            ->with('photos', $photos);
-    }
-
-    /**
-     * Show the News' photos
-     * @return mixed
-     */
-    public function showPhotos($id)
-    {
-        $model = app(session('photoable_type'));
-        $model = $model->find($id);
-
-        return $this->showPhotoable($model, $model->photos);
-    }
-
-    /**
      * Upload a new photo to the album
      * @return \Illuminate\Http\JsonResponse
      */
