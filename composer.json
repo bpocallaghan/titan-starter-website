@@ -17,7 +17,7 @@
         "bpocallaghan/alert": "^1.1",
         "bpocallaghan/impersonate": "^1.0",
         "bpocallaghan/log-activity": "1.*",
-        "bpocallaghan/notify": "^2.1",
+        "bpocallaghan/notify": "^3.0",
         "bpocallaghan/sluggable": "^1.3",
         "fideloper/proxy": "^4.2",
         "google/recaptcha": "^1.2",
