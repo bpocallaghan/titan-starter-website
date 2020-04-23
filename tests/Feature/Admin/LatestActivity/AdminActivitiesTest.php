@@ -35,8 +35,8 @@ class AdminActivitiesTest extends TestCase
         $this->signInAdmin();
         $items = factory(LogModelActivity::class)->create([
             'name'   => 'user_created',
-            'before' => 'before',
-            'after'  => 'after',
+            'before' => '{"example":"before"}',
+            'after'  => '{"example":"after"}',
         ]);
 
         $response = $this->get($this->path);
