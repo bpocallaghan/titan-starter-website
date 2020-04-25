@@ -13,7 +13,7 @@
             <i class="fa fa-fw fa-spinner fa-spin"></i>
         </div>
 
-        <canvas id="chart-page-views"></canvas>
+        <canvas id="chart-page-views" style="height: 400px;"></canvas>
     </div>
 </div>
 
@@ -57,6 +57,8 @@
                     type: 'line',
                     data: data,
                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
                         tooltips: {
                             mode: 'label',
                             enabled: true,
