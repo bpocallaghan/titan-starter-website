@@ -49,7 +49,7 @@ class PagesController extends AdminController
         $attributes['is_hidden'] = (bool) input('is_hidden');
         $attributes['is_footer'] = (bool) input('is_footer');
         $attributes['is_featured'] = (bool) input('is_featured');
-        $attributes['url_parent_id'] = ($attributes['url_parent_id'] === 0 ? $attributes['parent_id'] : $attributes['url_parent_id']);
+        $attributes['url_parent_id'] = (int) $attributes['url_parent_id'] === 0 ? $attributes['parent_id'] : $attributes['url_parent_id'];
 
         $page = $this->createEntry(Page::class, $attributes);
 
