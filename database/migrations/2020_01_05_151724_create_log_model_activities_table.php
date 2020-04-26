@@ -32,6 +32,6 @@ class CreateLogModelActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('log_admin_activities');
+        Schema::drop('log_model_activities');
     }
 }
