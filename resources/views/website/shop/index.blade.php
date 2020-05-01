@@ -8,9 +8,8 @@
         <div class="row pb-5">
             <div class="col-sm-7 col-lg-8 content">
 
-
-                <a href="#filters" class="btn btn-info btn-block" data-toggle="collapse" data-icon="fa-search">Filter
-                    / Sort Results</a>
+                <button data-target="#filters" class="btn btn-info btn-block" data-toggle="collapse" data-icon="fa-search">Filter
+                    / Sort Results</button>
 
                 <div class="collapse show" id="filters">
                     <div class="filter bg-light p-3" id="js-shop-filters">
@@ -32,7 +31,7 @@
                                     {!! form_select('feature_id', ([0 => '- Feature -'] + $filterFeatures), ($errors && $errors->any()? old('feature_id') : 0), ['class' => 'form-control']) !!}
                                 </div>
                                 <div class="col">
-                                    <button id="js-btn-filters" role="button" class="btn btn-primary btn-block test-btn-filters"><span>Search</span></button>
+                                    <button id="js-btn-filters" role="button" class="btn btn-primary btn-block btn-filters"><span>Search</span></button>
                                 </div>
                             </div>
                         </form>
@@ -69,7 +68,7 @@
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            var BTN = ButtonClass();
+
             // paginator
             var pagination = new PaginationClass({
                 onComplete: function () {
@@ -98,14 +97,13 @@
                         category: category,
                         features: features
                     }, function (response) {
-                        console.log('now for ajax');
                         // reset pagination results
                         pagination.showPage(1, true);
 
                         // slight delay before we reset
-//                        setTimeout(function () {
-//                            BTN.reset($filtersBTN);
-//                        }, 300);
+                        setTimeout(function () {
+                            BTN.reset($filtersBTN);
+                        }, 300);
                     });
                 }
                 return false;

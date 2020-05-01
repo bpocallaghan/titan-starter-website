@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('user')) {

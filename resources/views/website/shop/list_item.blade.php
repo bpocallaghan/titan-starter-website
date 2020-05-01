@@ -12,7 +12,7 @@
             @endif
         </figure>
         <div class="card-body">
-            <h2 class="item-heading card-title"><a href="/products/show/{{ $product->slug }}" title="{{ $product->name }}">{!! $product->name !!}</a></h2>
+            <h3 class="item-heading card-title"><a href="/products/show/{{ $product->slug }}" title="{{ $product->name }}">{!! $product->name !!}</a></h3>
             <div class="card-text">
                 <p class="item-category">Category:
                     <a href="/products/{{ $product->category->slug }}">{{ $product->category->name }} {{ $product->category->parent? " ({$product->category->parent->name})":'' }}</a>

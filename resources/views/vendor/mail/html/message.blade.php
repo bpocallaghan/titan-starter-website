@@ -13,7 +13,7 @@
 @isset($subcopy)
 @slot('subcopy')
 @component('mail::subcopy')
-{{ $subcopy }}
+{!! $subcopy !!}
 @endcomponent
 @endslot
 @endisset
