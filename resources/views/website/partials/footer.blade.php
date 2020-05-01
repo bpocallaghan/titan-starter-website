@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="/" class="logo" title="{{ config('app.name') }}">
-                    <img src="/images/logo-secondary.png">
+                    <img class="img-fluid" src="/images/logo-secondary.png">
                 </a>
                 <hr>
                 <p>{{ $settings->description }}</p>

@@ -1,5 +1,5 @@
 $theme-colors: (
-        "primary": #247a95,
+        "primary": #00b3d0,
 );
 
 //bootstrap
@@ -40,7 +40,7 @@ a,button,
 .navbar-nav.sm-collapsible .sub-arrow{ width: auto; height: auto; border: none; line-height: inherit;}
 
 
-.page-header { position:relative; padding-bottom: 15px; color: #000; }
+.page-header { position:relative; padding-bottom: 10px; color: #000; }
 .page-header:after { content: ''; display: block; width: 75px; height: 2px; background: #1b6483; margin: 0; position: absolute; left: 0; right: 0; bottom: 0;}
 
 .page-header.text-center { text-align: center; }
@@ -63,5 +63,5 @@ footer li a:hover{ padding-left:5px}
 footer li a:before{ width:0; font-family:"Font Awesome 5 Free"; content:"\f105"; margin-right:5px;}
 footer .copyright { background-color: #191919; }
 
-footer h3 { position:relative; padding-bottom: 15px; margin-bottom: 15px; }
+footer h3 { position:relative; padding-bottom: 10px; margin-bottom: 15px; }
 footer h3:after { content: ''; display: block; width: 75px; height: 2px; background: #fefefe; margin: 0; position: absolute; left: 0; right: 0; bottom: 0;}

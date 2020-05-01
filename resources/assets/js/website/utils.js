@@ -48,9 +48,9 @@ $(document).ready(function () {
         var y = $(window).scrollTop();
         var c = $(window).height();
         if (y > c){
-            $('.back-to-top').css({"bottom":"-45px"});
-        } else{
             $('.back-to-top').css({"bottom":"10px"});
+        } else{
+            $('.back-to-top').css({"bottom":"-45px"});
         }
     });
 

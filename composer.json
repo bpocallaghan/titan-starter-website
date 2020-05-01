@@ -27,7 +27,8 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^7.6",
         "laravel/ui": "^2.0",
-        "spatie/laravel-analytics": "^3.6"
+        "spatie/laravel-analytics": "^3.6",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
