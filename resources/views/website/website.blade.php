@@ -22,7 +22,7 @@
 
         <title>{{ $title ?? config('app.name') }}</title>
 
-        <link rel="stylesheet" href="/css/app.css?v=2">
+        <link rel="stylesheet" href="/css/website.css?v={{ config('app.assets_version') }}">
 
         @yield('styles')
     </head>
@@ -36,24 +36,22 @@
 
         @include('website.partials.header')
 
-        @include('website.partials.navigation')
-
         @if((isset($showPageBanner) && $showPageBanner === true) || !isset($showPageBanner))
             @include('website.partials.banner')
         @endif
 
-        <div class="container mb-5">
+        <main>
             @yield('content')
-        </div>
+        </main>
 
         @include('website.partials.footer')
 
         {{-- back to top --}}
-        <a href="#top" class="back-to-top jumper btn btn-secondary">
-            <i class="fa fa-angle-up"></i>
-        </a>
+        <div class="back-to-top-box fixed-bottom">
+            <a href="#top" class="back-to-top animate jumper btn btn-primary" data-icon="fa fa-angle-up"></a>
+        </div>
 
-        <script type="text/javascript" charset="utf-8" src="/js/app.js?v=2"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/website.js?v={{ config('app.assets_version') }}"></script>
 
         @yield('scripts')
 

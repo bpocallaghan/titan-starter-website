@@ -1,11 +1,10 @@
-<h3 class="box-title">
-    <span><i class="fa fa-table"></i></span>
+<h3 class="card-title">
     <span>{{ isset($title)? $title:'DataTable' }}
         ({{ $fromDate->format('l, d F') }} - {{ $toDate->format('l, d F') }})
     </span>
 </h3>
 
-<div class="pull-right box-tools">
+<div class="float-right box-tools">
     <a href="{{ request()->url() }}/datatable/reset" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Reset Date Filter">
         <i class="fa fa-refresh"></i>
     </a>
@@ -14,8 +13,8 @@
         <i class="fa fa-calendar"></i>
     </button>
 
-    <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-        <i class="fa fa-minus"></i>
+    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fas fa-minus"></i>
     </button>
 </div>
 

@@ -88,7 +88,7 @@
 
                     <div class="col col-6">
                         <div class="form-group">
-                            <label for="id-url_parent_id">Url Parent <span class="small">(parent to generate the url, same as parent if empty)</span></label>
+                            <label for="id-url_parent_id">Url Parent <span class="small">(parent to generate the url)</span></label>
                             {!! form_select('url_parent_id', ([0 => 'Please select an Url Parent'] + $parents), ($errors && $errors->any()? old('url_parent_id') : (isset($item)? $item->url_parent_id : '')), ['class' => 'select2 form-control ' . form_error_class('url_parent_id', $errors)]) !!}
                             {!! form_error_message('url_parent_id', $errors) !!}
                         </div>

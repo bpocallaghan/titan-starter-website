@@ -20,10 +20,10 @@ var ButtonClass = function ()
     this.loading = function (btn)
     {
         $(btn).attr('data-reset', $(btn).html());
-        $(btn).attr('data-loading', "<i class='fa fa-spin fa-sync'></i>");
+        $(btn).attr('data-loading', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
         $(btn).each(function ()
         {
-            // console.log('loading loading');
+            console.log('loading loading');
             buttonDisable($(this));
         })
     };
@@ -49,7 +49,7 @@ var ButtonClass = function ()
             buttonEnable($(this));
         });
 
-        $('.btn-submit').attr('data-loading-text', "<i class='fa fa-spin fa-sync'></i>");
+        $('.btn-submit').attr('data-loading-text', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
         $('.btn-submit').on('click', function ()
         {
             root.loading(this);
