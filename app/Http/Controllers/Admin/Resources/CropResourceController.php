@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 
 class CropResourceController extends AdminController
 {
-    private $LARGE_SIZE = [1600, 1200];
+    private $LARGE_SIZE = [1600, 800];
 
     private $THUMB_SIZE = [1024, 768];
 
@@ -53,7 +53,7 @@ class CropResourceController extends AdminController
             return json_response_error('Whoops', 'We could not find the photoable.');
         }
 
-        // get the large and thumb sizes
+        // get the large and thumb features
         if (isset($photoable::$LARGE_SIZE)) {
             $largeSize = $photoable::$LARGE_SIZE;
             $thumbSize = $photoable::$THUMB_SIZE;

@@ -54,7 +54,7 @@ class PageContentController extends AdminController
         else {
             $attributes = request()->validate(PageContent::$rules, PageContent::$messages);
 
-            $media = $this->moveAndCreatePhoto($attributes['media']);
+            $media = $this->moveAndCreatePhoto($attributes['media'], $size = ['l' => PageContent::$LARGE_SIZE, 's' => PageContent::$THUMB_SIZE]);
             if ($media) {
                 $attributes['media'] = $media;
             }
@@ -93,7 +93,7 @@ class PageContentController extends AdminController
         else {
             $attributes = request()->validate(PageContent::$rules, PageContent::$messages);
 
-            $media = $this->moveAndCreatePhoto($attributes['media']);
+            $media = $this->moveAndCreatePhoto($attributes['media'], $size = ['l' => PageContent::$LARGE_SIZE, 's' => PageContent::$THUMB_SIZE]);
             if ($media) {
                 $attributes['media'] = $media;
             }
