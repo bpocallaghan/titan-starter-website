@@ -63,8 +63,8 @@
 
                         <div>
                             <p class="text-right">
-                                <button type="submit" class="btn btn-primary btn-submit" >
-                                    <span data-icon="fa fa-shopping-cart">Continue to Checkout</span>
+                                <button type="submit" class="btn btn-primary btn-submit" data-icon="fa fa-shopping-cart">
+                                    Continue to Checkout
                                 </button>
                             </p>
                         </div>

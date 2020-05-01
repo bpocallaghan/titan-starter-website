@@ -48,7 +48,7 @@
                                                 <input name="quantity[{{$product->id}}]" data-id="{{ $product->id }}" type="number" class="form-control js-quantity" data-amount="{{ $product->amount }}" value="{{ $product->quantity }}" placeholder="Quantity" min="1">
                                             </div>
                                             <div class="col-2 col-sm-1">
-                                                <a href="/products/basket/remove/{{$product->id}}" class="btn-xs btn-danger" title="Remove Product" data-toggle="tooltip">
+                                                <a href="/products/basket/remove/{{$product->id}}" class="btn btn-sm btn-danger" title="Remove Product" data-toggle="tooltip">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
@@ -76,13 +76,12 @@
                                 <p class="text-right">
                                     @if($items->count() > 0)
                                         @if(auth()->check())
-                                            <button type="submit" role="button" class="btn btn-primary btn-submit" >
-                                                <span data-icon="fa fa-shopping-cart">Proceed to checkout</span>
+                                            <button type="submit" role="button" class="btn btn-primary btn-submit" data-icon="fa fa-shopping-cart">
+                                                Proceed to checkout
                                             </button>
                                         @else
-                                            <a href="/auth/login" class="btn btn-light" title="Login">
-                                                <span data-icon="fa-sign-in-alt">
-                                                Login</span>
+                                            <a href="/auth/login" class="btn btn-light" title="Login" data-icon="fa-sign-in-alt">
+                                                Login
                                             </a>
                                         @endif
                                     @endif
