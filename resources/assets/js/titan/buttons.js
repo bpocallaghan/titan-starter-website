@@ -23,7 +23,7 @@ var ButtonClass = function ()
         $(btn).attr('data-loading', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
         $(btn).each(function ()
         {
-            console.log('loading loading');
+            // console.log('loading loading');
             buttonDisable($(this));
         })
     };
