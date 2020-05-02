@@ -20,7 +20,21 @@ class UsersTableSeeder extends Seeder
             'cellphone'         => '123456789',
             'email'             => 'bpocallaghan@gmail.com',
             'gender'            => 'ninja',
-            'password'          => bcrypt('titan'),
+            'password'          => bcrypt('ben'),
+            'email_verified_at' => now()
+        ]);
+        $this->addAllRolesToUser($user);
+
+        //-------------------------------------------------
+        // Developer
+        //-------------------------------------------------
+        $user = User::create([
+            'firstname'         => 'Nadja',
+            'lastname'          => 'Schnabel',
+            'cellphone'         => '123456789',
+            'email'             => 'nadja@asylum.com',
+            'gender'            => 'female',
+            'password'          => bcrypt('nadja'),
             'email_verified_at' => now()
         ]);
         $this->addAllRolesToUser($user);
