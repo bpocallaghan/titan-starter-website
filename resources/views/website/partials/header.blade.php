@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg">
             <a href="/" class="navbar-brand logo" title="{{ config('app.name') }}">
-                <img src="/images/logo.png">
+                <img src="/images/logo.png" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,11 +15,11 @@
                     @endif
                 </ul>
                 @if(!auth()->check())
-                    <a href="/auth/login" class="btn btn-outline-primary" data-icon="fa-sign-in" {{--data-toggle="modal" data-target="#modal-login"--}}>
+                    <a href="/auth/login" class="btn btn-sm btn-outline-primary mr-1" data-icon="fa-sign-in-alt" {{--data-toggle="modal" data-target="#modal-login"--}}>
                         <i class="fa fa-sign-in"></i>
                         Login
                     </a>
-                    <a href="/auth/register" class="btn btn-outline-secondary" data-icon="fa-edit">
+                    <a href="/auth/register" class="btn btn-sm btn-outline-secondary" data-icon="fa-edit">
                         Register
                     </a>
                 @else

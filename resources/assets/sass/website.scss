@@ -1,5 +1,7 @@
 $theme-colors: (
-        "primary": #00b3d0,
+        "primary": #255d78,
+        "secondary": #1f1f1f,
+        "dark": #191919,
 );
 
 //bootstrap
@@ -39,6 +41,7 @@ a,button,
 .navbar.minify .navbar-brand{height: 50px}
 .navbar-nav.sm-collapsible .sub-arrow{ width: auto; height: auto; border: none; line-height: inherit;}
 
+.card { box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);  margin-bottom: 1rem; border: 0 solid rgba(0, 0, 0, 0.125); }
 
 .page-header { position:relative; padding-bottom: 10px; color: #000; }
 .page-header:after { content: ''; display: block; width: 75px; height: 2px; background: #1b6483; margin: 0; position: absolute; left: 0; right: 0; bottom: 0;}
@@ -56,12 +59,11 @@ figure:hover figcaption { bottom:0}
 .btn.back-to-top{ width:40px; line-height:40px; text-align:center; padding:0; position:fixed; right:10px; z-index:10; }
 .btn.back-to-top:hover{}
 
-footer { background-color: #1f1f1f; color: #939393; }
+footer { color: #939393; }
 footer a { color: #939393; }
 footer a:hover { color: #fff; }
 footer li a:hover{ padding-left:5px}
 footer li a:before{ width:0; font-family:"Font Awesome 5 Free"; content:"\f105"; margin-right:5px;}
-footer .copyright { background-color: #191919; }
 
 footer h3 { position:relative; padding-bottom: 10px; margin-bottom: 15px; }
-footer h3:after { content: ''; display: block; width: 75px; height: 2px; background: #fefefe; margin: 0; position: absolute; left: 0; right: 0; bottom: 0;}
+footer h3:after { content: ''; display: block; width: 75px; height: 2px; background: #b1b1b1; margin: 0; position: absolute; left: 0; right: 0; bottom: 0;}
