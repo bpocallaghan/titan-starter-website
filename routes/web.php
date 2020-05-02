@@ -57,7 +57,8 @@ Route::group(['namespace' => 'Website'], function () {
 | Website Account
 |------------------------------------------
 */
-Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'namespace' => 'Website\Account'],
+Route::group(
+    ['middleware' => ['auth'], 'prefix' => 'account', 'namespace' => 'Website\Account'],
     function () {
         Route::get('/', 'AccountController@index')->name('account');
         Route::get('/profile', 'ProfileController@index')->name('profile');
@@ -68,7 +69,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'namespace' => 'W
 
         Route::get('/address', 'ShippingAddressController@index');
         Route::post('/address', 'ShippingAddressController@update');
-    });
+    }
+);
 
 /*
 |------------------------------------------
@@ -79,7 +81,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Auth::routes(['verify' => true]);
 
-    Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+    // Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
 /*
@@ -105,7 +107,7 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     });
 
     // banners
-    Route::namespace('Banners')->group(function(){
+    Route::namespace('Banners')->group(function () {
         Route::get('/banners/order', 'OrderController@index');
         Route::post('/banners/order', 'OrderController@update');
         Route::resource('/banners', 'BannersController');
@@ -176,20 +178,37 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::delete('/documents/{document}', 'DocumentsController@destroy');
         Route::post('/documents/upload', 'DocumentsController@upload');
         Route::post('/documents/{document}/edit/name', 'DocumentsController@updateName');
-
     });
 
     // news and events
     Route::group(['prefix' => 'news', 'namespace' => 'News'], function () {
         Route::resource('articles', 'NewsController');
-        Route::resource('categories', 'CategoriesController');
+        Route::resource('categories', 'CategoriesController')
+            ->names([
+                'index' => 'news_categories.index',
+                'create' => 'news_categories.create',
+                'store' => 'news_categories.store',
+                'show' => 'news_categories.show',
+                'edit' => 'news_categories.edit',
+                'update' => 'news_categories.update',
+                'destroy' => 'news_categories.destroy',
+            ]);
     });
 
     // products
     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
         Route::get('categories/order', 'CategoriesOrderController@index');
         Route::post('categories/order', 'CategoriesOrderController@updateListOrder');
-        Route::resource('categories', 'CategoriesController');
+        Route::resource('categories', 'CategoriesController')
+            ->names([
+                'index' => 'shop_categories.index',
+                'create' => 'shop_categories.create',
+                'store' => 'shop_categories.store',
+                'show' => 'shop_categories.show',
+                'edit' => 'shop_categories.edit',
+                'update' => 'shop_categories.update',
+                'destroy' => 'shop_categories.destroy',
+            ]);
         Route::resource('products', 'ProductsController');
         Route::resource('features', 'FeaturesController');
         Route::resource('status', 'StatusesController');
@@ -198,8 +217,10 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('checkouts/{checkout}', 'CheckoutsController@show');
         Route::get('transactions', 'TransactionsController@index');
         Route::get('transactions/{transaction}', 'TransactionsController@show');
-        Route::get('transactions/{transaction}/print/{format?}',
-            'TransactionsController@printOrder');
+        Route::get(
+            'transactions/{transaction}/print/{format?}',
+            'TransactionsController@printOrder'
+        );
         Route::post('transactions/{transaction}/status', 'TransactionsController@updateStatus');
 
         Route::get('/searches', 'SearchesController@index');
