@@ -46,15 +46,15 @@ if (!function_exists('action_row')) {
     ) {
         $url = rtrim($url, '/') . '/'; // remove last / and add it again (if it was not there)
 
-        $show = '<a href="' . $url . $id . '" class="btn btn-light btn-xs" data-toggle="tooltip" title="Show ' . $title . '">
+        $show = '<a href="' . $url . $id . '" class="btn btn-light btn-xs mr-1" data-toggle="tooltip" title="Show ' . $title . '">
                         <i class="fa fa-fw fa-eye"></i>
-                    </a> ';
+                    </a>';
 
-        $edit = '<a href="' . $url . $id . '/edit' . '" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Edit ' . $title . '">
+        $edit = '<a href="' . $url . $id . '/edit' . '" class="btn btn-primary btn-xs mr-1" data-toggle="tooltip" title="Edit ' . $title . '">
                         <i class="fa fa-fw fa-edit text-white"></i>
-                    </a> ';
+                    </a>';
 
-        $delete = '<form class="d-inline" id="form-delete-row' . $id . '" method="POST" action="' . $url . $id . '">
+        $delete = '<form class="d-inline-block" id="form-delete-row' . $id . '" method="POST" action="' . $url . $id . '">
                         <input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <input name="_id" type="hidden" value="' . $id . '">
@@ -79,11 +79,9 @@ if (!function_exists('action_row')) {
                 $key = key($action);
                 $urll = $action[$key];
 
-                $html .= '<div class="btn-group">
-                    <a href="' . $urll . '" class="btn btn-info btn-xs" data-toggle="tooltip" title="Show ' . $key . ' for ' . $title . '">
-                        <i class="fa fa-' . $key . '"></i>
-                    </a>
-                </div>';
+                $html .= '<a href="' . $urll . '" class="btn btn-info btn-xs mr-1" data-toggle="tooltip" title="Show ' . $key . ' for ' . $title . '">
+                        <i class="fa fa-' . $key . '"></i> 
+                    </a>';
             }
         }
 

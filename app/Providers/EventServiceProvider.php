@@ -21,6 +21,11 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         Verified::class => [],
+
+        'App\Events\ContactUsFeedback' => [
+            'App\Listeners\EmailContactUsToClient',
+            'App\Listeners\EmailContactUsToAdmin',
+        ],
     ];
 
     /**

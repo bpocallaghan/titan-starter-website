@@ -1,42 +1,46 @@
-<div class="container">
-    <div class="row p-3 d-flex align-items-center">
-        <a href="/" class="logo" title="{{ config('app.name') }}">
-            <img src="/images/logo.png">
-        </a>
+<div class="sticky-top navbar-light bg-white">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a href="/" class="navbar-brand logo" title="{{ config('app.name') }}">
+                <img src="/images/logo.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="ml-auto" role="group" aria-label="...">
-            {{--@foreach($navigationFeatured as $item)--}}
-            {{--<a class="btn btn-link" href="{{ $item->url }}">{!! $item->name !!}</a>--}}
-            {{--@endforeach--}}
-
-            @if(!auth()->check())
-                <a href="/auth/login" class="btn btn-outline-primary" data-icon="fa-sign-in" {{--data-toggle="modal" data-target="#modal-login"--}}>
-                    <i class="fa fa-sign-in"></i>
-                    Login
-                </a>
-                <a href="/auth/register" class="btn btn-outline-secondary" data-icon="fa-edit">
-                    Register
-                </a>
-            @else
-                @if(impersonate()->isActive())
-                    <small>
-                        <a href="{{ route('impersonate.logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('impersonate-logout-form').submit();">
-                            return to original user
-                        </a>
-                        <form id="impersonate-logout-form" action="{{ route('impersonate.logout') }}" method="post" style="display: none;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    @if(isset($navigation))
+                        @include('website.partials.navigation.top_level', ['collection' => $navigation['root'], 'navigation' => $navigation])
+                    @endif
+                </ul>
+                @if(!auth()->check())
+                    <a href="/auth/login" class="btn btn-outline-primary" data-icon="fa-sign-in" {{--data-toggle="modal" data-target="#modal-login"--}}>
+                        <i class="fa fa-sign-in"></i>
+                        Login
+                    </a>
+                    <a href="/auth/register" class="btn btn-outline-secondary" data-icon="fa-edit">
+                        Register
+                    </a>
+                @else
+                    @if(impersonate()->isActive())
+                        <small>
+                            <a href="{{ route('impersonate.logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('impersonate-logout-form').submit();">
+                                return to original user
+                            </a>
+                        </small>
+                        <form id="impersonate-logout-form" class="d-none" action="{{ route('impersonate.logout') }}" method="post">
                             {{ csrf_field() }}
                         </form>
-                    </small>
-                @endif
+                    @endif
 
-                @if(auth()->check() && user()->isAdmin())
-                    <a href="/admin" class="btn btn-link"><i class="fa fa-user-secret"></i>
-                        Admin
-                    </a>
+                    @if(auth()->check() && user()->isAdmin())
+                        <a href="/admin" class="btn btn-link" data-toggle="tooltip" title="Admin" data-original-title="Admin"><i class="fa fa-user-secret"></i></a>
+                    @endif
                 @endif
-            @endif
-        </div>
+            </div>
+        </nav>
     </div>
 </div>
 

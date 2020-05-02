@@ -24,7 +24,51 @@ Route::redirect('/home', '/');
 
 Route::group(['namespace' => 'Website'], function () {
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/news/{categorySlug?}', 'NewsController@index')->name('news');
+    Route::get('/articles/{categorySlug}/{newsSlug}', 'NewsController@show');
+
+    Route::get('/contact-us', 'ContactUsController@index')->name('contact');
+    Route::post('/contact-us/submit', 'ContactUsController@feedback');
+
+    // shop
+    Route::group(['namespace' => 'Shop'], function () {
+        Route::post('/products/filter', 'ShopController@filter');
+        Route::get('/products/basket', 'BasketController@index');
+        Route::post('/products/basket', 'BasketController@submitBasket');
+        Route::get('/products/show/{productSlug}', 'ShopController@show');
+
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('/products/basket/address', 'BasketController@showAddress');
+            Route::post('/products/basket/address', 'BasketController@submitAddress');
+            Route::get('/products/basket/checkout', 'BasketController@showCheckout');
+            Route::post('/products/basket/checkout', 'BasketController@submitCheckout');
+            Route::get('/products/basket/checkout/feedback', 'BasketController@showCheckoutFeedback');
+            Route::get('/products/basket/add/{product}/{quantity?}', 'BasketController@addProduct');
+            Route::get('/products/basket/remove/{product}', 'BasketController@removeProduct');
+        });
+
+        Route::get('/products/{slugs?}', 'ShopController@index')->where('slugs', '(.*)');
+    });
 });
+
+/*
+|------------------------------------------
+| Website Account
+|------------------------------------------
+*/
+Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'namespace' => 'Website\Account'],
+    function () {
+        Route::get('/', 'AccountController@index')->name('account');
+        Route::get('/profile', 'ProfileController@index')->name('profile');
+        Route::post('/profile', 'ProfileController@update');
+        Route::get('/orders', 'AccountController@transactions');
+        Route::get('/orders/{reference}', 'AccountController@showTransaction');
+        Route::get('/orders/{reference}/print', 'AccountController@printTransaction');
+
+        Route::get('/address', 'ShippingAddressController@index');
+        Route::post('/address', 'ShippingAddressController@update');
+    });
 
 /*
 |------------------------------------------
@@ -135,6 +179,45 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
     });
 
+    // news and events
+    Route::group(['prefix' => 'news', 'namespace' => 'News'], function () {
+        Route::resource('articles', 'NewsController');
+        Route::resource('categories', 'CategoriesController');
+    });
+
+    // products
+    Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
+        Route::get('categories/order', 'CategoriesOrderController@index');
+        Route::post('categories/order', 'CategoriesOrderController@updateListOrder');
+        Route::resource('categories', 'CategoriesController');
+        Route::resource('products', 'ProductsController');
+        Route::resource('features', 'FeaturesController');
+        Route::resource('status', 'StatusesController');
+
+        Route::get('checkouts', 'CheckoutsController@index');
+        Route::get('checkouts/{checkout}', 'CheckoutsController@show');
+        Route::get('transactions', 'TransactionsController@index');
+        Route::get('transactions/{transaction}', 'TransactionsController@show');
+        Route::get('transactions/{transaction}/print/{format?}',
+            'TransactionsController@printOrder');
+        Route::post('transactions/{transaction}/status', 'TransactionsController@updateStatus');
+
+        Route::get('/searches', 'SearchesController@index');
+        Route::get('/searches/datatable', 'SearchesController@getTableData');
+        Route::post('/searches/datatable/dates', 'SearchesController@updateDates');
+        Route::get('/searches/datatable/reset', 'SearchesController@resetDates');
+    });
+
+    // reports
+    Route::group(['prefix' => 'reports', 'namespace' => 'Reports'], function () {
+        Route::get('summary', 'SummaryController@index');
+
+        // feedback contact us
+        Route::get('contact-us', 'ContactUsController@index');
+        Route::post('contact-us/chart', 'ContactUsController@getChartData');
+        Route::get('contact-us/datatable', 'ContactUsController@getTableData');
+    });
+
     // accounts
     Route::group(['prefix' => 'accounts', 'namespace' => 'Accounts'], function () {
         // clients
@@ -156,4 +239,8 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::post('navigations/order', 'NavigationOrderController@updateOrder');
         Route::resource('navigations', 'NavigationsController');
     });
+});
+
+Route::group(['namespace' => 'Website'], function () {
+    Route::get('{slug1}/{slug2?}/{slug3?}', 'PagesController@index');
 });

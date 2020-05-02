@@ -6,7 +6,7 @@ return [
     'author'      => env('APP_AUTHOR', ''),
     'keywords'    => env('APP_KEYWORDS', 'laravel,titan'),
 
-    'assets_version' => env('ASSETS_VERSION', '1'),
+    'assets_version' => env('ASSETS_VERSION', '4'),
 
     'facebook_app_id'       => env('FACEBOOK_APP_ID', ''),
     'google_map_key'        => env('GOOGLE_MAP_KEY', ''),
@@ -179,6 +179,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\HelperServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
         /*
          * Application Service Providers...

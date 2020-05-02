@@ -1,6 +1,10 @@
 // Fonts - Google Font: Source Sans Pro
 //@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
+$theme-colors: (
+        "primary": #00b3d0,
+);
+
 // AdminLTE
 @import '~admin-lte/build/scss/AdminLTE';
 //@import '~admin-lte/build/scss/AdminLTE-core';

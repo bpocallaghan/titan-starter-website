@@ -58,9 +58,9 @@ if (!function_exists('activity_before')) {
     }
 }
 
-function image_row_link($thumb, $image = null)
+function image_row_link($name, $thumb, $image = null)
 {
-    return "<a target='_blank' href='" . uploaded_images_url(($image ? $image : $thumb)) . "'><img src='" . uploaded_images_url($thumb) . "' style='height: 50px'/></a>";
+    return "<a data-lightbox='".$name."' title='".$name."' href='" . uploaded_images_url(($image ? $image : $thumb)) . "'><img src='" . uploaded_images_url($thumb) . "' class='img-fluid' alt='".$name."' style='height: 50px'/></a>";
 }
 
 if (!function_exists('photo_url')) {
@@ -102,5 +102,24 @@ if (!function_exists('settings')) {
         session()->put("titan.settings", $settings);
 
         return $settings;
+    }
+}
+
+
+if (!function_exists('number_format_decimal')) {
+    function number_format_decimal($value, $decimals = 2)
+    {
+        return str_replace(".00", "", (string) number_format($value, $decimals));
+    }
+}
+
+if (!function_exists('add_product_to_mail')) {
+    function add_product_to_mail($mail, $product)
+    {
+        return $mail->line("Product: {$product->name}")
+            ->line("Category: " . $product->category->name . ($product->category->parent ? " ({$product->category->parent->name})" : ''))
+            ->line("Reference: {$product->reference}")
+            ->line("Amount: {$product->amount} (per item)")
+            ->line("<strong>Quantity: {$product->pivot->quantity}</strong>");
     }
 }

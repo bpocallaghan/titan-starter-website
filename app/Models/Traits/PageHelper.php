@@ -187,16 +187,20 @@ trait PageHelper
      * Hide hidden
      * Order by list order
      * Group by parent_id
+     * @param $type
+     * @param $order
      * @return mixed
      */
-    public static function getHeaderNavigation()
+    public static function getNavigation($type = 'is_header', $order = 'header_order')
     {
         $builder = self::where('is_hidden', 0);
-        $builder->where('is_header', 1);
+        $builder->where($type, 1);
+
         if (!\Auth::check()) {
             $builder->where('name', '!=', 'My Account');
         }
-        $items = $builder->orderBy('header_order')
+
+        $items = $builder->orderBy($order)
             ->select('id', 'icon', 'name', 'title', 'description', 'slug', 'url', 'parent_id',
                 'views')
             ->get()
@@ -217,43 +221,6 @@ trait PageHelper
     public static function getFeatured()
     {
         return self::where('is_featured', 1)->orderBy('featured_order')->get();
-    }
-
-    public static function getHeaderNavigationRight()
-    {
-        $filter = ['NamPost', 'Contact Us'];
-        if (\Auth::check()) {
-            $filter[] = 'My Account';
-        }
-        $items = Page::getHeaderNavigation();
-
-        // strip out the not needed ones
-        if ($items['root']) {
-            $items['root'] = $items['root']->filter(function ($item) use ($filter) {
-                return in_array($item->name, $filter);
-            });
-        }
-
-        return $items;
-    }
-
-    public static function getFooterNavigationRight()
-    {
-        // about
-        $items = Page::with('parent')
-            ->where('is_hidden', 0)
-            ->where('is_footer', 1)
-            ->orderBy('footer_order')
-            ->select('id', 'icon', 'name', 'title', 'description', 'slug', 'url', 'parent_id')
-            ->get();
-
-        $items = $items->groupBy(function ($item) {
-            if ($item->parent != null) {
-                return $item->parent->name;
-            }
-        });
-
-        return $items;
     }
 
     /**
@@ -278,8 +245,6 @@ trait PageHelper
             ->orderBy('views', 'DESC')
             ->get()
             ->take(5);
-
-        return $items;
 
         return $items;
     }

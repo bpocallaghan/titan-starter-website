@@ -20,6 +20,7 @@ var COMPILE = 'all';
 if(COMPILE == 'all' || COMPILE == 'js') {
     // update public path for app.js to compile into /resources
     mix.js('resources/assets/js/app.js', 'js/vendor/app_compiled.js');
+    mix.js('resources/assets/js/website.js', 'js/vendor/website_compiled.js');
 
     mix.scripts([
         'public/js/vendor/app_compiled.js',
@@ -34,8 +35,22 @@ if(COMPILE == 'all' || COMPILE == 'js') {
 
         pathJS + '/titan/titan.js',
     ], publicPath + '/js/app.js');
+
+    //website js
+    mix.scripts([
+        'public/js/vendor/website_compiled.js',
+        pathJS + '/titan/buttons.js',
+        // pathJS + '/titan/datatables.js',
+        pathJS + '/titan/forms.js',
+        pathJS + '/titan/google_maps.js',
+        pathJS + '/titan/pagination.js',
+        pathJS + '/titan/social_media.js',
+        pathJS + '/website/utils.js',
+
+    ], publicPath + '/js/website.js');
 }
 
 if(COMPILE == 'all' || COMPILE == 'css') {
     mix.sass('resources/assets/sass/app.scss', 'public/css');
+    mix.sass('resources/assets/sass/website.scss', 'public/css');
 }

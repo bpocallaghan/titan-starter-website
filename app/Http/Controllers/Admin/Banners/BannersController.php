@@ -44,7 +44,7 @@ class BannersController extends AdminController
         $attributes['hide_name'] = (bool) input('hide_name');
         $attributes['is_website'] = (bool) input('is_website');
 
-        $photo = $this->uploadBanner($attributes['photo']);
+        $photo = $this->uploadBanner($attributes['photo'], '', $size = ['o' => Banner::$LARGE_SIZE, 'tn' => Banner::$THUMB_SIZE]);
         if ($photo) {
             $attributes['image'] = $photo;
             unset($attributes['photo']);
@@ -91,7 +91,7 @@ class BannersController extends AdminController
         else {
             $attributes = request()->validate(Banner::$rules, Banner::$messages);
 
-            $photo = $this->uploadBanner($attributes['photo']);
+            $photo = $this->uploadBanner($attributes['photo'], '', $size = ['o' => Banner::$LARGE_SIZE, 'tn' => Banner::$THUMB_SIZE]);
             if ($photo) {
                 $attributes['image'] = $photo;
             }

@@ -1,4 +1,4 @@
-<div class="banner-container">
+<div class="banner-container mb-5">
     <h2 class="d-none">Banner</h2>
     <div id="banner-carousel" class="carousel slide banners" data-ride="carousel">
         <div class="carousel-inner" role="listbox">

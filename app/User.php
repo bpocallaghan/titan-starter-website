@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\ShippingAddress;
 use App\Models\Traits\UserAdmin;
 use App\Models\Traits\UserRoles;
 use App\Models\Traits\UserHelper;
@@ -92,4 +93,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'password'  => 'nullable|min:4|confirmed',
         'photo'     => 'required|image|max:6000|mimes:jpg,jpeg,png,bmp',
     ];
+
+    /**
+     * Get the shippingAddress
+     */
+    public function shippingAddress()
+    {
+        return $this->hasOne(ShippingAddress::class, 'user_id', 'id')->whereNull('transaction_id');
+    }
 }
