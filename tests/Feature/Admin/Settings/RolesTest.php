@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Settings;
+namespace Tests\Feature\Admin\Settings;
 
 use Tests\TestCase;
 use App\Models\Role;
