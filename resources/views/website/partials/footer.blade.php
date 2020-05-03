@@ -1,4 +1,4 @@
-<footer class="pt-5 mt-auto bg-dark">
+<footer class="pt-5 mt-auto bg-secondary">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid p-3 mt-3 copyright">
+    <div class="container-fluid p-3 mt-3 copyright bg-dark">
         {{--<p class="text-right float-left small">--}}
             {{--Copyright &copy; {{config('app.name') . ' ' . date('Y')}}--}}
         {{--</p>--}}
