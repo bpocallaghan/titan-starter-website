@@ -15,16 +15,16 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Banners
  - Page Builder
  - Resources (Documents, Photos, Videos)
+ - News
+ - Shop
+ - Website: Contact Us
  
 ## TODO
  - Unit Tests for Page Builder
- - Contact Us
  - Blog
- - News
  - Events
  - FAQ
  - Testimonials
- - Website Styles
   
  ## Setup (Basic)
  - `composer create-project bpocallaghan/titan-starter:dev-master laravel-website`
