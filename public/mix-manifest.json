@@ -1,8 +1,8 @@
 {
-    "/js/vendor/app_compiled.js": "/js/vendor/app_compiled.js",
-    "/css/app.css": "/css/app.css",
+    "/js/vendor/admin_compiled.js": "/js/vendor/admin_compiled.js",
+    "/css/admin.css": "/css/admin.css",
     "/css/website.css": "/css/website.css",
     "/js/vendor/website_compiled.js": "/js/vendor/website_compiled.js",
-    "/js/app.js": "/js/app.js",
+    "/js/admin.js": "/js/admin.js",
     "/js/website.js": "/js/website.js"
 }

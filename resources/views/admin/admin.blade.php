@@ -26,7 +26,7 @@
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
         @endif
 
-        <link rel="stylesheet" href="/css/app.css?v={{ config('app.assets_version') }}">
+        <link rel="stylesheet" href="/css/admin.css?v={{ config('app.assets_version') }}">
 
         @yield('styles')
     </head>
@@ -66,7 +66,7 @@
         @include('notify::notify')
         @include('admin.partials.modals')
 
-        <script type="text/javascript" charset="utf-8" src="/js/app.js?v={{ config('app.assets_version') }}"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/admin.js?v={{ config('app.assets_version') }}"></script>
         <script type="text/javascript" charset="utf-8">
             $(document).ready(function () {
                 initAdmin();
