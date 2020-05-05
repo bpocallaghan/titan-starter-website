@@ -23,7 +23,7 @@ if(COMPILE == 'all' || COMPILE == 'js') {
     mix.js('resources/assets/js/website.js', 'js/vendor/website_compiled.js');
 
     mix.scripts([
-        'public/js/vendor/app_compiled.js',
+        'public/js/vendor/admin_compiled.js',
         pathJS + '/titan/buttons.js',
         pathJS + '/titan/datatables.js',
         pathJS + '/titan/forms.js',
