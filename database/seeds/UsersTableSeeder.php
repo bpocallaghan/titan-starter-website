@@ -39,6 +39,20 @@ class UsersTableSeeder extends Seeder
         ]);
         $this->addAllRolesToUser($user);
 
+        //-------------------------------------------------
+        // GITHUP - PREVIEW
+        //-------------------------------------------------
+        $user = User::create([
+            'firstname'         => 'Admin',
+            'lastname'          => 'Github',
+            'cellphone'         => '123456789',
+            'email'             => 'github@bpocallaghan.co.za',
+            'gender'            => 'male',
+            'password'          => bcrypt('github'),
+            'email_verified_at' => now()
+        ]);
+        $this->addAllRolesToUser($user);
+
         // dummy users
         /*for ($i = 0; $i < 10; $i++) {
             $user = User::create([
