@@ -1,23 +1,15 @@
-$(document).ajaxStart(function() { Pace.restart(); });
+$(document).ajaxStart(function () { Pace.restart(); });
 
-function initAdmin()
-{
+$(function () {
     initTitan();
+});
 
-    // set defaults (for when we init select2 after page load)
-    $.fn.select2.defaults.set("theme", "bootstrap4");
-
-    // $(".select2").select2();
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $(".select2").select2({
-        theme: "bootstrap4"
-    });
-}
-
+var FORM;
+var UTILS;
 var BUTTON;
-function initTitan()
-{
+function initTitan() {
+    FORM = new FormClass();
+    UTILS = new UtilsClass();
     BUTTON = new ButtonClass();
 
     $.ajaxSetup({
@@ -26,14 +18,24 @@ function initTitan()
         }
     });
 
-    $('.input-generate-slug').change(function ()
-    {
+    // set defaults (for when we init select2 after page load)
+    $.fn.select2.defaults.set("theme", "bootstrap4");
+
+    // $(".select2").select2();
+    // init vendor selections on page load
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+
+    $(".select2").select2({
+        theme: "bootstrap4"
+    });
+
+    $('.input-generate-slug').change(function () {
         var v = convertStringToSlug($(this).val());
         $("form input[name='slug']").val(v);
     });
 
-    function convertStringToSlug(text)
-    {
+    function convertStringToSlug(text) {
         return text.toString().toLowerCase().trim()
             .replace(/\s+/g, '-')           // Replace spaces with -
             .replace(/&/g, '-and-')         // Replace & with 'and'
@@ -47,19 +49,16 @@ function initTitan()
     getHeaderNotifications();
 }
 
-function doAjax(url, data, callback)
-{
+function doAjax(url, data, callback) {
     $.ajax({
         type: 'POST',
         url: url,
         data: data,
         dataType: "json",
         timeout: 30000,
-        error: function (x, t, m)
-        {
+        error: function (x, t, m) {
         },
-        success: function (response)
-        {
+        success: function (response) {
             if (typeof callback == 'function') {
                 callback(response);
             }
@@ -73,8 +72,7 @@ function doAjax(url, data, callback)
  * @param selector
  * @param callback
  */
-function initToolbarDateRange(selector, callback)
-{
+function initToolbarDateRange(selector, callback) {
     $(selector).daterangepicker({
         ranges: {
             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
@@ -88,7 +86,7 @@ function initToolbarDateRange(selector, callback)
         endDate: moment()
     }, function (start, end) {
         //window.alert("You chose: " + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        if(typeof callback === 'function') {
+        if (typeof callback === 'function') {
             callback(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
         }
     });
@@ -100,8 +98,7 @@ function initToolbarDateRange(selector, callback)
  * @param selector
  * @param callback
  */
-function initDateRangeLatest(selector, callback)
-{
+function initDateRangeLatest(selector, callback) {
     $(selector).daterangepicker({
         ranges: {
             'Last to Next Week': [moment().subtract(1, 'weeks').startOf('isoWeek').startOf('day'), moment().add(1, 'weeks').endOf('isoWeek').endOf('day')],
@@ -116,7 +113,7 @@ function initDateRangeLatest(selector, callback)
         endDate: moment().add(1, 'weeks').endOf('isoWeek').endOf('day')
     }, function (start, end) {
         //window.alert("You chose: " + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        if(typeof callback === 'function') {
+        if (typeof callback === 'function') {
             callback(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
         }
     });
@@ -126,23 +123,19 @@ function initDateRangeLatest(selector, callback)
  * Give from and to datetimepicker inputs,
  * This will automatically set min / max date on the fields
  */
-function setDateTimePickerRange(from, to)
-{
+function setDateTimePickerRange(from, to) {
     $(from).datetimepicker();
-    $(to).datetimepicker({useCurrent: false});
+    $(to).datetimepicker({ useCurrent: false });
 
-    $(from).on("dp.change", function (e)
-    {
+    $(from).on("dp.change", function (e) {
         $(to).data("DateTimePicker").minDate(e.date);
     });
-    $(to).on("dp.change", function (e)
-    {
+    $(to).on("dp.change", function (e) {
         $(from).data("DateTimePicker").maxDate(e.date);
     });
 }
 
-function initSummerNote(selector)
-{
+function initSummerNote(selector) {
     $(selector).summernote({
         height: 120,
         focus: false,

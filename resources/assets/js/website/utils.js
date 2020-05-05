@@ -1,5 +1,4 @@
 // declare Variables
-var FORM;
 var BTN;
 
 $windowWidth = $(window).width();
@@ -9,12 +8,7 @@ $windowHeight = $(window).height();
 $(document).ready(function () {
 
     // load BTN class
-    FORM = new FormClass();
     BTN = new ButtonClass();
-
-    // init vendor selections on page load
-    $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="popover"]').popover();
 
     $.ajaxSetup({
         headers: {
@@ -194,12 +188,6 @@ function isAjaxResponseValid(response)
     }
 
     return true;
-}
-
-function isFunction(variable)
-{
-    var getType = {};
-    return variable && getType.toString.call(variable) === '[object Function]';
 }
 
 var roundValue = function (value)

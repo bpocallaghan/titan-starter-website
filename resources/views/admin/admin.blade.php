@@ -67,11 +67,6 @@
         @include('admin.partials.modals')
 
         <script type="text/javascript" charset="utf-8" src="/js/admin.js?v={{ config('app.assets_version') }}"></script>
-        <script type="text/javascript" charset="utf-8">
-            $(document).ready(function () {
-                initAdmin();
-            });
-        </script>
 
         @yield('scripts')
 

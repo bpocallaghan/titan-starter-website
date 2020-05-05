@@ -32,8 +32,8 @@ if(COMPILE == 'all' || COMPILE == 'js') {
         pathJS + '/titan/notify.js',
         pathJS + '/titan/pagination.js',
         pathJS + '/titan/social_media.js',
-
         pathJS + '/titan/titan.js',
+        
     ], publicPath + '/js/admin.js');
 
     //website js
@@ -45,6 +45,9 @@ if(COMPILE == 'all' || COMPILE == 'js') {
         pathJS + '/titan/google_maps.js',
         pathJS + '/titan/pagination.js',
         pathJS + '/titan/social_media.js',
+        pathJS + '/titan/utils.js',
+        pathJS + '/titan/titan.js',
+
         pathJS + '/website/utils.js',
 
     ], publicPath + '/js/website.js');
