@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.admin')
 
 @section('content')
     <div class="card <!--card-outline--> card-secondary">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="card-body">
-            @include('partials.card.info')
+            @include('admin.partials.card.info')
 
             <form>
                 <fieldset>
@@ -45,7 +45,7 @@
             </form>
         </div>
         <div class="card-footer">
-            @include('partials.form.form_footer', ['submit' => false])
+            @include('admin.partials.form.form_footer', ['submit' => false])
         </div>
     </div>
 @endsection

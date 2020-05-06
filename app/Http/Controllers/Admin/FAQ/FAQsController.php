@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin\FAQ;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Models\FAQ;
 use App\Models\FAQCategory;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
-use App\Http\Controllers\AppController;
 
-class FAQsController extends AppController
+class FAQsController extends AdminController
 {
     /**
      * Display a listing of faq.
@@ -22,7 +22,7 @@ class FAQsController extends AppController
         save_resource_url();
         $items = FAQ::with('category')->get();
 
-        return $this->view('admin.faqs.index')->with('items', $items);
+        return $this->view('faqs.index')->with('items', $items);
     }
 
     /**
@@ -34,7 +34,7 @@ class FAQsController extends AppController
     {
         $categories = FAQCategory::getAllList();
 
-        return $this->view('admin.faqs.create_edit')->with('categories', $categories);
+        return $this->view('faqs.create_edit')->with('categories', $categories);
     }
 
     /**
@@ -59,7 +59,7 @@ class FAQsController extends AppController
      */
     public function show(FAQ $faq)
     {
-        return $this->view('admin.faqs.show')->with('item', $faq);
+        return $this->view('faqs.show')->with('item', $faq);
     }
 
     /**
@@ -72,7 +72,7 @@ class FAQsController extends AppController
     {
         $categories = FAQCategory::getAllList();
 
-        return $this->view('admin.faqs.create_edit')
+        return $this->view('faqs.create_edit')
             ->with('item', $faq)
             ->with('categories', $categories);
     }
