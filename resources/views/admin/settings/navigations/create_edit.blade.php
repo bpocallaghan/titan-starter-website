@@ -17,7 +17,7 @@
 
         <form id="form-edit" method="post" action="{{ $selectedNavigation->url . (isset($item)? '/' . $item->id : '') }}">
             <div class="card-body">
-                @include('admin.partials.info')
+                @include('admin.partials.card.info')
 
                 {!! csrf_field() !!}
                 {!! method_field(isset($item)? 'put':'post') !!}

@@ -13,10 +13,10 @@
         </div>
 
         <div class="card-body">
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
             @if($items->count() <= 0)
-                @include('admin.partials.toolbar')
+                @include('admin.partials.card.create_buttons')
             @endif
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">

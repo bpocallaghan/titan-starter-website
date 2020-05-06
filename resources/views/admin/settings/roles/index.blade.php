@@ -13,9 +13,9 @@
         </div>
 
         <div class="card-body">
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
-            @include('admin.partials.toolbar')
+            @include('admin.partials.card.toolbar')
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">
                 <thead>

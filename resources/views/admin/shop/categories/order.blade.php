@@ -12,7 +12,7 @@
 
                 <div class="card-body">
 
-                    @include('admin.partials.info')
+                    @include('admin.partials.card.info')
 
                     <div id="nestable-menu">
                         <a href="javascript:window.history.back();" class="btn btn-labeled btn-secondary">

@@ -16,7 +16,7 @@
 
             <div class="card-body">
 
-                @include('admin.partials.info')
+                @include('admin.partials.card.info')
 
                 <fieldset>
                     <div class="row">

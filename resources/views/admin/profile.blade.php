@@ -17,7 +17,7 @@
 
                     <div class="card-body">
 
-                        @include('admin.partials.info')
+                        @include('admin.partials.card.info')
 
 
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">

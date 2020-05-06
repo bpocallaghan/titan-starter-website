@@ -13,7 +13,7 @@
 
                 <div class="box-body no-padding">
 
-                    @include('admin.partials.info')
+                    @include('admin.partials.card.info')
 
                     <form>
 						<fieldset>

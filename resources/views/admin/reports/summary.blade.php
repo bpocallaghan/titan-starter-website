@@ -12,7 +12,7 @@
 
                 <div class="card-body">
 
-                    @include('admin.partials.info')
+                    @include('admin.partials.card.info')
 
                     <table class="table table-striped table-bordered table-hover table-sm" width="100%">
                         <thead>

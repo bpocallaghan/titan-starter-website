@@ -18,7 +18,7 @@
 
         <div class="card-body">
 
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
             <div class="mb-3" role="group" aria-label="Page functionality" id="sortable-menu">
                 <a href="javascript:window.history.back();" class="btn btn-secondary">

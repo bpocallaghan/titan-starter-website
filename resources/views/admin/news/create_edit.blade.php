@@ -10,7 +10,7 @@
             </h3>
         </div>
 
-        @include('admin.partials.info')
+        @include('admin.partials.card.info')
 
         <form method="POST" action="{{$selectedNavigation->url . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
             <input name="_token" type="hidden" value="{{ csrf_token() }}">

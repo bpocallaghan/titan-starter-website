@@ -11,7 +11,7 @@
 
 			<div class="card-body">
 
-				@include('admin.partials.info')
+				@include('admin.partials.card.info')
 
 	      @include('admin.partials.toolbar', ['order' => true])
 

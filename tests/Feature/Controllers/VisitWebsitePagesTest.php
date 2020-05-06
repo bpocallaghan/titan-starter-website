@@ -26,33 +26,33 @@ class VisitWebsitePagesTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $respone = $this->get('/');
-        $respone->assertStatus(200);
-        $respone->assertSeeText(config('app.name'));
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSeeText(config('app.name'));
     }
 
     /** @test */
     public function visit_about()
     {
-        $respone = $this->get('/about');
-        $respone->assertStatus(200);
-        $respone->assertSeeText('About');
+        $response = $this->get('/about');
+        $response->assertStatus(200);
+        $response->assertSeeText('About');
     }
 
     /** @test */
     public function visit_news()
     {
-        $respone = $this->get('/news');
-        $respone->assertStatus(200);
-        $respone->assertSeeText('News');
+        $response = $this->get('/news');
+        $response->assertStatus(200);
+        $response->assertSeeText('News');
     }
 
     /** @test */
     public function visit_contact_us()
     {
-        $respone = $this->get('/contact-us');
-        $respone->assertStatus(200);
-        $respone->assertSeeText('Get in Touch');
+        $response = $this->get('/contact-us');
+        $response->assertStatus(200);
+        $response->assertSeeText('Get in Touch');
     }
 
     /** @test */
@@ -60,7 +60,7 @@ class VisitWebsitePagesTest extends TestCase
     {
         //$this->seed(FaqTableSeeder::class);
 
-        $respone = $this->get('/faq');
-        $respone->assertStatus(200);
+        $response = $this->get('/faq');
+        $response->assertStatus(200);
     }
 }

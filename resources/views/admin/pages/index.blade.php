@@ -16,7 +16,7 @@
         </div>
 
         <div class="card-body">
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
             <div class="mb-3" role="group" aria-label="Page functionality">
                 <a href="{{ request()->url().'/create' }}"  class="btn btn-primary">

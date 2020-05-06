@@ -13,7 +13,7 @@
 
                 <div class="box-body">
 
-                    @include('admin.partials.info')
+                    @include('admin.partials.card.info')
 
                     <table id="tbl-list" data-order-by="0|desc" data-page-length="25" data-server="false" class="dt-table table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>

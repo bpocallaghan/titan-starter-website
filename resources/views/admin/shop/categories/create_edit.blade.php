@@ -16,7 +16,7 @@
 
             <div class="card-body no-padding">
 
-                @include('admin.partials.info')
+                @include('admin.partials.card.info')
 
 
                 <fieldset>

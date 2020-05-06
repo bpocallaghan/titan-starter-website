@@ -15,7 +15,7 @@
                 <input name="_method" type="hidden" value="{{isset($item)? 'PUT':'POST'}}">
                 <div class="card-body">
 
-                    @include('admin.partials.info')
+                    @include('admin.partials.card.info')
 
 
 

@@ -9,7 +9,7 @@
 
         <div class="card-body">
 
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
             <table id="tbl-list" data-server="false" data-page-length="25" class="dt-table table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>

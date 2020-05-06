@@ -16,7 +16,7 @@
 
         <div class="card-body">
 
-            @include('admin.partials.info')
+            @include('admin.partials.card.info')
 
             <div class="mb-3" role="group" id="sortable-menu">
 
