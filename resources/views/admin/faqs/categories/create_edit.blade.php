@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.admin')
 
 @section('content')
     <div class="card <!--card-outline--> card-secondary">
@@ -20,7 +20,7 @@
             <input name="_method" type="hidden" value="{{isset($item)? 'PUT':'POST'}}">
 
             <div class="card-body">
-                @include('partials.card.info')
+                @include('admin.partials.card.info')
 
                 <fieldset>
                     <div class="row">
@@ -34,9 +34,8 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="card-footer">
-                @include('partials.form.form_footer')
-            </div>
+
+            @include('admin.partials.form.form_footer')
         </form>
     </div>
 @endsection

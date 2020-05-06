@@ -113,6 +113,23 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::resource('/banners', 'BannersController');
     });
 
+    // faq
+    Route::namespace('FAQ')->group(function () {
+        Route::resource('/faqs/categories', 'CategoriesController')
+            ->names([
+                'index' => 'faqs_categories.index',
+                'create' => 'faqs_categories.create',
+                'store' => 'faqs_categories.store',
+                'show' => 'faqs_categories.show',
+                'edit' => 'faqs_categories.edit',
+                'update' => 'faqs_categories.update',
+                'destroy' => 'faqs_categories.destroy',
+            ]);
+        Route::get('/faqs/order', 'OrderController@index');
+        Route::post('/faqs/order', 'OrderController@update');
+        Route::resource('/faqs', 'FAQsController');
+    });
+
     // history
     Route::group(['prefix' => 'activities', 'namespace' => 'LatestActivities'], function () {
         Route::get('/', 'LatestActivitiesController@website');
@@ -140,7 +157,16 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     // resources
     Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
         // resource categories
-        Route::resource('/categories', 'CategoriesController');
+        Route::resource('/categories', 'CategoriesController')
+            ->names([
+                'index' => 'resources_categories.index',
+                'create' => 'resources_categories.create',
+                'store' => 'resources_categories.store',
+                'show' => 'resources_categories.show',
+                'edit' => 'resources_categories.edit',
+                'update' => 'resources_categories.update',
+                'destroy' => 'resources_categories.destroy',
+            ]);
         // get resources - new photoable, documentable, videoable
         Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
 

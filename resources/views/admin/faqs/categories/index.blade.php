@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.admin')
 
 @section('content')
 	<div class="card <!--card-outline--> card-secondary">
@@ -13,9 +13,9 @@
         </div>
 
         <div class="card-body">
-            @include('partials.card.info')
+            @include('admin.partials.card.info')
 
-			@include('partials.card.buttons')
+			@include('admin.partials.card.buttons')
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">
                 <thead>

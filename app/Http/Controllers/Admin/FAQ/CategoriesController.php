@@ -7,9 +7,9 @@ use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
-use App\Http\Controllers\AppController;
+use App\Http\Controllers\Admin\AdminController;
 
-class CategoriesController extends AppController
+class CategoriesController extends AdminController
 {
 	/**
 	 * Display a listing of faq_category.
@@ -20,7 +20,7 @@ class CategoriesController extends AppController
 	{
 		save_resource_url();
 
-		return $this->view('admin.faqs.categories.index')->with('items', FAQCategory::all());
+		return $this->view('faqs.categories.index')->with('items', FAQCategory::all());
 	}
 
 	/**
@@ -30,7 +30,7 @@ class CategoriesController extends AppController
 	 */
 	public function create()
 	{
-		return $this->view('admin.faqs.categories.create_edit');
+		return $this->view('faqs.categories.create_edit');
 	}
 
 	/**
@@ -55,7 +55,7 @@ class CategoriesController extends AppController
 	 */
 	public function show(FAQCategory $category)
 	{
-		return $this->view('admin.faqs.categories.show')->with('item', $category);
+		return $this->view('faqs.categories.show')->with('item', $category);
 	}
 
 	/**
@@ -66,7 +66,7 @@ class CategoriesController extends AppController
      */
     public function edit(FAQCategory $category)
 	{
-		return $this->view('admin.faqs.categories.create_edit')->with('item', $category);
+		return $this->view('faqs.categories.create_edit')->with('item', $category);
 	}
 
 	/**
