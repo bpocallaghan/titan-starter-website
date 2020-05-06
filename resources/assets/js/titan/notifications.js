@@ -1,3 +1,7 @@
+$(function () {
+    getHeaderNotifications();
+});
+
 function getHeaderNotifications()
 {
     function getHeaderActivities()

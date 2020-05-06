@@ -45,8 +45,6 @@ function initTitan() {
             .replace(/-+$/, '')             // Trim - from end of text
             .replace(/-$/, '');             // Remove last floating dash if exists
     }
-
-    getHeaderNotifications();
 }
 
 function doAjax(url, data, callback) {
