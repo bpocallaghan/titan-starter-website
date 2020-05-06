@@ -1,8 +1,7 @@
 # Laravel CMS Starter
 A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.
 
-- Under Development
-- Test Driven Development `(109 tests, 460 assertions)`
+- Test Driven Development `(111 tests, 466 assertions)`
 
 ## Features
  - Admin LTE theme

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin\Settings;
+namespace Tests\Feature\Controllers\Admin\Settings;
 
 use App\Models\Navigation;
 use Illuminate\Support\Str;

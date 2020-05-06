@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin\LatestActivity;
+namespace Tests\Feature\Controllers\Admin\LatestActivity;
 
 use Bpocallaghan\LogActivity\Models\LogActivity;
 use Tests\TestCase;

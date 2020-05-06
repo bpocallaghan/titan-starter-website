@@ -1,29 +1,29 @@
 <?php
 
-namespace Tests\Feature\Admin\Settings;
+namespace Tests\Feature\Controllers\Admin\Settings;
 
-use App\Models\Settings;
-use Illuminate\Support\Str;
 use Tests\TestCase;
+use App\Models\Navigation;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SettingsTest extends TestCase
+class NavigationTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    protected $table = 'settings';
+    protected $table = 'navigations';
 
-    protected $resourceName = 'setting';
+    protected $resourceName = 'navigation';
 
-    protected $path = '/admin/settings/settings';
+    protected $path = '/admin/settings/navigations';
 
-    protected $viewPath = 'admin.settings.settings';
+    protected $viewPath = 'admin.settings.navigations';
 
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory(Settings::class)->create();
+        $resource = factory(Navigation::class)->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -56,9 +56,11 @@ class SettingsTest extends TestCase
     /** @test */
     public function user_can_create()
     {
+        $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $attributes = factory(Settings::class)->raw();
+        $attributes = factory(Navigation::class)->raw();
+        $attributes['roles'] = [1, 2];
 
         // view create form
         $this->get("{$this->path}/create")
@@ -70,12 +72,11 @@ class SettingsTest extends TestCase
         $this->get($this->path);
 
         // submit form
-        $this->followingRedirects()
+        $xx = $this->followingRedirects()
             ->from("{$this->path}/create")
             ->post($this->path, $attributes)
             ->assertViewIs("{$this->viewPath}.index")
             ->assertSee($attributes['name'])
-            ->assertSee($attributes['author'])
             ->assertSee(Str::plural($this->resourceName));
 
         $this->assertDatabaseHas($this->table, ['name' => $attributes['name']]);
@@ -90,33 +91,50 @@ class SettingsTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory(Settings::class)->raw([
-            'name'   => null,
-            'author' => null
+        $attributes = factory(Navigation::class)->raw([
+            'name'        => null,
+            'description' => null
         ]);
 
         $this->post($this->path, $attributes)
             ->assertSessionHasErrors(['name'])
-            ->assertSessionHasErrors(['author']);
+            ->assertSessionHasErrors(['description']);
+    }
+
+    /** @test */
+    public function user_can_show()
+    {
+        $this->signInAdmin();
+
+        $resource = factory(Navigation::class)->create();
+
+        $this->get("{$this->path}/{$resource->id}")
+            ->assertSee($resource->name)
+            ->assertSee($resource->description)
+            ->assertSee($this->resourceName);
     }
 
     /** @test */
     public function user_can_update()
     {
+        $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $resource = factory(Settings::class)->create();
+        $resource = factory(Navigation::class)->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
         $resource->name = 'new-name';
 
+        $attributes = $resource->toArray();
+        $attributes['roles'] = [1, 2];
+
         $this->get($this->path);
 
         $this->followingRedirects()
-            ->put("{$this->path}/{$resource->id}", $resource->toArray())
+            ->put("{$this->path}/{$resource->id}", $attributes)
             ->assertViewIs("{$this->viewPath}.index")
-            ->assertSee($resource->name)
+            ->assertSee($attributes['name'])
             ->assertSee(Str::plural($this->resourceName));
 
         $this->assertDatabaseHas($this->table, [
@@ -130,15 +148,27 @@ class SettingsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Settings::class)->create();
+        $resource = factory(Navigation::class)->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
         $resource->name = null;
-        $resource->author = null;
+        $resource->description = null;
 
         $this->put("{$this->path}/{$resource->id}", $resource->toArray())
             ->assertSessionHasErrors(['name'])
-            ->assertSessionHasErrors(['author']);
+            ->assertSessionHasErrors(['description']);
+    }
+
+    /** @test */
+    public function destroy()
+    {
+        $this->signInAdmin();
+
+        $resource = factory(Navigation::class)->create();
+
+        $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
+
+        $this->assertSoftDeleted($this->table, ['id' => $resource->id]);
     }
 }

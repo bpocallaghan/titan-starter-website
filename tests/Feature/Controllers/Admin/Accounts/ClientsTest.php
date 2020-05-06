@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin\Accounts;
+namespace Tests\Feature\Controllers\Admin\Accounts;
 
 use App\User;
 use Illuminate\Support\Str;

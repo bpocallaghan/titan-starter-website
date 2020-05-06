@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Controllers\Admin;
 
 use App\Models\Banner;
 use Illuminate\Http\UploadedFile;

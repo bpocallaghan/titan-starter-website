@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\User;
 use App\Models\Role;
+use PagesTableSeeder;
 use RolesTableSeeder;
 use NavigationsTableSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -17,15 +18,20 @@ abstract class TestCase extends BaseTestCase
     /**
      * Seed the Database
      */
-    public function setUpDatabase()
+    protected function setUpDatabase(): void
     {
         $this->seed();
     }
 
-    private function seedRolesAndNavigation()
+    private function seedRolesAndNavigation(): void
     {
         $this->seed(RolesTableSeeder::class);
         $this->seed(NavigationsTableSeeder::class);
+    }
+
+    protected function seedPages(): void
+    {
+        $this->seed(PagesTableSeeder::class);
     }
 
     /**

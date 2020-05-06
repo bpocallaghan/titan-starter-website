@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Admin;
+namespace Tests\Unit\Models;
 
 use App\Models\Banner;
 use Tests\TestCase;

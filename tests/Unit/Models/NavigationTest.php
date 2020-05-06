@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Admin\Settings;
+namespace Tests\Unit\Models;
 
 use App\Models\Navigation;
 use Tests\TestCase;
