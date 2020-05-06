@@ -17,6 +17,13 @@ var pathJS = resourcesPath + '/js';
 
 var COMPILE = 'all';
 
+// do not extract/save .LICENSE.txt files
+mix.options({
+    terser: {
+        extractComments: false,
+    }
+});
+
 if(COMPILE == 'all' || COMPILE == 'js') {
     // update public path for js to compile into /resources
     mix.js('resources/assets/js/admin.js', 'js/vendor/admin_compiled.js');
