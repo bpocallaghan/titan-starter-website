@@ -31,6 +31,13 @@ Route::group(['namespace' => 'Website'], function () {
     Route::get('/contact-us', 'ContactUsController@index')->name('contact');
     Route::post('/contact-us/submit', 'ContactUsController@feedback');
 
+    // audit quickies / faq
+    Route::namespace('FAQ')->group(function () {
+        Route::get('/faq', 'FAQController@index');
+        Route::post('/faq/question/{faq}/{type?}', 'FAQController@incrementClick');
+    });
+
+
     // shop
     Route::group(['namespace' => 'Shop'], function () {
         Route::post('/products/filter', 'ShopController@filter');
@@ -78,7 +85,6 @@ Route::group(
 |------------------------------------------
 */
 Route::group(['prefix' => 'auth'], function () {
-
     Auth::routes(['verify' => true]);
 
     // Route::any('logout', 'Auth\LoginController@logout')->name('logout');

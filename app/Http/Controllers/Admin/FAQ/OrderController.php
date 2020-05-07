@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin\FAQ;
 use App\Models\FAQ;
 use App\Models\FAQCategory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\AppController;
+use App\Http\Controllers\Admin\AdminController;
 
-class OrderController extends AppController
+class OrderController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class OrderController extends AppController
 
         //$items = FAQ::with('category')->orderBy('list_order')->get();
 
-        return $this->view('admin.faqs.order')->with('items', $items);
+        return $this->view('faqs.order')->with('items', $items);
     }
 
     /**

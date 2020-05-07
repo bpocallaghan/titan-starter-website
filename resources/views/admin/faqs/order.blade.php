@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.admin')
 
 @section('content')
     <div class="card card-secondary">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    @include('partials.sortable')
+    @include('admin.partials.sortable')
 @endsection
 
 @section('scripts')
