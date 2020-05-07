@@ -16,6 +16,7 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Resources (Documents, Photos, Videos)
  - News
  - Shop
+ - FAQ
  - Website: Contact Us
  
 ## TODO
