@@ -54,8 +54,8 @@
         {{--</p>--}}
         <div class="text-center">
             <a class="small" href="/privacy-policy">Privacy Policy</a> |
-            <a class="small" href="/terms-and-conditions">Terms and Conditions </a>
-            {{--<a class="small" href="/faq">FAQs</a>--}}
+            <a class="small" href="/terms-and-conditions">Terms and Conditions </a> |
+            <a class="small" href="/faq">FAQs</a>
         </div>
     </div>
 </footer>
