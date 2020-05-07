@@ -39,8 +39,9 @@ if(COMPILE == 'all' || COMPILE == 'js') {
         pathJS + '/titan/notify.js',
         pathJS + '/titan/pagination.js',
         pathJS + '/titan/social_media.js',
+        pathJS + '/titan/utils.js',
         pathJS + '/titan/titan.js',
-        
+
     ], publicPath + '/js/admin.js');
 
     //website js
