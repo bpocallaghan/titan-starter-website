@@ -15,7 +15,7 @@
         <div class="card-body">
             @include('admin.partials.card.info')
 
-            @include('admin.partials.card.toolbar')
+            @include('admin.partials.card.buttons')
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">
                 <thead>

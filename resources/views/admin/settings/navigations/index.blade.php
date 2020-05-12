@@ -19,7 +19,7 @@
         <div class="card-body">
             @include('admin.partials.card.info')
 
-            @include('admin.partials.card.toolbar', ['order' => true])
+            @include('admin.partials.card.buttons', ['order' => true])
 
             <table id="tbl-list" data-page-length="25" class="dt-table table table-sm table-bordered table-striped table-hover">
                 <thead>

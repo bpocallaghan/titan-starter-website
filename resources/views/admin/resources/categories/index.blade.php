@@ -1,7 +1,6 @@
 @extends('admin.admin')
 
 @section('content')
-
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
@@ -10,10 +9,9 @@
         </div>
 
         <div class="card-body">
-
             @include('admin.partials.card.info')
 
-            @include('admin.partials.toolbar')
+            @include('admin.partials.card.buttons')
 
             <table id="tbl-list" data-server="false" class="dt-table table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
