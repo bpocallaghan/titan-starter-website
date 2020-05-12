@@ -46,7 +46,7 @@
                 </section>
             </div>
 
-            <footer class="main-footer">
+            <footer class="main-footer bg-dark">
                 <div class="row">
                     <div class="col-sm-6 text-left">
                         <small>Copyright &copy; {{ date('Y') }}
