@@ -90,12 +90,12 @@ class LoginController extends AuthController
         if ($user->getAttribute('logged_in_at')) {
             notify()->info('Info',
                 'Last time you logged in was ' . $user->logged_in_at->diffForHumans(),
-                'clock-o rotateIn animated', 8000);
+                'far fa-clock spin animated rotateIn animated', 8000);
         }
         else {
             notify()->info('Welcome',
                 'Hi ' . $user->fullname . '. Welcome to ' . config('app.name'),
-                'bell swing animated', 8000);
+                'far fa-bell shake animated', 8000);
         }
 
         // log
