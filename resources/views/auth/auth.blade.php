@@ -11,7 +11,7 @@
 
         <title>{{ $HTMLTitle ?? config('app.name') }}</title>
 
-        <link rel="stylesheet" href="/css/app.css?v={{ config('app.assets_version') }}">
+        <link rel="stylesheet" href="/css/admin.css?v={{ config('app.assets_version') }}">
 
         @yield('styles')
     </head>
@@ -19,7 +19,7 @@
 
         @yield('content')
 
-        <script src="/js/app.js?v={{ config('app.assets_version') }}"></script>
+        <script src="/js/admin.js?v={{ config('app.assets_version') }}"></script>
 
         @yield('scripts')
 
