@@ -24,10 +24,8 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Website: Contact Us
  
 ## TODO
- - Unit Tests for Page Builder
- - Blog
+ - Unit Tests
  - Events
- - FAQ
  - Testimonials
   
  ## Setup (Basic)
