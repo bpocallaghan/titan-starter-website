@@ -30,12 +30,11 @@ Route::group(['namespace' => 'Website'], function () {
     Route::get('/contact-us', 'ContactUsController@index')->name('contact');
     Route::post('/contact-us/submit', 'ContactUsController@feedback');
 
-    // audit quickies / faq
+    // faq
     Route::namespace('FAQ')->group(function () {
         Route::get('/faq', 'FAQController@index');
         Route::post('/faq/question/{faq}/{type?}', 'FAQController@incrementClick');
     });
-
 
     // shop
     Route::group(['namespace' => 'Shop'], function () {
@@ -89,8 +88,11 @@ Route::group(['prefix' => 'auth'], function () {
     // Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
-
-
+/*
+|------------------------------------------
+| Dynamic Pages - up to 3 slugs
+|------------------------------------------
+*/
 Route::group(['namespace' => 'Website'], function () {
     Route::get('{slug1}/{slug2?}/{slug3?}', 'PagesController@index');
 });

@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 class ResourceController extends AdminController
 {
     /**
-     * Show the Photoable's photos
+     * Show the Resource's photos, videos, documents
      * Create / Edit / Delete the photos
      * @param $resourceable
      * @return mixed

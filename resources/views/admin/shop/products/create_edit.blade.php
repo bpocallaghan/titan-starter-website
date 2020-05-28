@@ -79,7 +79,6 @@
                         </div>
 
                         <div class="row">
-
                             <div class="col-12 col-md-4">
                                 <div class="form-group {{ form_error_class('special_amount', $errors) }}">
                                     <label for="special_amount">Special Amount</label>
