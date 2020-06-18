@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Models\Traits\ActiveTrait;
 use App\Models\Traits\ImageThumb;
+use App\Models\Traits\ActiveTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Banner
- * @mixin \Eloquent
+ * @mixin Model
  */
 class Banner extends AdminModel
 {
@@ -21,9 +22,11 @@ class Banner extends AdminModel
 
     protected $dates = ['active_form', 'active_to'];
 
-    public static $LARGE_SIZE = [1920, 500];
+    public static $LARGE_SIZE = [1920, 600];
 
-    public static $THUMB_SIZE = [576, 324];
+    public static $THUMB_SIZE = [640, 200];
+
+    public static $IMAGE_SIZE = ['o' => [1920, 600], 'tn' => [640, 200]];
 
     /**
      * Validation rules for this model
@@ -45,7 +48,7 @@ class Banner extends AdminModel
      */
     public static function getAllList()
     {
-        return self::active()->orderBy('name')->get()->pluck('name', 'id')->toArray();
+        return self::isActiveDates()->orderBy('name')->get()->pluck('name', 'id')->toArray();
     }
 
     /**

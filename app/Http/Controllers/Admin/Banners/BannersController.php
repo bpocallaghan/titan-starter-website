@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\Admin\Banners;
 
 use App\Models\Banner;
-use App\Http\Controllers\Admin\AdminController;
-use Illuminate\Http\UploadedFile;
+use Illuminate\View\View;
 use Illuminate\Support\Arr;
-use Intervention\Image\Facades\Image;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Traits\UploadImageHelper;
 
 class BannersController extends AdminController
 {
+    use UploadImageHelper;
+
     /**
      * Display a listing of banner.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -25,7 +30,7 @@ class BannersController extends AdminController
     /**
      * Show the form for creating a new banner.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function create()
     {
@@ -35,7 +40,7 @@ class BannersController extends AdminController
     /**
      * Store a newly created banner in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function store()
     {
@@ -44,11 +49,11 @@ class BannersController extends AdminController
         $attributes['hide_name'] = (bool) input('hide_name');
         $attributes['is_website'] = (bool) input('is_website');
 
-        $photo = $this->uploadBanner($attributes['photo'], '', $size = ['o' => Banner::$LARGE_SIZE, 'tn' => Banner::$THUMB_SIZE]);
+        $photo = $this->uploadImage($attributes['photo'], Banner::$IMAGE_SIZE);
         if ($photo) {
             $attributes['image'] = $photo;
             unset($attributes['photo']);
-            $banner = $this->createEntry(Banner::class, $attributes);
+            $this->createEntry(Banner::class, $attributes);
         }
 
         return redirect_to_resource();
@@ -58,7 +63,7 @@ class BannersController extends AdminController
      * Display the specified banner.
      *
      * @param Banner $banner
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function show(Banner $banner)
     {
@@ -69,7 +74,7 @@ class BannersController extends AdminController
      * Show the form for editing the specified banner.
      *
      * @param Banner $banner
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function edit(Banner $banner)
     {
@@ -80,18 +85,19 @@ class BannersController extends AdminController
      * Update the specified banner in storage.
      *
      * @param Banner $banner
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function update(Banner $banner)
     {
         if (request()->file('photo') === null) {
-            $attributes = request()->validate(Arr::except(Banner::$rules, 'photo'),
-                Banner::$messages);
-        }
-        else {
+            $attributes = request()->validate(
+                Arr::except(Banner::$rules, 'photo'),
+                Banner::$messages
+            );
+        } else {
             $attributes = request()->validate(Banner::$rules, Banner::$messages);
 
-            $photo = $this->uploadBanner($attributes['photo'], '', $size = ['o' => Banner::$LARGE_SIZE, 'tn' => Banner::$THUMB_SIZE]);
+            $photo = $this->uploadImage($attributes['photo'], Banner::$IMAGE_SIZE);
             if ($photo) {
                 $attributes['image'] = $photo;
             }
@@ -110,47 +116,12 @@ class BannersController extends AdminController
      * Remove the specified banner from storage.
      *
      * @param Banner $banner
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function destroy(Banner $banner)
     {
         $this->deleteEntry($banner, request());
 
         return redirect_to_resource();
-    }
-
-    /**
-     * Upload the banner image, create a thumb as well
-     *
-     * @param        $file
-     * @param string $path
-     * @param array  $size
-     * @return string|void
-     */
-    private function uploadBanner(
-        UploadedFile $file, $path = '', $size = ['o' => [1920, 1080], 'tn' => [960, 500]]
-    ) {
-        $name = token();
-        $extension = $file->guessClientExtension();
-
-        $filename = $name . '.' . $extension;
-        $filenameThumb = $name . '-tn.' . $extension;
-        $imageTmp = Image::make($file->getRealPath());
-
-        if (!$imageTmp) {
-            return notify()->error('Oops', 'Something went wrong', 'warning shake animated');
-        }
-
-        $path = upload_path_images($path);
-
-        // original
-        $imageTmp->save($path . $name . '-o.' . $extension);
-
-        // save the image
-        $image = $imageTmp->fit($size['o'][0], $size['o'][1])->save($path . $filename);
-
-        $image->fit($size['tn'][0], $size['tn'][1])->save($path . $filenameThumb);
-
-        return $filename;
     }
 }
