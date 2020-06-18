@@ -36,9 +36,7 @@
 
         @include('website.partials.header')
 
-        @if((isset($showPageBanner) && $showPageBanner === true) || !isset($showPageBanner))
-            @include('website.partials.banner')
-        @endif
+        @include('website.partials.banners')
 
         <main>
             @yield('content')
