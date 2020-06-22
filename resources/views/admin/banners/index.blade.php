@@ -49,6 +49,8 @@
                                 <i class="fa fa-fw fa-crop-alt"></i>
                             </a>
                             {!! action_row($selectedNavigation->url, $item->id, $item->title, ['show', 'edit', 'delete'], false) !!}
+
+                            {!! $item->date_badge !!}
                         </td>
                     </tr>
                 @endforeach

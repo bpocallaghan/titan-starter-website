@@ -58,26 +58,4 @@ class Banner extends AdminModel
     {
         return $this->belongsToMany(Page::class);
     }
-
-    /**
-     * Get the is active label attribute
-     * @return string
-     */
-    public function getIsActiveLabelAttribute()
-    {
-        $title = 'Not Active';
-        $class = 'danger';
-
-        $from = Carbon::parse($this->active_from);
-        $to = Carbon::parse($this->active_to);
-
-        if (!$this->active_to || Carbon::now()->diffInMinutes($to, false) > 0) {
-            if (Carbon::now()->diffInMinutes($from, false) < 0) {
-                $title = 'Active';
-                $class = 'success';
-            }
-        }
-
-        return "<span class='badge badge-{$class}'>{$title}</span>";
-    }
 }

@@ -9,14 +9,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BannerTest extends TestCase
 {
-    /** @test */
-    public function can_get_active_badge()
-    {
-        $banner = factory(Banner::class)->make([
-            'name' => 'Banner',
-        ]);
+    use RefreshDatabase;
 
-        $this->assertEquals("<span class='badge badge-success'>Active</span>",
-            $banner->is_active_label);
+    /** @test */
+    public function can_get_all_list()
+    {
+        $roles = factory(Banner::class, 5)->create();
+
+        $rolesList = Banner::getAllList();
+
+        $this->assertCount(5, $rolesList);
     }
 }

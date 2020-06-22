@@ -16,7 +16,7 @@ class OrderController extends AdminController
      */
     public function index()
     {
-        $items = Banner::active()->orderBy('list_order')->get();
+        $items = Banner::isActiveDates()->orderBy('list_order')->get();
 
         return $this->view('banners.order')->with('items', $items);
     }
