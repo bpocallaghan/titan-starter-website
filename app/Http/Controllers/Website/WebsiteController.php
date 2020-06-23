@@ -45,7 +45,6 @@ class WebsiteController extends Controller
 
             return $next($request);
         });
-
     }
 
     /**
@@ -82,7 +81,7 @@ class WebsiteController extends Controller
 
         // if no banners linked to page - get default
         if ($items->count() <= 0) {
-            $items = Banner::active()
+            $items = Banner::isActiveDates()
                 ->where('is_website', 1)
                 ->orderBy('list_order')
                 ->get();
@@ -110,8 +109,8 @@ class WebsiteController extends Controller
         $this->title = strlen($this->title) > 5 ? $this->title : '';
 
         foreach ($navigation as $key => $nav) {
-            if(strpos($this->title, $nav['title']) === false){
-                $this->title .= (strlen($this->title) > 5 ? ' - ' : '') .$nav['title'];
+            if (strpos($this->title, $nav['title']) === false) {
+                $this->title .= (strlen($this->title) > 5 ? ' - ' : '') . $nav['title'];
             }
         }
 
@@ -170,8 +169,7 @@ class WebsiteController extends Controller
         // laravel removes last / get home / dashboard
         if ($url === false) {
             $page = Page::where('slug', '/')->get()->first();
-        }
-        else {
+        } else {
             // find nav with url - get last (parent can have same url)
             $page = Page::where('url', $url)
                 ->orderBy('is_hidden', 'DESC')
@@ -277,6 +275,4 @@ class WebsiteController extends Controller
     {
         $this->breadcrumbItems->push((object) ['name' => $title, 'url' => $url, 'class' => $class]);
     }
-
-
 }

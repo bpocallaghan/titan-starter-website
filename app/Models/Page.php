@@ -83,7 +83,7 @@ class Page extends AdminModel
      */
     public function banners()
     {
-        return $this->belongsToMany(Banner::class)->active()->orderBy('created_at', 'DESC');
+        return $this->belongsToMany(Banner::class)->isActiveDates()->orderBy('created_at', 'DESC');
     }
 
     /**

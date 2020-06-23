@@ -14,24 +14,29 @@ class NewsController extends WebsiteController
 
     public function index($categorySlug = null)
     {
-        if(isset($categorySlug)){
+        if (isset($categorySlug)) {
             $category = NewsCategory::where('slug', $categorySlug)->first();
-            $items = News::where('category_id', $category->id)->whereHas('photos')->with('photos')->active()->orderBy('active_from', 'DESC')->get();
-        }else {
-            $items = News::whereHas('photos')->with('photos')->active()->orderBy('active_from', 'DESC')->get();
+            $items = News::where('category_id', $category->id)->whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
+        } else {
+            $items = News::whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
         }
 
 
         $perPage = 6;
         $page = input('page', 1);
-        $baseUrl = config('app.url') . '/articles/'.$categorySlug;
+        $baseUrl = config('app.url') . '/articles/' . $categorySlug;
 
 
         $total = $items->count();
 
         // paginator
-        $paginator = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(),
-            $perPage, $page, ['path' => $baseUrl, 'originalEntries' => $total]);
+        $paginator = new LengthAwarePaginator(
+            $items->forPage($page, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => $baseUrl, 'originalEntries' => $total]
+        );
 
         // if pagination ajax
         if (request()->ajax()) {

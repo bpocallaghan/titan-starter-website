@@ -52,21 +52,38 @@ trait ActiveTrait
      * @param $query
      * @return mixed
      */
-    public function scopeActive($query)
+    public function scopeIsActiveDates($query)
     {
         return $query->whereRaw("(active_from IS NULL OR active_from <= '" . Carbon::now() . "')")
             ->whereRaw("(active_to IS NULL OR active_to >= '" . Carbon::now() . "')");
     }
 
     /**
-     * Add filter to only get the active items based on the dates, if they are set
-     *
-     * @param $query
-     * @return mixed
+     * Get the is active date badge
+     * @return string
      */
-    public function scopeIsActive($query)
+    public function getDateBadgeAttribute()
     {
-        return $query->whereRaw("(active_from IS NULL OR active_from <= '" . Carbon::now() . "')")
-            ->whereRaw("(active_to IS NULL OR active_to >= '" . Carbon::now() . "')");
+        $title = 'Not Active';
+        $class = 'warning';
+
+        $from = Carbon::parse($this->active_from);
+        $to = Carbon::parse($this->active_to);
+
+        // if no active to or if now is between dates
+        if (!$this->active_to || now()->lte($to)) {
+            if (now()->gte($from)) {
+                $title = 'Active';
+                $class = 'success';
+            }
+        }
+
+        // if now is gte active to date - expired
+        if ($this->active_to && $to && now()->gte($to)) {
+            $title = 'Expired';
+            $class = 'danger';
+        }
+
+        return "<span class='badge badge-{$class}'>{$title}</span>";
     }
 }
