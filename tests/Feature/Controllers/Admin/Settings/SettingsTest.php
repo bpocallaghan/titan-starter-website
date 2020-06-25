@@ -31,8 +31,6 @@ class SettingsTest extends TestCase
         $this->get("{$this->path}/create")->assertRedirect($this->loginPath);
         // store
         $this->post($this->path, $resource->toArray())->assertRedirect($this->loginPath);
-        // show
-        $this->get("{$this->path}/{$resource->id}")->assertRedirect($this->loginPath);
         // edit
         $this->get("{$this->path}/{$resource->id}/edit")->assertRedirect($this->loginPath);
         // update
@@ -45,6 +43,7 @@ class SettingsTest extends TestCase
     /** @test */
     public function user_can_view()
     {
+        $this->withoutExceptionHandling();
         $this->signInAdmin();
 
         $this->get($this->path)

@@ -18,9 +18,9 @@ class CategoriesControllerTest extends TestCase
 
     protected $resourceName = 'Product Category';
 
-    protected $path = '/admin/products/categories';
+    protected $path = '/admin/shop/categories';
 
-    protected $viewPath = 'admin.products.categories';
+    protected $viewPath = 'admin.shop.categories';
 
     protected $model = ProductCategory::class;
 
@@ -43,8 +43,6 @@ class CategoriesControllerTest extends TestCase
         $this->get("{$this->path}/create")->assertRedirect($this->loginPath);
         // store
         $this->post($this->path, $resource->toArray())->assertRedirect($this->loginPath);
-        // show
-        $this->get("{$this->path}/{$resource->id}")->assertRedirect($this->loginPath);
         // edit
         $this->get("{$this->path}/{$resource->id}/edit")->assertRedirect($this->loginPath);
         // update
@@ -112,18 +110,6 @@ class CategoriesControllerTest extends TestCase
         ]);
 
         $this->post($this->path, $attributes)->assertSessionHasErrors(['name']);
-    }
-
-    /** @test */
-    public function user_can_show()
-    {
-        $this->signInAdmin();
-
-        $resource = factory($this->model)->create();
-
-        $this->get("{$this->path}/{$resource->id}")
-            ->assertSee($resource->name)
-            ->assertSee($this->resourceName);
     }
 
     /** @test */

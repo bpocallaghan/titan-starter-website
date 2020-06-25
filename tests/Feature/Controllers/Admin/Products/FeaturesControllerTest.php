@@ -16,9 +16,9 @@ class FeaturesControllerTest extends TestCase
 
     protected $resourceName = 'Product Feature';
 
-    protected $path = '/admin/products/features';
+    protected $path = '/admin/shop/features';
 
-    protected $viewPath = 'admin.products.features';
+    protected $viewPath = 'admin.shop.features';
 
     protected $model = ProductFeature::class;
 
@@ -100,18 +100,6 @@ class FeaturesControllerTest extends TestCase
 
         $this->post($this->path, $attributes)
             ->assertSessionHasErrors(['name']);
-    }
-
-    /** @test */
-    public function user_can_show()
-    {
-        $this->signInAdmin();
-
-        $resource = factory($this->model)->create();
-
-        $this->get("{$this->path}/{$resource->id}")
-            ->assertSee($resource->name)
-            ->assertSee($this->resourceName);
     }
 
     /** @test */

@@ -16,9 +16,9 @@ class StatusesControllerTest extends TestCase
 
     protected $resourceName = 'Product Status';
 
-    protected $path = '/admin/products/status';
+    protected $path = '/admin/shop/status';
 
-    protected $viewPath = 'admin.products.statuses';
+    protected $viewPath = 'admin.shop.statuses';
 
     protected $model = ProductStatus::class;
 
@@ -33,8 +33,6 @@ class StatusesControllerTest extends TestCase
         $this->get("{$this->path}/create")->assertRedirect($this->loginPath);
         // store
         $this->post($this->path, $resource->toArray())->assertRedirect($this->loginPath);
-        // show
-        $this->get("{$this->path}/{$resource->id}")->assertRedirect($this->loginPath);
         // edit
         $this->get("{$this->path}/{$resource->id}/edit")->assertRedirect($this->loginPath);
         // update
@@ -102,19 +100,6 @@ class StatusesControllerTest extends TestCase
         $this->post($this->path, $attributes)
             ->assertSessionHasErrors(['name'])
             ->assertSessionHasErrors(['category']);
-    }
-
-    /** @test */
-    public function user_can_show()
-    {
-        $this->signInAdmin();
-
-        $resource = factory($this->model)->create();
-
-        $this->get("{$this->path}/{$resource->id}")
-            ->assertSee($resource->name)
-            ->assertSee($resource->category)
-            ->assertSee($this->resourceName);
     }
 
     /** @test */
