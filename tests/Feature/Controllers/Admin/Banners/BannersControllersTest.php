@@ -99,7 +99,7 @@ class BannersTest extends TestCase
         $banner = Banner::orderBy('created_at', 'DESC')->take(1)->get()->first();
 
         // Assert the file was stored...
-        Storage::disk('web_public')->assertExists("images/{$banner->image}");
+        Storage::disk('public_web')->assertExists("images/{$banner->image}");
     }
 
     /** @test */

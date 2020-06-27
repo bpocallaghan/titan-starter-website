@@ -38,7 +38,10 @@
                                       {!! image_row_link($item->cover_photo->name, $item->cover_photo->thumb, $item->cover_photo->filename) !!}
                                     @endif
                                 </td>
-                                <td>{!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/resources/news/'.$item->id], 'show', 'edit', 'delete']) !!}</td>
+                                <td>
+                                    {!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/resources/news/'.$item->id], 'show', 'edit', 'delete']) !!}
+                                    {!! $item->date_badge !!}
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
