@@ -10,17 +10,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ImageThumbTest extends TestCase
 {
     /** @test */
-    public function can_get_active_badge()
-    {
-        $banner = factory(Banner::class)->make([
-            'name' => 'Banner',
-        ]);
-
-        $this->assertEquals("<span class='badge badge-success'>Active</span>",
-            $banner->is_active_label);
-    }
-
-    /** @test */
     public function can_get_thumb()
     {
         $banner = factory(Banner::class)->make([

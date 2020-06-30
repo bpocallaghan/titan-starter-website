@@ -1,7 +1,7 @@
 # Laravel CMS Starter
 A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.
 
-- Test Driven Development `(111 tests, 466 assertions)`
+- Unit Tests `(150 tests, 656 assertions)`
 
 [Preview project here](http://titan.bpocallaghan.co.za?v=1)
 - User: github@bpocallaghan.co.za
@@ -24,7 +24,7 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Website: Contact Us
  
 ## TODO
- - Unit Tests
+ - More Tests (pages, news)
  - Events
  - Testimonials
   
