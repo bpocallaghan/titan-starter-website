@@ -29,15 +29,16 @@ class BasicSeeder extends Seeder
                 'province_id',
                 'country_id',
                 'continent_id',
+                'list_order',
                 'list_main_order',
                 'list_footer_order',
                 'list_client_order',
                 'list_business_order',
+                'featured_order',
                 'max_locations',
             ])) {
                 $data[$column] = $item[$column] !== '' ? $item[$column] : null;
-            }
-            else {
+            } else {
                 $data[$column] = $item[$column];
             }
         }
