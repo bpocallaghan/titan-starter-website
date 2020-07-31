@@ -1,7 +1,7 @@
 # Laravel CMS Starter
 A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.
 
-- Unit Tests `(150 tests, 656 assertions)`
+- Unit Tests `(156 tests, 690 assertions)`
 
 [Preview project here](http://titan.bpocallaghan.co.za?v=1)
 - User: github@bpocallaghan.co.za

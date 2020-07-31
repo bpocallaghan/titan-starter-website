@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductFeature;
-use Redirect;
-use App\Http\Requests;
-use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 use App\Http\Controllers\Admin\AdminController;
 
 class ProductsController extends AdminController
@@ -15,7 +16,7 @@ class ProductsController extends AdminController
     /**
      * Display a listing of product.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -29,7 +30,7 @@ class ProductsController extends AdminController
     /**
      * Show the form for creating a new product.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -44,7 +45,7 @@ class ProductsController extends AdminController
     /**
      * Store a newly created product in storage.
      *
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
     public function store()
     {
@@ -63,7 +64,7 @@ class ProductsController extends AdminController
      * Display the specified product.
      *
      * @param Product $product
-     * @return Response
+     * @return Factory|View
      */
     public function show(Product $product)
     {
@@ -74,7 +75,7 @@ class ProductsController extends AdminController
      * Show the form for editing the specified product.
      *
      * @param Product $product
-     * @return Response
+     * @return Factory|View
      */
     public function edit(Product $product)
     {
@@ -93,7 +94,7 @@ class ProductsController extends AdminController
      * Update the specified product in storage.
      *
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Product $product)
     {
@@ -112,7 +113,7 @@ class ProductsController extends AdminController
      * Remove the specified product from storage.
      *
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse|Redirector
      */
     public function destroy(Product $product)
     {
