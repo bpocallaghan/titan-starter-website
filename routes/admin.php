@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 |------------------------------------------
 */
 Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
-
     Route::get('/', 'DashboardController@index');
 
     // profile
