@@ -29,11 +29,12 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Testimonials
   
  ## Setup (Basic)
- - `composer create-project bpocallaghan/titan-starter:dev-master laravel-website`
+ - Clone or Download the code
  - create your database
  - setup your virtual host (preview: http://titan.test)
  - open .env and update app information, database, mail
  - open `database\seeds\UsersTableSeeder.php` and set your admin user credentials
+ - NPM (css and js): Install `npm install` and Run `npm run prod`
  
  ## Setup (Advanced)
  - `config\app.php` -> set timezone
