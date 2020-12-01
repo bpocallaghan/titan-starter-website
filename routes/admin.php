@@ -47,6 +47,16 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::resource('/faqs', 'FAQsController');
     });
 
+    //locations
+    Route::group(['prefix' => 'locations', 'namespace' => 'Locations'], function () {
+        //Route::resource('branches', 'BranchesController');
+        Route::resource('suburbs', 'SuburbsController');
+        Route::resource('cities', 'CitiesController');
+        Route::resource('provinces', 'ProvincesController');
+        Route::resource('countries', 'CountriesController');
+        Route::resource('continents', 'ContinentsController');
+    });
+
     // history
     Route::group(['prefix' => 'activities', 'namespace' => 'LatestActivities'], function () {
         Route::get('/', 'LatestActivitiesController@website');
