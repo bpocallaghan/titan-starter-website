@@ -25,7 +25,7 @@ class Photo extends Model
     protected $appends = ['thumb', 'url'/*, 'original_filename', 'original_url'*/];
 
     static public $rules = [
-        'file' => 'required|image|max:5000|mimes:jpg,jpeg,png,bmp'
+        'file' => 'required|max:5000|mimes:jpg,jpeg,png,bmp'
     ];
 
     /**

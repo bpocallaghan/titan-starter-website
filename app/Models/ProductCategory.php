@@ -25,11 +25,11 @@ class ProductCategory extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'      => 'required|min:3:max:255',
+        'name'      => 'required|min:3|max:191',
         'slug'      => 'nullable',
         'url'       => 'nullable',
         'parent_id' => 'nullable',
-        'photo'     => 'required|image|max:6000|mimes:jpg,jpeg,png,bmp',
+        'photo'     => 'required|max:6000|mimes:jpg,jpeg,png,bmp',
     ];
 
     /**

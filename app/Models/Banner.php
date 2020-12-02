@@ -20,7 +20,7 @@ class Banner extends AdminModel
 
     protected $guarded = ['id'];
 
-    protected $dates = ['active_form', 'active_to'];
+    protected $dates = ['active_from', 'active_to'];
 
     public static $LARGE_SIZE = [1920, 600];
 
@@ -32,13 +32,13 @@ class Banner extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'        => 'required|min:3:max:255',
-        'description' => 'nullable|max:500',
-        'action_name' => 'nullable|max:500',
-        'action_url'  => 'nullable|max:500',
+        'name'        => 'required|min:3|max:191',
+        'description' => 'nullable|max:191',
+        'action_name' => 'nullable|max:191',
+        'action_url'  => 'nullable|max:191',
         'active_from' => 'nullable|date',
         'active_to'   => 'nullable|date',
-        'photo'       => 'required|image|max:6000|mimes:jpg,jpeg,png,bmp',
+        'photo'       => 'required|max:6000|mimes:jpg,jpeg,png,bmp',
     ];
 
     /**

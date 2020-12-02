@@ -23,9 +23,9 @@ class Page extends AdminModel
      * @var array
      */
     static public $rules = [
-        'name'          => 'required|min:3:max:255',
-        'title'         => 'required|min:3:max:255',
-        'description'   => 'required|min:3:max:255',
+        'name'          => 'required|min:3|max:191',
+        'title'         => 'required|min:3|max:191',
+        'description'   => 'required|min:3|max:191',
         'slug'          => 'nullable',
         'url'           => 'nullable',
         'icon'          => 'nullable',

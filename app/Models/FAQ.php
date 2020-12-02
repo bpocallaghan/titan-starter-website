@@ -23,8 +23,8 @@ class FAQ extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'question'    => 'required|min:3:max:255',
-        'answer'      => 'required|min:5:max:1500',
+        'question'    => 'required|min:3|max:191',
+        'answer'      => 'required|min:5|max:1500',
         'category_id' => 'required|exists:faq_categories,id',
     ];
 

@@ -21,8 +21,8 @@ class ProductStatus extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-    	'name' => 'required|min:3:max:255',
-    	'category' => 'required|min:3:max:255',
+    	'name' => 'required|min:3|max:191',
+    	'category' => 'required|min:3|max:191',
     ];
 
     public function getBadgeAttribute()

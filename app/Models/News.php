@@ -32,9 +32,9 @@ class News extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'       => 'required|min:3:max:191',
-        'content'     => 'required|min:5:max:5000',
-        'summary'     => 'nullable|min:5:max:191',
+        'name'       => 'required|min:3|max:191',
+        'content'     => 'required|min:5|max:5000',
+        'summary'     => 'nullable|min:5|max:191',
         'category_id' => 'required|exists:news_categories,id',
         'active_from' => 'nullable|date',
         'active_to'   => 'nullable|date',

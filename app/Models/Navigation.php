@@ -26,8 +26,8 @@ class Navigation extends AdminModel
      */
     static public $rules = [
         'icon'        => 'required|min:1',
-        'name'        => 'required|min:2:max:255',
-        'description' => 'required|min:3:max:255',
+        'name'        => 'required|min:2|max:191',
+        'description' => 'required|min:3|max:191',
         'roles'       => 'required|array',
     ];
 

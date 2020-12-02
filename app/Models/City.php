@@ -21,11 +21,11 @@ class City extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'       => 'required|min:3|max:255',
+        'name'        => 'required|min:3|max:191',
         'province_id' => 'required|exists:provinces,id',
-        'zoom_level' => 'nullable',
-        'latitude'   => 'nullable',
-        'longitude'  => 'nullable',
+        'zoom_level'  => 'nullable',
+        'latitude'    => 'nullable',
+        'longitude'   => 'nullable',
     ];
 
     /**

@@ -21,7 +21,7 @@ class NewsCategory extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name' => 'required|min:3:max:255',
+        'name' => 'required|min:3|max:191',
     ];
 
     /**

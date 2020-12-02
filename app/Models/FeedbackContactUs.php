@@ -20,10 +20,10 @@ class FeedbackContactUs extends Model
      * Validation custom messages for this model
      */
     static public $rules = [
-        'firstname' => 'required|min:2:max:255',
-        'lastname'  => 'required|min:2:max:255',
-        'email'     => 'required|min:2:max:255|email',
-        'content'   => 'required|min:2:max:1000',
-        'phone'   => 'nullable|max:20',
+        'firstname' => 'required|min:2|max:191',
+        'lastname'  => 'required|min:2|max:191',
+        'email'     => 'required|min:2|max:191|email',
+        'content'   => 'required|min:2|max:1000',
+        'phone'     => 'nullable|max:20',
     ];
 }
