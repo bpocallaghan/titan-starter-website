@@ -18,7 +18,7 @@ class Controller extends BaseController
 
     protected $description = '';
 
-    protected $image = 'images/logo.png';
+    protected $image = '/images/logo.png';
 
     protected $parentNavs = [];
 
