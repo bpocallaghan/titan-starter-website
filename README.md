@@ -22,12 +22,12 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - Shop
  - FAQ
  - Website: Contact Us
- 
+
 ## TODO
  - More Tests (pages, news)
  - Events
  - Testimonials
-  
+
  ## Setup (Basic)
  - Clone or Download the code
  - create your database
@@ -35,7 +35,7 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
  - open .env and update app information, database, mail
  - open `database\seeds\UsersTableSeeder.php` and set your admin user credentials
  - NPM (css and js): Install `npm install` and Run `npm run prod`
- 
+
  ## Setup (Advanced)
  - `config\app.php` -> set timezone
  - create Facebook Website App https://developers.facebook.com/
@@ -53,7 +53,7 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
          - go to (google analytics)[https://analytics.google.com/analytics/]
          - go to admin - property - user management and add the service account's email as a user
          - go to admin - view - settings and copy the 'site id' to your .env
- - get a Google Maps js API key https://developers.google.com/maps/documentation/javascript/get-api-key 
+ - get a Google Maps js API key https://developers.google.com/maps/documentation/javascript/get-api-key
 
 ## Thank you
 - All [contributors](https://github.com/bpocallaghan/titan-starter/graphs/contributors)

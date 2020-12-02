@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
 class NavigationsTableSeeder extends BasicSeeder
 {
     public function run()

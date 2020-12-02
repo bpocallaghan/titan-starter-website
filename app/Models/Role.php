@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Role
+ * @mixin \Eloquent
+ */
 class Role extends AdminModel
 {
     use SoftDeletes;

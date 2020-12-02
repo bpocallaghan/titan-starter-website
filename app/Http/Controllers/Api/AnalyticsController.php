@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Analytics;
-use App\User;
+use App\Models\User;
 use App\Http\Requests;
 use Spatie\Analytics\Period;
 use App\Http\Controllers\Traits\GoogleAnalyticsHelper;

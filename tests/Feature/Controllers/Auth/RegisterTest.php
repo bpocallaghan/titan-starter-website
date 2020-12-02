@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;

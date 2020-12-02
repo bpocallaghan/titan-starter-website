@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Banner;
 
@@ -13,7 +15,7 @@ class BannersTableSeeder extends Seeder
         foreach ($items as $key => $item)
         {
             Banner::create([
-                                
+
             ]);
         }
 	}

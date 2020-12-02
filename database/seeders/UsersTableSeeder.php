@@ -1,15 +1,17 @@
 <?php
 
-use App\User;
+namespace Database\Seeders;
+
+use App\Models\User;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
-    public function run(Faker\Generator $faker)
+    public function run(\Faker\Generator $faker)
     {
         User::truncate();
-        DB::table('role_user')->truncate();
+        \DB::table('role_user')->truncate();
 
         //-------------------------------------------------
         // Developer

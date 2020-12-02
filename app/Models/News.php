@@ -6,7 +6,6 @@ use App\Models\Traits\ActiveTrait;
 use App\Models\Traits\Documentable;
 use App\Models\Traits\Photoable;
 use App\Models\Traits\Videoable;
-use App\User;
 use Bpocallaghan\Sluggable\HasSlug;
 use Bpocallaghan\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;

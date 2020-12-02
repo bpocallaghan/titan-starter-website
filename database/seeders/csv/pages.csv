@@ -1,5 +1,5 @@
 id,name,title,description,slug,url,icon,list_order,is_header,header_order,is_footer,footer_order,is_hidden,is_featured,featured_order,parent_id,url_parent_id,views,social_shares,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
-"1","Home","Laravel Admin Starter","Laravel Admin Starter","/","","",,"1","0","0","1","0","0",,"0","0","23","0","2020-06-17 08:35:36","2020-06-19 07:24:42",,"0","0",
+"1","Home","Laravel Admin Starter","Laravel Admin Starter","/","/","",,"1","0","0","1","0","0",,"0","0","23","0","2020-06-17 08:35:36","2020-06-19 07:24:42",,"0","0",
 "2","About","About","About","about","/about","",,"1","1","1","1","0","0",,"0","0","3","0","2020-06-17 08:35:36","2020-06-19 07:23:07",,"0","0",
 "3","Contact Us","Get in Touch","Contact Us","contact-us","/contact-us","",,"1","4","1","4","0","0",,"0","0","3","0","2020-06-17 08:35:36","2020-06-19 07:23:09",,"0","0",
 "4","Privacy Policy","Privacy Policy","Privacy Policy","privacy-policy","/privacy-policy","",,"0","0","0","0","0","0",,"0","0","1","0","2020-06-17 08:35:36","2020-06-17 08:35:36",,"0","0",

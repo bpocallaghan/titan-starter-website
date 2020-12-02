@@ -1,12 +1,14 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Settings;
 use Illuminate\Database\Seeder;
 use App\Models\Setting;
 
 class SettingsTableSeeder extends Seeder
 {
-    public function run(Faker\Generator $faker)
+    public function run(\Faker\Generator $faker)
     {
         Settings::truncate();
 

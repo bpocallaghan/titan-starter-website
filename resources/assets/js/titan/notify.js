@@ -17,8 +17,7 @@ function notify(title, content, level)
         title: title,
         content: content,
         level: level ? level : 'success',
-        icon: "far fa-thumbs-up bounce animated",
-        iconSmall: "far fa-thumbs-up bounce animated",
+        icon: "far fa-fw fa-thumbs-up bounce animated"
     });
 }
 
@@ -33,13 +32,11 @@ function notifyError(title, content)
         title: title,
         content: content,
         level: 'danger',
-        icon: "far fa-thumbs-down shake animated",
-        iconSmall: "far fa-thumbs-down spin animated",
+        icon: "far fa-fw fa-thumbs-down shake animated"
     });
 }
 
 var notifyCount = 0;
-var notifyHeight = 0;
 
 $.notify = function (settings)
 {
@@ -47,9 +44,8 @@ $.notify = function (settings)
         title: "",
         content: "",
         icon: undefined,
-        iconSmall: undefined,
         level: 'info',
-        timeout: undefined
+        timeout: 5000
     }, settings);
 
     // vars
@@ -66,82 +62,36 @@ $.notify = function (settings)
     }
 
     // play sound
-    document.getElementById('notify-sound-' + soundFile).play()
+    document.getElementById('notify-sound-' + soundFile).play();
 
-    // html markup
-    var html = '<div id="' + notifyId + '"';
-    html += 'class="notify animated fadeInRight fast alert-' + settings.level + '">';
-    if (settings.icon == undefined) {
-        html += '<div class="textfull">';
-    } else {
-        html += '<div class="icon-big"><i class="' + settings.icon + '"></i></div><div class="text">';
+    //--------------------------------------------------------------
+    var delay = '';
+    if (settings.timeout != undefined) {
+        delay += 'data-delay="' + settings.timeout + '"';
     }
-    html += '<span>' + settings.title + '</span>'
-    html += '<p>' + settings.content + '</p>';
-    html += '</div><div>';
-    if (settings.iconSmall) {
-        html += '<i class="icon-small ' + settings.iconSmall + '"></i>';
-    }
-    html += '</div></div>';
+
+    var html = '';
+    html += '<div id="' + notifyId + '" class="toast" role="alert" aria-live="assertive" aria-atomic="true" ' + delay + '>\n' +
+                '<div class="toast-header bg-' + settings.level + '">\n';
+
+                    if (settings.icon !== undefined) {
+                        html += '<i class="mr-2 ' + settings.icon + '"></i>\n';
+                    }
+
+            html += '<strong class="mr-auto">' + settings.title + '</strong>\n' +
+                    '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">\n' +
+                        '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                '</div>\n' +
+                '<div class="toast-body">\n' + settings.content + '  </div>\n' +
+            '</div>';
+    //--------------------------------------------------------------
 
     // append html markup to container
     $("#notify-container").append(html);
-    if (notifyCount == 1) {
-        notifyHeight = $("#" + notifyId).height() + 40;
-    } else {
-        $("#" + notifyId).css("top", notifyHeight);
+    $('.toast').toast('show');
 
-        // update all of their positions
-        updateNotifyPositions(0);
-    }
-
-    // remove on timeout
-    if (settings.timeout != undefined) {
-        setTimeout(function ()
-        {
-            removeNotify($("#" + notifyId));
-        }, settings.timeout);
-    }
-
-    // remove on click
-    $("#notify" + notifyCount).bind('click', function ()
-    {
-        removeNotify($(this));
+    $('.toast').on('hidden.bs.toast', function () {
+        $(this).remove();
     });
-
-    /**
-     * Remove the notify and update the positions
-     * @param ele
-     */
-    function removeNotify(ele)
-    {
-        // css3 animations
-        ele.removeClass('fadeInRight').addClass('fadeOutRight');
-
-        // after animation - remove and update other
-        setTimeout(function ()
-        {
-            ele.remove();
-            updateNotifyPositions(300)
-        }, 400);
-    }
-
-    /**
-     * Remove element
-     * Update other notifies positions
-     * @param ele
-     */
-    function updateNotifyPositions(delay)
-    {
-        $(".notify").each(function (index)
-        {
-            if (index == 0) {
-                $(this).animate({top: 20}, delay);
-                notifyHeight = $(this).height() + 40;
-            } else {
-                $(this).animate({top: notifyHeight}, delay + 50);
-                notifyHeight += $(this).height() + 20;
-            }
-        });
-    }
 }
