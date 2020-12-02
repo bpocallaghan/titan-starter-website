@@ -23,9 +23,9 @@
                 @include('admin.partials.card.info')
 
                 <fieldset>
-                    <section class="form-group {{ form_error_class('name', $errors) }}">
+                    <section class="form-group">
                         <label for="title">Name</label>
-                        <input type="text" class="form-control" id="title" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
+                        <input type="text" class="form-control {{ form_error_class('name', $errors) }}" id="title" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                         {!! form_error_message('name', $errors) !!}
                     </section>
                 </fieldset>

@@ -41,9 +41,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group {{ form_error_class('answer', $errors) }}">
+                    <div class="form-group">
                         <label for="answer">Answer</label>
-                        <textarea class="form-control summernote" id="answer" name="answer" rows="10">{{ ($errors && $errors->any()? old('answer') : (isset($item)? $item->answer : '')) }}</textarea>
+                        <textarea class="form-control summernote  {{ form_error_class('answer', $errors) }}" id="answer" name="answer" rows="10">{{ ($errors && $errors->any()? old('answer') : (isset($item)? $item->answer : '')) }}</textarea>
                         {!! form_error_message('answer', $errors) !!}
                     </div>
                 </fieldset>

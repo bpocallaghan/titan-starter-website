@@ -119,13 +119,13 @@
                     </div>
                 </div>
 
-                <div class="form-group {{ form_error_class('photo', $errors) }}">
+                <div class="form-group">
                     <label>Browse for an Image (1920 x 600)</label>
                     <div class="input-group">
                         <input id="photo-label" type="text" class="form-control {{ form_error_class('photo', $errors) }}" readonly placeholder="Browse for an image">
                         <span class="input-group-append">
-                              <button type="button" class="btn btn-default" onclick="document.getElementById('photo').click();">Browse</button>
-                            </span>
+                            <button type="button" class="btn btn-default" onclick="document.getElementById('photo').click();">Browse</button>
+                        </span>
                         <input id="photo" style="display: none" accept="{{ get_file_extensions('image') }}" type="file" name="photo" onchange="document.getElementById('photo-label').value = this.value">
                         {!! form_error_message('photo', $errors) !!}
                     </div>

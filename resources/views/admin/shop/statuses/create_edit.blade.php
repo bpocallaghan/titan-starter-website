@@ -19,9 +19,9 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group {{ form_error_class('name', $errors) }}">
+                            <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
+                                <input type="text" class="form-control {{ form_error_class('name', $errors) }}" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                                 {!! form_error_message('name', $errors) !!}
                             </div>
                         </div>
@@ -29,9 +29,9 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group {{ form_error_class('category', $errors) }}">
+                            <div class="form-group">
                                 <label for="category">Badge (badge bg color)</label>
-                                <input type="text" class="form-control" id="category" name="category" placeholder="Please insert the Category" value="{{ ($errors && $errors->any()? old('category') : (isset($item)? $item->category : '')) }}">
+                                <input type="text" class="form-control {{ form_error_class('category', $errors) }}" id="category" name="category" placeholder="Please insert the Category" value="{{ ($errors && $errors->any()? old('category') : (isset($item)? $item->category : '')) }}">
                                 {!! form_error_message('category', $errors) !!}
                             </div>
                         </div>

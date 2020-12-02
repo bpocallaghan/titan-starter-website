@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="col-6">
-                            <div class="form-group {{ form_error_class('category_id', $errors) }}">
+                            <div class="form-group">
                                 <label for="category">Category</label>
                                 {!! form_select('category_id', ([0 => 'Please select a Category'] + $categories), ($errors && $errors->any()? old('category_id') : (isset($item)? $item->category_id : '')), ['class' => 'select2 form-control '.form_error_class('category_id', $errors)]) !!}
                                 {!! form_error_message('category_id', $errors) !!}
