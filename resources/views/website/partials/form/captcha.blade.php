@@ -29,22 +29,12 @@
                 "sitekey": "{{ config('app.recaptcha_public_key') }}",
                 "badge": "bottomleft",
                 "callback": function (token) {
-
-                    var valid = true;
-                    $('.form-control').each(function () {
-                        if (this.checkValidity() === false) {
-                            $('.needs-validation').addClass('was-validated');
-                            valid = false;
+                    return new Promise(function (resolve, reject) {
+                        if (token !== "") {
+                            $(el).parents('form').find('.g-recaptcha-response').val(token);
+                            submitForm($(el).parents('form'));
                         }
                     });
-
-                    if (valid === false) {
-                        BUTTON.reset($('.btn-submit[type="submit"]'));
-                        return valid;
-                    }
-
-                    $(el).parents('form').find(".g-recaptcha-response").val(token);
-                    return submitForm($(el).parents('form'));
                 }
             });
             jQuery(this).attr('data-widget-id', widgetId);

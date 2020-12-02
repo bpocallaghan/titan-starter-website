@@ -44,6 +44,15 @@ var FormClass = function (options)
 
         // validate form
         var s = "";
+
+        //general jquery validation ( all form elements with class .validate should be validated by default )
+        form.find('.validate').each(function(){
+            if(this.checkValidity() === false) {
+                form.addClass('was-validated');
+                s += 'Please complete the form.';
+            }
+        });
+
         // general validation
         for (var i = 0; i < inputs.length; i++) {
             var input = inputs[i];

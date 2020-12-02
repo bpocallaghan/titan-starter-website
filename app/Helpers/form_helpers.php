@@ -80,7 +80,7 @@ if (!function_exists('action_row')) {
                 $urll = $action[$key];
 
                 $html .= '<a href="' . $urll . '" class="btn btn-info btn-xs mr-1" data-toggle="tooltip" title="Show ' . $key . ' for ' . $title . '">
-                        <i class="fa fa-' . $key . '"></i> 
+                        <i class="fa fa-fw fa-' . $key . '"></i>
                     </a>';
             }
         }
