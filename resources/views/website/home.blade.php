@@ -9,99 +9,94 @@
                 @include('website.pages.page_content')
 
                 @include('website.pages.page_gallery')
+                @include('website.pages.page_videos')
                 @include('website.pages.page_documents')
             </div>
         @endforeach
 
         <div class="row mt-5 mb-5">
-            <div class="col-sm-3">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <h4 class="card-title"><i class="fa fa-fw fa-check"></i> Laravel & AdminLTE</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li><strong>Laravel v7.x</strong></li>
-                            <li><strong>AdminLTE v3.0.2</strong></li>
-                            <li><strong>Bootstrap v4.4.1</strong></li>
-                            <li><strong>jQuery v3.4.1</strong></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="d-none d-md-block col-md-4">
+                <figure>
+                    <img src="/images/logo.png" class="img-fluid">
+                </figure>
             </div>
+            <div class="col-12 col-md-8">
+                <ul class="list-unstyled list-group list-group-horizontal-md mb-3">
+                    <li class="list-group-item"><strong>Laravel v8.x</strong></li>
+                    <li class="list-group-item"><strong>AdminLTE v3.0.5</strong></li>
+                    <li class="list-group-item"><strong>Bootstrap v4.4.1</strong></li>
+                    <li class="list-group-item"><strong>jQuery v3.5</strong></li>
+                </ul>
 
-            <div class="col-sm-6">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <h4 class="card-title"><i class="fa fa-fw fa-gift"></i> Free &amp; Open Source</h4>
-                    </div>
-                    <div class="card-body">
+                <p>A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.</p>
 
-                        <div class="row">
-                            <div class="col-md-8">
-                                <ul>
-                                    <li>Auth (Login, Register, Forgot Password)</li>
-                                    <li>Roles</li>
-                                    <li>Log Activity (website and admin)</li>
-                                    <li>Notifications</li>
-                                    <li>Google Analytics Reports</li>
-                                    <li>Website Page Builder</li>
-                                </ul>
+                <ul class="list-unstyled style-1"><li>Test Driven Development (111 tests, 466 assertions)</li></ul>
+
+
+            </div>
+        </div>
+
+
+        <div class="clearfix">
+            <hr>
+        </div>
+
+        <div class="row mt-5 mb-5">
+
+            <!-- start feature box item -->
+            <div class="col-12 d-table mb-3">
+                <span style="width: 50px" class="d-table-cell align-top text-primary font-20"><i class="fa fa-fw fa-gifts mr-3"></i></span>
+                <div class="d-table-cell">
+                    <h4 class="d-block mb-3 text-uppercase font-20 page-header">Free &amp; Open Source</h4>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <ul class="list-unstyled style-1">
+                                <li>Auth <small>(Login, Register, Forgot Password)</small></li>
+                                <li>Roles</li>
+                                <li>Log Activity <small>(website and admin)</small></li>
+                                <li>Notifications</li>
+                                <li>Google Analytics Reports</li>
+                                <li>Website Page Builder</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <ul class="list-unstyled style-1">
+                                        <li>Banners</li>
+                                        <li>Photos</li>
+                                        <li>Videos</li>
+                                        <li>Documents</li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <ul class="list-unstyled style-1">
+                                        <li>News</li>
+                                        <li>FAQ's</li>
+                                        <li>Locations</li>
+                                        <li>Shop</li>
+                                    </ul>
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <ul>
-                                    <li>Banners</li>
-                                    <li>Photos</li>
-                                    <li>Documents</li>
-                                    <li>Blog</li>
-                                    <li>News and Events</li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <h4 class="card-title"><i class="fa fa-fw fa-cubes"></i> Add On Packages
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/faq" target="_blank">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/changelogs" target="_blank">Changelogs</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/corporate" target="_blank">Corporate</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/testimonials" target="_blank">Testimonials</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/locations" target="_blank">Locations</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/bpocallaghan/subscriptions" target="_blank">Subscription
-                                    Plans</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <!-- end feature box item -->
+
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-12">
-                <h2 class="page-header">Core Packages Included</h2>
+            <div class="col-12">
+                <h2 class="page-header text-center mb-5">Core Packages Included</h2>
             </div>
         </div>
-        <div class="row card-columns mt-2 packages text-center">
-            <div class="col-md-4 col-sm-6 mb-3">
+        <div class="row mt-2 packages text-center justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
                 <div class="card h-100">
                     <div class="card-header">
                         <div class="card-title">File Generators</div>
@@ -174,32 +169,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-3">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <div class="card-title">Titan</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="description">
-                            <a target="_blank" href="https://github.com/bpocallaghan/titan">
-                                Projects Core Useful classes you can use for every Laravel project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-12 col-md-8">
                         <p>A Laravel CMS Starter project with AdminLTE, Roles, Impersonations,
                             Analytics, Activity, Notifications and more.</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4">
                         <a class="btn btn-lg btn-light btn-block" href="https://github.com/bpocallaghan/titan-starter">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-fw fa-github"></i>
                             Read More on GitHub
                         </a>
                     </div>

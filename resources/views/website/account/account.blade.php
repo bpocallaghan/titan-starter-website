@@ -9,11 +9,11 @@
             <div class="col-sm-7 col-lg-8">
             @include('alert::alert')
 
-            <div class="row pb-5">
-                <div class="col-sm-6">
+            <div class="row pb-3">
+                <div class="col-12 col-md-6">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h3 data-icon="fa fa-file-alt fa-fw">Your orders </h3>
+                            <h3 class="strong font-20" data-icon="fa fa-file-alt fa-fw">Your orders </h3>
                         </div>
                         <div class="card-footer">
                             <span>{{ isset($totalTransactions)? $totalTransactions : 0 }}
@@ -22,11 +22,10 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-
+                <div class="col-12 col-md-6">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h3 data-icon="fa fa-shopping-cart fa-fw">Your Cart </h3>
+                            <h3 class="strong font-20" data-icon="fa fa-shopping-cart fa-fw">Your Cart </h3>
                         </div>
                         <div class="card-footer">
                             <span>{{ session('basket.total_items', 0) }}
@@ -37,7 +36,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-12 col-md-6">
                     <div class="card mb-3">
                         <div class="card-header">
                             <h3 class="strong font-20" data-icon="fa-user fa-fw">My Profile</h3>
@@ -48,11 +47,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
-
+                <div class="col-12 col-md-6">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h3 class="strong font-18" data-icon="fa-building fa-fw">My Shipping Address</h3>
+                            <h3 class="strong font-20" data-icon="fa-building fa-fw">My Shipping Address</h3>
                         </div>
                         <div class="card-footer">
                             <a href="/account/address">Update shipping address</a>

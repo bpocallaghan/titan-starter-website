@@ -107,36 +107,43 @@
 
                 <div class="row">
                     <div class="col col-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="is_header" class="custom-control-input" id="is_header" {!! ($errors && $errors->any()? (old('is_header') == 'on'? 'checked':'') : (isset($item)? $item->is_header == 1? 'checked' : '' : 'checked')) !!}>
-                            <label class="custom-control-label" for="is_header">Is Header</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="is_header" class="custom-control-input" id="is_header" {!! ($errors && $errors->any()? (old('is_header') == 'on'? 'checked':'') : (isset($item)&& $item->is_header == 1? 'checked' : 'checked' )) !!}>
+                                <label class="custom-control-label" for="is_header">Is Header</label>
+                                {!! form_error_message('is_header', $errors) !!}
+                            </div>
                         </div>
-                        {!! form_error_message('is_header', $errors) !!}
                     </div>
 
                     <div class="col col-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="is_footer" class="custom-control-input" id="is_footer" {!! ($errors && $errors->any()? (old('is_footer') == 'on'? 'checked':'') : (isset($item)&& $item->is_footer == 1? 'checked' : '' )) !!}>
-                            <label class="custom-control-label" for="is_footer">Is Footer</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="is_footer" class="custom-control-input" id="is_footer" {!! ($errors && $errors->any()? (old('is_footer') == 'on'? 'checked':'') : (isset($item)&& $item->is_footer == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="is_footer">Is Footer</label>
+                                {!! form_error_message('is_footer', $errors) !!}
+                            </div>
                         </div>
-                        {!! form_error_message('is_footer', $errors) !!}
                     </div>
 
                     <div class="col col-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="is_hidden" class="custom-control-input" id="is_hidden" {!! ($errors && $errors->any()? (old('is_hidden') == 'on'? 'checked':'') : (isset($item)&& $item->is_hidden == 1? 'checked' : '' )) !!}>
-                            <label class="custom-control-label" for="is_hidden">Is Hidden</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="is_hidden" class="custom-control-input" id="is_hidden" {!! ($errors && $errors->any()? (old('is_hidden') == 'on'? 'checked':'') : (isset($item)&& $item->is_hidden == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="is_hidden">Is Hidden</label>
+                                {!! form_error_message('is_hidden', $errors) !!}
+                            </div>
                         </div>
-                        {!! form_error_message('is_hidden', $errors) !!}
                     </div>
 
                     <div class="col col-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="is_featured" class="custom-control-input" id="is_featured" {!! ($errors && $errors->any()? (old('is_featured') == 'on'? 'checked':'') : (isset($item)&& $item->is_featured == 1? 'checked' : '' )) !!}>
-                            <label class="custom-control-label" for="is_featured">Is Featured</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="is_featured" class="custom-control-input" id="is_featured" {!! ($errors && $errors->any()? (old('is_featured') == 'on'? 'checked':'') : (isset($item)&& $item->is_featured == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="is_featured">Is Featured</label>
+                                {!! form_error_message('is_featured', $errors) !!}
+                            </div>
                         </div>
-                        {!! form_error_message('is_featured', $errors) !!}
-
                     </div>
                 </div>
             </fieldset>

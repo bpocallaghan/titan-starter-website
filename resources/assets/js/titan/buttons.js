@@ -20,12 +20,19 @@ var ButtonClass = function ()
     this.loading = function (btn)
     {
         $(btn).attr('data-reset', $(btn).html());
-        $(btn).attr('data-loading', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
+
+        var attr = $(btn).attr('data-loading');
+
+        // For some browsers, `attr` is undefined; for others, `attr` is false.  Check for both.
+        if (typeof attr === typeof undefined || attr === false) {
+            $(btn).attr('data-loading', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
+        }
+
         $(btn).each(function ()
         {
             // console.log('loading loading');
             buttonDisable($(this));
-        })
+        });
     };
 
     /**
@@ -44,33 +51,23 @@ var ButtonClass = function ()
     // enable all buttons
     this.activate = function ()
     {
-        $('.btn-ajax-submit').each(function ()
+        $('.btn-ajax-submit, .btn-submit').each(function ()
         {
             buttonEnable($(this));
         });
 
-        $('.btn-submit').attr('data-loading-text', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
+        var attr = $('.btn-submit').attr('data-loading-text');
+
+        // For some browsers, `attr` is undefined; for others, `attr` is false.  Check for both.
+        if (typeof attr === typeof undefined || attr === false) {
+            $('.btn-submit').attr('data-loading-text', "<i class='fas fa-spin fa-sync-alt fa-fw'></i>");
+        }
+
         $('.btn-submit').on('click', function ()
         {
             root.loading(this);
         });
 
-        // when button gets the disabled attribute
-        // the ajax form does not get triggered
-        // return false;
-
-        // $('.btn-ajax-submit').off('click');
-        // $('.btn-ajax-submit').on('click', function (e)
-        // {
-        //     // console.log('clickckkkkkk');
-        //     root.loading($(this));
-        // });
-
-        // $('.btn-submit').attr('data-loading', "<i class='fa fa-spin fa-refresh'></i>");
-        // $('.btn-submit').on('click', function ()
-        // {
-        //     root.loading($(this));
-        // });
     };
 
     // enable a specific button

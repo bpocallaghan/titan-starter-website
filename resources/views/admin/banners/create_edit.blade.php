@@ -32,24 +32,24 @@
                     </div>
 
                     <div class="col-md-2">
-                        <div class="form-group clearfix">
-                            <label for="id-hide_name">Set Visibility</label>
-                            <div class="icheck-primary" style="margin-top: 5px">
-                                <input type="checkbox" id="hide_name" name="hide_name" {!! ($errors && $errors->any()? (old('hide_name') == 'on'? 'checked':'') : (isset($item)? $item->hide_name == 1? 'checked' : '' : '')) !!}>
-                                <label for="hide_name">Hide Name</label>
+                        <div class="form-group">
+                            <label for="hide_name">Set Visibility</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="hide_name" class="custom-control-input" id="hide_name" {!! ($errors && $errors->any()? (old('hide_name') == 'on'? 'checked':'') : (isset($item)&& $item->hide_name == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="hide_name">Hide Name</label>
+                                {!! form_error_message('hide_name', $errors) !!}
                             </div>
-                            {!! form_error_message('hide_name', $errors) !!}
                         </div>
                     </div>
 
                     <div class="col-md-2">
-                        <div class="form-group clearfix">
-                            <label for="id-is_website">Add to All Pages?</label>
-                            <div class="icheck-primary" style="margin-top: 5px">
-                                <input type="checkbox" id="is_website" name="is_website" {!! ($errors && $errors->any()? (old('is_website') == 'on'? 'checked':'') : (isset($item)? $item->is_website == 1? 'checked' : '' : 'checked')) !!}>
-                                <label for="is_website">Is Website Visibility</label>
+                        <div class="form-group ">
+                            <label for="is_website">Add to All Pages?</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="is_website" class="custom-control-input" id="is_website" {!! ($errors && $errors->any()? (old('is_website') == 'on'? 'checked':'') : (isset($item)&& $item->is_website == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="is_website">Is Website Visibility</label>
+                                {!! form_error_message('is_website', $errors) !!}
                             </div>
-                            {!! form_error_message('is_website', $errors) !!}
                         </div>
                     </div>
                 </div>

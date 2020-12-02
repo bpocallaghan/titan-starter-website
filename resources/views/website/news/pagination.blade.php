@@ -1,6 +1,6 @@
 <div class="row pb-3">
     @foreach($paginator as $item)
-        <div class="col-md-6">
+        <div class="col-12 col-lg-6 col-xl-4">
             <div class="card h-100">
                 <img class="card-img-top" src="{{ $item->cover_photo->thumbUrl }}" alt="{{ $item->name }}">
                 <div class="card-body">
