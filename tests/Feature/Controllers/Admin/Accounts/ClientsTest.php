@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controllers\Admin\Accounts;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;

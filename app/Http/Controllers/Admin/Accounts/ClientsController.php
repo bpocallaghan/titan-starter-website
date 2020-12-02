@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Accounts;
 
 use App\Models\Role;
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Validation\Rule;
 
@@ -94,7 +94,7 @@ class ClientsController extends AdminController
             'required',
             'string',
             'email',
-            'max:255',
+            'max:191',
             Rule::unique('users')->ignore($client->id)
         ];
         $rules['password'] = ['nullable', 'string', 'min:4', 'confirmed'];

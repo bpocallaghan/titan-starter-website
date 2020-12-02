@@ -1,19 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Models\ShippingAddress;
 use App\Models\Traits\UserAdmin;
 use App\Models\Traits\UserRoles;
 use App\Models\Traits\UserHelper;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, SoftDeletes, UserHelper, UserRoles, UserAdmin;
+    use HasFactory, Notifiable, SoftDeletes, UserHelper, UserRoles, UserAdmin;
 
     protected $appends = ['fullname'];
     /**
@@ -22,36 +23,20 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
+        'email',
+        'password',
         'firstname',
         'lastname',
-        'email',
         'gender',
         'cellphone',
         'image',
         'born_at',
         'logged_in_as',
         'security_level',
-        'password',
         'session_token',
         'logged_in_at',
         'disabled_at',
     ];
-
-    /**
-     * Validation rules for this model
-     */
-    static public $rules = [
-        'firstname' => ['required', 'string', 'max:190'],
-        'lastname'  => ['required', 'string', 'max:190'],
-        //'gender'    => 'required|in:male,female',
-        'cellphone' => ['nullable', 'string', 'max:190'],
-        'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password'  => ['required', 'string', 'min:4', 'confirmed'],
-        //'token'     => 'required|exists:user_invites,token',
-        //'photo'     => 'required|image|max:6000|mimes:jpg,jpeg,png,bmp',
-    ];
-
-    static public $messages = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -67,17 +52,43 @@ class User extends Authenticatable implements MustVerifyEmail
         'disabled_at'
     ];
 
-    protected $dates = ['email_verified_at', 'deleted_at', 'logged_in_at', 'activated_at'];
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'deleted_at'        => 'datetime',
+        'logged_in_at'      => 'datetime',
+        'activated_at'      => 'datetime',
+    ];
+
+    static public $messages = [];
+
+    /**
+     * Validation rules for this model
+     */
+    static public $rules = [
+        'firstname' => ['required', 'string', 'max:191'],
+        'lastname'  => ['required', 'string', 'max:191'],
+        //'gender'    => 'required|in:male,female',
+        'cellphone' => ['nullable', 'string', 'max:191'],
+        'email'     => ['required', 'string', 'email', 'max:191', 'unique:users'],
+        'password'  => ['required', 'string', 'min:4', 'confirmed'],
+        //'token'     => 'required|exists:user_invites,token',
+        //'photo'     => 'required|max:6000|mimes:jpg,jpeg,png,bmp',
+    ];
 
     /**
      * Validation rules for this model
      */
     static public $rulesClient = [
-        'firstname' => ['required', 'string', 'max:190'],
-        'lastname'  => ['required', 'string', 'max:190'],
+        'firstname' => ['required', 'string', 'max:191'],
+        'lastname'  => ['required', 'string', 'max:191'],
         //'gender'    => 'required|in:male,female',
-        'cellphone' => ['nullable', 'string', 'max:190'],
-        'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'cellphone' => ['nullable', 'string', 'max:191'],
+        'email'     => ['required', 'string', 'email', 'max:191', 'unique:users'],
         'password'  => ['required', 'string', 'min:4', 'confirmed'],
         'roles'     => ['required', 'array'],
     ];
@@ -91,7 +102,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'gender'    => 'required|in:male,female',
         'telephone' => 'nullable|min:9',
         'password'  => 'nullable|min:4|confirmed',
-        'photo'     => 'required|image|max:6000|mimes:jpg,jpeg,png,bmp',
+        'photo'     => 'required|max:6000|mimes:jpg,jpeg,png,bmp',
     ];
 
     /**

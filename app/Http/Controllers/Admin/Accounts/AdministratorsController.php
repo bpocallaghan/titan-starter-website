@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Accounts;
 
-use App\User;
+use App\Models\User;
 use App\Models\Role;
 use App\Http\Controllers\Admin\AdminController;
 

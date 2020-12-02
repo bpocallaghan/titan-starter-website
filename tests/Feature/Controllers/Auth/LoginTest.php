@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\LogLogin;
 use Illuminate\Foundation\Testing\WithFaker;

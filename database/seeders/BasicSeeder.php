@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class BasicSeeder extends Seeder
@@ -54,7 +56,7 @@ class BasicSeeder extends Seeder
         }
 
         // load file
-        $csvPath = database_path() . DIRECTORY_SEPARATOR . 'seeds' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
+        $csvPath = database_path() . DIRECTORY_SEPARATOR . 'seeders' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
         $items = csv_to_array($csvPath);
 
         // all keys in file
@@ -72,11 +74,11 @@ class BasicSeeder extends Seeder
     {
         // if truncate table
         if ($truncate) {
-            DB::table($table)->truncate();
+            \DB::table($table)->truncate();
         }
 
         // load file
-        $csvPath = database_path() . DIRECTORY_SEPARATOR . 'seeds' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
+        $csvPath = database_path() . DIRECTORY_SEPARATOR . 'seeders' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
         $items = csv_to_array($csvPath);
 
         // all keys in file
@@ -86,7 +88,7 @@ class BasicSeeder extends Seeder
             $data = $this->prepareCSVRowsToInsertIntoDB($keys, $item);
 
             // insert
-            DB::table($table)->insert([
+            \DB::table($table)->insert([
                 $data
             ]);
         }

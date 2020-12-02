@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Website\Shop;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\Transaction;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Monolog\Logger;
 use App\Http\Requests;

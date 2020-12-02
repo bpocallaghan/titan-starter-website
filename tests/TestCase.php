@@ -2,11 +2,11 @@
 
 namespace Tests;
 
-use App\User;
+use App\Models\User;
 use App\Models\Role;
-use PagesTableSeeder;
-use RolesTableSeeder;
-use NavigationsTableSeeder;
+use Database\Seeders\PagesTableSeeder;
+use Database\Seeders\RolesTableSeeder;
+use Database\Seeders\NavigationsTableSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase

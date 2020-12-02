@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +9,7 @@ if (!function_exists('user')) {
      * Get the logged in user
      *
      * @param string $guard
-     * @return \App\User|\Illuminate\Contracts\Auth\Authenticatable|object
+     * @return \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|object
      */
     function user($guard = 'web')
     {

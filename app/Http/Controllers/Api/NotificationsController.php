@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
+use App\Models\User;
 use App\Models\Notification;
 use Bpocallaghan\LogActivity\Models\LogActivity;
 
