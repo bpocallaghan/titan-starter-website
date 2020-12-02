@@ -6,7 +6,7 @@
         @include('website.partials.page_header')
 
         <div class="row pb-5">
-            <div class="col-sm-7 col-lg-8">
+            <div class="col-md-7 col-lg-8">
 
                 @foreach($page->components as $content)
                     <div class="mb-5">
@@ -14,6 +14,7 @@
                         @include('website.pages.page_content')
 
                         @include('website.pages.page_gallery')
+                        @include('website.pages.page_videos')
                         @include('website.pages.page_documents')
                     </div>
                 @endforeach
