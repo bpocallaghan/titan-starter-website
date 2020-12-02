@@ -33,8 +33,8 @@ class Product extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'         => 'required|min:3:max:255',
-        'reference'    => 'nullable|max:240',
+        'name'         => 'required|min:3|max:191',
+        'reference'    => 'nullable|max:191',
         'amount'       => 'required|numeric',
         'special_amount'=> 'nullable|numeric',
         'in_stock'     => 'nullable',

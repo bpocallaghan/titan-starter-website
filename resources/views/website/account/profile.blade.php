@@ -17,55 +17,55 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-group {{ form_error_class('firstname', $errors) }}">
+                            <div class="form-group">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" name="firstname" placeholder="Enter First Name" value="{{ ($errors->any()? old('firstname') : $user->firstname) }}">
+                                <input type="text" class="form-control {{ form_error_class('firstname', $errors) }}" name="firstname" placeholder="Enter First Name" value="{{ ($errors->any()? old('firstname') : $user->firstname) }}">
                                 {!! form_error_message('firstname', $errors) !!}
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-group {{ form_error_class('lastname', $errors) }}">
+                            <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" name="lastname" placeholder="Enter Last Name" value="{{ ($errors->any()? old('lastname') : $user->lastname) }}">
+                                <input type="text" class="form-control {{ form_error_class('lastname', $errors) }}" name="lastname" placeholder="Enter Last Name" value="{{ ($errors->any()? old('lastname') : $user->lastname) }}">
                                 {!! form_error_message('lastname', $errors) !!}
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group {{ form_error_class('cellphone', $errors) }}">
+                    <div class="form-group">
                         <label for="cellphone">Cellphone</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="cellphone" name="cellphone" placeholder="Please insert the Cellphone" value="{{ ($errors->any()? old('cellphone') : $user->cellphone) }}">
+                            <input type="text" class="form-control {{ form_error_class('cellphone', $errors) }}" id="cellphone" name="cellphone" placeholder="Please insert the Cellphone" value="{{ ($errors->any()? old('cellphone') : $user->cellphone) }}">
+                            {!! form_error_message('cellphone', $errors) !!}
                             <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fw fa-mobile-alt"></i></span></div>
                         </div>
-                        {!! form_error_message('cellphone', $errors) !!}
                     </div>
 
-                    <div class="form-group {{ form_error_class('email', $errors) }}">
+                    <div class="form-group">
                         <label>Email Address</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="id-email" name="email" placeholder="Email Address" value="{{ ($errors->any()? old('email') : $user->email) }}">
+                            <input type="text" class="form-control {{ form_error_class('email', $errors) }}" id="id-email" name="email" placeholder="Email Address" value="{{ ($errors->any()? old('email') : $user->email) }}">
+                            {!! form_error_message('email', $errors) !!}
                             <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span></div>
                         </div>
-                        {!! form_error_message('email', $errors) !!}
                     </div>
 
-                    <div class="form-group {{ form_error_class('password', $errors) }}">
+                    <div class="form-group">
                         <label>Password (leave blank to keep it unchanged)</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="id-password" name="password" placeholder="Password" value="{{ old('password') }}">
+                            <input type="password" class="form-control {{ form_error_class('password', $errors) }}" id="id-password" name="password" placeholder="Password" value="{{ old('password') }}">
+                            {!! form_error_message('password', $errors) !!}
                             <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span></div>
                         </div>
-                        {!! form_error_message('password', $errors) !!}
                     </div>
 
-                    <div class="form-group {{ form_error_class('password_confirmation', $errors) }}">
+                    <div class="form-group">
                         <label>Confirm Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="id-password_confirmation" name="password_confirmation" placeholder="Password Confirm" value="{{ old('password_confirmation') }}">
+                            <input type="password" class="form-control {{ form_error_class('password_confirmation', $errors) }}" id="id-password_confirmation" name="password_confirmation" placeholder="Password Confirm" value="{{ old('password_confirmation') }}">
+                            {!! form_error_message('password_confirmation', $errors) !!}
                             <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span></div>
                         </div>
-                        {!! form_error_message('password_confirmation', $errors) !!}
                     </div>
 
                     <div class="row">

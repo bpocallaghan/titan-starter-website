@@ -36,24 +36,24 @@
 
                 <div class="row">
                     <div class="@if(isset($item) && $item->media) col-md-6 @else col-md-8 @endif">
-                        <div class="form-group {{ form_error_class('media', $errors) }}">
+                        <div class="form-group">
                             <label>Upload your Photo - Maximum 2MB <span class="small">(Optional)</span> </label>
                             <div class="input-group">
-                                <input id="media-label" type="text" class="form-control" readonly placeholder="Browse for a photo">
+                                <input id="media-label" type="text" class="form-control {{ form_error_class('media', $errors) }}" readonly placeholder="Browse for a photo">
                                 <input id="media" style="display: none" accept="{{ get_file_extensions('image') }}" type="file" name="media" onchange="document.getElementById('media-label').value = this.value">
+                                {!! form_error_message('media', $errors) !!}
 
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-secondary" onclick="document.getElementById('media').click();">Browse</button>
                                 </div>
                             </div>
-                            {!! form_error_message('media', $errors) !!}
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group {{ form_error_class('media_align', $errors) }}">
+                        <div class="form-group">
                             <label for="media_align">Media Alignment</label>
-                            {!! form_select('media_align', ['left'  => 'Left', 'right' => 'Right', 'top'   => 'Top / Center'], ($errors && $errors->any()? old('media_align') : (isset($item)? $item->media_align : 'left')), ['class' => 'select2 form-control']) !!}
+                            {!! form_select('media_align', ['left'  => 'Left', 'right' => 'Right', 'top'   => 'Top / Center'], ($errors && $errors->any()? old('media_align') : (isset($item)? $item->media_align : 'left')), ['class' => 'select2 form-control '.form_error_class('media_align', $errors) ]) !!}
                             {!! form_error_message('media_align', $errors) !!}
                         </div>
                     </div>

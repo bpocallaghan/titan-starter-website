@@ -18,9 +18,9 @@ class Settings extends Model
      * Validation rules for this model
      */
     static public $rules = [
-        'name'        => 'required|min:3:max:255',
+        'name'        => 'required|min:3|max:191',
         'slogan'      => 'nullable',
-        'description' => 'required|min:3:max:2000',
+        'description' => 'required|min:3|max:2000',
         'keywords'    => 'nullable',
         'author'      => 'required',
 

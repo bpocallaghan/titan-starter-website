@@ -25,7 +25,7 @@ class Video extends AdminModel
         'name'           => 'required',
         'link'           => 'required',
         'content'        => 'nullable',
-        'photo'          => 'nullable|image|max:6000|mimes:jpg,jpeg,png,bmp',
+        'photo'          => 'nullable|max:6000|mimes:jpg,jpeg,png,bmp',
         'is_cover'       => 'nullable',
         'videoable_id'   => 'required',
         'videoable_type' => 'required',

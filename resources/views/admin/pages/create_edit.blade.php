@@ -97,9 +97,9 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group {{ form_error_class('banners', $errors) }}">
+                        <div class="form-group">
                             <label for="banners">Banners <span class="small">(leave empty to use the default banners)</span></label>
-                            {!! form_select('banners[]', $banners, ($errors && $errors->any()? old('banners') : (isset($item)? $item->banners->pluck('id')->all() : '')), ['class' => 'select2 form-control', 'multiple']) !!}
+                            {!! form_select('banners[]', $banners, ($errors && $errors->any()? old('banners') : (isset($item)? $item->banners->pluck('id')->all() : '')), ['class' => 'select2 form-control '.form_error_class('banners', $errors), 'multiple']) !!}
                             {!! form_error_message('banners', $errors) !!}
                         </div>
                     </div>

@@ -29,9 +29,9 @@ class Role extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'    => 'required|min:3:max:255',
-        'slug'    => 'required|min:1:max:255',
-        'keyword' => 'required|min:3:max:255',
+        'name'    => 'required|min:3|max:191',
+        'slug'    => 'required|min:1|max:191',
+        'keyword' => 'required|min:3|max:191',
     ];
 
     public function getIconTitleAttribute()

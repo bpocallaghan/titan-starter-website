@@ -25,17 +25,17 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group {{ form_error_class('name', $errors) }}">
+                            <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
+                                <input type="text" class="form-control  {{ form_error_class('name', $errors) }}" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                                 {!! form_error_message('name', $errors) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group {{ form_error_class('continent_id', $errors) }}">
+                            <div class="form-group">
                                 <label for="province">Continent</label>
-                                {!! form_select('continent_id', ([0 => 'Please select a Continent'] + $continents), ($errors && $errors->any()? old('continent_id') : (isset($item)? $item->continent_id : '')), ['class' => 'select2 form-control']) !!}
+                                {!! form_select('continent_id', ([0 => 'Please select a Continent'] + $continents), ($errors && $errors->any()? old('continent_id') : (isset($item)? $item->continent_id : '')), ['class' => 'select2 form-control '.form_error_class('continent_id', $errors)]) !!}
                                 {!! form_error_message('continent_id', $errors) !!}
                             </div>
                         </div>

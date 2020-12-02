@@ -25,17 +25,17 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group {{ form_error_class('name', $errors) }}">
+                            <div class="form-group">
                                 <label for="name">Title</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
+                                <input type="text" class="form-control  {{ form_error_class('name', $errors) }}" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                                 {!! form_error_message('name', $errors) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group {{ form_error_class('country_id', $errors) }}">
+                            <div class="form-group">
                                 <label for="country">Country</label>
-                                {!! form_select('country_id', ([0 => 'Please select a Country'] + $countries), ($errors && $errors->any()? old('country_id') : (isset($item)? $item->country_id : '')), ['class' => 'select2 form-control']) !!}
+                                {!! form_select('country_id', ([0 => 'Please select a Country'] + $countries), ($errors && $errors->any()? old('country_id') : (isset($item)? $item->country_id : '')), ['class' => 'select2 form-control '.form_error_class('country_id', $errors) ]) !!}
                                 {!! form_error_message('country_id', $errors) !!}
                             </div>
                         </div>

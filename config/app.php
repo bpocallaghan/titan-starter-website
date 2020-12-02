@@ -2,11 +2,19 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Titan Starter Website config items
+    |--------------------------------------------------------------------------
+    |
+    | These are some config items used in Titan Starter Website.
+    |
+    */
     'description' => env('APP_DESCRIPTION', ''),
     'author'      => env('APP_AUTHOR', ''),
     'keywords'    => env('APP_KEYWORDS', 'laravel,titan'),
 
-    'assets_version' => env('ASSETS_VERSION', '4'),
+    'assets_version' => env('ASSETS_VERSION', '1'),
 
     'facebook_app_id'       => env('FACEBOOK_APP_ID', ''),
     'google_map_key'        => env('GOOGLE_MAP_KEY', ''),

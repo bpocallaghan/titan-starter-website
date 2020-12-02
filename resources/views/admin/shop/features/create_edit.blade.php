@@ -21,9 +21,9 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group {{ form_error_class('name', $errors) }}">
+                            <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
+                                <input type="text" class="form-control {{ form_error_class('name', $errors) }}" id="name" name="name" placeholder="Please insert the Name" value="{{ ($errors && $errors->any()? old('name') : (isset($item)? $item->name : '')) }}">
                                 {!! form_error_message('name', $errors) !!}
                             </div>
                         </div>

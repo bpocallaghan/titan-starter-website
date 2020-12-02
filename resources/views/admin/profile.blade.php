@@ -109,13 +109,13 @@
 
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio mr-5">
-                                                <input class="custom-control-input {{ form_error_class('gender', $errors) }}" type="radio" id="gender1" name="gender" value="male" {{ ($errors->any() && old('gender') == 'male'? 'checked="checked"' : user()->gender == 'male'? 'checked="checked"':'') }}>
+                                                <input class="custom-control-input {{ form_error_class('gender', $errors) }}" type="radio" id="gender1" name="gender" value="male" {{ ($errors->any() && old('gender') == 'male'? 'checked="checked"' : (user()->gender == 'male'? 'checked="checked"':'')) }}>
                                                 <label for="gender1" class="custom-control-label">Male</label>
                                                 {!! form_error_message('gender', $errors) !!}
                                             </div>
 
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input {{ form_error_class('gender', $errors) }}" type="radio" id="gender2" name="gender" value="female" {{ ($errors->any() && old('gender') == 'female'? 'checked="checked"' : user()->gender == 'female'? 'checked="checked"':'') }}>
+                                                <input class="custom-control-input {{ form_error_class('gender', $errors) }}" type="radio" id="gender2" name="gender" value="female" {{ ($errors->any() && old('gender') == 'female'? 'checked="checked"' : (user()->gender == 'female'? 'checked="checked"':'')) }}>
                                                 <label for="gender2" class="custom-control-label">Female</label>
                                             </div>
 
