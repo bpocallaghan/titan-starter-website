@@ -17,7 +17,7 @@
         "cross-env": "^7.0",
         "jquery": "^3.5.0",
         "jquery.cookie": "^1.4.1",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^5.0.9",
         "lodash": "^4.17.19",
         "pace": "0.0.4",
         "pace-js": "^1.0.2",
