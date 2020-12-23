@@ -67,6 +67,15 @@
             return button.render();
         }
 
+        function addLinkToSummernote(selector, name, url, isNewWindow)
+        {
+            $(selector).summernote('createLink', {
+                text: name,
+                url: url,
+                isNewWindow: isNewWindow
+            });
+        }
+
         $(function () {
             // on insert link
             $('#modal-documents-submit').on('click', function () {
