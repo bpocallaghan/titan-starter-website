@@ -85,16 +85,16 @@ function getOrderBy(element)
 
 function initActionDeleteClick(element)
 {
-    $('.dt-table').off('click', '.btn-delete-row');
-    $('.dt-table').off('click', '.btn-confirm-modal-row');
+    $('.dt-table, .dt-titan').off('click', '.btn-delete-row');
+    $('.dt-table, .dt-titan').off('click', '.btn-confirm-modal-row');
     if (element) {
         element.off('click', '.btn-delete-row');
         element.off('click', '.btn-confirm-modal-row');
     }
 
     // DELETE ROW LINK
-    $('.dt-table').on('click', '.btn-delete-row', onActionDeleteClick);
-    $('.dt-table').on('click', '.btn-confirm-modal-row', onConfirmRowlick);
+    $('.dt-table, .dt-titan').on('click', '.btn-delete-row', onActionDeleteClick);
+    $('.dt-table, .dt-titan').on('click', '.btn-confirm-modal-row', onConfirmRowlick);
 
     if (element) {
         element.on('click', '.btn-delete-row', onActionDeleteClick);
@@ -106,6 +106,11 @@ function initActionDeleteClick(element)
         e.preventDefault();
         var formId = $(this).attr('data-form');
         var title = $(this).attr('data-original-title');
+
+        if (typeof title === typeof undefined || title === false) {
+            title = $(this).attr('title');
+        }
+
         if (title.length > 7) {
             title = '<strong>' + title.substring(0, 6).toLowerCase() + '</strong> the <strong>' + title.slice(7) + '</strong>';
         }
@@ -125,6 +130,11 @@ function initActionDeleteClick(element)
         e.preventDefault();
         var formId = $(this).attr('data-form');
         var title = $(this).attr('data-original-title');
+
+        if (typeof title === typeof undefined || title === false) {
+            title = $(this).attr('title');
+        }
+
         title = '<strong>' + title + '</strong>';
 
         var content = "Are you sure you want to " + title + "? ";
