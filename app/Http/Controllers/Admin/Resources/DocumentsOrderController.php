@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\Resources;
 
 use Illuminate\Http\Request;
-use App\Models\Photo;
+use App\Models\Document;
 use Bpocallaghan\Titan\Http\Requests;
 use App\Http\Controllers\Admin\AdminController;
 
-class PhotosOrderController extends AdminController
+class DocumentsOrderController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -16,34 +16,34 @@ class PhotosOrderController extends AdminController
      */
     public function index()
     {
-        $items = Photo::orderBy('list_order')->get();
+        $items = Document::orderBy('list_order')->get();
 
-        return $this->view('resources.photos.order')->with('items', $items);
+        return $this->view('resources.documents.order')->with('items', $items);
     }
 
     /**
-     * Show the Photoable's photos
-     * Create / Edit / Delete the photos
-     * @param $photoable
+     * Show the Documentable's documents
+     * Create / Edit / Delete the documents
+     * @param $documentable
      * @return mixed
      */
-    private function showPhotoable($photoable)
+    private function showDocumentable($documentable)
     {
         save_resource_url();
 
 
-        return $this->view('resources.photos.order')
-            ->with('photoable', $photoable);
+        return $this->view('resources.documents.order')
+            ->with('documentable', $documentable);
 
     }
 
     /**
-     * Show the News' photos
+     * Show the News' documents
      * @param $resouceable
      * @param $id
      * @return mixed
      */
-    public function showPhotos($resouceable, $id)
+    public function showDocuments($resouceable, $id)
     {
         $model_name = str_replace('-', ' ',ucwords($resouceable));
         $model_name = str_replace(' ', '',ucwords($model_name));
@@ -52,7 +52,7 @@ class PhotosOrderController extends AdminController
         $model = app($resource_type);
         $model = $model->find($id);
 
-        return $this->showPhotoable($model);
+        return $this->showDocumentable($model);
     }
 
     /**
@@ -66,7 +66,7 @@ class PhotosOrderController extends AdminController
         $items = json_decode($request->get('list'), true);
 
         foreach ($items as $key => $item) {
-            $photo = Photo::find($item['id'])->update(['list_order' => ($key + 1)]);
+            $document = Document::find($item['id'])->update(['list_order' => ($key + 1)]);
         }
 
         return ['result' => 'success'];

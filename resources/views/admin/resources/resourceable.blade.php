@@ -4,17 +4,17 @@
             <ul class="nav nav-tabs" id="resources" role="tablist">
                 @if(isset($resource->photos))
                     <li class="nav-item">
-                        <a class="toggle-sortable nav-link active" id="resources-photos-tab" data-url="/admin/resources/photos/order" data-type="photoGridSortable" data-toggle="pill" href="#resources-photos" role="tab" aria-controls="resources-photos" aria-selected="true"><i class="fas fa-images"></i> Photos</a>
+                        <a class="toggle-sortable nav-link active" id="resources-photos-tab" data-url="/admin/resources/photos/order" data-type="photoGridSortable" data-toggle="pill" href="#resources-photos" role="tab" aria-controls="resources-photos" aria-selected="true"><i class="fas fa-fw fa-images"></i> Photos</a>
                     </li>
                 @endif
                 @if(isset($resource->videos))
                     <li class="nav-item">
-                        <a class="toggle-sortable nav-link" id="resources-videos-tab" data-url="/admin/resources/videos/order" data-type="videoGridSortable" data-toggle="pill" href="#resources-videos" role="tab" aria-controls="resources-videos" aria-selected="false"><i class="fa fa-film"></i> Videos</a>
+                        <a class="toggle-sortable nav-link" id="resources-videos-tab" data-url="/admin/resources/videos/order" data-type="videoGridSortable" data-toggle="pill" href="#resources-videos" role="tab" aria-controls="resources-videos" aria-selected="false"><i class="fa fa-fw fa-film"></i> Videos</a>
                     </li>
                 @endif
                 @if(isset($resource->documents))
                     <li class="nav-item">
-                        <a class="nav-link" id="resources-documents-tab" data-toggle="pill" href="#resources-documents" role="tab" aria-controls="resources-documents" aria-selected="false"><i class="fas fa-file-pdf"></i> Documents</a>
+                        <a class="toggle-sortable nav-link" id="resources-documents-tab" data-url="/admin/resources/documents/order" data-type="documentGridSortable" data-toggle="pill" href="#resources-documents" role="tab" aria-controls="resources-documents" aria-selected="false"><i class="fas fa-fw fa-file-pdf"></i> Documents</a>
                     </li>
                 @endif
             </ul>
@@ -33,7 +33,7 @@
                     </div>
                 @endif
                 @if(isset($resource->documents))
-                    <div class="tab-pane fade" id="resources-documents" role="tabpanel" aria-labelledby="resources-documents-tab">
+                    <div class="tab-pane fade" data-url="/admin/resources/documents/order" data-type="documentGridSortable" id="resources-documents" role="tabpanel" aria-labelledby="resources-documents-tab">
                         @include('admin.resources.documents.documentable', ['documentable' => $resource, 'documents' => $resource->documents])
                     </div>
                 @endif

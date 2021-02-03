@@ -14,44 +14,46 @@
                 </a>
             </div>
 
-            <div class="row d-flex dd-list video-collection mt-3" id="videoGridSortable">
-                @if(isset($videoable))
-                    @foreach($videoable->videos->sortBy('list_order') as $item)
-                        <div class="col-3 mb-3" data-id="{{ $item->id }}">
-                            <div class="dd-item card dt-table">
-                                <div class="card-header d-flex text-center">
+            <div id="videoGridSortable">
+                <div class="row d-flex dd-list video-collection mt-3">
+                    @if(isset($videoable))
+                        @foreach($videoable->videos->sortBy('list_order') as $item)
+                            <div class="col-3 mb-3" data-id="{{ $item->id }}">
+                                <div class="dd-item card dt-table">
+                                    <div class="card-header d-flex text-center">
 
-                                    <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
-                                        <i class="fas fa-fw fa-list"></i>
-                                    </button>
+                                        <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
+                                            <i class="fas fa-fw fa-list"></i>
+                                        </button>
 
-                                    <div class="form-check text-center m-0 pl-1 flex-fill">
-                                        <div class="custom-control custom-radio">
-                                            <input class="custom-control-input video-cover-radio" id="cover_photo{{ $item->id }}" data-id="{{ $item->id }}" type="radio" name="is_cover" {!! $item->is_cover == 1? 'checked' : '' !!}>
-                                            <label for="cover_photo{{ $item->id }}" class="custom-control-label">Cover</label>
+                                        <div class="form-check text-center m-0 pl-1 flex-fill">
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input video-cover-radio" id="cover_photo{{ $item->id }}" data-id="{{ $item->id }}" type="radio" name="is_cover" {!! $item->is_cover == 1? 'checked' : '' !!}>
+                                                <label for="cover_photo{{ $item->id }}" class="custom-control-label">Cover</label>
+                                            </div>
                                         </div>
+
+                                        <form id="form-delete-row{{ $item->id }}" method="POST" action="/admin/resources/videos/{{ $item->id }}" class="flex-fill text-right dt-titan">
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                            <input name="_id" type="hidden" value="{{ $item->id }}">
+
+                                            <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - {{ $item->name }}">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </a>
+                                        </form>
                                     </div>
 
-                                    <form id="form-delete-row{{ $item->id }}" method="POST" action="/admin/resources/videos/{{ $item->id }}" class="flex-fill text-right dt-titan">
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                        <input name="_id" type="hidden" value="{{ $item->id }}">
+                                    <iframe class="card-img-top" width="315" height="177" src="@if($item->is_youtube) {{ 'https://www.youtube.com/embed/'.$item->link}} @else {{ $item->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                                        <a data-form="form-delete-row{{ $item->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - {{ $item->name }}">
-                                            <i class="fa fa-fw fa-times"></i>
-                                        </a>
-                                    </form>
-                                </div>
-
-                                <iframe class="card-img-top" width="315" height="177" src="@if($item->is_youtube) {{ 'https://www.youtube.com/embed/'.$item->link}} @else {{ $item->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                                <div class="card-footer">
-                                    <a title="{{ $item->name }}" data-toggle="tooltip" href="javascript:void(0)" class="flex-fill text-truncate video-click video-name-{{$item->id}}" data-id="{{$item->id}}" data-modal-title="Update Video">{{ $item->name }}</a>
+                                    <div class="card-footer">
+                                        <a title="{{ $item->name }}" data-toggle="tooltip" href="javascript:void(0)" class="flex-fill text-truncate video-click video-name-{{$item->id}}" data-id="{{$item->id}}" data-modal-title="Update Video">{{ $item->name }}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </div>

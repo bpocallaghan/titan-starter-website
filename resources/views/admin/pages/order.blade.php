@@ -38,7 +38,7 @@
 
             <div class="row">
                 <div class="col col-12">
-                    <div class="dd" id="dd-navigation" style="max-width: 100%">
+                    <div class="dd" id="pageOrderSortable" style="max-width: 100%">
                         {!! $itemsHtml !!}
                     </div>
                 </div>

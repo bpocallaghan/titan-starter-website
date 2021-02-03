@@ -73,47 +73,61 @@
         </div>
 
         <!-- Documents -->
-        <div class="row mt-3">
-            @forelse($documents as $document)
-                <div class="col-2">
-                    <div class="card">
-                        <div class="card-header d-flex text-center">
-                            <span class="flex-fill text-left">
-                                <a class="btn btn-info btn-xs" href="{{ $document->url }}" target="_blank" title="View Document" data-toggle="tooltip">
-                                    <i class="fa fa-eye"></i>
+        <div id="documentGridSortable">
+            <div class="row d-flex dd-list mt-3">
+                @forelse($documentable->documents->sortBy('list_order') as $document)
+                    <div class="col-6 col-md-4 col-xl-3" data-id="{{ $document->id }}">
+                        <div class="dd-item card dt-table">
+                            <div class="card-header d-flex text-center">
+
+                                <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Document">
+                                    <i class="fas fa-fw fa-list"></i>
+                                </button>
+
+                                <span class="flex-fill text-left">
+                                    <a class="btn btn-info btn-xs" href="{{ $document->url }}" target="_blank" title="View Document" data-toggle="tooltip">
+                                        <i class="fa fa-fw fa-eye"></i>
+                                    </a>
+                                </span>
+
+                                <a id="document-row-clicker-{{ $document->id }}" class="flex-fill text-truncate dropzone-document-click" href="javascript:void(0)" data-id="{{ $document->id }}" data-toggle="tooltip" data-title="{{ $document->name }}">
+                                    <span id="document-row-title-span-{{ $document->id }}" class="document-row-title-span">{{ $document->name }}</span>
                                 </a>
-                            </span>
 
-                            <a id="document-row-clicker-{{ $document->id }}" class="flex-fill text-truncate dropzone-document-click" href="javascript:void(0)" data-id="{{ $document->id }}" data-toggle="tooltip" data-title="{{ $document->name }}">
-                                <span id="document-row-title-span-{{ $document->id }}" class="document-row-title-span">{{ $document->name }}</span>
-                            </a>
+                                <form id="form-delete-row{{ $document->id }}" method="POST" action="/admin/resources/documents/{{ $document->id }}" class="dt-titan text-right flex-fill" style="display: inline-block;">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <input name="_id" type="hidden" value="{{ $document->id }}">
 
-                            <form id="form-delete-row{{ $document->id }}" method="POST" action="/admin/resources/documents/{{ $document->id }}" class="dt-titan text-right flex-fill" style="display: inline-block;">
-                                <input name="_method" type="hidden" value="DELETE">
-                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                <input name="_id" type="hidden" value="{{ $document->id }}">
-
-                                <a data-form="form-delete-row{{ $document->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete document - {{ $document->name }}">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </form>
+                                    <a data-form="form-delete-row{{ $document->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete document - {{ $document->name }}">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </a>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @empty
-                <div class="col-12">
-                    <p class="text-muted">Please click on the panel below to upload
-                        documents
-                        to {!! $documentable->name !!}.
-                    </p>
-                </div>
-            @endforelse
+                @empty
+                    <div class="col-12">
+                        <p class="text-muted">Please click on the panel below to upload
+                            documents
+                            to {!! $documentable->name !!}.
+                        </p>
+                    </div>
+                @endforelse
+            </div>
         </div>
         <!-- END Documents -->
     </div>
 
     <div class="box-footer">
-        @include('admin.partials.form.form_footer', ['submit' => false])
+        @php
+            $resourceable_split = preg_split('/(?=[A-Z])/', (new \ReflectionClass($documentable))->getShortName(), -1, PREG_SPLIT_NO_EMPTY);
+            $resourceable_join = join('-', $resourceable_split);
+            $resourceable = strtolower($resourceable_join);
+        @endphp
+
+
+        @include('admin.partials.form.form_footer', ['submit' => false, 'order' => 'Documents', 'orderUrl' => '/admin/resources/documents/'. $resourceable  .'/'.$documentable->id .'/order'])
     </div>
 </div>
 
@@ -157,7 +171,7 @@
     <script type="text/javascript" charset="utf-8">
         $(function () {
             // Dropzone.autoDiscover = false;
-            activateImageClick();
+            activateDocumentClick();
             initActionDeleteClick($('.documents-container'));
 
             // autodiscover was turned off - update the settings
@@ -182,7 +196,7 @@
                 }
             });
 
-            function activateImageClick()
+            function activateDocumentClick()
             {
                 $('.dropzone-document-click').off('click');
                 $('.dropzone-document-click').on('click', function (e) {

@@ -28,7 +28,7 @@
                 @foreach ($items as $item)
                     <tr>
                         <td>{{ $item->name }} {{ $item->is_cover? '(Cover)':'' }}</td>
-                        <td>{{ (isset($item->videoable) && $item->videoable->name)? $item->videoable->name:(new \ReflectionClass($item->videoable))->getShortName() }}</td>
+                        <td>{!! (($item->videoable)? $item->videoable->name:'').' <small>('.(isset($item->videoable)? (new \ReflectionClass($item->videoable))->getShortName() : 'The item thiss belonged to was removed.').')</small>' !!}</td>
                         <td>
                             <figure>
                                 <iframe width="315" height="177" src="@if($item->is_youtube) {{ 'https://www.youtube.com/embed/'.$item->link}} @else {{ $item->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

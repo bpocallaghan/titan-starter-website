@@ -58,13 +58,7 @@ class NavigationOrderController extends AdminController
             $collapseIdClass = ' collapse'.$parent->id.' ';
         }
 
-        if($id == 0){
-            $html_id = 'id="navigationOrderSortable"';
-        }else {
-            $html_id = '';
-        }
-
-        $html = '<div class="dd-list list-group '.$collapseClass.$collapseIdClass.'" '.$html_id.'>';
+        $html = '<div class="dd-list list-group '.$collapseClass.$collapseIdClass.'">';
         foreach ($items as $key => $nav) {
             $html .= '<div class="list-group-item mt-2 mb-2 card dd-item nested-'.$key.'" data-id="' . $nav->id . '">';
             $html .= '<button type="button" class="dd-handle btn btn-sm  btn-outline-secondary mr-3" href="#"> <i class="fa fa-list"></i> </button> ' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');

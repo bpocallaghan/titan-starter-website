@@ -82,16 +82,10 @@ class OrderController extends AdminController
         }
         $items = Page::whereParentIdORM($parentId, $this->navigationType, $this->orderProperty);
 
-        if($id == 0){
-            $html_id = 'id="pageOrderSortable"';
-        }else {
-            $html_id = '';
-        }
-
-        $html = '<div class="dd-list list-group '.$collapseIdClass.$collapseClass.'" '.$html_id.'>';
+        $html = '<div class="dd-list list-group '.$collapseIdClass.$collapseClass.'" >';
 
         foreach ($items as $key => $nav) {
-            $html .= '<div class="list-group-item mt-2 mb-2 card dd-item nested-'.$key.'" data-id="' . $nav->id . '" >';
+            $html .= '<div class="list-group-item mt-2 mb-2 card dd-item nested-'.$key.'" data-id="' . $nav->id . '">';
             $html .= '<button type="button" class="dd-handle btn btn-sm  btn-outline-secondary mr-3" href="#"> <i class="fa fa-list"></i> </button>  ' . (strlen($nav->icon) > 1 ? '<i class="fa-fw fa fa-' . $nav->icon . '"></i> ' : '');
             $html .= '<a data-toggle="collapse" href=".collapse' . $nav->id . '" aria-expanded="true" aria-controls="collapse' . $key . '">'.$nav->name . '</a> ' . ($nav->is_hidden == 1 ? '(HIDDEN)' : '') . ' <span class="text-muted float-right"> ' . $nav->url . ' </span>';
             // featured - ignore parent_id (only one level)

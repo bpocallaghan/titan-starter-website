@@ -27,7 +27,7 @@
                 @foreach ($items as $item)
                     <tr>
                         <td>{{ $item->name }} {{ $item->is_cover? '(Cover)':'' }}</td>
-                        <td>{{ ($item->photoable)? $item->photoable->name:'' }}</td>
+                        <td>{!! (($item->photoable)? $item->photoable->name:'').' <small>('.(isset($item->photoable)? (new \ReflectionClass($item->photoable))->getShortName() : 'The item this belonged to was removed.').')</small>' !!}</td>
                         <td>
                             <a href="{{ $item->url }}" data-lightbox="{{ $item->name }}" data-title="{{ $item->name }}">
                                 <img style="height: 50px;" src="{{ $item->urlForName($item->thumb) }}" title="{{ $item->name }}">

@@ -16,44 +16,46 @@
             </a>
         </div>
 
-        <div class="row d-flex dd-list video-collection" id="videoGridSortable">
-            @if(isset($videos))
-                @foreach($videos->sortBy('list_order') as $video)
-                    <div class="col-6 col-sm-4 col-md-3 mb-3" data-id="{{ $video->id }}">
-                        <div class="dd-item card dt-table">
-                            <div class="card-header d-flex text-center">
+        <div id="videoGridSortable">
+            <div class="row d-flex dd-list video-collection">
+                @if(isset($videos))
+                    @foreach($videos->sortBy('list_order') as $video)
+                        <div class="col-6 col-sm-4 col-md-3 mb-3" data-id="{{ $video->id }}">
+                            <div class="dd-item card dt-table">
+                                <div class="card-header d-flex text-center">
 
-                                <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
-                                    <i class="fas fa-fw fa-list"></i>
-                                </button>
+                                    <button class="dd-handle btn btn-outline-secondary btn-xs mr-2" data-toggle="tooltip" title="Order Photo">
+                                        <i class="fas fa-fw fa-list"></i>
+                                    </button>
 
-                                <div class="form-check text-center m-0 pl-1 flex-fill">
-                                    <div class="custom-control custom-radio">
-                                        <input class="custom-control-input video-cover-radio" id="cover_photo{{ $video->id }}" data-id="{{ $video->id }}" type="radio" name="is_cover" {!! $video->is_cover == 1? 'checked' : '' !!}>
-                                        <label for="cover_photo{{ $video->id }}" class="custom-control-label">Cover</label>
+                                    <div class="form-check text-center m-0 pl-1 flex-fill">
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input video-cover-radio" id="cover_photo{{ $video->id }}" data-id="{{ $video->id }}" type="radio" name="is_cover" {!! $video->is_cover == 1? 'checked' : '' !!}>
+                                            <label for="cover_photo{{ $video->id }}" class="custom-control-label">Cover</label>
+                                        </div>
                                     </div>
+
+                                    <form id="form-delete-row{{ $video->id }}" method="POST" action="/admin/resources/videos/{{ $video->id }}" class="text-right dt-titan">
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                        <input name="_id" type="hidden" value="{{ $video->id }}">
+
+                                        <a data-form="form-delete-row{{ $video->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - {{ $video->name }}">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </a>
+                                    </form>
                                 </div>
 
-                                <form id="form-delete-row{{ $video->id }}" method="POST" action="/admin/resources/videos/{{ $video->id }}" class="text-right dt-titan">
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                    <input name="_id" type="hidden" value="{{ $video->id }}">
+                                <iframe class="card-img-top" width="315" height="177" src="@if($video->is_youtube) {{ 'https://www.youtube.com/embed/'.$video->link}} @else {{ $video->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                                    <a data-form="form-delete-row{{ $video->id }}" class="btn btn-danger btn-xs btn-delete-row text-light" data-toggle="tooltip" title="Delete video - {{ $video->name }}">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </a>
-                                </form>
-                            </div>
-
-                            <iframe class="card-img-top" width="315" height="177" src="@if($video->is_youtube) {{ 'https://www.youtube.com/embed/'.$video->link}} @else {{ $video->link }} @endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                            <div class="card-footer">
-                                <a title="{{ $video->name }}" data-toggle="tooltip" href="javascript:void(0)" class="flex-fill text-truncate video-click video-name-{{$video->id}}" data-id="{{$video->id}}" data-modal-title="Update Video">{{ $video->name }}</a>
+                                <div class="card-footer">
+                                    <a title="{{ $video->name }}" data-toggle="tooltip" href="javascript:void(0)" class="flex-fill text-truncate video-click video-name-{{$video->id}}" data-id="{{$video->id}}" data-modal-title="Update Video">{{ $video->name }}</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            @endif
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
 
