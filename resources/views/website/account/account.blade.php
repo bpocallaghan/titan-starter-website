@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-footer">
                             <span>{{ isset($totalTransactions)? $totalTransactions : 0 }}
-                                recent orders. <a href="/account/orders">View orders</a></span>
+                                recent orders. <a href="{{ route('orders') }}">View orders</a></span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="card-footer">
                             <span>{{ session('basket.total_items', 0) }}
-                                items. <a href="/products/basket">Go to cart</a></span>
+                                items. <a href="{{ route('basket') }}">Go to cart</a></span>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             <h3 class="strong font-20" data-icon="fa-user fa-fw">My Profile</h3>
                         </div>
                         <div class="card-footer">
-                            <a href="/account/profile">Update personal information</a>
+                            <a href="{{ route('profile') }}">Update personal information</a>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             <h3 class="strong font-20" data-icon="fa-building fa-fw">My Shipping Address</h3>
                         </div>
                         <div class="card-footer">
-                            <a href="/account/address">Update shipping address</a>
+                            <a href="{{ route('profile.address') }}">Update shipping address</a>
                         </div>
                     </div>
                 </div>

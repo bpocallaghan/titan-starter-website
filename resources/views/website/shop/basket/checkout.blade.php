@@ -8,7 +8,7 @@
             <div class="row pb-5">
                 <div class="col-sm-7 col-lg-8 content">
 
-                    <form action="{{ request()->url() }}" method="POST" accept-charset="UTF-8" class="needs-validation" novalidate>
+                    <form action="{{ route('basket.checkout.submit') }}" method="POST" accept-charset="UTF-8" class="needs-validation" novalidate>
                         {!! csrf_field() !!}
 
                         <div class="row">
@@ -89,7 +89,7 @@
                                 </div>
 
                                 <p class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-submit" data-icon="fa fa-shopping-cart">
+                                    <button type="submit" class="btn btn-primary" data-icon="fa fa-shopping-cart">
                                         Checkout
                                     </button>
                                 </p>
@@ -109,6 +109,11 @@
 @section('scripts')
     @parent
     <script>
+
+        $('[type="submit"]').on('click', function(){
+            BTN.loading($(this));
+        });
+
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
@@ -122,7 +127,7 @@
                             event.preventDefault();
                             event.stopPropagation();
 
-                            BTN.reset($('.btn-submit[type="submit"]'));
+                            BTN.reset($('[type="submit"]'));
                         }
                         form.classList.add('was-validated');
 

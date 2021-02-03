@@ -10,7 +10,7 @@
 
                 <!--Content-->
                 <div class="col-sm-7 col-lg-8 content pagination-box">
-                    <form id="form-basket" action="{{ request()->url() }}" method="POST" accept-charset="UTF-8">
+                    <form id="form-basket" action="{{ route('basket.submit') }} " method="POST" accept-charset="UTF-8" class="needs-validation" novalidate>
                         {!! csrf_field() !!}
 
                         <div class="row">
@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="col-2 col-sm-2">
                                                 <p>Quantity: </p>
-                                                <input name="quantity[{{$product->id}}]" data-id="{{ $product->id }}" type="number" class="form-control js-quantity" data-amount="{{ $product->amount }}" value="{{ $product->quantity }}" placeholder="Quantity" min="1">
+                                                <input name="quantity[{{$product->id}}]" data-id="{{ $product->id }}" type="number" class="form-control js-quantity" data-amount="{{ $product->amount }}" value="{{ $product->quantity }}" placeholder="Quantity" min="1" required>
                                             </div>
                                             <div class="col-2 col-sm-1">
                                                 <a href="/products/basket/remove/{{$product->id}}" class="btn btn-sm btn-danger" title="Remove Product" data-toggle="tooltip">
@@ -76,7 +76,7 @@
                                 <p class="text-right">
                                     @if($items->count() > 0)
                                         @if(auth()->check())
-                                            <button type="submit" role="button" class="btn btn-primary btn-submit" data-icon="fa fa-shopping-cart">
+                                            <button type="submit" role="button" class="btn btn-primary" data-icon="fa fa-shopping-cart">
                                                 Proceed to checkout
                                             </button>
                                         @else
@@ -102,6 +102,10 @@
     <script type="text/javascript" charset="utf-8">
         $(function () {
             // on change
+
+            $('[type="submit"]').on('click', function(){
+                BTN.loading($(this));
+            });
 
             $('.js-quantity').on('change', function () {
                 updateCheckoutAmounts();
@@ -142,6 +146,28 @@
             }
 
             updateCheckoutAmounts();
-        })
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+
+                            BTN.reset($('[type="submit"]'));
+                        }
+                        form.classList.add('was-validated');
+
+                    }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection

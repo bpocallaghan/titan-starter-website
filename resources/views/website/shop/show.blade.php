@@ -12,7 +12,6 @@
              </div>
          </div>
 
-
             <!--Row-->
             <div class="row pb-5">
                 <!--Content-->
@@ -65,14 +64,14 @@
                             </div>
                             <form class="form-inline padding-bottom">
                                 <div class="form-group">
-                                    <label for="quantity" class="col-xs-3 control-label">Quantity: </label>
-                                    <div class="col-4">
+                                    <label for="quantity" class="control-label">Quantity: </label>
+                                    <div class="input-group">
                                         <input type="number" class="form-control input-lg" value="1" id="quantity" placeholder="Quantity" min="1">
-                                    </div>
-                                    <div class="col-5">
-                                        <a data-id="{{$item->id}}" id="js-add-cart" class="btn btn-default item-cart">
-                                            Add to cart{{-- <i data-icon="fa-cart-plus"></i>--}}
-                                        </a>
+                                        <div class="input-group-append">
+                                            <a data-id="{{$item->id}}" id="js-add-cart" class="btn btn-primary item-cart">
+                                                Add to cart{{-- <i data-icon="fa-cart-plus"></i>--}}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
