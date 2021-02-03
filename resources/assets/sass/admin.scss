@@ -62,3 +62,5 @@ table.dataTable.dtr-inline.collapsed.table-sm > tbody > tr > td:first-child:befo
 // SortableJS Styles
 .dd-list { min-height: 10px; display: block; position: relative; }
 .dd-item:hover, .dd-item .card { background-color: rgba(0, 123, 255, 0.2); }
+
+.btn-submit i.fa { pointer-events: none; }

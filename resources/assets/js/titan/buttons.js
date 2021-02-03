@@ -30,7 +30,6 @@ var ButtonClass = function ()
 
         $(btn).each(function ()
         {
-            // console.log('loading loading');
             buttonDisable($(this));
         });
     };
@@ -44,14 +43,13 @@ var ButtonClass = function ()
         $(btn).each(function ()
         {
             buttonEnable(btn);
-            //$(this).button('reset');
         })
     };
 
     // enable all buttons
     this.activate = function ()
     {
-        $('.btn-ajax-submit, .btn-submit').each(function ()
+        $('.btn-ajax-submit').each(function ()
         {
             buttonEnable($(this));
         });
@@ -75,9 +73,6 @@ var ButtonClass = function ()
     {
         btn.each(function ()
         {
-            //$(this).button('reset');
-
-            // console.log('buttonEnable buttonEnable buttonEnable');
 
             $(this).prop('disabled', false);
             $(this).html($(this).attr('data-reset'));
@@ -91,19 +86,9 @@ var ButtonClass = function ()
     {
         btn.each(function ()
         {
-            // console.log('buttonDisable buttonDisable');
-            //$(this).button('loading');
 
-            // $(this).prop('disabled', true);
             $(this).attr('data-is-loading', true);
             $(this).html($(this).attr('data-loading'));
-
-            // disable (chrome messes this up)
-            // form does not get submitted on chrome
-            // $(this).prop('disabled', true);
-
-            // show loading
-            //$(this).button('loading');
         })
     };
 

@@ -149,10 +149,12 @@ if (!function_exists('form_select')) {
      */
     function form_select($name, $list, $selected, $options)
     {
-        $options['id'] = $name;
-
         if (!isset($options['name'])) {
             $options['name'] = $name;
+        }
+
+        if(!isset($options['id'])){
+            $options['id'] = $name;
         }
 
         $html = [];
