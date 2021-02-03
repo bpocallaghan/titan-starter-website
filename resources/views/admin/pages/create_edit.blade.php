@@ -95,6 +95,30 @@
                     </div>
                 </div>
 
+                @if(user()->hasRole('developer'))
+                    <div class="row">
+
+                        <div class="col col-6">
+                            <div class="form-group">
+                                <label for="url">URL <span class="small">(optional, the url is generated automatically)</span></label>
+                                <input type="text" class="form-control {{ form_error_class('url', $errors) }}" id="url" name="url" placeholder="Enter Url" value="{{ ($errors && $errors->any()? old('url') : (isset($item)? $item->url : '')) }}">
+                                <p class="text-muted small"><i class="fa fa-info-circle"></i> NOTE: For developer use only. Only use should you need a navigational item linked to an external link. </p>
+                                {!! form_error_message('url', $errors) !!}
+                            </div>
+                        </div>
+
+
+                        <div class="col col-6">
+                            <div class="form-group">
+                                <label for="id-template_id">Templates <span class="small">(optional, by default the pages layout will be used)</span></label>
+                                {!! form_select('template_id', (['' => 'Please select a Template'] + $templates), isset($item)? ($errors && $errors->any()? old('template_id') : $item->template_id) : old('template_id'), ['class' => 'select2 form-control ' . form_error_class('template_id', $errors)]) !!}
+                                <p class="text-muted small"><i class="fa fa-info-circle"></i> NOTE: For developer use only. Choose the layout the page should get, e.g contact, news, faq etc. </p>
+                                {!! form_error_message('template_id', $errors) !!}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -109,7 +133,7 @@
                     <div class="col col-2">
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="is_header" class="custom-control-input" id="is_header" {!! ($errors && $errors->any()? (old('is_header') == 'on'? 'checked':'') : (isset($item)&& $item->is_header == 1? 'checked' : 'checked' )) !!}>
+                                <input type="checkbox" name="is_header" class="custom-control-input" id="is_header" {!! ($errors && $errors->any()? (old('is_header') == 'on'? 'checked':'') : (isset($item) && $item->is_header == 1? 'checked' : '')) !!}>
                                 <label class="custom-control-label" for="is_header">Is Header</label>
                                 {!! form_error_message('is_header', $errors) !!}
                             </div>
@@ -145,6 +169,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col col-2">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="allow_comments" class="custom-control-input" id="allow_comments" {!! ($errors && $errors->any()? (old('allow_comments') == 'on'? 'checked':'') : (isset($item)&& $item->allow_comments == 1? 'checked' : '' )) !!}>
+                                <label class="custom-control-label" for="allow_comments">Allow Comments</label>
+                                {!! form_error_message('allow_comments', $errors) !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </fieldset>
         </div>
@@ -153,6 +187,6 @@
     </form>
 
     @if(isset($item))
-        @include('admin.pages.components.components', ['page' => $item, 'url' => "/admin/pages/{$item->id}/sections"])
+        @include('admin.resources.sections.components', ['resourceable' => $item, 'url' => "/admin/pages/{$item->id}/sections", 'resource' => 'pages'])
     @endif
 @endsection

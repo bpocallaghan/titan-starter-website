@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Traits\PageHelper;
+use App\Models\Traits\Commentable;
+use App\Models\Traits\Sectionable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -11,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Page extends AdminModel
 {
-    use SoftDeletes, PageHelper/*, HasSlug*/;
+    use SoftDeletes, PageHelper, Commentable, Sectionable/*, HasSlug*/;
 
     protected $table = 'pages';
 
@@ -37,6 +39,8 @@ class Page extends AdminModel
         'is_featured'   => 'nullable|in:0,on',
         'parent_id'     => 'nullable',
         'url_parent_id' => 'nullable',
+        'allow_comments'=> 'nullable|in:0,on',
+        'template_id'   => 'nullable|exists:templates,id',
         //'banners'       => 'nullable',
         //'parent_id'     => 'nullable|exists:pages,id',
         //'url_parent_id' => 'nullable|exists:pages,id',
@@ -63,20 +67,13 @@ class Page extends AdminModel
     }
 
     /**
-     * Get the sections
+     * Get the PageContent many to many
      */
-    public function sections()
+    public function template()
     {
-        return $this->hasMany(PageContent::class, 'page_id', 'id')->orderBy('list_order');
+        return $this->belongsTo(Template::class, 'template_id', 'id');
     }
 
-    /**
-     * Get the components
-     */
-    public function components()
-    {
-        return $this->hasMany(PageContent::class, 'page_id', 'id')->orderBy('list_order');
-    }
 
     /**
      * Get the Banner many to many
@@ -84,13 +81,5 @@ class Page extends AdminModel
     public function banners()
     {
         return $this->belongsToMany(Banner::class)->isActiveDates()->orderBy('created_at', 'DESC');
-    }
-
-    /**
-     * Get the PageContent many to many
-     */
-    public function pageContent()
-    {
-        return $this->belongsToMany(PageContent::class);
     }
 }

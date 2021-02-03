@@ -9,20 +9,11 @@
             </div>
         </div>
 
-        @foreach($page->components as $content)
-            <div class="mb-5">
-                @include('website.pages.page_heading')
-                @include('website.pages.page_content')
-
-                @include('website.pages.page_gallery')
-                @include('website.pages.page_videos')
-                @include('website.pages.page_documents')
-            </div>
-        @endforeach
+        @include('website.pages.page_components', ['item' => $page])
 
         <div class="row pb-5">
             <div class="order-2 order-md-1 col-12 col-md-7 col-lg-6">
-                <form id="form-contact-us" accept-charset="UTF-8" action="{{ request()->url().'/submit' }}" method="POST" class="needs-validation" novalidate>
+                <form id="form-contact-us" accept-charset="UTF-8" action="/contact/submit" method="POST" class="needs-validation" novalidate>
                     {!! csrf_field() !!}
 
                     <div class="form-group form-row">
@@ -53,7 +44,7 @@
                     </div>
                     <div class="form-group form-row">
                         <div class="col">
-                            <button type="submit" id="g-recaptcha-contact" class="btn btn-block btn-lg btn-outline-primary btn-submit g-recaptcha" data-widget-id="0"><span>Submit</span></button>
+                            <button type="submit" id="g-recaptcha-contact" class="btn btn-block btn-lg btn-outline-primary g-recaptcha" data-widget-id="0"><span>Submit</span></button>
                         </div>
                     </div>
 
@@ -117,7 +108,6 @@
         <div id="js-map-contact-us" class="google-maps" style="height: 400px"></div>
     </section>
 
-    @include('website.partials.form.captcha')
 @endsection
 
 @section('scripts')

@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <form class="card card-primary" method="POST" action="/admin/pages/{{ $page->id . '/sections/content' . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+    <form class="card card-primary" method="POST" action="/admin/{{$resource}}/{{ $resourceable->id . '/sections/'.$section->id.'/content' . (isset($item)? "/{$item->id}" : '')}}" accept-charset="UTF-8" enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! method_field(isset($item)? 'put':'post') !!}
-        <input name="page_id" type="hidden" value="{{ $page->id }}">
+        <input name="section_id" type="hidden" value="{{ $section->id }}">
 
         <div class="card-header">
-            <span>{{ isset($item)? 'Edit the "' . $item->heading . '" entry': 'Create a new Page Content Section' }}</span>
+            <span>{{ isset($item)? 'Edit the "' . $item->heading . '" entry': 'Create a new Content' }}</span>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -32,7 +32,7 @@
             </div>
 
             <fieldset>
-                @include('admin.pages.components.form_heading')
+                @include('admin.resources.sections.components.form_heading')
 
                 <div class="row">
                     <div class="@if(isset($item) && $item->media) col-md-6 @else col-md-8 @endif">
@@ -63,9 +63,9 @@
                             <a data-lightbox="Feature Image" href="{{ $item->imageUrl }}">
                                 <img class="img-fluid mt-2" src="{{ $item->thumb_url }}" style="height:75px;"/>
                             </a>
-                            <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right btn-delete-media" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-page-id="{{ $item->page_id }}">
+                            <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right btn-delete-media" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-resource-id="{{ $item->id }}">
                                 <i class="fa fa-fw fa-times"></i></button>
-                            <a href="/admin/resources/page-content/{{ $item->id }}/crop-resource" title="Crop media" class="btn btn-info btn-xs pull-right">
+                            <a href="/admin/resources/{{ $resource }}/{{ $item->id }}/crop-resource" title="Crop media" class="btn btn-info btn-xs pull-right">
                                 <i class="fa fa-fw fa-crop-alt"></i></a>
                         </div>
                     @endif
@@ -81,7 +81,30 @@
                     </div>
                 </div>
 
-                @include('admin.pages.components.form_content')
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="action_name">Action Name <span class="small">(Optional)</span></label>
+                            <input type="text" class="form-control {{ form_error_class('action_name', $errors) }}" id="action_name" name="action_name" placeholder="Enter Action Name" value="{{ ($errors && $errors->any()? old('action_name') : (isset($item)? $item->action_name : '')) }}">
+                            {!! form_error_message('action_name', $errors) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="action_url">Action Url <span class="small">(Optional)</span></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control {{ form_error_class('action_url', $errors) }}" id="action_url" name="action_url" placeholder="Enter Action Url" value="{{ ($errors && $errors->any()? old('action_url') : (isset($item)? $item->action_url : '')) }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-link"></i></span>
+                                </div>
+                                {!! form_error_message('action_url', $errors) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @include('admin.resources.sections.components.form_content')
 
             </fieldset>
 
@@ -104,11 +127,11 @@
                 e.preventDefault();
 
                 $id = $(this).attr('data-id');
-                $page_id = $(this).attr('data-page-id');
+                $resourceable_id = $(this).attr('data-resource-id');
 
                 $.ajax({
                     type: 'POST',
-                    url: "/admin/pages/" + $page_id + "/sections/content/" + $id + "/removeMedia",
+                    url: "/admin/resources/{{$resource}}/" + $resourceable_id + "/sections/{{$section->id}}/content/" + $id + "/removeMedia",
                     dataType: "json",
                     success: function (data) {
                         if (data.error) {

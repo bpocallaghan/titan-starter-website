@@ -39,7 +39,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/resources/news/'.$item->id], 'show', 'edit', 'delete']) !!}
+                                    {!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/news/0/'.$item->id], 'show', 'edit', 'delete']) !!}
                                     {!! $item->date_badge !!}
                                 </td>
                             </tr>

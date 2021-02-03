@@ -47,6 +47,8 @@ class NewsController extends AdminController
     {
         $attributes = request()->validate(News::$rules, News::$messages);
 
+        $attributes['allow_comments'] = (bool) input('allow_comments');
+
         $article = $this->createEntry(News::class, $attributes);
 
         return redirect_to_resource();
@@ -86,6 +88,8 @@ class NewsController extends AdminController
     public function update(News $article, Request $request)
     {
         $attributes = request()->validate(News::$rules, News::$messages);
+
+        $attributes['allow_comments'] = (bool) input('allow_comments');
 
         $article = $this->updateEntry($article, $attributes);
 

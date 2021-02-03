@@ -38,11 +38,21 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-10">
                             <div class="form-group">
                                 <label for="summary">Summary <span class="small">(optional)</span></label>
                                 <input type="text" class="form-control {{ form_error_class('summary', $errors) }}" id="summary" name="summary" placeholder="Please insert the Summary" value="{{ ($errors && $errors->any()? old('summary') : (isset($item)? $item->summary : '')) }}">
                                 {!! form_error_message('summary', $errors) !!}
+                            </div>
+                        </div>
+                        <div class="col col-2">
+                            <div class="form-group">
+                                <label for="summary">Accept comments? <span class="small">(optional)</span></label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="allow_comments" class="custom-control-input" id="allow_comments" {!! ($errors && $errors->any()? (old('allow_comments') == 'on'? 'checked':'') : (isset($item)&& $item->allow_comments == 1? 'checked' : '' )) !!}>
+                                    <label class="custom-control-label" for="allow_comments">Allow Comments</label>
+                                    {!! form_error_message('allow_comments', $errors) !!}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,6 +119,10 @@
             @include('admin.partials.form.form_footer')
         </form>
     </div>
+
+    @if(isset($item))
+        @include('admin.resources.sections.components', ['resourceable' => $item, 'url' => "/admin/news/{$item->id}/sections", 'resource' => 'news'])
+    @endif
 
 @endsection
 

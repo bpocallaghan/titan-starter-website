@@ -50,7 +50,7 @@
                         <td>{{ $item->total_purchases }}</td>
                         <td>
 
-                            {!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/resources/product/'.$item->id], 'edit', 'delete']) !!}
+                            {!! action_row($selectedNavigation->url, $item->id, $item->name, [['photo-video' => '/admin/products/0/'.$item->id], 'edit', 'delete']) !!}
 
                         </td>
                     </tr>

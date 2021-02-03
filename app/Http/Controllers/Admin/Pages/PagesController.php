@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Pages;
 
-use App\Models\Banner;
-use App\Models\PageContent;
+use App\Models\Content;
+use App\Models\Section;
 use App\Models\Page;
+use App\Models\Banner;
+use App\Models\Template;
 use App\Http\Controllers\Admin\AdminController;
 
 class PagesController extends AdminController
@@ -32,8 +34,9 @@ class PagesController extends AdminController
     {
         $parents = Page::getAllList();
         $banners = Banner::getAllList();
+        $templates = Template::getAllList();
 
-        return $this->view('pages.create_edit', compact('parents', 'banners'));
+        return $this->view('pages.create_edit', compact('parents', 'banners', 'templates'));
     }
 
     /**
@@ -49,9 +52,11 @@ class PagesController extends AdminController
         $attributes['is_hidden'] = (bool) input('is_hidden');
         $attributes['is_footer'] = (bool) input('is_footer');
         $attributes['is_featured'] = (bool) input('is_featured');
+        $attributes['allow_comments'] = (bool) input('allow_comments');
         $attributes['url_parent_id'] = (int) $attributes['url_parent_id'] === 0 ? $attributes['parent_id'] : $attributes['url_parent_id'];
 
         $page = $this->createEntry(Page::class, $attributes);
+
 
         if ($page) {
             $page->updateUrl()->save();
@@ -88,8 +93,9 @@ class PagesController extends AdminController
 
         $parents = Page::getAllList();
         $banners = Banner::getAllList();
+        $templates = Template::getAllList();
 
-        return $this->view('pages.create_edit', compact('parents', 'banners'))
+        return $this->view('pages.create_edit', compact('parents', 'banners', 'templates', 'content'))
             ->with('item', $page);
     }
 
@@ -107,6 +113,7 @@ class PagesController extends AdminController
         $attributes['is_hidden'] = (bool) input('is_hidden');
         $attributes['is_footer'] = (bool) input('is_footer');
         $attributes['is_featured'] = (bool) input('is_featured');
+        $attributes['allow_comments'] = (bool) input('allow_comments');
 
         $page = $this->updateEntry($page, $attributes);
         $page->updateUrl()->save();

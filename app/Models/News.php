@@ -6,6 +6,8 @@ use App\Models\Traits\ActiveTrait;
 use App\Models\Traits\Documentable;
 use App\Models\Traits\Photoable;
 use App\Models\Traits\Videoable;
+use App\Models\Traits\Commentable;
+use App\Models\Traits\Sectionable;
 use Bpocallaghan\Sluggable\HasSlug;
 use Bpocallaghan\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class News extends AdminModel
 {
-    use SoftDeletes, HasSlug, ActiveTrait, Photoable, Documentable, Videoable;
+    use SoftDeletes, HasSlug, ActiveTrait, Photoable, Documentable, Videoable, Commentable, Sectionable;
 
     protected $table = 'news';
 
@@ -32,14 +34,15 @@ class News extends AdminModel
      * Validation rules for this model
      */
     static public $rules = [
-        'name'       => 'required|min:3|max:191',
-        'content'     => 'required|min:5|max:5000',
-        'summary'     => 'nullable|min:5|max:191',
-        'category_id' => 'required|exists:news_categories,id',
-        'active_from' => 'nullable|date',
-        'active_to'   => 'nullable|date',
-        'action_name' => 'nullable|max:191',
-        'action_url'  => 'nullable|max:191',
+        'name'          => 'required|min:3|max:191',
+        'content'       => 'required|min:5|max:5000',
+        'summary'       => 'nullable|min:5|max:191',
+        'category_id'   => 'required|exists:news_categories,id',
+        'active_from'   => 'nullable|date',
+        'active_to'     => 'nullable|date',
+        'action_name'   => 'nullable|max:191',
+        'action_url'    => 'nullable|max:191',
+        'allow_comments'=> 'nullable|in:0,on',
     ];
 
     /**

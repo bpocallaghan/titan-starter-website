@@ -1,0 +1,4 @@
+id,sectionable_id,sectionable_type,name,layout,content,list_order,created_at,updated_at,deleted_at,created_by,updated_by,deleted_by
+"3","6","App\Models\Page","","faq","","","2021-01-28 10:16:38","2021-01-28 10:16:48","","2","2",""
+"4","14","App\Models\Page","","news","","","2021-01-28 10:35:31","2021-01-28 10:35:31","","2","2",""
+"5","15","App\Models\Page","","products","","","2021-01-28 10:37:48","2021-01-28 10:37:48","","2","2",""
