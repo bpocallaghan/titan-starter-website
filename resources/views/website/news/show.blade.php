@@ -40,7 +40,7 @@
                             </div>
                         @endif
 
-                        @if($news->videos && $news->videos->count() > 1)
+                        @if($news->videos && $news->videos->count() > 0)
                             <div class="gallery mt-3 mb-3 p-3">
                                 <div class="row">
                                     @foreach($news->videos->sortBy('list_order') as $item)
@@ -58,7 +58,7 @@
                             </div>
                         @endif
 
-                        @if($news->documents && $news->documents->count() > 1)
+                        @if($news->documents && $news->documents->count() > 0)
                             <div class="gallery mt-3 mb-3 p-3">
                                 @foreach($news->documents as $item)
                                     <a href="{{ $item->url }}" target="_blank" title="{{ $item->name }}" data-icon="uil uil-file-download-alt">
@@ -71,6 +71,7 @@
                             </div>
                         @endif
 
+                        @include('website.pages.page_components', ['item' => $news])
                 </div>
 
                 @include('website.partials.page_side')

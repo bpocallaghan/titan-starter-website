@@ -22,15 +22,21 @@ class PagesController extends WebsiteController
     {
         $url = $this->getCurrentUrl();
 
-        $page = Page::with('components.component')->where('url', $url)->first();
+        $page = Page::with('sections.components')->where('url', $url)->first();
         if (!$page) {
             throw new NotFoundHttpException();
+        }
+
+        if (isset($page->template->template)) {
+            $template = $page->template->template;
+        }else {
+            $template = 'pages.page';
         }
 
         // find out if its a 'main page' and get the children
         $children = $this->findChildrenPages($page);
 
-        return $this->view('pages.page')
+        return $this->view($template)
             ->with('activePage', $page)
             ->with('childrenPages', $children);
     }

@@ -1,8 +1,8 @@
 @if(!$content->media)
     @if($content->content && strlen($content->content) > 15)
-        <div class="mb-5">
+
         {!! $content->content !!}
-        </div>
+
     @endif
 @else
     <div class="row {{ $content->media_align == 'right' ? 'd-block':'' }}">

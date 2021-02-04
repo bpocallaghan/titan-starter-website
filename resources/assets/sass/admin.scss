@@ -19,6 +19,7 @@
 @import '~summernote/dist/summernote-bs4.css';
 @import '~@ttskch/select2-bootstrap4-theme/src/layout';
 @import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
 @import "~pc-bootstrap4-datetimepicker/src/sass/bootstrap-datetimepicker-build";
 @import "~daterangepicker/daterangepicker.css";
 @import '~cropperjs/dist/cropper.css';
@@ -55,6 +56,11 @@ div.dataTables_wrapper div.dataTables_length label {
 table.dataTable.table-sm .sorting:before, table.dataTable.table-sm .sorting_asc:before, table.dataTable.table-sm .sorting_desc:before {
   right: 1.2em;
 }
+table.dataTable.dtr-inline.collapsed.table-sm > tbody > tr > td:first-child:before, table.dataTable.dtr-inline.collapsed.table-sm > tbody > tr > th:first-child:before {
+    top:15px;
+}
 // SortableJS Styles
 .dd-list { min-height: 10px; display: block; position: relative; }
 .dd-item:hover, .dd-item .card { background-color: rgba(0, 123, 255, 0.2); }
+
+.btn-submit i.fa { pointer-events: none; }

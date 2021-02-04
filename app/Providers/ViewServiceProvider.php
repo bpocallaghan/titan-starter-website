@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\NewsCategory;
 use Carbon\Carbon;
 use App\Models\News;
 use App\Models\Product;
+use App\Models\Document;
+use App\Models\NewsCategory;
 use App\Models\ProductFeature;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\View;
@@ -30,6 +31,17 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        // include the documents for the summernote modal
+        View::composer('admin.partials.summernote.document', function ($view) {
+            $items = Document::with('documentable')
+                ->orderBy('name')
+                ->get()
+                ->pluck('name', 'url')
+                ->toArray();
+
+            $view->with('documents', $items);
+        });
 
         // Using Closure based composers...
         View::composer('website.partials.side_news', function ($view) {

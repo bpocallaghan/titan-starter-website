@@ -30,7 +30,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="dd" id="dd-navigation">
+                            <div class="dd" id="listOrderSortable">
                                 {!! $itemsHtml !!}
                             </div>
                         </div>

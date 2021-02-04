@@ -25,7 +25,7 @@
                 @foreach ($items as $item)
                     <tr>
                         <td>{{ $item->name }} {{ $item->is_cover? '(Cover)':'' }}</td>
-                        <td>{{ ($item->documentable? $item->documentable->name:'-') }}</td>
+                        <td>{!! (($item->documentable)? $item->documentable->name:'').' <small>('.(isset($item->documentable)? (new \ReflectionClass($item->documentable))->getShortName() : 'The item this belonged to was removed.').')</small>' !!}</td>
                         <td>
                             <a target="_blank" href="{{ $item->url }}">
                                 <img style="height: 50px;" src="{{ $item->url }}" title="{{ $item->name }}">

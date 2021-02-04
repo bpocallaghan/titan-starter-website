@@ -56,5 +56,7 @@
         @if(config('app.env') != 'local')
             @include('partials.analytics')
         @endif
+
+        @include('website.partials.form.captcha')
     </body>
 </html>

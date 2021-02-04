@@ -11,7 +11,7 @@
                 <button data-target="#filters" class="btn btn-info btn-block" data-toggle="collapse" data-icon="fa-search">Filter
                     / Sort Results</button>
 
-                <div class="collapse show" id="filters">
+                <div class="collapse show mb-3" id="filters">
                     <div class="filter bg-light p-3" id="js-shop-filters">
                         <form id="js-form-filters">
                             {!! csrf_field() !!}
@@ -38,20 +38,7 @@
                     </div>
                 </div>
 
-                @foreach($page->components as $content)
-                    <div class="mt-5">
-                        @include('website.pages.page_heading')
-                        @include('website.pages.page_content')
-
-                        @include('website.pages.page_gallery')
-                        @include('website.pages.page_documents')
-                    </div>
-                @endforeach
-
-                <!--Content-->
-                <div class="pagination-box mt-5">
-                    @include('website.shop.pagination')
-                </div>
+                @include('website.pages.page_components', ['item' => $page])
 
                 @include('website.partials.social_share')
 

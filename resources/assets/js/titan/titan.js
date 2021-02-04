@@ -142,7 +142,7 @@ function initSummerNote(selector) {
             ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
             ['layout', ['ul', 'ol', 'paragraph']],
-            ['insert', [/*'link', 'picture', 'video',*/ 'hr']],
+            ['insert', ['link', /* 'picture', 'video',*/ 'hr']],
             ['misc', ['fullscreen', 'codeview', 'undo']]
         ]
     });

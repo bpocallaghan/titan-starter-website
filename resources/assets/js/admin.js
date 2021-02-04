@@ -6,8 +6,9 @@ require('pace-js');
 require('select2');
 require('jquery.cookie');
 
-require('datatables.net');
+require('datatables.net-dt');
 require('datatables.net-bs4');
+require('datatables.net-responsive-dt');
 
 require('admin-lte');
 
@@ -37,4 +38,3 @@ const app = new Vue({
     el: '#app'
 });
 */
-

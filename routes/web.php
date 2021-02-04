@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,36 +26,38 @@ Route::redirect('/home', '/');
 Route::group(['namespace' => 'Website'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/news/{categorySlug?}', 'NewsController@index')->name('news');
-    Route::get('/articles/{categorySlug}/{newsSlug}', 'NewsController@show');
+    //Route::get('/news/{categorySlug?}', 'NewsController@index')->name('news');
+    Route::get('/articles/{categorySlug}/{newsSlug}', 'NewsController@show')->name('news.show');
 
-    Route::get('/contact-us', 'ContactUsController@index')->name('contact');
-    Route::post('/contact-us/submit', 'ContactUsController@feedback');
+    //Route::get('/contact-us', 'ContactUsController@index')->name('contact');
+    Route::post('/contact/submit', 'ContactUsController@feedback')->name('contact.submit');
+
+    Route::post('/comments/submit', 'CommentsController@comment')->name('comments.submit');
 
     // faq
     Route::namespace('FAQ')->group(function () {
-        Route::get('/faq', 'FAQController@index');
-        Route::post('/faq/question/{faq}/{type?}', 'FAQController@incrementClick');
+        //Route::get('/faq', 'FAQController@index');
+        Route::post('/faq/question/{faq}/{type?}', 'FAQController@incrementClick')->name('faq.feedback.submit');
     });
 
     // shop
     Route::group(['namespace' => 'Shop'], function () {
-        Route::post('/products/filter', 'ShopController@filter');
-        Route::get('/products/basket', 'BasketController@index');
-        Route::post('/products/basket', 'BasketController@submitBasket');
-        Route::get('/products/show/{productSlug}', 'ShopController@show');
+        Route::post('/products/filter', 'ShopController@filter')->name('products_filter');
+        // Route::get('/products/basket', 'BasketController@index')->name('basket');
+        Route::post('/products/basket', 'BasketController@submitBasket')->name('basket.submit');
+        Route::get('/products/show/{productSlug}', 'ShopController@show')->name('product.show');
 
         Route::group(['middleware' => ['auth']], function () {
-            Route::get('/products/basket/address', 'BasketController@showAddress');
-            Route::post('/products/basket/address', 'BasketController@submitAddress');
-            Route::get('/products/basket/checkout', 'BasketController@showCheckout');
-            Route::post('/products/basket/checkout', 'BasketController@submitCheckout');
-            Route::get('/products/basket/checkout/feedback', 'BasketController@showCheckoutFeedback');
-            Route::get('/products/basket/add/{product}/{quantity?}', 'BasketController@addProduct');
-            Route::get('/products/basket/remove/{product}', 'BasketController@removeProduct');
+            Route::get('/products/basket/address', 'BasketController@showAddress')->name('basket.address');
+            Route::post('/products/basket/address', 'BasketController@submitAddress')->name('basket.address.submit');
+            Route::get('/products/basket/checkout', 'BasketController@showCheckout')->name('basket.show');
+            Route::post('/products/basket/checkout', 'BasketController@submitCheckout')->name('basket.checkout.submit');
+            Route::get('/products/basket/checkout/feedback', 'BasketController@showCheckoutFeedback')->name('basket.checkout.feedback');
+            Route::get('/products/basket/add/{product}/{quantity?}', 'BasketController@addProduct')->name('basket.add.product');
+            Route::get('/products/basket/remove/{product}', 'BasketController@removeProduct')->name('basket.remove.product');
         });
 
-        Route::get('/products/{slugs?}', 'ShopController@index')->where('slugs', '(.*)');
+        Route::get('/products/{slugs?}', 'ShopController@index')->where('slugs', '(.*)')->name('products.show');
     });
 });
 
@@ -67,14 +70,14 @@ Route::group(
     ['middleware' => ['auth'], 'prefix' => 'account', 'namespace' => 'Website\Account'],
     function () {
         Route::get('/', 'AccountController@index')->name('account');
-        Route::get('/profile', 'ProfileController@index')->name('profile');
-        Route::post('/profile', 'ProfileController@update');
-        Route::get('/orders', 'AccountController@transactions');
-        Route::get('/orders/{reference}', 'AccountController@showTransaction');
-        Route::get('/orders/{reference}/print', 'AccountController@printTransaction');
+        // Route::get('/profile', 'ProfileController@index')->name('profile');
+        Route::post('/profile', 'ProfileController@update')->name('profile.submit');
+        // Route::get('/orders', 'AccountController@transactions')->name('profile.order');
+        Route::get('/orders/{reference}', 'AccountController@showTransaction')->name('profile.order.show');
+        Route::get('/orders/{reference}/print', 'AccountController@printTransaction')->name('profile.order.print');
 
-        Route::get('/address', 'ShippingAddressController@index');
-        Route::post('/address', 'ShippingAddressController@update');
+        Route::get('/address', 'ShippingAddressController@index')->name('profile.address');
+        Route::post('/address', 'ShippingAddressController@update')->name('profile.address.submit');
     }
 );
 
@@ -86,7 +89,7 @@ Route::group(
 Route::group(['prefix' => 'auth'], function () {
     Auth::routes(['verify' => true]);
 
-    // Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
 /*
@@ -95,5 +98,19 @@ Route::group(['prefix' => 'auth'], function () {
 |------------------------------------------
 */
 Route::group(['namespace' => 'Website'], function () {
+
+    $pages = Page::whereNotNull('template_id')->get();
+
+    foreach ($pages as $page) {
+        $name = $page->slug;
+
+        if (isset($page->template->controller_action) && $page->template->controller_action != 'Auth') {
+            Route::get($page->url, $page->template->controller_action)->name($name);
+        }
+        else if(!isset($page->template->controller_action)){
+            Route::get($page->url, 'PagesController@index')->name($name);
+        }
+    }
+
     Route::get('{slug1}/{slug2?}/{slug3?}', 'PagesController@index');
 });

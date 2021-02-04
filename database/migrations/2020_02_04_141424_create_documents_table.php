@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('filename');
             $table->bigInteger('documentable_id')->unsigned()->index();
             $table->string('documentable_type')->index();
+            $table->integer('list_order')->default(999);
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned();

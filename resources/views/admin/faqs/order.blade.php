@@ -24,8 +24,8 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="dd" id="dd-navigation" style="max-width: 100%">
-                        <div class="dd-list list-group" id="bannerOrderSortable">
+                    <div class="dd" id="faqOrderSortable" style="max-width: 100%">
+                        <div class="dd-list list-group">
                             @foreach($items as $category)
                                 @foreach($category->faqs as $item)
                                     <div class=" d-block dd-item card list-group-item" data-id="{{ $item->id }}">
@@ -56,7 +56,7 @@
     @parent
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initSortableMenu("{{ request()->url() }}", "bannerOrderSortable");
+            initSortableMenu("{{ request()->url() }}", "faqOrderSortable");
         })
     </script>
 @endsection

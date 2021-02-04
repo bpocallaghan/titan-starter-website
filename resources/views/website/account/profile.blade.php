@@ -12,21 +12,21 @@
 
         <div class="row pb-5">
             <div class="col-sm-7 col-lg-8">
-                <form id="form-member-register" method="POST" action="{{ request()->url() }}" accept-charset="UTF-8">
+                <form id="form-member-register" method="POST" action="{{ route('profile.submit') }}" accept-charset="UTF-8" class="needs-validation" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input type="text" class="form-control {{ form_error_class('firstname', $errors) }}" name="firstname" placeholder="Enter First Name" value="{{ ($errors->any()? old('firstname') : $user->firstname) }}">
+                                <input type="text" class="form-control {{ form_error_class('firstname', $errors) }}" name="firstname" placeholder="Enter First Name" value="{{ ($errors->any()? old('firstname') : $user->firstname) }}" required>
                                 {!! form_error_message('firstname', $errors) !!}
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control {{ form_error_class('lastname', $errors) }}" name="lastname" placeholder="Enter Last Name" value="{{ ($errors->any()? old('lastname') : $user->lastname) }}">
+                                <input type="text" class="form-control {{ form_error_class('lastname', $errors) }}" name="lastname" placeholder="Enter Last Name" value="{{ ($errors->any()? old('lastname') : $user->lastname) }}" required>
                                 {!! form_error_message('lastname', $errors) !!}
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label>Email Address</label>
                         <div class="input-group">
-                            <input type="text" class="form-control {{ form_error_class('email', $errors) }}" id="id-email" name="email" placeholder="Email Address" value="{{ ($errors->any()? old('email') : $user->email) }}">
+                            <input type="text" class="form-control {{ form_error_class('email', $errors) }}" id="id-email" name="email" placeholder="Email Address" value="{{ ($errors->any()? old('email') : $user->email) }}" required>
                             {!! form_error_message('email', $errors) !!}
                             <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span></div>
                         </div>
@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-12 text-right">
                             <button type="submit" class="btn btn-primary btn-submit">
-                                <span>Update</span>
+                                Update
                             </button>
                         </div>
                     </div>

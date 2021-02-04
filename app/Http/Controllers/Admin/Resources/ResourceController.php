@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Admin\AdminController;
 
 class ResourceController extends AdminController
@@ -25,13 +26,24 @@ class ResourceController extends AdminController
 
     /**
      * Show the News' photos
-     * @param $resouceable
+     * @param $resourceable1
+     * @param $resourceable2
      * @param $id
      * @return mixed
      */
-    public function showResource($resouceable, $id)
+    public function showResource($resourceable1, $resourceable2 = null, $id)
     {
-        $model_name = str_replace('-', ' ',ucwords($resouceable));
+        if(isset($resourceable1)){
+            $resourceable = $resourceable1;
+        }
+        if(isset($resourceable2) || $resourceable2 != 0){
+            $resourceable = $resourceable2;
+        }
+
+        $resource = Str::plural($resourceable, 1);
+        $resourceable = Str::singular($resourceable, 1);
+
+        $model_name = str_replace('-', ' ',ucwords($resourceable));
         $model_name = str_replace(' ', '',ucwords($model_name));
 
         $resource_type = 'App\Models\\'.$model_name;

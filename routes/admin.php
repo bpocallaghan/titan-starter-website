@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index');
 
+    //comments
+    Route::group([ 'namespace' => 'Comments'], function () {
+        Route::resource('comments', 'CommentsController');
+    });
+
     // profile
     Route::get('/profile', 'ProfileController@index');
     Route::put('/profile/{user}', 'ProfileController@update');
@@ -68,70 +73,8 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     Route::group(['prefix' => 'pages', 'namespace' => 'Pages'], function () {
         Route::get('/order/{type?}', 'OrderController@index');
         Route::post('/order/{type?}', 'OrderController@updateOrder');
-
-        // manage page sections list order
-        Route::get('/{page}/sections', 'PageContentController@index');
-        Route::post('/{page}/sections/order', 'PageContentController@updateOrder');
-        Route::delete('/{page}/sections/{section}', 'PageContentController@destroy');
-
-        // page components
-        Route::resource('/{page}/sections/content', 'PageContentController');
-        //remove content media
-        Route::post('/{page}/sections/content/{content}/removeMedia', 'PageContentController@removeMedia');
     });
     Route::resource('pages', 'Pages\PagesController');
-
-    // resources
-    Route::group(['prefix' => 'resources', 'namespace' => 'Resources'], function () {
-        // resource categories
-        Route::resource('/categories', 'CategoriesController')
-            ->names([
-                'index' => 'resources_categories.index',
-                'create' => 'resources_categories.create',
-                'store' => 'resources_categories.store',
-                'show' => 'resources_categories.show',
-                'edit' => 'resources_categories.edit',
-                'update' => 'resources_categories.update',
-                'destroy' => 'resources_categories.destroy',
-            ]);
-        // get resources - new photoable, documentable, videoable
-        Route::get('/{resourceable}/{resource}', 'ResourceController@showResource');
-
-        //photos - list, delete, upload, edit, cover
-        Route::get('/photos', 'PhotosController@index');
-        Route::delete('/photos/{photo}', 'PhotosController@destroy');
-        Route::post('/photos/upload', 'PhotosController@uploadPhotos');
-        Route::post('/photos/{photo}/edit/name', 'PhotosController@updatePhotoName');
-        Route::post('/photos/{photo}/cover', 'PhotosController@updatePhotoCover');
-
-        //photos order
-        Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
-        Route::post('/photos/order', 'PhotosOrderController@update');
-        // croppers
-        Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
-        Route::post('/photos/crop/{photo}', 'CropperController@cropPhoto');
-
-        // resource image crop - featured image (single image file name in resource table)
-        Route::get('/{resourceable}/{resource}/crop-resource/', 'CropResourceController@showPhoto');
-        Route::post('/photos/crop-resource', 'CropResourceController@cropPhoto');
-
-        //videos - list, create, edit, destroy, getInfo, cover
-        Route::get('/videos', 'VideosController@index');
-        Route::post('/videos/create', 'VideosController@store');
-        Route::post('/videos/{video}/edit', 'VideosController@update');
-        Route::delete('/videos/{video}', 'VideosController@destroy');
-        Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
-        Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
-        //videos order
-        Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
-        Route::post('/videos/order', 'VideosOrderController@update');
-
-        //documents - list, destroy, upload, edit
-        Route::get('/documents', 'DocumentsController@index');
-        Route::delete('/documents/{document}', 'DocumentsController@destroy');
-        Route::post('/documents/upload', 'DocumentsController@upload');
-        Route::post('/documents/{document}/edit/name', 'DocumentsController@updateName');
-    });
 
     // news and events
     Route::group(['prefix' => 'news', 'namespace' => 'News'], function () {
@@ -208,9 +151,85 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
         Route::resource('settings', 'SettingsController');
 
+        Route::resource('templates', 'TemplatesController');
+
         // navigation
         Route::get('navigations/order', 'NavigationOrderController@index');
         Route::post('navigations/order', 'NavigationOrderController@updateOrder');
         Route::resource('navigations', 'NavigationsController');
     });
+
+    Route::group(['namespace' => 'Resources'], function () {
+
+        // get resources - new photoable, documentable, videoable
+        Route::get('/{resourceable1}/{resourceable2}/{resource}', 'ResourceController@showResource');
+
+        Route::group(['prefix' => 'resources'], function () {
+            // resource categories
+            Route::resource('/categories', 'CategoriesController')
+                ->names([
+                    'index' => 'resources_categories.index',
+                    'create' => 'resources_categories.create',
+                    'store' => 'resources_categories.store',
+                    'show' => 'resources_categories.show',
+                    'edit' => 'resources_categories.edit',
+                    'update' => 'resources_categories.update',
+                    'destroy' => 'resources_categories.destroy',
+                ]);
+
+            //photos - list, delete, upload, edit, cover
+            Route::get('/photos', 'PhotosController@index');
+            Route::delete('/photos/{photo}', 'PhotosController@destroy');
+            Route::post('/photos/upload', 'PhotosController@uploadPhotos');
+            Route::post('/photos/{photo}/edit/name', 'PhotosController@updatePhotoName');
+            Route::post('/photos/{photo}/cover', 'PhotosController@updatePhotoCover');
+
+            //photos order
+            Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
+            Route::post('/photos/order', 'PhotosOrderController@update');
+            // croppers
+            Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
+            Route::post('/photos/crop/{photo}', 'CropperController@cropPhoto');
+
+            // resource image crop - featured image (single image file name in resource table)
+            Route::get('/{resourceable}/{resource}/crop-resource/', 'CropResourceController@showPhoto');
+            Route::post('/photos/crop-resource', 'CropResourceController@cropPhoto');
+
+            //videos - list, create, edit, destroy, getInfo, cover
+            Route::get('/videos', 'VideosController@index');
+            Route::post('/videos/create', 'VideosController@store');
+            Route::post('/videos/{video}/edit', 'VideosController@update');
+            Route::delete('/videos/{video}', 'VideosController@destroy');
+            Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
+            Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
+            //videos order
+            Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
+            Route::post('/videos/order', 'VideosOrderController@update');
+
+            //documents - list, destroy, upload, edit
+            Route::get('/documents', 'DocumentsController@index');
+            Route::delete('/documents/{document}', 'DocumentsController@destroy');
+            Route::post('/documents/upload', 'DocumentsController@upload');
+            Route::post('/documents/{document}/edit/name', 'DocumentsController@updateName');
+            //documents order
+            Route::get('/documents/{resourceable}/{resource}/order', 'DocumentsOrderController@showDocuments');
+            Route::post('/documents/order', 'DocumentsOrderController@update');
+        });
+
+        // sections
+        Route::resource('/{resourceable}/{resource}/sections', 'SectionsController');
+        Route::post('/{resourceable}/{resource}/sections/{section}/content/attach', 'SectionsController@attach');
+        // order sections
+        Route::post('/{resourceable}/{resource}/sections/order', 'SectionsController@updateOrder');
+        //content
+        Route::resource('/{resourceable}/{resource}/sections/{section}/content', 'ContentController');
+        Route::post('/{resourceable}/{resource}/sections/{section}/content/{content}/remove', 'ContentController@remove');
+        //order content
+        Route::post('/{resourceable}/{resource}/sections/{section}/content/order', 'ContentController@updateOrder');
+        //remove content media
+        Route::post('/{resourceable}/{resource}/sections/{section}/content/{content}/removeMedia', 'ContentController@removeMedia');
+        //view contents
+        Route::get('/resources/content/', 'ContentController@show');
+    });
+
 });

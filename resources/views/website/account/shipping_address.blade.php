@@ -12,7 +12,7 @@
             <h3>Delivery address</h3>
             <p>Enter your shipping address below.</p>
 
-                <form id="form-member-register" method="POST" action="{{ request()->url() }}" accept-charset="UTF-8" class="needs-validation" novalidate>
+                <form id="form-member-register" method="POST" action="{{ route('profile.address.submit') }}" accept-charset="UTF-8" class="needs-validation" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                     <div class="row">
@@ -63,7 +63,7 @@
 
                     <div class="row">
                         <div class="col-12 text-right">
-                            <button type="submit" class="btn btn-primary btn-submit">
+                            <button type="submit" class="btn btn-primary">
                                 Update
                             </button>
                         </div>
@@ -77,9 +77,15 @@
     </section>
 
 @endsection
+
 @section('scripts')
     @parent
     <script>
+
+        $('[type="submit"]').on('click', function(){
+            BTN.loading($(this));
+        });
+
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
@@ -93,7 +99,7 @@
                             event.preventDefault();
                             event.stopPropagation();
 
-                            BTN.reset($('.btn-submit[type="submit"]'));
+                            BTN.reset($('[type="submit"]'));
                         }
                         form.classList.add('was-validated');
 

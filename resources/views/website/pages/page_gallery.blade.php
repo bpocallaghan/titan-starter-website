@@ -1,4 +1,4 @@
-@if($content->photos && $content->photos->count() > 1)
+@if($content->photos && $content->photos->count() > 0)
     <div class="gallery bg-black mt-3 mb-3 p-3">
         <div class="row">
             @foreach($content->photos->where('is_cover', 0)->sortBy('list_order') as $item)

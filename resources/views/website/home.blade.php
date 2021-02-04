@@ -3,16 +3,7 @@
 @section('content')
 
     <div class="container mb-5">
-        @foreach($page->components as $content)
-            <div class="mb-5">
-                @include('website.pages.page_heading')
-                @include('website.pages.page_content')
-
-                @include('website.pages.page_gallery')
-                @include('website.pages.page_videos')
-                @include('website.pages.page_documents')
-            </div>
-        @endforeach
+        @include('website.pages.page_components', ['item' => $page])
 
         <div class="row mt-5 mb-5">
             <div class="d-none d-md-block col-md-4">
