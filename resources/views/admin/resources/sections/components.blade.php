@@ -144,7 +144,7 @@
     @include('admin.partials.sortable')
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initSortableMenu("{{ (isset($url)? $url : request()->url()) }}/order", 'sectionsOrderSortable');
+            initSortableMenu("{{ (isset($url)? $url : request()->url()) }}/order", 'sectionsOrderSortable', false);
         })
     </script>
 @endsection
