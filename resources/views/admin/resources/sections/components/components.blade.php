@@ -79,10 +79,9 @@
 
 @section('scripts')
     @parent
-    @include('admin.partials.sortable')
     <script type="text/javascript" charset="utf-8">
         $(function () {
-            initSortableMenu("{{ (isset($url)? $url.'/'.$section->id.'/content' : request()->url().'/'.$section->id.'/content') }}/order", 'content-{{$section->id}}');
+            initSortableMenu("{{ (isset($url)? $url.'/'.$section->id.'/content' : request()->url().'/'.$section->id.'/content') }}/order", 'content-{{$section->id}}', false);
         })
     </script>
 @endsection

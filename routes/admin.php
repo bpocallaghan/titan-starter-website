@@ -230,6 +230,8 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::post('/{resourceable}/{resource}/sections/{section}/content/{content}/removeMedia', 'ContentController@removeMedia');
         //view contents
         Route::get('/resources/content/', 'ContentController@show');
+        //delete content
+        Route::delete('/content/{content}', 'ContentController@deleteContent');
     });
 
 });

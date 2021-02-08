@@ -95,7 +95,7 @@ class PagesController extends AdminController
         $banners = Banner::getAllList();
         $templates = Template::getAllList();
 
-        return $this->view('pages.create_edit', compact('parents', 'banners', 'templates', 'content'))
+        return $this->view('pages.create_edit', compact('parents', 'banners', 'templates'))
             ->with('item', $page);
     }
 

@@ -154,7 +154,6 @@ class ContentController extends AdminController
      * @param Section $section
      * @param Content $content
      * @return Response
-     * @internal param $section_section
      */
     public function destroy($resourceable, $id, Section $section, Content $content)
     {
@@ -178,13 +177,35 @@ class ContentController extends AdminController
 
     /**
      * Remove the specified content from storage.
+
+     * @param Content $content
+     * @return Response
+     */
+    public function destroyContent(Content $content)
+    {
+        if($content->sections->count() > 1 ){
+            foreach($content->sections as $section){
+                $section->components()->detach([$content->id]);
+            }
+        }
+
+        // delete Section_content
+        $this->deleteEntry($content, request());
+
+        log_activity(' Component Deleted',
+            'A Content was successfully removed', $content);
+
+        return redirect_to_resource();
+    }
+
+    /**
+     * Remove the specified content from storage.
      * @param  $resourceable
      * @param  $id
      * @param Section $sec
      * @param Section $section
      * @param Content $content
      * @return Response
-     * @internal param $section_section
      */
     public function remove($resourceable, $id, Section $section, Content $content)
     {
