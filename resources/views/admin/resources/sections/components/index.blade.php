@@ -25,22 +25,26 @@
                 <tbody>
                 @foreach ($items as $item)
                     @php
-                        $url = '/admin/'.strtolower(\Str::plural((new \ReflectionClass($item->sections->first()->sectionable))->getShortName())).'/'.$item->sections->first()->sectionable->id.'/'.strtolower(\Str::plural((new \ReflectionClass($item->sections->first()))->getShortName())).'/'.$item->sections->first()->id.'/content/';
-                        if(isset($item->sections) && $item->sections->count() > 0){
+                        if(isset($item->sections) && $item->sections->count() > 0 && isset($item->sections->first()->sectionable)){
+                            $url = '/admin/'.strtolower(\Str::plural((new \ReflectionClass($item->sections->first()->sectionable))->getShortName())).'/'.$item->sections->first()->sectionable->id.'/'.strtolower(\Str::plural((new \ReflectionClass($item->sections->first()))->getShortName())).'/'.$item->sections->first()->id.'/content/';
                             $actions = ['edit', 'delete'];
                         }else {
-                            $actions = [];
+                            $url = '/admin/resources/content/';
+                            $actions = ['delete'];
                         }
+
                     @endphp
                     <tr>
                         <td>{{ $item->name }}</td>
                         <td>
-                            @foreach($item->sections as $section)
+                            @forelse($item->sections as $section)
                                 {!! (($section->name)? $section->name:$section->summary).' <small>('.(isset($section)? (new \ReflectionClass($section))->getShortName() : 'The item this belonged to was removed.').')</small> - '.$section->sectionable->name.' <small>('.(isset($section->sectionable)? (new \ReflectionClass($section->sectionable))->getShortName() : 'The item this belonged to was removed.').')</small><br>' !!}
-                            @endforeach
+                            @empty
+                                <span class="text-info">This content is not attached to an item, you can attach it to any section.</span>
+                            @endforelse
                         </td>
                         <td>{{ format_date($item->created_at) }}</td>
-                        <td>{!! action_row($url, $item->id, $item->name, ['edit', 'delete']) !!}</td>
+                        <td>{!! action_row($url, $item->id, $item->name, $actions) !!}</td>
                     </tr>
                 @endforeach
                 </tbody>
