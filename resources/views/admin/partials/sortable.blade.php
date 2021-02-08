@@ -29,7 +29,7 @@
                     var children = [].slice.call(sortable.children);
 
                     for (var i in children) {
-                        var nested = children[i].querySelector('#'+uniqueId+' .dd-list');
+                        var nested = children[i].querySelector('#'+uniqueId+' > .dd-list');
                         serialized.push({
                             id: children[i].dataset['id'],
                             children: nested ? serialize(nested) : []
@@ -59,7 +59,7 @@
                 onEnd: function (/**Event*/evt) {
                     // same properties as onEnd
                     var itemEl = evt.item;  // dragged HTMLElement
-                    var items = document.querySelectorAll('#' + uniqueId + ' .dd-list')[0];
+                    var items = document.querySelectorAll('#' + uniqueId + ' > .dd-list')[0];
                     var dataArray = serialize(items);
 
                     updateList(dataArray);
@@ -68,7 +68,7 @@
 
             var containers = null;
             var sortables = [];
-            containers = document.querySelectorAll('#' + uniqueId + ' .dd-list');
+            containers = document.querySelectorAll('#' + uniqueId + ' > .dd-list');
             for (var i = 0; i < containers.length; i++) {
                 // use variable in order to use sort.destroy(); when needed e.g multiple sortables on same page
                 sort = new Sortable(containers[i], sortableOptions);
