@@ -78,6 +78,7 @@
         <!-- Images -->
 
         <div id="photoGridSortable">
+            @include('admin.resources.photos.attach')
             <div class="row d-flex dd-list mt-3">
                 @forelse($photoable->photos->sortBy('list_order') as $photo)
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2" data-id="{{ $photo->id }}">

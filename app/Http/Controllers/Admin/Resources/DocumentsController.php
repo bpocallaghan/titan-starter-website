@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use App\Models\ResourceCategory;
-use Illuminate\Http\UploadedFile;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Models\ResourceCategory;
+use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Admin\AdminController;
 
 class DocumentsController extends AdminController
@@ -24,8 +24,8 @@ class DocumentsController extends AdminController
     }
 
     /**
-     * Show the Documentable's photos
-     * Create / Edit / Delete the photos
+     * Show the Documentable's documents
+     * Create / Edit / Delete the documents
      * @param $documentable
      * @param $documents
      * @return mixed
@@ -65,12 +65,12 @@ class DocumentsController extends AdminController
     }
 
     /**
-     * Upload a new photo to the album
+     * Upload a new document to the item
      * @return \Illuminate\Http\JsonResponse
      */
     public function upload()
     {
-        // upload the photo here
+        // upload the document here
         $attributes = request()->validate(Document::$rules);
 
         // get the documentable
@@ -80,18 +80,49 @@ class DocumentsController extends AdminController
             return json_response_error('Whoops', 'We could not find the documentable.');
         }
 
-        // move and create the photo
-        $photo = $this->moveAndCreateDocument($attributes['file'], $documentable);
+        // move and create the document
+        $document = $this->moveAndCreateDocument($attributes['file'], $documentable);
 
-        if (!$photo) {
+        if (!$document) {
             return json_response_error('Whoops', 'Something went wrong, please try again.');
         }
 
-        return json_response(['id' => $photo->id]);
+        return json_response(['id' => $document->id]);
     }
 
     /**
-     * Update the photo's name
+     * Upload a new document to the album
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function attach()
+    {
+
+        $documentable = request()->documentable_type::find(request()->documentable_id);
+
+        if (!$documentable) {
+            return json_response_error('Whoops', 'We could not find the documentable.');
+        }
+
+        // move and create the document
+        $existing_document = Document::find(request()->id);
+
+        $document = Document::create([
+            'filename'          => $existing_document->filename,
+            'documentable_id'   => $documentable->id,
+            'documentable_type' => get_class($documentable),
+            'name'              =>  (request()->name && request()->name != ''? request()->name: $existing_document->name),
+            'active_from'       => \Carbon\Carbon::now(),
+        ]);
+
+        if (!$document) {
+            return json_response_error('Whoops', 'Something went wrong, please try again.');
+        }
+
+        return json_response($document);
+    }
+
+    /**
+     * Update the document's name
      * @param Document $document
      * @return \Illuminate\Http\JsonResponse
      */
@@ -103,7 +134,7 @@ class DocumentsController extends AdminController
     }
 
     /**
-     * Remove the specified photo from storage.
+     * Remove the specified document from storage.
      *
      * @param Document $document
      * @return Response
@@ -137,13 +168,13 @@ class DocumentsController extends AdminController
         $originalName = $file->getClientOriginalName();
         $originalName = substr($originalName, 0, strpos($originalName, $extension));
         $name = strlen($originalName) <= 2 ? $documentable->name : $originalName;
-        $photo = Document::create([
+        $document = Document::create([
             'filename'          => $filename,
             'documentable_id'   => $documentable->id,
             'documentable_type' => get_class($documentable),
             'name'              => strlen($name) < 2 ? 'Document Name' : $name,
         ]);
 
-        return $photo;
+        return $document;
     }
 }

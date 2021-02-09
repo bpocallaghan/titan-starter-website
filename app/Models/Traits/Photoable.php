@@ -3,7 +3,6 @@
 namespace App\Models\Traits;
 
 use App\Models\Photo;
-use App\Models\Video;
 
 trait Photoable
 {
@@ -57,5 +56,13 @@ trait Photoable
     public function scopeHasPhotos($query)
     {
         return $query->whereHas('photos');
+    }
+
+    /**
+     * Get all Photos.
+     */
+    public function getAllPhotosAttribute()
+    {
+        return Photo::getAllList();
     }
 }

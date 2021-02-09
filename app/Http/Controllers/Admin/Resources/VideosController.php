@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use Image;
 use Redirect;
+use App\Models\Video;
+use App\Models\Photo;
 use App\Http\Requests;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use App\Models\Photo;
-use App\Models\Video;
-use App\Models\PhotoAlbum;
+use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Admin\AdminController;
 
 class VideosController extends AdminController
 {
     /**
-     * Display a listing of photo.
+     * Display a listing of video.
      *
      * @return Response
      */
@@ -108,6 +108,65 @@ class VideosController extends AdminController
     }
 
     /**
+     * Upload a new video to the album
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function uploadVideos()
+    {
+        // upload the video here
+        $attributes = request()->validate(Video::$rules);
+
+        // get the videoable
+        $videoable = input('videoable_type')::find(input('videoable_id'));
+
+        if (!$videoable) {
+            return json_response_error('Whoops', 'We could not find the videoable.');
+        }
+
+        // move and create the video
+        $video = $this->moveAndCreateVideo($attributes['file'], $videoable);
+
+        if (!$video) {
+            return json_response_error('Whoops', 'Something went wrong, please try again.');
+        }
+
+        return json_response(['id' => $video->id]);
+    }
+
+    /**
+     * Attach a new video to the item
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function attach()
+    {
+
+        $videoable = request()->videoable_type::find(request()->videoable_id);
+
+        if (!$videoable) {
+            return json_response_error('Whoops', 'We could not find the videoable.');
+        }
+
+        // move and create the video
+        $existing_video = Video::find(request()->id);
+
+        $video = Video::create([
+            'filename'          => $existing_video->filename,
+            'link'              => $existing_video->link,
+            'videoable_id'      => $videoable->id,
+            'videoable_type'    => get_class($videoable),
+            'name'              =>  (request()->name && request()->name != ''? request()->name: $existing_video->name),
+            'content'           => $existing_video->content,
+            'is_youtube'        => $existing_video->is_youtube,
+        ]);
+
+        if (!$video) {
+            return json_response_error('Whoops', 'Something went wrong, please try again.');
+        }
+
+        return json_response($video);
+    }
+
+    /**
      * Remove the specified testimonial from storage.
      * @param PhotoAlbum $album
      * @param Video $video
@@ -138,8 +197,6 @@ class VideosController extends AdminController
      */
     public function updateVideoCover(Video $video)
     {
-        // get the photoable
-        //$photoable = input('photoable_type_name')::find(input('photoable_id'));
 
         // set all the albums to cover = false
         Video::where('videoable_id', input('videoable_id'))
@@ -184,5 +241,38 @@ class VideosController extends AdminController
         $image->fit($size['tn'][0], $size['tn'][1])->save($path . $filenameThumb);
 
         return $filename;
+    }
+
+    /**
+     * Save Image in Storage, crop image and save in public/uploads/images
+     * @param UploadedFile $file
+     * @param              $videoable
+     * @param array        $size
+     * @return PhotosController|bool|\Illuminate\Http\JsonResponse
+     */
+    private function moveAndCreateVideo(
+        UploadedFile $file,
+        $videoable
+    ) {
+        $extension = '.' . $file->extension();
+
+        $name = token();
+        $filename = $name . $extension;
+
+        $path = upload_path_videos();
+
+        $file->move($path, $filename);
+
+        $originalName = $file->getClientOriginalName();
+        $originalName = substr($originalName, 0, strpos($originalName, $extension));
+        $name = strlen($originalName) <= 2 ? $videoable->name : $originalName;
+        $video = Video::create([
+            'filename'       => $filename,
+            'videoable_id'   => $videoable->id,
+            'videoable_type' => get_class($videoable),
+            'name'           => strlen($name) < 2 ? 'Video Name' : $name,
+        ]);
+
+        return $video;
     }
 }

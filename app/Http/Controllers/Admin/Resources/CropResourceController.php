@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use App\Models\Photo;
 use Image;
+use App\Models\Photo;
 use App\Http\Requests;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Admin\AdminController;
 
 class CropResourceController extends AdminController
@@ -23,14 +24,16 @@ class CropResourceController extends AdminController
     }
 
     /**
-     * @param $resouceable
+     * @param $resourceable
      * @param $id
      * @return this
      */
-    public function showPhoto($resouceable, $id)
+    public function showPhoto($resourceable, $id)
     {
+        $resource = Str::plural($resourceable, 1);
+        $resourceable = Str::singular($resourceable);
 
-        $model_name = str_replace('-', ' ',ucwords($resouceable));
+        $model_name = str_replace('-', ' ',ucwords($resourceable));
         $model_name = str_replace(' ', '',ucwords($model_name));
 
         $resource_type = 'App\Models\\'.$model_name;

@@ -75,19 +75,19 @@
                                 Create Content
                             </a>
 
-                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}#resources-photos">
+                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}/resources#resources-photos">
                                 <span class="label"><i class="fa fa-fw fa-images"></i></span>
                                 Gallery
                                 @if(isset($section->photos) && $section->photos->count() > 0)<span class="badge badge-light">({{ $section->photos->count() }})</span> @endif
                             </a>
 
-                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}#resources-videos">
+                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}/resources#resources-videos">
                                 <span class="label"><i class="fa fa-fw fa-film"></i></span>
                                 Video Gallery
                                 @if(isset($section->videos) && $section->videos->count() > 0)<span class="badge badge-light">({{ $section->videos->count() }})</span> @endif
                             </a>
 
-                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}#resources-documents">
+                            <a class="btn btn-light" href="/admin/{{$resource}}/sections/{{$section->id}}/resources#resources-documents">
                                 <span class="label"><i class="fa fa-fw fa-file-pdf"></i></span>
                                 Documents Gallery
                                 @if(isset($section->documents) && $section->documents->count() > 0)<span class="badge badge-light">({{ $section->documents->count() }})</span> @endif

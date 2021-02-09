@@ -28,6 +28,17 @@ class Photo extends Model
         'file' => 'required|max:5000|mimes:jpg,jpeg,png,bmp'
     ];
 
+        /**
+     * Get all the rows as an array (ready for dropdowns)
+     *
+     * @return array
+     */
+    public static function getAllList()
+    {
+    	return self::with('photoable')->orderBy('name')->get()->pluck('name', 'id')->toArray();
+    }
+
+
     /**
      * Get the Tag many to many
      */

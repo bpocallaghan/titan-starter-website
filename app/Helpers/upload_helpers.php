@@ -30,6 +30,19 @@ if (!function_exists('upload_path_images')) {
     }
 }
 
+if (!function_exists('upload_path_videos')) {
+    /**
+     * Get the path to the public videos folder.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function upload_path_videos($path = '')
+    {
+        return upload_path('videos' . DIRECTORY_SEPARATOR . $path . DIRECTORY_SEPARATOR);
+    }
+}
+
 function get_file_extensions($type = 'image')
 {
     switch ($type) {

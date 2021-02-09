@@ -33,8 +33,8 @@
                     </div>
                 @endif
                 @if(isset($resource->documents))
-                    <div class="tab-pane fade" data-url="/admin/resources/documents/order" data-type="documentGridSortable" id="resources-documents" role="tabpanel" aria-labelledby="resources-documents-tab">
-                        @include('admin.resources.documents.documentable', ['documentable' => $resource, 'documents' => $resource->documents])
+                <div class="tab-pane fade" data-url="/admin/resources/documents/order" data-type="documentGridSortable" id="resources-documents" role="tabpanel" aria-labelledby="resources-documents-tab">
+                    @include('admin.resources.documents.documentable', ['documentable' => $resource, 'documents' => $resource->documents])
                     </div>
                 @endif
             </div>

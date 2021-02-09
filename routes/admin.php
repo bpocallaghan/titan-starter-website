@@ -161,8 +161,11 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
     Route::group(['namespace' => 'Resources'], function () {
 
+        // resource image crop - featured image (single image file name in resource table) - for banners
+        Route::get('/{resourceable}/{resource}/crop-resource/', 'CropResourceController@showPhoto');
+
         // get resources - new photoable, documentable, videoable
-        Route::get('/{resourceable1}/{resourceable2}/{resource}', 'ResourceController@showResource');
+        Route::get('/{resourceable1}/{resourceable2}/{resource}/resources', 'ResourceController@showResource');
 
         Route::group(['prefix' => 'resources'], function () {
             // resource categories
@@ -187,11 +190,15 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
             //photos order
             Route::get('/photos/{resourceable}/{resource}/order', 'PhotosOrderController@showPhotos');
             Route::post('/photos/order', 'PhotosOrderController@update');
+
+            // attach existing photos
+            Route::post('/photos/attach', 'PhotosController@attach');
+
             // croppers
             Route::get('/photos/crop/{photo}', 'CropperController@showPhotos');
             Route::post('/photos/crop/{photo}', 'CropperController@cropPhoto');
 
-            // resource image crop - featured image (single image file name in resource table)
+            // resource image crop - featured image (single image file name in resource table) - for page content
             Route::get('/{resourceable}/{resource}/crop-resource/', 'CropResourceController@showPhoto');
             Route::post('/photos/crop-resource', 'CropResourceController@cropPhoto');
 
@@ -202,6 +209,12 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
             Route::delete('/videos/{video}', 'VideosController@destroy');
             Route::post('/videos/{video}/getInfo', 'VideosController@videoInfo');
             Route::post('/videos/{video}/cover', 'VideosController@updateVideoCover');
+            //upload videos
+            Route::post('/videos/upload', 'VideosController@uploadVideos');
+            Route::post('/videos/{video}/edit/name', 'VideosController@updateVideoName');
+            // attach existing videos
+            Route::post('/videos/attach', 'VideosController@attach');
+
             //videos order
             Route::get('/videos/{resourceable}/{resource}/order', 'VideosOrderController@showVideos');
             Route::post('/videos/order', 'VideosOrderController@update');
@@ -214,6 +227,8 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
             //documents order
             Route::get('/documents/{resourceable}/{resource}/order', 'DocumentsOrderController@showDocuments');
             Route::post('/documents/order', 'DocumentsOrderController@update');
+            // attach existing documents
+            Route::post('/documents/attach', 'DocumentsController@attach');
         });
 
         // sections
