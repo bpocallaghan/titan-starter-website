@@ -16,11 +16,12 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('is_cover')->default(false);
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->text('content')->nullable();
-            $table->string('link');
+            $table->string('link')->nullable();
+            $table->string('filename')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('is_youtube')->default(true);
+            $table->boolean('is_youtube')->default(false);
             $table->integer('videoable_id');
             $table->string('videoable_type');
             $table->integer('list_order')->default(999);

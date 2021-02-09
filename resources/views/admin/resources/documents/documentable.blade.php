@@ -74,6 +74,9 @@
 
         <!-- Documents -->
         <div id="documentGridSortable">
+
+            @include('admin.resources.documents.attach')
+
             <div class="row d-flex dd-list mt-3">
                 @forelse($documentable->documents->sortBy('list_order') as $document)
                     <div class="col-6 col-md-4 col-xl-3" data-id="{{ $document->id }}">

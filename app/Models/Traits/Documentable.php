@@ -21,10 +21,18 @@ trait Documentable
     }
 
     /**
-     * Get all of the post's comments.
+     * Get all of the documentable documents.
      */
     public function documents()
     {
         return $this->morphMany(Document::class, 'documentable');
+    }
+
+    /**
+     * Get all documents.
+     */
+    public function getAllDocumentsAttribute()
+    {
+        return Document::getAllList();
     }
 }

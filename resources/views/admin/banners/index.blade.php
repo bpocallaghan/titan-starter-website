@@ -45,7 +45,7 @@
                         <td>{!! image_row_link($item->image_thumb, $item->image) !!}</td>
                         <td>{{ $item->is_website ? 'Yes':'No' }}</td>
                         <td>
-                            <a href="/admin/resources/banner/{{ $item->id }}/crop-resource" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $item->name }}">
+                            <a href="/admin/banners/{{ $item->id }}/crop-resource" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $item->name }}">
                                 <i class="fa fa-fw fa-crop-alt"></i>
                             </a>
                             {!! action_row($selectedNavigation->url, $item->id, $item->title, ['show', 'edit', 'delete'], false) !!}

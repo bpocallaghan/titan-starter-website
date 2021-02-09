@@ -65,8 +65,9 @@
                             </a>
                             <button title="Remove media" class="btn btn-danger btn-xs btn-delete-row pull-right btn-delete-media" id="form-delete-row{{ $item->id }}" data-id="{{ $item->id }}" data-resource-id="{{ $item->id }}">
                                 <i class="fa fa-fw fa-times"></i></button>
-                            <a href="/admin/resources/{{ $resource }}/{{ $item->id }}/crop-resource" title="Crop media" class="btn btn-info btn-xs pull-right">
-                                <i class="fa fa-fw fa-crop-alt"></i></a>
+                                <a href="/admin/resources/content/{{ $item->id }}/crop-resource" title="Crop media" class="btn btn-info btn-xs pull-right">
+                                    <i class="fa fa-fw fa-crop-alt"></i>
+                                </a>
                         </div>
                     @endif
                 </div>

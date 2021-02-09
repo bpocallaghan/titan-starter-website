@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin\Resources;
 use App\Models\Photo;
 use Illuminate\Http\UploadedFile;
 use App\Models\Traits\ImageThumb;
-use App\Http\Controllers\Admin\AdminController;
 use Intervention\Image\Facades\Image;
+use App\Http\Controllers\Admin\AdminController;
 
 class PhotosController extends AdminController
 {
@@ -48,6 +48,36 @@ class PhotosController extends AdminController
         }
 
         return json_response(['id' => $photo->id]);
+    }
+
+    /**
+     * Attach / duplicate a new photo to the item
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function attach()
+    {
+
+        $photoable = request()->photoable_type::find(request()->photoable_id);
+
+        if (!$photoable) {
+            return json_response_error('Whoops', 'We could not find the photoable.');
+        }
+
+        // move and create the photo
+        $existing_photo = photo::find(request()->id);
+
+        $photo = photo::create([
+            'filename'          => $existing_photo->filename,
+            'photoable_id'   => $photoable->id,
+            'photoable_type' => get_class($photoable),
+            'name'              =>  (request()->name && request()->name != ''? request()->name: $existing_photo->name),
+        ]);
+
+        if (!$photo) {
+            return json_response_error('Whoops', 'Something went wrong, please try again.');
+        }
+
+        return json_response($photo);
     }
 
     /**

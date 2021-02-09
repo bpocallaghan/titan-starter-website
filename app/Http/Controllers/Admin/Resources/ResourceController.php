@@ -36,7 +36,7 @@ class ResourceController extends AdminController
         if(isset($resourceable1)){
             $resourceable = $resourceable1;
         }
-        if(isset($resourceable2) || $resourceable2 != 0){
+        if(isset($resourceable2) && $resourceable2 !== "0" && $resourceable2 != "articles"){
             $resourceable = $resourceable2;
         }
 
