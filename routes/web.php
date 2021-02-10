@@ -99,16 +99,18 @@ Route::group(['prefix' => 'auth'], function () {
 */
 Route::group(['namespace' => 'Website'], function () {
 
-    $pages = Page::whereNotNull('template_id')->get();
+    if (!App::runningInConsole()) {
+        $pages = Page::whereNotNull('template_id')->get();
 
-    foreach ($pages as $page) {
-        $name = $page->slug;
+        foreach ($pages as $page) {
+            $name = $page->slug;
 
-        if (isset($page->template->controller_action) && $page->template->controller_action != 'Auth') {
-            Route::get($page->url, $page->template->controller_action)->name($name);
-        }
-        else if(!isset($page->template->controller_action)){
-            Route::get($page->url, 'PagesController@index')->name($name);
+            if (isset($page->template->controller_action) && $page->template->controller_action != 'Auth') {
+                Route::get($page->url, $page->template->controller_action)->name($name);
+            }
+            else if(!isset($page->template->controller_action)){
+                Route::get($page->url, 'PagesController@index')->name($name);
+            }
         }
     }
 
