@@ -1,5 +1,5 @@
 @extends('admin.admin')
 
 @section('content')
-    @include('admin.sections.components')
+    @include('admin.resources.sections.components')
 @endsection

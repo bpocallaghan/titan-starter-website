@@ -37,7 +37,7 @@ class SectionsController extends AdminController
         // get list of content
         $content = Content::getAllList();
 
-        $model->load('resources.sections.components');
+        $model->load('sections.components');
 
         return $this->view('resources.sections.section_components')
         ->with('content', $content)
