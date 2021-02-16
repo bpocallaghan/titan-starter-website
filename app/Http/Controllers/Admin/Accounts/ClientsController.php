@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin\Accounts;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Validation\Rule;
+use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\Admin\AdminController;
 
 class ClientsController extends AdminController
 {
@@ -51,6 +52,8 @@ class ClientsController extends AdminController
         $client = $this->createEntry(User::class, $attributes);
 
         $client->roles()->attach($roles);
+
+        event(new Registered($client));
 
         return redirect_to_resource();
     }

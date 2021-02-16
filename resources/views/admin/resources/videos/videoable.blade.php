@@ -19,7 +19,9 @@
                 Refresh the page when upload is complete<br/>
                 Click on the video name to change it<br/>
                 Click on the radio button to set the cover video<br/>
-                <b>Note:</b> Batch upload limit of 5, refresh to add more videos, videos should be less than 5 MB.
+                <b>Note:</b> Batch upload limit of 5, refresh to add more videos, videos should be less than 5 MB.<br/>
+                <b>Note:</b> Video's should rather be linked from a streaming website like YouTube or Vimeo etc.<br/>
+                <b>Note:</b> When uploading your custom video, note that users will need to load it using their data.
             </p>
         </div>
 
