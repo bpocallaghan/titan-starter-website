@@ -34,10 +34,10 @@
         "cropperjs": "^1.5.6",
         "datatables.net": "^1.10.22",
         "datatables.net-bs4": "^1.10.20",
-        "datatables.net-dt": "^1.10.22",
+        "datatables.net-dt": "^1.10.23",
         "datatables.net-responsive": "^2.2.3",
         "datatables.net-responsive-bs4": "^2.2.3",
-        "datatables.net-responsive-dt": "^2.2.6",
+        "datatables.net-responsive-dt": "^2.2.7",
         "daterangepicker": "^3.0.5",
         "dropzone": "^5.5.1",
         "jquery-cropper": "^1.0.1",
@@ -45,6 +45,7 @@
         "moment": "^2.24.0",
         "pc-bootstrap4-datetimepicker": "^4.17.50",
         "select2": "^4.0.12",
+        "select2-theme-bootstrap4": "^1.0.0",
         "sortablejs": "^1.10.2",
         "summernote": "^0.8.15"
     }
