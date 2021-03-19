@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Models\Section;
 use App\Models\Content;
+use App\Models\Layout;
 
 trait Sectionable
 {
@@ -22,17 +23,29 @@ trait Sectionable
      */
     public function getLayoutsAttribute()
     {
-        return [
-            'col-12'    => '1 Column',
-            'col-md-6'  => '2 Columns',
-            'col-md-4'  => '3 Columns',
-            'col-md-3'  => '4 Columns',
-            'contact'   => 'Include Contact Form',
-            'news'      => 'Include News',
-            'faq'       => 'Include FAQ\'s',
-            'products'  => 'Include Products'
-        ];
+
+        $layout = Layout::getAllLists($this->template_id);
+
+        return $layout;
     }
+
+    // /**
+    //  * Get the different layouts available
+    //  * @return mixed
+    //  */
+    // public function getLayoutsAttribute()
+    // {
+    //     return [
+    //         'col-12'    => '1 Column',
+    //         'col-md-6'  => '2 Columns',
+    //         'col-md-4'  => '3 Columns',
+    //         'col-md-3'  => '4 Columns',
+    //         'contact'   => 'Include Contact Form',
+    //         'news'      => 'Include News',
+    //         'faq'       => 'Include FAQ\'s',
+    //         'products'  => 'Include Products'
+    //     ];
+    // }
 
     /**
      * Get the first document

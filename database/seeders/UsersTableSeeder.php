@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             'firstname'         => 'Nadja',
             'lastname'          => 'Schnabel',
             'cellphone'         => '123456789',
-            'email'             => 'nadja@asylum.com',
+            'email'             => 'nadja@asylum.com.na',
             'gender'            => 'female',
             'password'          => bcrypt('nadja'),
             'email_verified_at' => now()

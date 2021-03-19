@@ -153,6 +153,8 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
 
         Route::resource('templates', 'TemplatesController');
 
+        Route::resource('layouts', 'LayoutsController');
+
         // navigation
         Route::get('navigations/order', 'NavigationOrderController@index');
         Route::post('navigations/order', 'NavigationOrderController@updateOrder');
