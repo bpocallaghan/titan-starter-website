@@ -1,4 +1,4 @@
-@foreach($item->sections as $section)
+@foreach($item->sections->sortBy('list_order') as $section)
 
     @if(isset($section->name))
         <h2>{!! $section->name !!}</h2>
@@ -31,7 +31,7 @@
     @if(isset($section->components) && $section->components->count() > 0)
         <div class="row">
 
-            @foreach($section->components as $content)
+            @foreach($section->components->sortBy('list_order') as $content)
                 <section class="{{ isset($section->layout) && strpos($section->layout, 'col') !== false? $section->layout: 'col-12' }} mb-4 mb-md-3">
                     @include('website.pages.page_heading')
                     @include('website.pages.page_content')
