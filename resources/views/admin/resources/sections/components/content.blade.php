@@ -132,7 +132,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: "/admin/resources/{{$resource}}/" + $resourceable_id + "/sections/{{$section->id}}/content/" + $id + "/removeMedia",
+                    url: "/admin/{{$resource}}/" + $resourceable_id + "/sections/{{$section->id}}/content/" + $id + "/removeMedia",
                     dataType: "json",
                     success: function (data) {
                         if (data.error) {
