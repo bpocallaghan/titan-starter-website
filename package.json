@@ -18,7 +18,7 @@
         "jquery": "^3.6.0",
         "jquery.cookie": "^1.4.1",
         "laravel-mix": "^5.0.9",
-        "lodash": "^4.17.19",
+        "lodash": "^4.17.21",
         "pace": "0.0.4",
         "pace-js": "^1.0.2",
         "popper.js": "^1.12",
