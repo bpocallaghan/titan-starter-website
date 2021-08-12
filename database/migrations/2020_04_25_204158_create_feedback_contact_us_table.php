@@ -22,6 +22,10 @@ class CreateFeedbackContactUsTable extends Migration
             $table->text('content')->nullable();
             $table->string('client_ip');
             $table->text('client_agent');
+            $table->integer('contactable_id')->unsigned()->index();
+            $table->string('contactable_type')->index();
+            $table->string('contactable_name');
+            $table->string('contactable_type_name');
             $table->timestamps();
         });
     }

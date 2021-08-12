@@ -4,7 +4,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">List All News</h3>
+                    <h3 class="card-title">List All Articles</h3>
                 </div>
 
                 <div class="card-body">
@@ -22,7 +22,7 @@
                             <th>Active From</th>
                             <th>Active To</th>
                             <th>Cover Photo</th>
-                            <th style="min-width: 100px;">Action</th>
+                            <th style="min-width: 125px;">Action</th>
                         </tr>
                         </thead>
                         <tbody>

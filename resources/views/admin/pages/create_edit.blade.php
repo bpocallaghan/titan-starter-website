@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label for="id-template_id">Templates <span class="small">(optional, by default the pages layout will be used)</span></label>
                                 {!! form_select('template_id', (['' => 'Please select a Template'] + $templates), isset($item)? ($errors && $errors->any()? old('template_id') : $item->template_id) : old('template_id'), ['class' => 'select2 form-control ' . form_error_class('template_id', $errors)]) !!}
-                                <p class="text-muted small"><i class="fa fa-info-circle"></i> NOTE: For developer use only. Choose the layout the page should get, e.g contact, news, faq etc. </p>
+                                <p class="text-muted small"><i class="fa fa-info-circle"></i> NOTE: For developer use only. Choose the layout the page should get, e.g contact, articles, faq etc. </p>
                                 {!! form_error_message('template_id', $errors) !!}
                             </div>
                         </div>

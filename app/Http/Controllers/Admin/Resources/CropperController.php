@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Resources;
 use Image;
 use App\Http\Requests;
 use App\Models\Article;
-use App\Models\News;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\PhotoAlbum;

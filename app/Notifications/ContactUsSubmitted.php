@@ -45,11 +45,11 @@ class ContactUsSubmitted extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Contact Us')
+        return (new MailMessage)->subject($this->contactUs->contactable_name)
             ->greeting("Dear {$notifiable->firstname}")
-            ->line("The following information was submitted from the <strong>Contact Us</strong>.")
+            ->line("The following information was submitted from the <strong>{$this->contactUs->contactable_name}</strong>.")
             ->line('&nbsp;')
-            ->line("<strong>Contact Us Details</strong>")
+            ->line("<strong>{$this->contactUs->contactable_name} Details</strong>")
             ->line("Fullname: {$this->contactUs->fullname}")
             ->line("Email: {$this->contactUs->email}")
             ->line("Phone: {$this->contactUs->phone}")
@@ -65,7 +65,7 @@ class ContactUsSubmitted extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'message' => $this->contactUs->fullname . ' submitted contact us.',
+            'message' => $this->contactUs->fullname . ' submitted feeedback form.',
             'id'      => $this->contactUs->id,
             'type'    => get_class($this->contactUs),
         ];

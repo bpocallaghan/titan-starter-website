@@ -71,6 +71,8 @@ class ContactUsController extends AdminController
             return $row->fullname;
         })->addColumn('date', function ($row) {
             return $row->created_at->format('d M Y');
+        })->addColumn('type', function ($row) {
+            return $row->contactable_name.' ('.(new \ReflectionClass($row->contactable))->getShortName().(isset($row->contactable->sectionable)? ' - '.(new \ReflectionClass($row->contactable->sectionable))->getShortName() : '').')';
         })->make(true);
     }
 }

@@ -9,7 +9,7 @@ use App\Models\Traits\Videoable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class News
+ * Class Section
  * @mixin \Eloquent
  */
 class Section extends AdminModel
@@ -42,7 +42,7 @@ class Section extends AdminModel
     }
 
     /**
-     * Get the parent sectionable model (pages or news).
+     * Get the parent sectionable model (pages or artilce).
      */
     public function sectionable()
     {

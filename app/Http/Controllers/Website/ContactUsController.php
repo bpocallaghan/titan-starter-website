@@ -33,6 +33,10 @@ class ContactUsController extends WebsiteController
                 'content'      => $attributes['content'],
                 'client_ip'    => $request->getClientIp(),
                 'client_agent' => $request->header('User-Agent'),
+                'contactable_id'    => $attributes['contactable_id'],
+                'contactable_type' => $attributes['contactable_type'],
+                'contactable_type_name' => $attributes['contactable_type_name'],
+                'contactable_name' => $attributes['contactable_name'],
             ]);
 
             event(new ContactUsFeedback($row));

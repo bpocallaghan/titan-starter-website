@@ -6,14 +6,14 @@ use Bpocallaghan\Sluggable\HasSlug;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class NewsCategory
+ * Class ArticleCategory
  * @mixin \Eloquent
  */
-class NewsCategory extends AdminModel
+class ArticleCategory extends AdminModel
 {
     use SoftDeletes, HasSlug;
 
-    protected $table = 'news_categories';
+    protected $table = 'article_categories';
 
     protected $guarded = ['id'];
 
@@ -37,8 +37,8 @@ class NewsCategory extends AdminModel
     /**
      * Get the articles
      */
-    public function news()
+    public function articles()
     {
-        return $this->hasMany(News::class, 'category_id', 'id');
+        return $this->hasMany(Article::class, 'category_id', 'id');
     }
 }

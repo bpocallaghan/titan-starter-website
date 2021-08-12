@@ -38,7 +38,7 @@ class PhotosOrderController extends AdminController
     }
 
     /**
-     * Show the News' photos
+     * Show the resourceables photos
      * @param $resouceable
      * @param $id
      * @return mixed

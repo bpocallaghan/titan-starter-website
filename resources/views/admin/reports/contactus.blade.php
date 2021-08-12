@@ -29,6 +29,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Content</th>
+                            <th>Belongs To</th>
                             <th>Created On</th>
                         </tr>
                         </thead>
@@ -49,6 +50,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'content', name: 'content'},
+                {data: 'type', name: 'type'},
                 {data: 'date', name: 'date'},
             ]);
         }

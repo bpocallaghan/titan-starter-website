@@ -4,5 +4,5 @@ id,name,layout,slug,created_at,updated_at,deleted_at,created_by,updated_by,delet
 "3","3 Columns","col-md-4","3-columns","2021-03-19 09:20:32","2021-03-19 09:20:32","","2","2",
 "4","4 Columns","col-md-3","4-columns","2021-03-19 09:20:48","2021-03-19 09:20:48","","2","2",
 "5","Include Contact Form & Details","contact","include-contact-form-and-details","2021-03-19 09:21:16","2021-03-19 09:21:16","","2","2",
-"6","Include News","news","include-news","2021-03-19 09:21:35","2021-03-19 09:21:35","","2","2",
+"6","Include Articles","articles","include-articles","2021-03-19 09:21:35","2021-03-19 09:21:35","","2","2",
 "7","Include Products","products","include-products","2021-03-19 09:21:59","2021-03-19 09:21:59","","2","2",

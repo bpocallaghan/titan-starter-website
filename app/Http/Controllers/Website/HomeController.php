@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Models\News;
+use App\Models\Article;
 use App\Models\Page;
 use App\Models\ProductCategory;
 
@@ -15,9 +15,9 @@ class HomeController extends WebsiteController
     {
         $this->showPageBanner = true;
 
-        $news = News::whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
+        $articles = Article::whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
 
         return $this->view('home')
-            ->with('news', $news);
+            ->with('articles', $articles);
     }
 }

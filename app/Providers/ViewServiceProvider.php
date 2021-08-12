@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
-use App\Models\News;
+use App\Models\Article;
 use App\Models\Product;
 use App\Models\Document;
-use App\Models\NewsCategory;
+use App\Models\ArticleCategory;
 use App\Models\ProductFeature;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\View;
@@ -44,17 +44,17 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         // Using Closure based composers...
-        View::composer('website.partials.side_news', function ($view) {
+        View::composer('website.partials.side_articles', function ($view) {
 
-            $categories = NewsCategory::all();
+            $categories = ArticleCategory::all();
 
-            $items = News::whereHas('photos')
-                ->where('created_at', '>', Carbon::now()->subDays(30))
-                ->orderBy('created_at', 'DESC')
+            $items = Article::whereHas('photos')
+                ->where('active_from', '>', Carbon::now()->subDays(30))
+                ->orderBy('active_from', 'DESC')
                 ->get()
                 ->take(5);
 
-            $view->with('news', $items)
+            $view->with('articles', $items)
                 ->with('categories', $categories);
         });
 

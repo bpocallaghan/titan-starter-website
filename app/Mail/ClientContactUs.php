@@ -34,7 +34,7 @@ class ClientContactUs extends Mailable
      */
     public function build()
     {
-        return $this->subject('Contact Us - ' . config('app.name'))
+        return $this->subject($this->contactUs->contactable_name.' - ' . config('app.name'))
             ->to($this->contactUs->email, $this->contactUs->fullname)
             ->markdown('emails.contactus_client');
     }

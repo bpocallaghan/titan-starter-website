@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
-use App\Models\News;
 use App\Models\Page;
 use App\Models\Photo;
 use Bpocallaghan\Titan\Http\Requests;
@@ -42,7 +41,7 @@ class VideosOrderController extends AdminController
     }
 
     /**
-     * Show the News' photos
+     * Show the resourceables videos
      * @param $resouceable
      * @param $id
      * @return mixed

@@ -26,17 +26,14 @@ Route::redirect('/home', '/');
 Route::group(['namespace' => 'Website'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
-    //Route::get('/news/{categorySlug?}', 'NewsController@index')->name('news');
-    Route::get('/articles/{categorySlug}/{newsSlug}', 'NewsController@show')->name('news.show');
+    Route::get('/articles/{categorySlug}/{articleSlug}', 'ArticlesController@show')->name('article.show');
 
-    //Route::get('/contact-us', 'ContactUsController@index')->name('contact');
     Route::post('/contact/submit', 'ContactUsController@feedback')->name('contact.submit');
 
     Route::post('/comments/submit', 'CommentsController@comment')->name('comments.submit');
 
     // faq
     Route::namespace('FAQ')->group(function () {
-        //Route::get('/faq', 'FAQController@index');
         Route::post('/faq/question/{faq}/{type?}', 'FAQController@incrementClick')->name('faq.feedback.submit');
     });
 
@@ -89,7 +86,7 @@ Route::group(
 Route::group(['prefix' => 'auth'], function () {
     Auth::routes(['verify' => true]);
 
-    Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::any('logout', 'Auth\LoginController@logout')->name('auth.logout');
 });
 
 /*
@@ -99,6 +96,9 @@ Route::group(['prefix' => 'auth'], function () {
 */
 Route::group(['namespace' => 'Website'], function () {
 
+    // un-comment the "if (!App::runningInConsole())" statement ONLY once project is set up and migrations have been run
+    // run "php artisan cache:clear", "php artisan route:clear", "php artisan config:clear" in order to load custom templates
+    // avoid running "php artisan optimize" as this created cached files and causes issues when renaming pages
     if (!App::runningInConsole()) {
         $pages = Page::whereNotNull('template_id')->get();
 

@@ -25,5 +25,18 @@ class FeedbackContactUs extends Model
         'email'     => 'required|min:2|max:191|email',
         'content'   => 'required|min:2|max:1000',
         'phone'     => 'nullable|max:20',
+        'contactable_id'    => 'required',
+        'contactable_type'  => 'required',
+        'contactable_type_name'  => 'required',
+        'contactable_name'  => 'required',
     ];
+
+
+    /**
+     * Get the parent contactable model (pages or articles).
+     */
+    public function contactable()
+    {
+        return $this->morphTo();
+    }
 }

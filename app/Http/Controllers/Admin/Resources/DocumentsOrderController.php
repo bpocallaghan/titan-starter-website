@@ -38,7 +38,7 @@ class DocumentsOrderController extends AdminController
     }
 
     /**
-     * Show the News' documents
+     * Show the resourceable documents
      * @param $resouceable
      * @param $id
      * @return mixed

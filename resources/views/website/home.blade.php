@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <ul class="list-unstyled style-1">
-                                        <li>News</li>
+                                        <li>Articles</li>
                                         <li>FAQ's</li>
                                         <li>Locations</li>
                                         <li>Shop</li>

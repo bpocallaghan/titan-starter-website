@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Models\News;
-use App\Models\NewsCategory;
+use App\Models\Article;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class NewsController extends WebsiteController
+class ArticlesController extends WebsiteController
 {
     //use GoogleCaptcha;
 
     public function index($categorySlug = null)
     {
         if (isset($categorySlug)) {
-            $category = NewsCategory::where('slug', $categorySlug)->first();
-            $items = News::where('category_id', $category->id)->whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
+            $category = ArticleCategory::where('slug', $categorySlug)->first();
+            $items = Article::where('category_id', $category->id)->whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
         } else {
-            $items = News::whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
+            $items = Article::whereHas('photos')->with('photos')->isActiveDates()->orderBy('active_from', 'DESC')->get();
         }
-
 
         $perPage = 6;
         $page = input('page', 1);
@@ -40,32 +39,32 @@ class NewsController extends WebsiteController
 
         // if pagination ajax
         if (request()->ajax()) {
-            return response()->json(view('website.news.pagination')
+            return response()->json(view('website.articles.pagination')
                 ->with('paginator', $paginator)
                 ->render());
         }
 
-        return $this->view('news.index')->with('paginator', $paginator);
+        return $this->view('articles.index')->with('paginator', $paginator);
     }
 
     /**
-     * Show News and Events
+     * Show Article and Events
      * @param $categorySlug
-     * @param $newsSlug
+     * @param $articleSlug
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function show($categorySlug, $newsSlug)
+    public function show($categorySlug, $articleSlug)
     {
 
-        $item = News::with('photos')->where('slug', $newsSlug)->first();
+        $item = Article::with('photos')->where('slug', $articleSlug)->first();
 
         if (!$item) {
-            return redirect('/articles');
+            return redirect('/new');
         }
 
         $this->title = $item->name;
 
 
-        return $this->view('news.show')->with('news', $item);
+        return $this->view('articles.show')->with('article', $item);
     }
 }
