@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 class CategoriesController extends AdminController
 {
     /**
-     * Display a listing of document_category.
+     * Display a listing of resource_category.
      *
      * @return Factory|View
      */
@@ -24,7 +24,7 @@ class CategoriesController extends AdminController
     }
 
     /**
-     * Show the form for creating a new document_category.
+     * Show the form for creating a new resource_category.
      *
      * @return Factory|View
      */
@@ -34,7 +34,7 @@ class CategoriesController extends AdminController
     }
 
     /**
-     * Store a newly created document_category in storage.
+     * Store a newly created resource_category in storage.
      *
      * @return RedirectResponse|Redirector
      */
@@ -48,7 +48,7 @@ class CategoriesController extends AdminController
     }
 
     /**
-     * Show the form for editing the specified document_category.
+     * Show the form for editing the specified resource_category.
      *
      * @param ResourceCategory $category
      * @return Factory|View
@@ -59,7 +59,7 @@ class CategoriesController extends AdminController
     }
 
     /**
-     * Update the specified document_category in storage.
+     * Update the specified resource_category in storage.
      *
      * @param ResourceCategory $category
      * @return RedirectResponse|Redirector
@@ -74,7 +74,7 @@ class CategoriesController extends AdminController
     }
 
     /**
-     * Remove the specified document_category from storage.
+     * Remove the specified resource_category from storage.
      *
      * @param ResourceCategory $category
      * @return RedirectResponse|Redirector

@@ -57,6 +57,11 @@ class PagesController extends AdminController
 
         $page = $this->createEntry(Page::class, $attributes);
 
+        $sectionAttributes['sectionable_id'] =  $page->id;
+        $sectionAttributes['sectionable_type'] =  get_class($page);
+        $sectionAttributes['layout'] = 'col-12';
+
+        $Section = $this->createEntry(Section::class, $sectionAttributes);
 
         if ($page) {
             $page->updateUrl()->save();

@@ -1,17 +1,15 @@
+<div class="alert alert-info collapse helpSections scroll-collapse">
+    <h5 class="title"><i class="far fa-fw fa-question-circle"></i> <a class="text-decoration-none" data-toggle="collapse" href=".helpSections" aria-expanded="false" aria-controls=".helpSections">How to create Sections</a></h5>
+    <ul>
+        <li>Click on <label class="badge badge-light"><i class="fa fa-fw fa-plus"></i> Create Section</label> found at the bottom of the page.</li>
+        <li>To update the sections you can either click on the title or on the <label class="badge badge-light"><i class="fa fa-fw fa-edit"></i> Edit</label> button found on the right of the section block header. </li>
+        <li>Update the list order by dragging the elements by the <label class="badge badge-light"><i class="fa fa-fw fa-list"></i> Order</label> button up or down, found on the right of the section block header. </li>
+        <li>Remove the section by clicking on the <label class="badge badge-light"><i class="fa fa-fw fa-trash"></i> Delete</label> button, found on the right of the section block header.  </li>
+        <li>Sections can have a name / title, content and resources (Images, Videos, Documents).</li>
+        <li>Each section can have multiple content components within.</li>
+    </ul>
+</div>
 
-@if(($resourceable->sections->count() <= 2 ))
-    <div class="alert alert-info">
-        <h4 class="title">How to create Sections</h4>
-        <ul>
-            <li>Click on <label class="badge badge-light"><i class="fa fa-fw fa-plus"></i> Create Section</label> found at the bottom of the page.</li>
-            <li>To update the sections you can either click on the title or on the <label class="badge badge-light"><i class="fa fa-fw fa-edit"></i> Edit</label> button found on the right of the section block header. </li>
-            <li>Update the list order by dragging the elements by the <label class="badge badge-light"><i class="fa fa-fw fa-list"></i> Order</label> button up or down, found on the right of the section block header. </li>
-            <li>Remove the section by clicking on the <label class="badge badge-light"><i class="fa fa-fw fa-trash"></i> Delete</label> button, found on the right of the section block header.  </li>
-            <li>Sections can have a name / title, content and resources (Images, Videos, Documents).</li>
-            <li>Each section can have multiple content components within.</li>
-        </ul>
-    </div>
-@endif
 
 @if(($resourceable->sections->count() > 0))
     <div id="sectionsOrderSortable">
@@ -19,9 +17,13 @@
             @foreach($resourceable->sections->sortBy('list_order') as $section)
                 <div class="card card-primary" data-id="{{ $section->id }}">
                     <div class="card-header">
-                        <a data-toggle="collapse" href="#section-collapse{{ $section->id }}" aria-expanded="false" aria-controls="section-collapse{{ $section->id }}"><span>{!! $resourceable->name !!} - @if($section->name != '') {{ $section->name }}  @else Section Name (Optional) {{ (isset($section->summary) ? ' - '.$section->summary: 'Section Description (Optional)') }}  @endif </span></a>
+                        <a data-toggle="collapse" href="#section-collapse{{ $section->id }}" aria-expanded="false" aria-controls="section-collapse{{ $section->id }}"><span>{!! $resourceable->name !!} - @if($section->name != '') {{ $section->name }}  @else Section Name (Optional) {{ (isset($section->summary) && $section->summary != '' ? ' - '.$section->summary: 'Section Description (Optional)') }}  @endif </span></a>
 
                         <div class="card-tools">
+
+                            <span class="float-left" data-toggle="tooltip" title="Help" data-original-title="Help">
+                                <button class="btn btn-tool" data-toggle="collapse" data-target=".helpSections" aria-expanded="false" aria-controls=".helpSections"> <span><i class="fa fa-fw fa-question-circle" aria-hidden="true"></i> Help </span></button>
+                            </span>
 
                             <span class="float-left" data-toggle="tooltip" title="Order Section" data-original-title="Order Section">
                                 <button type="button" class="dd-handle btn btn-tool" href="#"> <i class="fa fa-fw fa-list"></i> Order </button>
@@ -54,19 +56,17 @@
                             @include('admin.resources.sections.collapse')
                         </div>
 
-                        @if(($resourceable->sections->count() <= 1 || $section->components->count() <=2 ) && $loop->first)
-                            <div class="alert alert-info">
-                                <h4 class="title">How to create Content</h4>
-                                <ul>
-                                    <li>Click on <label class="badge badge-light"><i class="fa fa-fw fa-plus"></i> Create Content</label> button.</li>
-                                    <li>Content from other items can also be attached for the same content on two different items. This is also a quick way to share the same images on two different items.</li>
-                                    <li>To update the content click on the edit icon <label class="badge badge-light"><i class="fa fa-fw fa-edit"></i></label>, found on the right of the heading. </li>
-                                    <li>Update the order by dragging the elements by the list icon <label class="badge badge-light"><i class="fa fa-fw fa-list"></i></label> up or down, found on the left of the heading. </li>
-                                    <li>Delete the content by clicking on the red trash icon <label class="badge badge-light"><i class="fa fa-fw fa-trash-alt"></i></label>, found on the right of the heading. </li>
-                                    <li>Remove the content by clicking on the yellow times icon <label class="badge badge-light"><i class="fa fa-fw fa-times"></i></label>, found on the right of the heading. </li>
-                                </ul>
-                            </div>
-                        @endif
+                        <div class="alert alert-info collapse helpContent{{ $section->id }}">
+                            <h5 class="title"><i class="far fa-fw fa-question-circle"></i> <a class="text-decoration-none" data-toggle="collapse" href=".helpContent{{ $section->id }}" aria-expanded="false" aria-controls=".helpContent{{ $section->id }}">How to create Content</a></h5>
+                            <ul>
+                                <li>Click on <label class="badge badge-light"><i class="fa fa-fw fa-plus"></i> Create Content</label> button.</li>
+                                <li>Content from other items can also be attached for the same content on two different items. This is also a quick way to share the same images on two different items.</li>
+                                <li>To update the content click on the edit icon <label class="badge badge-light"><i class="fa fa-fw fa-edit"></i></label>, found on the right of the heading. </li>
+                                <li>Update the order by dragging the elements by the list icon <label class="badge badge-light"><i class="fa fa-fw fa-list"></i></label> up or down, found on the left of the heading. </li>
+                                <li>Delete the content by clicking on the red trash icon <label class="badge badge-light"><i class="fa fa-fw fa-trash-alt"></i></label>, found on the right of the heading. </li>
+                                <li>Remove the content by clicking on the yellow times icon <label class="badge badge-light"><i class="fa fa-fw fa-times"></i></label>, found on the right of the heading. </li>
+                            </ul>
+                        </div>
 
                         <div class="mb-3" id="nestable-menu">
 
@@ -91,6 +91,11 @@
                                 <span class="label"><i class="fa fa-fw fa-file-pdf"></i></span>
                                 Documents Gallery
                                 @if(isset($section->documents) && $section->documents->count() > 0)<span class="badge badge-light">({{ $section->documents->count() }})</span> @endif
+                            </a>
+
+                            <a class="btn btn-light float-right" data-toggle="collapse" href=".helpContent{{ $section->id }}" aria-expanded="false" aria-controls=".helpContent{{ $section->id }}">
+                                <span class="label"><i class="far fa-fw fa-question-circle"></i></span>
+                                Help
                             </a>
 
                         </div>
@@ -129,7 +134,7 @@
 @endif
 <div class="row">
     <div class="col-12 text-right">
-        <a href="javascript:window.history.back();" class="btn btn-secondary ">
+        <a href="{{ isset($back)? "/admin/{$back}/" : (isset($resource)? "/admin/{$resource}/" : "javascript:window.history.back();") }}" class="btn btn-secondary ">
             <i class="fa fa-fw fa-chevron-left"></i> Back
         </a>
         <a href="{{ "/admin/{$resource}/{$resourceable->id}/sections/create" }}" class="btn btn-labeled btn-primary">

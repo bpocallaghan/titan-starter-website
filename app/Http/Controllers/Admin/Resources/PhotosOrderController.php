@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use Illuminate\Http\Request;
 use App\Models\Photo;
+use Illuminate\Http\Request;
 use Bpocallaghan\Titan\Http\Requests;
 use App\Http\Controllers\Admin\AdminController;
 

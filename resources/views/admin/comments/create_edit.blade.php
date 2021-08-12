@@ -70,12 +70,3 @@
         </form>
     </div>
 @endsection
-
-@section('scripts')
-    @parent
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-
-        })
-    </script>
-@endsection

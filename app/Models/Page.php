@@ -68,7 +68,7 @@ class Page extends AdminModel
     }
 
     /**
-     * Get the PageContent many to many
+     * Get the template
      */
     public function template()
     {

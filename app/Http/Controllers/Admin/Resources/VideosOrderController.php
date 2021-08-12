@@ -4,12 +4,7 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
-use App\Models\Page;
-use App\Models\Photo;
 use Bpocallaghan\Titan\Http\Requests;
-use App\Models\Article;
-use App\Models\PhotoAlbum;
-use App\Models\PageContent;
 use App\Http\Controllers\Admin\AdminController;
 
 class VideosOrderController extends AdminController

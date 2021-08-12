@@ -119,6 +119,16 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pages">Pages <span class="small">(Optional)</span></label>
+                            {!! form_select('pages[]', $pages, ($errors && $errors->any()? old('pages') : (isset($item)? $item->pages->pluck('id')->all() : '')), ['class' => 'select2 form-control '.form_error_class('pages', $errors), 'multiple']) !!}
+                            {!! form_error_message('pages', $errors) !!}
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Browse for an Image (1920 x 600)</label>
                     <div class="input-group">

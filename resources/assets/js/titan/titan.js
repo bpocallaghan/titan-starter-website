@@ -30,7 +30,22 @@ function initTitan() {
         theme: "bootstrap4"
     });
 
-    $('.input-generate-slug').change(function () {
+    // scroll to item / area
+    $("body").find('.scroll-to-btn').on('click',function() {
+        $item = $(this).parents().find(".scroll-to-item");
+        $('html, body').animate({
+            scrollTop: $item.offset().top - 25
+        }, 2000);
+    });
+
+    // if collapse opens, scroll it to the top
+    $('.scroll-collapse').on('shown.bs.collapse', function (e) {
+        $('html,body').animate({
+            scrollTop: $('.scroll-collapse').offset().top - 25
+        }, 500);
+    });
+
+    $('.input-generate-slug').on('change',function () {
         var v = convertStringToSlug($(this).val());
         $("form input[name='slug']").val(v);
     });
@@ -122,8 +137,8 @@ function initDateRangeLatest(selector, callback) {
  * This will automatically set min / max date on the fields
  */
 function setDateTimePickerRange(from, to) {
-    $(from).datetimepicker();
-    $(to).datetimepicker({ useCurrent: false });
+    $(from).datetimepicker({icons: {time: "fas fa-clock"}});
+    $(to).datetimepicker({ useCurrent: false, icons: {time: "fas fa-clock" }});
 
     $(from).on("dp.change", function (e) {
         $(to).data("DateTimePicker").minDate(e.date);
@@ -139,12 +154,15 @@ function initSummerNote(selector) {
         focus: false,
         tabsize: 2,
         toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
             ['color', ['color']],
             ['layout', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link', /* 'picture', 'video',*/ 'hr']],
+            ['insert', ['table','link', /* 'picture', 'video',*/ 'hr']],
             ['misc', ['fullscreen', 'codeview', 'undo']]
-        ]
+        ],
+        codemirror: { // codemirror options
+            theme: 'monokai'
+        }
     });
 }
 

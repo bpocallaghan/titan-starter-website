@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin\Resources;
 
 use Image;
-use App\Http\Requests;
-use App\Models\Article;
 use App\Models\Photo;
-use App\Models\Product;
-use App\Models\PhotoAlbum;
+use App\Http\Requests;
 use App\Http\Controllers\Admin\AdminController;
 
 class CropperController extends AdminController
