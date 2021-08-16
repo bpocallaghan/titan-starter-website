@@ -16,15 +16,21 @@
 
     @endif
 
-    @if($section->layout == 'news')
+    @if($section->layout == 'articles')
 
-        @include('website.news.pagination')
+        @include('website.articles.pagination')
 
     @endif
 
     @if($section->layout == 'products')
 
         @include('website.shop.pagination')
+
+    @endif
+
+    @if($section->layout == 'contact')
+
+        @include('website.partials.form.contact_form', ['resourceable' => (isset($section)? $section : $item)])
 
     @endif
 
@@ -45,5 +51,3 @@
     @endif
 
 @endforeach
-
-@include('website.partials.comments', ['commentable' => $item])

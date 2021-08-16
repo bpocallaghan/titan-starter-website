@@ -1,11 +1,11 @@
-@if(isset($news) && $news->count() >= 1)
+@if(isset($articles) && $articles->count() >= 1)
     <aside class="card mt-3">
         <div class="card-body">
             <h3 class="side-heading">Latest News</h3>
 
-            <div id="news-carousel" class="carousel slide side-news" data-ride="carousel">
+            <div id="articles-carousel" class="carousel slide side-articles" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">
-                    @foreach($news as $k => $item)
+                    @foreach($articles as $k => $item)
                         <div class="carousel-item {{ $k == 0? 'active':'' }}">
                             <div class="card">
                                 <img class="card-img-top" src="{{ $item->cover_photo->thumbUrl }}" alt="{{ $item->name }}">
@@ -26,11 +26,11 @@
                         </div>
                     @endforeach
                 </div>
-                <a class="carousel-control-prev" href="#news-carousel" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#articles-carousel" role="button" data-slide="prev">
                     <span class="fa fa-chevron-left" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#news-carousel" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#articles-carousel" role="button" data-slide="next">
                     <span class="fa fa-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>

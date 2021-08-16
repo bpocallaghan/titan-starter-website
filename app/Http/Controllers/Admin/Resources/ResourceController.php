@@ -25,7 +25,7 @@ class ResourceController extends AdminController
     }
 
     /**
-     * Show the News' photos
+     * Show the resourceables resource
      * @param $resourceable1
      * @param $resourceable2
      * @param $id
@@ -36,7 +36,7 @@ class ResourceController extends AdminController
         if(isset($resourceable1)){
             $resourceable = $resourceable1;
         }
-        if(isset($resourceable2) && $resourceable2 !== "0" && $resourceable2 != "articles"){
+        if(isset($resourceable2) && $resourceable2 !== "0"){
             $resourceable = $resourceable2;
         }
 

@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         <span><i class="fa fa-edit"></i></span>
-                        <span>{{ isset($item)? 'Edit the ' . $item->name . ' entry': 'Create a new News Category' }}</span>
+                        <span>{{ isset($item)? 'Edit the ' . $item->name . ' entry': 'Create a new Article Category' }}</span>
                     </h3>
                 </div>
 

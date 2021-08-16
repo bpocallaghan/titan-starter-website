@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         <span><i class="fa fa-eye"></i></span>
-                        <span>News - {{ $item->name }}</span>
+                        <span>Articles - {{ $item->name }}</span>
                     </h3>
                 </div>
                 <form>

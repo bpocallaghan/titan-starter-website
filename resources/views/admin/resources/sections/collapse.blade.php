@@ -28,7 +28,7 @@
             <div class="col-md-4">
                 <div class="form-group {{ form_error_class('layout', $errors) }}">
                     <label for="layout">Content layout</label>
-                    {!! form_select('layout',  $resourceable->layouts, ($errors && $errors->any()? old('layout') : (isset($section)? $section->layout : 'section')), ['class' => 'select2 form-control']) !!}
+                    {!! form_select('layout',  $resourceable->layouts, ($errors && $errors->any()? old('layout') : (isset($section)? $section->layout : 'section')), ['class' => 'select2 form-control', 'id' => 'layout-'.(isset($section)? $section->id: '') ]) !!}
                     {!! form_error_message('layout', $errors) !!}
                 </div>
             </div>

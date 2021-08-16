@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Resources;
 
 use App\Models\Section;
 use App\Models\Content;
+use App\Models\Navigation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -61,12 +62,13 @@ class ContentController extends AdminController
         $model = app($resource_type);
         $model = $model->find($id);
 
+        $back = url()->previous();
 
-        return $this->view('resources.sections.components.content')->with('section', $section)->with('resource', $resourceable)->with('resourceable', $model);
+        return $this->view('resources.sections.components.content')->with('section', $section)->with('resource', $resourceable)->with('resourceable', $model)->with('back', $back);
     }
 
     /**
-     * Store a newly created news in storage.
+     * Store a newly created article in storage.
      * @param  $resourceable
      * @param  $id
      * @param Request $request
@@ -74,6 +76,8 @@ class ContentController extends AdminController
      */
     public function store($resourceable, $id, Section $section, Request $request)
     {
+        $resource = Str::plural($resourceable);
+
         if (request()->file('media') === null) {
             $attributes = request()->validate(Arr::except(Content::$rules, 'media'),
                 Content::$messages);
@@ -90,7 +94,7 @@ class ContentController extends AdminController
         $sectionContent = $this->createEntry(Content::class, $attributes);
         $sectionContent->sections()->syncWithoutDetaching([$section->id]);
 
-        return redirect('admin/'.$resourceable.'/' . $id . '/sections/'.$request->section_id.'/content/' . $sectionContent->id . '/edit');
+        return redirect('admin/'.$resource.'/' . $id . '/sections/'.$request->section_id.'/content/' . $sectionContent->id . '/edit');
     }
 
     /**
@@ -103,7 +107,7 @@ class ContentController extends AdminController
      */
     public function edit($resourceable, $id, Section $section, Content $content)
     {
-        $resource = Str::plural($resourceable, 1);
+        $resource = Str::plural($resourceable);
         $resourceable = Str::singular($resourceable, 1);
 
         $model_name = str_replace('-', ' ',ucwords($resourceable));
@@ -113,7 +117,10 @@ class ContentController extends AdminController
         $model = app($resource_type);
         $model = $model->find($id);
 
-        return $this->view('resources.sections.components.content')->with('section', $section)->with('item', $content)->with('resource', $resource)->with('resourceable', $model);
+        $navigationUrl = Navigation::where('slug', $resource)->first();
+        $back = $navigationUrl->url.'/'. $id .'/edit';
+
+        return $this->view('resources.sections.components.content')->with('section', $section)->with('item', $content)->with('resource', $resource)->with('resourceable', $model)->with('back', $back);
     }
 
     /**
@@ -126,6 +133,8 @@ class ContentController extends AdminController
      */
     public function update($resourceable, $id, Section $section, Content $content)
     {
+        $resource = Str::plural($resourceable);
+
         if (is_null(request()->file('media'))) {
             $attributes = request()->validate(Arr::except(Content::$rules, 'media'),
                 Content::$messages);
@@ -139,12 +148,11 @@ class ContentController extends AdminController
             }
         }
 
-        // unset($attributes['section_id']);
         $item = $this->updateEntry($content, $attributes);
 
         $item->sections()->syncWithoutDetaching([$section->id]);
 
-        return redirect_to_resource();
+        return redirect('admin/'.$resource.'/' . $id . '/sections/'.$section->id.'/content/' . $content->id . '/edit');
     }
 
     /**

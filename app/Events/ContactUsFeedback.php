@@ -22,10 +22,10 @@ class ContactUsFeedback
      */
     public function __construct(FeedbackContactUs $row)
     {
-        $row->type = 'Contact Us';
+        $row->type = $row->contactable_name;
         $this->eloquent = $row;
 
-        log_activity('Contact Us', "{$row->fullname} submitted a contact us.", $row);
+        log_activity($row->contactable_name, "{$row->fullname} submitted a feedback form.", $row);
     }
 
 }

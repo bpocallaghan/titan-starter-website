@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use Illuminate\Http\Request;
 use App\Models\Document;
+use Illuminate\Http\Request;
 use Bpocallaghan\Titan\Http\Requests;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -38,7 +38,7 @@ class DocumentsOrderController extends AdminController
     }
 
     /**
-     * Show the News' documents
+     * Show the resourceable documents
      * @param $resouceable
      * @param $id
      * @return mixed

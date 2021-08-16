@@ -41,4 +41,5 @@ id,name,description,slug,url,icon,help_index_title,help_index_content,help_creat
 "40","Searches","Searches","searches","/admin/shop/searches","search","","","","","","","6","0","34","34","2020-05-01 11:28:00","2020-05-01 11:28:00",,"0","0",
 "41","FAQs","question-circle","faqs","/admin/faqs","question-circle","","","","","","","7","0","0","0","2020-05-06 11:02:02","2020-05-06 11:02:02",,"0","0",
 "42","Categories","Categories","categories","/admin/faqs/categories","cubes","","","","","","","1","0","41","41","2020-05-06 11:02:36","2020-05-06 11:02:36",,"0","0",
-"43","Questions","Questions","","/admin/faqs","question","","","","","","","2","0","41","41","2020-05-06 11:02:57","2020-05-06 11:02:57",,"0","0",
+"43","Questions","Questions","questions","/admin/faqs","question","","","","","","","2","0","41","41","2020-05-06 11:02:57","2020-05-06 11:02:57",,"0","0",
+"44","Comments","Comments","comments","/admin/comments","comments","","","","","","","10","0","0","0","2020-09-12 11:02:57","2020-09-12 11:02:57",,"0","0",

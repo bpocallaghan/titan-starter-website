@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Photoable;
 use Bpocallaghan\Sluggable\HasSlug;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class PhotoAlbum
+ * Class ArticleCategory
  * @mixin \Eloquent
  */
-class PhotoAlbum extends AdminModel
+class ArticleCategory extends AdminModel
 {
-    use SoftDeletes, HasSlug, Photoable;
+    use SoftDeletes, HasSlug;
 
-    protected $table = 'photo_albums';
+    protected $table = 'article_categories';
 
     protected $guarded = ['id'];
 
@@ -33,5 +32,13 @@ class PhotoAlbum extends AdminModel
     public static function getAllList()
     {
         return self::orderBy('name')->get()->pluck('name', 'id')->toArray();
+    }
+
+    /**
+     * Get the articles
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'category_id', 'id');
     }
 }

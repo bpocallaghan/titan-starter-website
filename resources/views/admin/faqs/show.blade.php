@@ -44,8 +44,6 @@
                 </fieldset>
             </form>
         </div>
-        <div class="card-footer">
-            @include('admin.partials.form.form_footer', ['submit' => false])
-        </div>
+        @include('admin.partials.form.form_footer', ['submit' => false])
     </div>
 @endsection

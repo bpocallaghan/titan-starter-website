@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Resources;
 
-use App\Models\Page;
 use App\Http\Requests;
 use App\Models\Content;
 use App\Models\Section;
@@ -66,12 +65,13 @@ class SectionsController extends AdminController
 
         $content = Content::getAllList();
 
+        $back = url()->previous();
 
-        return $this->view('resources.sections.create_edit')->with('resourceable', $model)->with('resource', $resource)->with('content', $content);
+        return $this->view('resources.sections.create_edit')->with('resourceable', $model)->with('resource', $resource)->with('content', $content)->with('back', $back);
     }
 
     /**
-     * Store a newly created news in storage.
+     * Store a newly created section in storage.
      *
      * @param Request $request
      * @return array

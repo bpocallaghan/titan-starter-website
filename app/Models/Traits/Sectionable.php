@@ -41,7 +41,7 @@ trait Sectionable
     //         'col-md-4'  => '3 Columns',
     //         'col-md-3'  => '4 Columns',
     //         'contact'   => 'Include Contact Form',
-    //         'news'      => 'Include News',
+    //         'article'      => 'Include Articles',
     //         'faq'       => 'Include FAQ\'s',
     //         'products'  => 'Include Products'
     //     ];

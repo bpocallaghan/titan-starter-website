@@ -6,7 +6,7 @@ id,name,template,controller_action,created_at,updated_at,deleted_at,created_by,u
 "5","Account","account.account","Account\AccountController@index","2021-01-28 06:51:52","2021-01-28 06:51:52","","0","0",
 "6","Profile","account.profile","Account\ProfileController@index","2021-01-28 06:52:20","2021-01-28 06:52:20","","0","0",
 "7","Contact Page","contact","ContactUsController@index","2021-01-25 08:13:22","2021-01-25 08:13:22","","0","0",
-"8","News","news.index","NewsController@index","2021-01-28 06:47:43","2021-01-28 06:47:43","","0","0",
+"8","Articles","articles.index","ArticlesController@index","2021-01-28 06:47:43","2021-01-28 06:47:43","","0","0",
 "9","FAQ","faq.index","FAQ\FAQController@index","2021-01-28 06:48:31","2021-01-28 06:48:31","","0","0",
 "10","E-commerce","shop.index","Shop\ShopController@index","2021-01-28 06:50:26","2021-01-28 06:50:26","","0","0",
 "11","E-commerce Basket","shop.basket.index","Shop\BasketController@index","2021-01-28 06:53:06","2021-01-28 06:53:06","","0","0",

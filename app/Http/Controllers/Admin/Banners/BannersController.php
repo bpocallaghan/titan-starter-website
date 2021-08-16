@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Banners;
 
+use App\Models\Page;
 use App\Models\Banner;
 use Illuminate\View\View;
 use Illuminate\Support\Arr;
@@ -34,7 +35,9 @@ class BannersController extends AdminController
      */
     public function create()
     {
-        return $this->view('banners.create_edit');
+        $pages = Page::getAllList();
+
+        return $this->view('banners.create_edit')->with('pages', $pages);
     }
 
     /**
@@ -53,7 +56,13 @@ class BannersController extends AdminController
         if ($photo) {
             $attributes['image'] = $photo;
             unset($attributes['photo']);
-            $this->createEntry(Banner::class, $attributes);
+            $banner = $this->createEntry(Banner::class, $attributes);
+
+            if(input('pages') != '' && input('pages') != null){
+                $banner->pages()->sync(input('pages'));
+            }
+
+
         }
 
         return redirect_to_resource();
@@ -78,7 +87,8 @@ class BannersController extends AdminController
      */
     public function edit(Banner $banner)
     {
-        return $this->view('banners.create_edit')->with('item', $banner);
+        $pages = Page::getAllList();
+        return $this->view('banners.create_edit')->with('pages', $pages)->with('item', $banner);
     }
 
     /**
@@ -107,7 +117,11 @@ class BannersController extends AdminController
         $attributes['hide_name'] = (bool) input('hide_name');
         $attributes['is_website'] = (bool) input('is_website');
 
-        $this->updateEntry($banner, $attributes);
+        $banner = $this->updateEntry($banner, $attributes);
+
+        if(input('pages') != '' && input('pages') != null){
+            $banner->pages()->sync(input('pages'));
+        }
 
         return redirect_to_resource();
     }

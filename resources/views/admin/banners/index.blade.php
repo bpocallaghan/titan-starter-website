@@ -29,7 +29,8 @@
                     <th>Active To</th>
                     <th>Image</th>
                     <th>Website</th>
-                    <th style="min-width: 100px;">Action</th>
+                    <th>Pages</th>
+                    <th style="min-width: 125px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@
                         <td>{{ isset($item->active_to)? format_date($item->active_to):'-' }}</td>
                         <td>{!! image_row_link($item->image_thumb, $item->image) !!}</td>
                         <td>{{ $item->is_website ? 'Yes':'No' }}</td>
+                        <td>{{ isset($item->pages) && ($item->pages->count()) > 0 ? implode(', ',$item->pages->pluck('name')->toArray()):'' }}</td>
                         <td>
                             <a href="/admin/banners/{{ $item->id }}/crop-resource" class="btn btn-info btn-xs" data-toggle="tooltip" title="Crop {{ $item->name }}">
                                 <i class="fa fa-fw fa-crop-alt"></i>

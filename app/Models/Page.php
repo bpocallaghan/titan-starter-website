@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\PageHelper;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Sectionable;
+use App\Models\Traits\Contactable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Page extends AdminModel
 {
-    use SoftDeletes, PageHelper, Commentable, Sectionable/*, HasSlug*/;
+    use SoftDeletes, PageHelper, Commentable, Sectionable, Contactable/*, HasSlug*/;
 
     protected $table = 'pages';
 
@@ -67,7 +68,7 @@ class Page extends AdminModel
     }
 
     /**
-     * Get the PageContent many to many
+     * Get the template
      */
     public function template()
     {

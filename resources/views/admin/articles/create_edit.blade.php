@@ -6,7 +6,7 @@
         <div class="card-header">
             <h3 class="card-title">
                 <span><i class="fa fa-edit"></i></span>
-                <span>{{ isset($item)? 'Edit the ' . $item->title . ' entry': 'Create a new News' }}</span>
+                <span>{{ isset($item)? 'Edit the ' . $item->title . ' entry': 'Create a new Article' }}</span>
             </h3>
         </div>
 
@@ -121,7 +121,7 @@
     </div>
 
     @if(isset($item))
-        @include('admin.resources.sections.components', ['resourceable' => $item, 'url' => "/admin/news/{$item->id}/sections", 'resource' => 'news'])
+        @include('admin.resources.sections.components', ['resourceable' => $item, 'url' => "/admin/articles/{$item->id}/sections", 'resource' => 'articles', 'back' => 'articles'])
     @endif
 
 @endsection

@@ -8,19 +8,20 @@ use App\Models\Traits\Photoable;
 use App\Models\Traits\Videoable;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Sectionable;
+use App\Models\Traits\Contactable;
 use Bpocallaghan\Sluggable\HasSlug;
 use Bpocallaghan\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class News
+ * Class Article
  * @mixin \Eloquent
  */
-class News extends AdminModel
+class Article extends AdminModel
 {
-    use SoftDeletes, HasSlug, ActiveTrait, Photoable, Documentable, Videoable, Commentable, Sectionable;
+    use SoftDeletes, HasSlug, ActiveTrait, Photoable, Documentable, Videoable, Commentable, Sectionable, Contactable;
 
-    protected $table = 'news';
+    protected $table = 'articles';
 
     protected $guarded = ['id'];
 
@@ -37,7 +38,7 @@ class News extends AdminModel
         'name'          => 'required|min:3|max:191',
         'content'       => 'required|min:5|max:5000',
         'summary'       => 'nullable|min:5|max:191',
-        'category_id'   => 'required|exists:news_categories,id',
+        'category_id'   => 'required|exists:article_categories,id',
         'active_from'   => 'nullable|date',
         'active_to'     => 'nullable|date',
         'action_name'   => 'nullable|max:191',
@@ -72,7 +73,7 @@ class News extends AdminModel
      */
     public function category()
     {
-        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
+        return $this->belongsTo(ArticleCategory::class, 'category_id', 'id');
     }
 
     /**

@@ -89,7 +89,7 @@ if (!function_exists('action_row')) {
             return $html;
         }
 
-        return '<div class="btn-toolbarr">' . $html . '</div>';
+        return '<div class="btn-toolbar">' . $html . '</div>';
     }
 }
 

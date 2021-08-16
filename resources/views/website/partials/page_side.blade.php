@@ -10,5 +10,5 @@
         </div>
     </div>
 
-    @include('website.partials.side_news')
+    @include('website.partials.side_articles')
 </div>

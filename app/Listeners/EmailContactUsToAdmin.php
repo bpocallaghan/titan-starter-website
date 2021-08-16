@@ -23,6 +23,6 @@ class EmailContactUsToAdmin
 
         notify_admins(ContactUsSubmitted::class, $data);
 
-        log_activity('Contact Us', $data->fullname . ' submitted Contact Us.', $data);
+        log_activity($data->contactable->name, $data->fullname . ' submitted feedback form.', $data);
     }
 }

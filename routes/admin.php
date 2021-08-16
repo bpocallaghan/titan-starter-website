@@ -77,17 +77,17 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
     Route::resource('pages', 'Pages\PagesController');
 
     // news and events
-    Route::group(['prefix' => 'news', 'namespace' => 'News'], function () {
-        Route::resource('articles', 'NewsController');
+    Route::group(['prefix' => 'news','namespace' => 'Articles'], function () {
+        Route::resource('articles', 'ArticlesController');
         Route::resource('categories', 'CategoriesController')
             ->names([
-                'index' => 'news_categories.index',
-                'create' => 'news_categories.create',
-                'store' => 'news_categories.store',
-                'show' => 'news_categories.show',
-                'edit' => 'news_categories.edit',
-                'update' => 'news_categories.update',
-                'destroy' => 'news_categories.destroy',
+                'index' => 'articles_categories.index',
+                'create' => 'articles_categories.create',
+                'store' => 'articles_categories.store',
+                'show' => 'articles_categories.show',
+                'edit' => 'articles_categories.edit',
+                'update' => 'articles_categories.update',
+                'destroy' => 'articles_categories.destroy',
             ]);
     });
 

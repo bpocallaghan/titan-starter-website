@@ -168,12 +168,11 @@ class VideosController extends AdminController
 
     /**
      * Remove the specified testimonial from storage.
-     * @param PhotoAlbum $album
      * @param Video $video
      * @param Request     $request
      * @return Response
      */
-    public function destroy(PhotoAlbum $album, Video $video, Request $request)
+    public function destroy(Video $video, Request $request)
     {
         $this->deleteEntry($video, $request);
 
