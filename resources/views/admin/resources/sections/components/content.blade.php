@@ -8,7 +8,7 @@
         <input name="section_id" type="hidden" value="{{ $section->id }}">
 
         <div class="card-header">
-            <span>{{ isset($item)? 'Edit the "' . (isset($item->heading)? $item->heading : (isset($section->name)? $section->name.' (Section)'. : $section->sectionable->name.' ('.(new \ReflectionClass($item->sectionable))->getShortName().')' )) . '" content entry': 'Create a new Content' }}</span>
+            <span>{{ isset($item)? 'Edit the "' . (isset($item->heading)? $item->heading : (isset($section->name)? $section->name.' (Section)' : $section->sectionable->name.' ('.(new \ReflectionClass($section->sectionable))->getShortName().')' )) . '" content entry': 'Create a new Content' }}</span>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
