@@ -57,10 +57,7 @@ class BannersController extends AdminController
             $attributes['image'] = $photo;
             unset($attributes['photo']);
             $banner = $this->createEntry(Banner::class, $attributes);
-
-            if(input('pages') != '' && input('pages') != null){
-                $banner->pages()->sync(input('pages'));
-            }
+            $banner->pages()->sync(input('pages'));
 
 
         }
@@ -118,10 +115,7 @@ class BannersController extends AdminController
         $attributes['is_website'] = (bool) input('is_website');
 
         $banner = $this->updateEntry($banner, $attributes);
-
-        if(input('pages') != '' && input('pages') != null){
-            $banner->pages()->sync(input('pages'));
-        }
+        $banner->pages()->sync(input('pages'));
 
         return redirect_to_resource();
     }
