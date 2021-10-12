@@ -6,12 +6,7 @@
         @include('website.pages.page_components', ['item' => $page])
 
         <div class="row mt-5 mb-5">
-            <div class="d-none d-md-block col-md-4">
-                <figure>
-                    <img src="/images/logo.png" class="img-fluid">
-                </figure>
-            </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-8 offset-md-2">
                 <ul class="list-unstyled list-group list-group-horizontal-md mb-3">
                     <li class="list-group-item"><strong>Laravel v8.x</strong></li>
                     <li class="list-group-item"><strong>AdminLTE v3.0.5</strong></li>
@@ -21,12 +16,11 @@
 
                 <p>A Laravel Website with Admin access Starter project with AdminLTE theme and basic features.</p>
 
-                <ul class="list-unstyled style-1"><li>Test Driven Development (111 tests, 466 assertions)</li></ul>
-
-
+                <ul class="list-unstyled style-1">
+                    <li>Test Driven Development (111 tests, 466 assertions)</li>
+                </ul>
             </div>
         </div>
-
 
         <div class="clearfix">
             <hr>
@@ -36,7 +30,8 @@
 
             <!-- start feature box item -->
             <div class="col-12 d-table mb-3">
-                <span style="width: 50px" class="d-table-cell align-top text-primary font-20"><i class="fa fa-fw fa-gifts mr-3"></i></span>
+                <span style="width: 50px" class="d-table-cell align-top text-primary font-20"><i
+                        class="fa fa-fw fa-gifts mr-3"></i></span>
                 <div class="d-table-cell">
                     <h4 class="d-block mb-3 text-uppercase font-20 page-header">Free &amp; Open Source</h4>
 

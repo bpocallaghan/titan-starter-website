@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,57 +11,61 @@ const mix = require('laravel-mix');
  |
  */
 
-var publicPath = 'public';
-var resourcesPath = 'resources/assets';
-var pathJS = resourcesPath + '/js';
+var publicPath = "public";
+var resourcesPath = "resources/assets";
+var pathJS = resourcesPath + "/js";
 
-var COMPILE = 'all';
+var COMPILE = "all";
 
 // do not extract/save .LICENSE.txt files
 mix.options({
     terser: {
-        extractComments: false,
+        extractComments: false
     }
 });
 
-if(COMPILE == 'all' || COMPILE == 'js') {
+if (COMPILE == "all" || COMPILE == "js") {
     // update public path for js to compile into /resources
-    mix.js('resources/assets/js/admin.js', 'js/vendor/admin_compiled.js');
-    mix.js('resources/assets/js/website.js', 'js/vendor/website_compiled.js');
+    mix.js("resources/assets/js/admin.js", "js/vendor/admin_compiled.js");
+    mix.js("resources/assets/js/website.js", "js/vendor/website_compiled.js");
 
-    mix.scripts([
-        'public/js/vendor/admin_compiled.js',
-        pathJS + '/titan/buttons.js',
-        pathJS + '/titan/datatables.js',
-        pathJS + '/titan/forms.js',
-        pathJS + '/titan/google_maps.js',
-        pathJS + '/titan/notifications.js',
-        pathJS + '/titan/notify.js',
-        pathJS + '/titan/pagination.js',
-        pathJS + '/titan/social_media.js',
-        pathJS + '/titan/utils.js',
-        pathJS + '/titan/titan.js',
-
-    ], publicPath + '/js/admin.js');
+    mix.scripts(
+        [
+            "public/js/vendor/admin_compiled.js",
+            pathJS + "/titan/buttons.js",
+            pathJS + "/titan/datatables.js",
+            pathJS + "/titan/forms.js",
+            pathJS + "/titan/google_maps.js",
+            pathJS + "/titan/notifications.js",
+            pathJS + "/titan/notify.js",
+            pathJS + "/titan/pagination.js",
+            pathJS + "/titan/social_media.js",
+            pathJS + "/titan/utils.js",
+            pathJS + "/titan/titan.js"
+        ],
+        publicPath + "/js/admin.js"
+    );
 
     //website js
-    mix.scripts([
-        'public/js/vendor/website_compiled.js',
-        pathJS + '/titan/buttons.js',
-        // pathJS + '/titan/datatables.js',
-        pathJS + '/titan/forms.js',
-        pathJS + '/titan/google_maps.js',
-        pathJS + '/titan/pagination.js',
-        pathJS + '/titan/social_media.js',
-        pathJS + '/titan/utils.js',
-        pathJS + '/titan/titan.js',
+    mix.scripts(
+        [
+            "public/js/vendor/website_compiled.js",
+            pathJS + "/titan/buttons.js",
+            // pathJS + '/titan/datatables.js',
+            pathJS + "/titan/forms.js",
+            pathJS + "/titan/google_maps.js",
+            pathJS + "/titan/pagination.js",
+            pathJS + "/titan/social_media.js",
+            pathJS + "/titan/utils.js",
+            pathJS + "/titan/titan.js",
 
-        pathJS + '/website/utils.js',
-
-    ], publicPath + '/js/website.js');
+            pathJS + "/website/utils.js"
+        ],
+        publicPath + "/js/website.js"
+    );
 }
 
-if(COMPILE == 'all' || COMPILE == 'css') {
-    mix.sass('resources/assets/sass/admin.scss', 'public/css');
-    mix.sass('resources/assets/sass/website.scss', 'public/css');
+if (COMPILE == "all" || COMPILE == "css") {
+    mix.sass("resources/assets/sass/admin.scss", "public/css");
+    mix.sass("resources/assets/sass/website.scss", "public/css");
 }
