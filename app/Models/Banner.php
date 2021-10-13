@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Models\Traits\ImageThumb;
 use App\Models\Traits\ActiveTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Banner extends AdminModel
 {
-    use SoftDeletes, ActiveTrait, ImageThumb;
+    use HasFactory, SoftDeletes, ActiveTrait, ImageThumb;
 
     protected $table = 'banners';
 

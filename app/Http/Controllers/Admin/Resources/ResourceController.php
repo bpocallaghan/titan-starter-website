@@ -33,20 +33,20 @@ class ResourceController extends AdminController
      */
     public function showResource($resourceable1, $resourceable2 = null, $id)
     {
-        if(isset($resourceable1)){
+        if (isset($resourceable1)) {
             $resourceable = $resourceable1;
         }
-        if(isset($resourceable2) && $resourceable2 !== "0"){
+        if (isset($resourceable2) && $resourceable2 !== "0") {
             $resourceable = $resourceable2;
         }
 
         $resource = Str::plural($resourceable, 1);
-        $resourceable = Str::singular($resourceable, 1);
+        $resourceable = Str::singular($resourceable);
 
-        $model_name = str_replace('-', ' ',ucwords($resourceable));
-        $model_name = str_replace(' ', '',ucwords($model_name));
+        $model_name = str_replace('-', ' ', ucwords($resourceable));
+        $model_name = str_replace(' ', '', ucwords($model_name));
 
-        $resource_type = 'App\Models\\'.$model_name;
+        $resource_type = 'App\Models\\' . $model_name;
         $model = app($resource_type);
         $model = $model->find($id);
 
