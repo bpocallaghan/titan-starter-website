@@ -14,7 +14,7 @@ class NavigationTest extends TestCase
     /** @test */
     public function can_get_url()
     {
-        $navigation = factory(Navigation::class)->make([
+        $navigation = Navigation::factory()->make([
             'url' => '/example'
         ]);
 
@@ -24,8 +24,8 @@ class NavigationTest extends TestCase
     /** @test */
     public function can_get_parent_relationship()
     {
-        $navigationParent = factory(Navigation::class)->create();
-        $navigation = factory(Navigation::class)->create([
+        $navigationParent = Navigation::factory()->create();
+        $navigation = Navigation::factory()->create([
             'parent_id' => $navigationParent
         ]);
 
@@ -36,8 +36,8 @@ class NavigationTest extends TestCase
     /** @test */
     public function can_get_url_parent_relationship()
     {
-        $navigationParent = factory(Navigation::class)->create();
-        $navigation = factory(Navigation::class)->create([
+        $navigationParent = Navigation::factory()->create();
+        $navigation = Navigation::factory()->create([
             'url_parent_id' => $navigationParent
         ]);
 
@@ -48,7 +48,7 @@ class NavigationTest extends TestCase
     /** @test */
     public function can_update_url()
     {
-        $navigation = factory(Navigation::class)->make([
+        $navigation = Navigation::factory()->make([
             'slug' => 'slug',
         ]);
 

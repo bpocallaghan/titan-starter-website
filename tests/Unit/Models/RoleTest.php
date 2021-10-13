@@ -28,7 +28,6 @@ class RoleTest extends TestCase
             'icon' => 'smile',
         ]);
 
-
         $this->assertEquals('<i class="fa fa-smile"</i> Role', $role->icon_title);
     }
 
