@@ -14,7 +14,7 @@ class BannerTest extends TestCase
     /** @test */
     public function can_get_all_list()
     {
-        $roles = factory(Banner::class, 5)->create();
+        $roles = Banner::factory()->count(5)->create();
 
         $rolesList = Banner::getAllList();
 
