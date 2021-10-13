@@ -12,7 +12,7 @@ class RoleTest extends TestCase
     /** @test */
     public function can_get_name_slug()
     {
-        $role = factory(Role::class)->make([
+        $role = Role::factory()->make([
             'name' => 'Role',
             'slug' => '/role',
         ]);
@@ -23,7 +23,7 @@ class RoleTest extends TestCase
     /** @test */
     public function can_get_icon_title()
     {
-        $role = factory(Role::class)->make([
+        $role = Role::factory()->make([
             'name' => 'Role',
             'icon' => 'smile',
         ]);
