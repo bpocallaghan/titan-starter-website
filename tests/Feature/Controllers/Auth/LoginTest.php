@@ -44,8 +44,10 @@ class LoginTest extends TestCase
 
     private function getTooManyLoginAttemptsMessage()
     {
-        return sprintf('/^%s$/',
-            str_replace('\:seconds', '\d+', preg_quote(__('auth.throttle'), '/')));
+        return sprintf(
+            '/^%s$/',
+            str_replace('\:seconds', '\d+', preg_quote(__('auth.throttle'), '/'))
+        );
     }
 
     /** @test */
@@ -60,7 +62,7 @@ class LoginTest extends TestCase
     /** @test */
     public function authenticated_user_can_not_view_login()
     {
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $response = $this->actingAs($user)->get($this->loginGetRoute());
 
@@ -70,7 +72,7 @@ class LoginTest extends TestCase
     /** @test */
     public function user_can_login_with_correct_credentials()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->post($this->loginPostRoute(), [
             'email'    => $user->email,
@@ -85,7 +87,7 @@ class LoginTest extends TestCase
     /** @test */
     public function save_log_logins_entry_on_successful_login()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->post($this->loginPostRoute(), [
             'email'    => $user->email,
@@ -102,7 +104,7 @@ class LoginTest extends TestCase
     /** @test */
     public function remember_me_cookie_created_on_login()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->post($this->loginPostRoute(), [
             'email'    => $user->email,
@@ -113,19 +115,21 @@ class LoginTest extends TestCase
         $user = $user->fresh();
 
         $response->assertRedirect($this->successfulLoginRoute());
-        $response->assertCookie(\Illuminate\Support\Facades\Auth::guard()->getRecallerName(),
+        $response->assertCookie(
+            \Illuminate\Support\Facades\Auth::guard()->getRecallerName(),
             vsprintf('%s|%s|%s', [
                 $user->id,
                 $user->getRememberToken(),
                 $user->password,
-            ]));
+            ])
+        );
         $this->assertAuthenticatedAs($user);
     }
 
     /** @test */
     public function user_cannot_login_with_incorrect_credentials()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
             'email'    => $user->email,
@@ -157,7 +161,7 @@ class LoginTest extends TestCase
     /** @test */
     public function authenticated_user_can_logout()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->actingAs(User::factory()->create());
 
         $response = $this->post($this->logoutRoute());
 
@@ -177,7 +181,7 @@ class LoginTest extends TestCase
     /** @test */
     public function user_cannot_make_more_than_five_attempts_in_one_minute()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         foreach (range(0, 5) as $_) {
             $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
@@ -188,11 +192,13 @@ class LoginTest extends TestCase
 
         $response->assertRedirect($this->loginGetRoute());
         $response->assertSessionHasErrors('email');
-        $this->assertRegExp($this->getTooManyLoginAttemptsMessage(),
+        $this->assertRegExp(
+            $this->getTooManyLoginAttemptsMessage(),
             collect($response->baseResponse->getSession()
                 ->get('errors')
                 ->getBag('default')
-                ->get('email'))->first());
+                ->get('email'))->first()
+        );
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();

@@ -6,6 +6,7 @@ use App\Models\Traits\PageHelper;
 use App\Models\Traits\Commentable;
 use App\Models\Traits\Sectionable;
 use App\Models\Traits\Contactable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Page extends AdminModel
 {
-    use SoftDeletes, PageHelper, Commentable, Sectionable, Contactable/*, HasSlug*/;
+    use HasFactory, SoftDeletes, PageHelper, Commentable, Sectionable, Contactable/*, HasSlug*/;
 
     protected $table = 'pages';
 
@@ -40,7 +41,7 @@ class Page extends AdminModel
         'is_featured'   => 'nullable|in:0,on',
         'parent_id'     => 'nullable',
         'url_parent_id' => 'nullable',
-        'allow_comments'=> 'nullable|in:0,on',
+        'allow_comments' => 'nullable|in:0,on',
         'template_id'   => 'nullable|exists:templates,id',
         //'banners'       => 'nullable',
         //'parent_id'     => 'nullable|exists:pages,id',

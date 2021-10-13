@@ -1,15 +1,31 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\FAQ;
 use App\Models\FAQCategory;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(FAQ::class, function (Faker $faker) {
-    return [
-        'question'    => 'Question',
-        'answer'      => 'Answer',
-        'category_id' => factory(FAQCategory::class)->create(),
-    ];
-});
+class FAQFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = FAQ::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'question'    => 'Question',
+            'answer'      => 'Answer',
+            'category_id' => FAQCategory::factory()->create(),
+        ];
+    }
+}

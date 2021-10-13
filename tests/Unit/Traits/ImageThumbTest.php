@@ -12,7 +12,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_thumb()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -22,7 +22,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_original_filename()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -32,7 +32,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_extension()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -42,7 +42,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_image_thumb()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -52,7 +52,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_image_original()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -62,7 +62,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_image_url()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -72,7 +72,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_thumb_url()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
@@ -82,7 +82,7 @@ class ImageThumbTest extends TestCase
     /** @test */
     public function can_get_original_url()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'image' => 'image.jpg',
         ]);
 
