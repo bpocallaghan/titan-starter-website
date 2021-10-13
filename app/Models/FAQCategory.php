@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bpocallaghan\Sluggable\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class FAQCategory extends AdminModel
 {
-    use SoftDeletes, HasSlug;
+    use HasFactory, SoftDeletes, HasSlug;
 
     protected $table = 'faq_categories';
 

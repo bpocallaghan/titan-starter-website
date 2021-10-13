@@ -8,6 +8,7 @@ use Bpocallaghan\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\RecursiveParent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class ProductCategory
@@ -15,7 +16,7 @@ use App\Models\Traits\RecursiveParent;
  */
 class ProductCategory extends AdminModel
 {
-    use SoftDeletes, HasSlug, RecursiveParent, ImageThumb;
+    use HasFactory, SoftDeletes, HasSlug, RecursiveParent, ImageThumb;
 
     protected $table = 'product_categories';
 

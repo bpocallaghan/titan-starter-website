@@ -12,7 +12,7 @@ class ActiveTraitTest extends TestCase
     /** @test */
     public function can_get_active_badge()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'active_from' => now()->subWeek(),
             'active_to'   => now()->addWeek(),
         ]);
@@ -26,7 +26,7 @@ class ActiveTraitTest extends TestCase
     /** @test */
     public function can_get_active_badge_with_no_active_to_date()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'active_from' => now()->subWeek(),
             'active_to'   => null,
         ]);
@@ -40,7 +40,7 @@ class ActiveTraitTest extends TestCase
     /** @test */
     public function can_get_not_active_badge()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'active_from' => now()->addWeek(),
             'active_to'   => now()->addWeeks(2),
         ]);
@@ -54,7 +54,7 @@ class ActiveTraitTest extends TestCase
     /** @test */
     public function can_get_expired_badge()
     {
-        $banner = factory(Banner::class)->make([
+        $banner = Banner::factory()->make([
             'active_from' => now()->subWeek(),
             'active_to'   => now()->subDay(),
         ]);
