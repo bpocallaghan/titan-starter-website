@@ -3,10 +3,9 @@ A Laravel Website with Admin access Starter project with AdminLTE theme and basi
 
 - Unit Tests `(156 tests, 690 assertions)`
 
-[Preview project here](http://titan.bpocallaghan.co.za?v=1)
+[Preview project here](https://bpocallaghan.ie)
 - User: github@bpocallaghan.co.za
 - Password: github
-- Please note the Preview is Down - I am working on getting it up again. Sorry about that.
 
 ## Features
  - Admin LTE theme
