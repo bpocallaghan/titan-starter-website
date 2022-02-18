@@ -108,6 +108,13 @@ class CropResourceController extends AdminController
             $originalImage->rotate($num);
         }
 
+        if(isset($photoable->image)){
+            $column = 'image';
+        }else {
+            $column = $photoable->imageColumn;
+        }
+        $use_file_name = $photoable->$column;
+
         // crop image on cropped area
         $imageTmp = $originalImage->crop($width, $height, $x, $y);
 
@@ -119,7 +126,7 @@ class CropResourceController extends AdminController
         // resize the image to thumb size
         $imageTmp->resize($thumbSize[0], null, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($path . $photoable->image_thumb);
+        })->save($path . $use_file_name);
 
         return json_response('success');
     }
