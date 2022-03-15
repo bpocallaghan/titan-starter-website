@@ -73,7 +73,7 @@
                     <th>Url</th>
                     <th>Parent</th>
                     <th>Page Views</th>
-                    <th style="min-width: 100px;">Action</th>
+                    <th style="min-width: 115px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -91,6 +91,9 @@
                                 </a>
                             </div>
                             {!! action_row($selectedNavigation->url, $item->id, $item->name, ['edit', 'delete'], false) !!}
+                            <a target="_blank" href="{{ $item->url }}" class="btn btn-light btn-xs" data-toggle="tooltip" title="View Page">
+                                <i class="far fa-fw fa-eye"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
