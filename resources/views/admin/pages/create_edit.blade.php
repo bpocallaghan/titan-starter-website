@@ -14,6 +14,9 @@
 
 
             <div class="card-tools">
+                @if(isset($item))
+                <a target="_blank" href="{{ $item->url }}" data-toggle="tooltip" title="View Page"><i class="fa fa-fw fa-eye"></i></a>
+                @endif
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                 </button>
@@ -101,8 +104,15 @@
                         <div class="col col-6">
                             <div class="form-group">
                                 <label for="url">URL <span class="small">(optional, the url is generated automatically)</span></label>
-                                <input type="text" class="form-control {{ form_error_class('url', $errors) }}" id="url" name="url" placeholder="Enter Url" value="{{ ($errors && $errors->any()? old('url') : (isset($item)? $item->url : '')) }}">
-                                <p class="text-muted small"><i class="fa fa-info-circle"></i> NOTE: For developer use only. Only use should you need a navigational item linked to an external link. </p>
+                                <input type="text" class="form-control {{ form_error_class('url', $errors) }}" id="url" name="url" placeholder="Enter Url" value="{{ ($errors && $errors->any()? old('url') : (isset($item)? $item->url : '')) }}" readonly>
+                                <div class="d-flex">
+                                    <div class="text-muted small px-1">
+                                        <i class="fa fa-info-circle"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted small"> NOTE: For developer use only. To use an external link, paste it in the <i>Slug</i> field. The URL must contain <i>http://</i> or <i>https://</i></p>
+                                    </div>
+                                </div>
                                 {!! form_error_message('url', $errors) !!}
                             </div>
                         </div>
