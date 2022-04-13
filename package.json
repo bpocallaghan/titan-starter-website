@@ -42,7 +42,7 @@
         "dropzone": "^5.5.1",
         "jquery-cropper": "^1.0.1",
         "lightbox2": "^2.11.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "pc-bootstrap4-datetimepicker": "^4.17.50",
         "select2": "^4.0.12",
         "select2-theme-bootstrap4": "^1.0.0",
