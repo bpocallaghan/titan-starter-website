@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 
 class CreateNavigationsTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateNavigationsTable extends Migration
     public function up()
     {
         Schema::create('navigations', function (Blueprint $table) {
-            $table->increments('id')->unique()->index();
+            $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('slug')->nullable();

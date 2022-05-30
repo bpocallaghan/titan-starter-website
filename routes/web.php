@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Models\Page;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,7 @@ use App\Models\Page;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::redirect('/home', '/');
 

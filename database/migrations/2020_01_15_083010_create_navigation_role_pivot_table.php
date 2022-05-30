@@ -14,7 +14,7 @@ class CreateNavigationRolePivotTable extends Migration
     public function up()
     {
         Schema::create('navigation_role', function (Blueprint $table) {
-            $table->increments('id')->unique()->index();
+            $table->id();
             $table->integer('navigation_id')->unsigned()->index();
             $table->integer('role_id')->unsigned()->index();
             $table->timestamps();

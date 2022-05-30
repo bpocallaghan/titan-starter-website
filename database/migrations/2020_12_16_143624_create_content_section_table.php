@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateContentSectionTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateContentSectionTable extends Migration
     public function up()
     {
         Schema::create('content_section', function (Blueprint $table) {
-            $table->increments('id')->unique()->index();
+            $table->id();
             $table->integer('content_id')->unsigned()->index();
             $table->integer('section_id')->unsigned()->index();
             $table->timestamps();

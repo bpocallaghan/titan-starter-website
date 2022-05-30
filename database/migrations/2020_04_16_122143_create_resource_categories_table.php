@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateResourceCategoriesTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateResourceCategoriesTable extends Migration
     public function up()
     {
         Schema::create('resource_categories', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique()->index();
+            $table->id();
             $table->string('name')->index();
             $table->string('slug');
             $table->timestamps();

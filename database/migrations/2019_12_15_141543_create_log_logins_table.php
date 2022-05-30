@@ -14,7 +14,7 @@ class CreateLogLoginsTable extends Migration
     public function up()
     {
         Schema::create('log_logins', function (Blueprint $table) {
-            $table->increments('id')->unique()->index();
+            $table->id();
             $table->string('username', 50);
             $table->string('status'); // success, no-user, inactive, disabled
             $table->string('role'); // website, admin
