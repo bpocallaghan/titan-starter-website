@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateContentTable extends Migration
 {
@@ -14,8 +14,7 @@ class CreateContentTable extends Migration
     public function up()
     {
         Schema::create('content', function (Blueprint $table) {
-            $table->increments('id')->unique()->index();
-            // $table->integer('section_id')->unsigned()->index();
+            $table->id();
             $table->string('heading')->nullable();
             $table->string('heading_element')->default('h2');
             $table->string('heading_class')->nullable();

@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -22,6 +22,17 @@ mix.options({
     terser: {
         extractComments: false
     }
+});
+
+mix.webpackConfig(webpack => {
+    return {
+        resolve: {
+            fallback: {
+                stream: require.resolve('stream-browserify'),
+                tty: require.resolve('tty-browserify'),
+            },
+        },
+    };
 });
 
 if (COMPILE == "all" || COMPILE == "js") {
@@ -59,7 +70,10 @@ if (COMPILE == "all" || COMPILE == "js") {
             pathJS + "/titan/utils.js",
             pathJS + "/titan/titan.js",
 
-            pathJS + "/website/utils.js"
+            pathJS + "/website/utils.js",
+
+            pathJS + '/website/jquery.countTo.js',
+        pathJS + '/website/jquery.custom.js',
         ],
         publicPath + "/js/website.js"
     );

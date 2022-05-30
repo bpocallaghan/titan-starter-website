@@ -35,4 +35,13 @@ class Template extends AdminModel
     {
         return self::orderBy('name')->get()->pluck('name', 'id')->toArray();
     }
+
+    /**
+     * Get the layouts
+     * @return \Eloquent
+     */
+    public function layouts()
+    {
+        return $this->belongsToMany(Layout::class, 'layout_template');
+    }
 }
