@@ -21,6 +21,5 @@
             </div>
         @endforeach
     </div>
+    @include('website.partials.paginator_footer')
 </div>
-
-@include('website.partials.paginator_footer')
