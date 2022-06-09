@@ -31,6 +31,9 @@ mix.webpackConfig(webpack => {
                 stream: require.resolve('stream-browserify'),
                 tty: require.resolve('tty-browserify'),
             },
+            alias: {
+                jQuery: 'jquery',
+            },
         },
     };
 });
@@ -71,9 +74,6 @@ if (COMPILE == "all" || COMPILE == "js") {
             pathJS + "/titan/titan.js",
 
             pathJS + "/website/utils.js",
-
-            pathJS + '/website/jquery.countTo.js',
-        pathJS + '/website/jquery.custom.js',
         ],
         publicPath + "/js/website.js"
     );
