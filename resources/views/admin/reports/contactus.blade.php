@@ -44,6 +44,10 @@
     <script type="text/javascript" charset="utf-8">
         function onUpdate(start, end)
         {
+            if ( $.fn.DataTable.isDataTable('#main-datatable') ) {
+                $('#main-datatable').DataTable().destroy();
+            }
+
             datatable = initDatatablesAjax('#main-datatable', "{{ request()->url() }}" + "/datatable?date_from=" + start + '&date_to=' + end, [
 
                 {data: 'fullname', name: 'fullname'},
