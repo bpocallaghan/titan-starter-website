@@ -284,8 +284,8 @@
 
             function activateVideoClick()
             {
-                $('.dropzone-video-click').off('click');
-                $('.dropzone-video-click').on('click', function (e) {
+                $('body').off('click', '.dropzone-video-click');
+                $('body').on('click', '.dropzone-video-click', function (e) {
                     e.preventDefault();
 
                     var id = $($(this).parent().find('.video-row-id')).val();

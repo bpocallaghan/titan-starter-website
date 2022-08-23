@@ -82,7 +82,7 @@
                             var id = data.data.id;
                             var title = data.data.name;
                             var url = data.data.url;
-                            var thumbUrl = data.data.thumbUrl;
+                            var thumbUrl = data.data.url;
 
                             var html ='<div class="col-6 col-md-4 col-lg-3 col-xl-2" data-id="'+id+'">'
                                         +'<div class="dd-item card dt-table">'

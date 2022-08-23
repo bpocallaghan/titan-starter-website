@@ -85,16 +85,16 @@ function getOrderBy(element)
 
 function initActionDeleteClick(element)
 {
-    $('.dt-table, .dt-titan').off('click', '.btn-delete-row');
-    $('.dt-table, .dt-titan').off('click', '.btn-confirm-modal-row');
+    $('body').off('click', '.dt-table .btn-delete-row, .dt-titan .btn-delete-row');
+    $('body').off('click', '.dt-table .btn-confirm-modal-row, .dt-titan .btn-confirm-modal-row');
     if (element) {
         element.off('click', '.btn-delete-row');
         element.off('click', '.btn-confirm-modal-row');
     }
 
     // DELETE ROW LINK
-    $('.dt-table, .dt-titan').on('click', '.btn-delete-row', onActionDeleteClick);
-    $('.dt-table, .dt-titan').on('click', '.btn-confirm-modal-row', onConfirmRowlick);
+    $('body').on('click', '.dt-table .btn-delete-row, .dt-titan .btn-delete-row', onActionDeleteClick);
+    $('body').on('click', '.dt-table .btn-confirm-modal-row, .dt-titan .btn-confirm-modal-row', onConfirmRowlick);
 
     if (element) {
         element.on('click', '.btn-delete-row', onActionDeleteClick);

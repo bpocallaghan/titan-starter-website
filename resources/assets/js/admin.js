@@ -15,7 +15,8 @@ require('admin-lte');
 import Sortable from 'sortablejs';
 window.Sortable = Sortable;
 
-window.Dropzone = require('dropzone');
+const { Dropzone } = require("dropzone");
+// window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 
 require('lightbox2');
