@@ -1,27 +1,33 @@
 <?php
 
-namespace Tests\Feature\Controllers\Admin;
+namespace Tests\Feature\Controllers\Admin\FAQ;
 
 use Tests\TestCase;
-use App\Models\FAQ;
 use App\Models\FAQCategory;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class FAQsTest extends TestCase
+class CategoriesControllerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    protected $table = 'faqs';
+    protected $table = 'faq_categories';
 
-    protected $resourceName = 'Faq';
+    protected $resourceName = 'Category';
 
-    protected $path = '/admin/faqs';
+    protected $path = '/admin/faqs/categories';
 
-    protected $viewPath = 'admin.faqs';
+    protected $viewPath = 'admin.faqs.categories';
 
-    protected $model = FAQ::class;
+    protected $model = FAQCategory::class;
+
+    private function validParams($overrides = [])
+    {
+        return array_merge([
+            'name'        => 'Category',
+        ], $overrides);
+    }
 
     /** @test */
     public function guests_cannot_access_resource_actions()
@@ -72,18 +78,17 @@ class FAQsTest extends TestCase
         // view home (to save the redirect url in session)
         $this->get($this->path);
 
-        // create and save category
-        $attributes = factory($this->model)->make()->toArray();
+        $attributes = $this->validParams();
 
         // submit form
         $this->followingRedirects()
             ->from("{$this->path}/create")
             ->post($this->path, $attributes)
             ->assertViewIs("{$this->viewPath}.index")
-            ->assertSee($attributes['question'])
+            ->assertSee($attributes['name'])
             ->assertSee(Str::plural($this->resourceName));
 
-        $this->assertDatabaseHas($this->table, ['question' => $attributes['question']]);
+        $this->assertDatabaseHas($this->table, ['name' => $attributes['name']]);
     }
 
     /** @test */
@@ -96,26 +101,10 @@ class FAQsTest extends TestCase
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
         $attributes = factory($this->model)->raw([
-            'question'    => null,
-            'category_id' => null,
+            'name' => null,
         ]);
 
-        $this->post($this->path, $attributes)
-            ->assertSessionHasErrors(['question'])
-            ->assertSessionHasErrors(['category_id']);
-    }
-
-    /** @test */
-    public function user_can_show()
-    {
-        $this->signInAdmin();
-
-        $resource = factory($this->model)->create();
-
-        $this->get("{$this->path}/{$resource->id}")
-            ->assertSee($resource->question)
-            ->assertSee($resource->category->name)
-            ->assertSee($this->resourceName);
+        $this->post($this->path, $attributes)->assertSessionHasErrors(['name']);
     }
 
     /** @test */
@@ -127,19 +116,19 @@ class FAQsTest extends TestCase
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
-        $resource->question = 'new-question';
+        $resource->name = 'new-name';
 
         $this->get($this->path);
 
         $this->followingRedirects()
             ->put("{$this->path}/{$resource->id}", $resource->toArray())
             ->assertViewIs("{$this->viewPath}.index")
-            ->assertSee($resource->question)
+            ->assertSee($resource->name)
             ->assertSee(Str::plural($this->resourceName));
 
         $this->assertDatabaseHas($this->table, [
-            'id'       => $resource->id,
-            'question' => 'new-question'
+            'id'   => $resource->id,
+            'name' => 'new-name'
         ]);
     }
 
@@ -152,10 +141,10 @@ class FAQsTest extends TestCase
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
-        $resource->question = null;
+        $resource->name = null;
 
         $this->put("{$this->path}/{$resource->id}", $resource->toArray())
-            ->assertSessionHasErrors(['question']);
+            ->assertSessionHasErrors(['name']);
     }
 
     /** @test */

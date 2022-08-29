@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers\Admin;
+namespace Tests\Feature\Controllers\Admin\Banners;
 
 use App\Models\Banner;
 use Illuminate\Http\UploadedFile;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class BannersTest extends TestCase
+class BannersControllersTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 

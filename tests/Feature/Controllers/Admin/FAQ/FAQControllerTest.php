@@ -1,33 +1,27 @@
 <?php
 
-namespace Tests\Feature\Controllers\Admin;
+namespace Tests\Feature\Controllers\Admin\FAQ;
 
 use Tests\TestCase;
+use App\Models\FAQ;
 use App\Models\FAQCategory;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CategoriesTest extends TestCase
+class FAQControllerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    protected $table = 'faq_categories';
+    protected $table = 'faqs';
 
-    protected $resourceName = 'Category';
+    protected $resourceName = 'Faq';
 
-    protected $path = '/admin/faqs/categories';
+    protected $path = '/admin/faqs';
 
-    protected $viewPath = 'admin.faqs.categories';
+    protected $viewPath = 'admin.faqs';
 
-    protected $model = FAQCategory::class;
-
-    private function validParams($overrides = [])
-    {
-        return array_merge([
-            'name'        => 'Category',
-        ], $overrides);
-    }
+    protected $model = FAQ::class;
 
     /** @test */
     public function guests_cannot_access_resource_actions()
@@ -78,17 +72,18 @@ class CategoriesTest extends TestCase
         // view home (to save the redirect url in session)
         $this->get($this->path);
 
-        $attributes = $this->validParams();
+        // create and save category
+        $attributes = factory($this->model)->make()->toArray();
 
         // submit form
         $this->followingRedirects()
             ->from("{$this->path}/create")
             ->post($this->path, $attributes)
             ->assertViewIs("{$this->viewPath}.index")
-            ->assertSee($attributes['name'])
+            ->assertSee($attributes['question'])
             ->assertSee(Str::plural($this->resourceName));
 
-        $this->assertDatabaseHas($this->table, ['name' => $attributes['name']]);
+        $this->assertDatabaseHas($this->table, ['question' => $attributes['question']]);
     }
 
     /** @test */
@@ -101,10 +96,26 @@ class CategoriesTest extends TestCase
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
         $attributes = factory($this->model)->raw([
-            'name' => null,
+            'question'    => null,
+            'category_id' => null,
         ]);
 
-        $this->post($this->path, $attributes)->assertSessionHasErrors(['name']);
+        $this->post($this->path, $attributes)
+            ->assertSessionHasErrors(['question'])
+            ->assertSessionHasErrors(['category_id']);
+    }
+
+    /** @test */
+    public function user_can_show()
+    {
+        $this->signInAdmin();
+
+        $resource = factory($this->model)->create();
+
+        $this->get("{$this->path}/{$resource->id}")
+            ->assertSee($resource->question)
+            ->assertSee($resource->category->name)
+            ->assertSee($this->resourceName);
     }
 
     /** @test */
@@ -116,19 +127,19 @@ class CategoriesTest extends TestCase
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
-        $resource->name = 'new-name';
+        $resource->question = 'new-question';
 
         $this->get($this->path);
 
         $this->followingRedirects()
             ->put("{$this->path}/{$resource->id}", $resource->toArray())
             ->assertViewIs("{$this->viewPath}.index")
-            ->assertSee($resource->name)
+            ->assertSee($resource->question)
             ->assertSee(Str::plural($this->resourceName));
 
         $this->assertDatabaseHas($this->table, [
-            'id'   => $resource->id,
-            'name' => 'new-name'
+            'id'       => $resource->id,
+            'question' => 'new-question'
         ]);
     }
 
@@ -141,10 +152,10 @@ class CategoriesTest extends TestCase
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
-        $resource->name = null;
+        $resource->question = null;
 
         $this->put("{$this->path}/{$resource->id}", $resource->toArray())
-            ->assertSessionHasErrors(['name']);
+            ->assertSessionHasErrors(['question']);
     }
 
     /** @test */
