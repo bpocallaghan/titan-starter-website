@@ -8,7 +8,7 @@
         <div class="row mt-5 mb-5">
             <div class="col-12 col-md-8 offset-md-2">
                 <ul class="list-unstyled list-group list-group-horizontal-md mb-3">
-                    <li class="list-group-item"><strong>Laravel v8.x</strong></li>
+                    <li class="list-group-item"><strong>Laravel v9.x</strong></li>
                     <li class="list-group-item"><strong>AdminLTE v3.0.5</strong></li>
                     <li class="list-group-item"><strong>Bootstrap v4.4.1</strong></li>
                     <li class="list-group-item"><strong>jQuery v3.5</strong></li>
