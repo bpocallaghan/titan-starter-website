@@ -237,8 +237,8 @@
 
             function activateImageClick()
             {
-                $('.dropzone-image-click').off('click');
-                $('.dropzone-image-click').on('click', function (e) {
+                $('body').off('click', '.dropzone-image-click');
+                $('body').on('click', '.dropzone-image-click', function (e) {
                     e.preventDefault();
 
                     var id = $($(this).parent().find('.image-row-id')).val();

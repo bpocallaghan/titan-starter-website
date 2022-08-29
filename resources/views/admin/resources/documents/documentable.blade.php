@@ -201,8 +201,8 @@
 
             function activateDocumentClick()
             {
-                $('.dropzone-document-click').off('click');
-                $('.dropzone-document-click').on('click', function (e) {
+                $('body').off('click', '.dropzone-document-click');
+                $('body').on('click', '.dropzone-document-click', function (e) {
                     e.preventDefault();
 
                     var id = $($(this).parent().find('.document-row-id')).val();

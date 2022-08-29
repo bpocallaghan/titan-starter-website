@@ -41,7 +41,7 @@
         "datatables.net-responsive-bs4": "^2.2.3",
         "datatables.net-responsive-dt": "^2.2.7",
         "daterangepicker": "^3.0.5",
-        "dropzone": "^5.5.1",
+        "dropzone": "^5.9.3",
         "jquery-cropper": "^1.0.1",
         "lightbox2": "^2.11.1",
         "moment": "^2.29.2",
