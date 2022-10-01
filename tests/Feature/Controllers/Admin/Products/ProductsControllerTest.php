@@ -67,6 +67,7 @@ class ProductsControllerTest extends TestCase
         $response = $this->followingRedirects()
             ->from("{$this->path}/create")
             ->post($this->path, $attributes)
+            ->assertSessionHasNoErrors()
             ->assertViewIs("{$this->viewPath}.index")
             ->assertSee(Str::plural($this->resourceName));
 
