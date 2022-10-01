@@ -47,7 +47,7 @@ class RegisterTest extends TestCase
     /** @test */
     public function authenticated_user_cannot_view_register()
     {
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $response = $this->actingAs($user)->get($this->registerGetRoute());
 
@@ -144,7 +144,7 @@ class RegisterTest extends TestCase
     /** @test */
     public function user_cannot_register_with_used_email()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'john@example.com',
         ]);
 

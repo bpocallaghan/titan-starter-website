@@ -52,17 +52,9 @@ class UserFactory extends Factory
 
     public function admin()
     {
-        // $user->syncRoles([
-        //     Role::$USER,
-        //     Role::$ADMIN,
-        //     Role::$ADMIN_NOTIFY,
-        //     Role::$DEVELOPER
-        // ]);
-
-        return $this->state(function (array $attributes) {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
+        return $this->afterCreating(function ($user) {
+            $user->roles()->syncWithoutDetaching([1, 2, 3, 4]);
+            // $user->syncRoles([Role::$WEBSITE, Role::$ADMIN, Role::$CLIENT, Role::$STAFF, Role::$BUSINESS, Role::$ADMIN_SUPER, Role::$DEVELOPER, Role::$ADMIN_NOTIFY_ALL,]);
+        })->state([]);
     }
 }
