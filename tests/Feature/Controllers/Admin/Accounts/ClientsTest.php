@@ -102,7 +102,7 @@ class ClientsTest extends TestCase
         $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $resource = factory(User::class)->create();
+        $resource = User::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -129,7 +129,7 @@ class ClientsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(User::class)->create();
+        $resource = User::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -148,7 +148,7 @@ class ClientsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(User::class)->create();
+        $resource = User::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 
