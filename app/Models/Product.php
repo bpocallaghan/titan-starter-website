@@ -7,6 +7,7 @@ use App\Models\Traits\Photoable;
 use App\Models\Traits\Videoable;
 use Bpocallaghan\Sluggable\HasSlug;
 use Bpocallaghan\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Product extends AdminModel
 {
-    use SoftDeletes, HasSlug, Photoable, Documentable, Videoable;
+    use HasFactory, SoftDeletes, HasSlug, Photoable, Documentable, Videoable;
 
     protected $table = 'products';
 

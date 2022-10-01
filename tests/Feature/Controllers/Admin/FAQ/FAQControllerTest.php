@@ -26,7 +26,7 @@ class FAQControllerTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -73,7 +73,7 @@ class FAQControllerTest extends TestCase
         $this->get($this->path);
 
         // create and save category
-        $attributes = factory($this->model)->make()->toArray();
+        $attributes = $this->model::factory()->make()->toArray();
 
         // submit form
         $this->followingRedirects()
@@ -95,7 +95,7 @@ class FAQControllerTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory($this->model)->raw([
+        $attributes = $this->model::factory()->raw([
             'question'    => null,
             'category_id' => null,
         ]);
@@ -110,7 +110,7 @@ class FAQControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}")
             ->assertSee($resource->question)
@@ -123,7 +123,7 @@ class FAQControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -148,7 +148,7 @@ class FAQControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -163,7 +163,7 @@ class FAQControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

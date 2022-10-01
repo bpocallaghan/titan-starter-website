@@ -23,7 +23,7 @@ class NavigationTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory(Navigation::class)->create();
+        $resource = Navigation::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -59,7 +59,7 @@ class NavigationTest extends TestCase
         $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $attributes = factory(Navigation::class)->raw();
+        $attributes = Navigation::factory()->raw();
         $attributes['roles'] = [1, 2];
 
         // view create form
@@ -91,7 +91,7 @@ class NavigationTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory(Navigation::class)->raw([
+        $attributes = Navigation::factory()->raw([
             'name'        => null,
             'description' => null
         ]);
@@ -106,7 +106,7 @@ class NavigationTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Navigation::class)->create();
+        $resource = Navigation::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}")
             ->assertSee($resource->name)
@@ -120,7 +120,7 @@ class NavigationTest extends TestCase
         $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $resource = factory(Navigation::class)->create();
+        $resource = Navigation::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -148,7 +148,7 @@ class NavigationTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Navigation::class)->create();
+        $resource = Navigation::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -165,7 +165,7 @@ class NavigationTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Navigation::class)->create();
+        $resource = Navigation::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

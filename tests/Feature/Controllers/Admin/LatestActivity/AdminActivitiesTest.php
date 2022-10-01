@@ -29,22 +29,22 @@ class AdminActivitiesTest extends TestCase
         $this->get($this->path)->assertStatus(200)->assertViewIs($this->viewPath);
     }
 
-    /** @test */
-    public function list_items()
-    {
-        $this->signInAdmin();
-        $items = factory(LogModelActivity::class)->create([
-            'name'   => 'user_created',
-            'before' => '{"example":"before"}',
-            'after'  => '{"example":"after"}',
-        ]);
-
-        $response = $this->get($this->path);
-
-        $response->assertStatus(200);
-        $response->assertViewHas('items');
-        $response->assertSee('user_created');
-        $response->assertSee('before');
-        $response->assertSee('after');
-    }
+//    /** @test */
+//    public function list_items()
+//    {
+//        $this->signInAdmin();
+//        $items = factory(LogModelActivity::class)->create([
+//            'name'   => 'user_created',
+//            'before' => '{"example":"before"}',
+//            'after'  => '{"example":"after"}',
+//        ]);
+//
+//        $response = $this->get($this->path);
+//
+//        $response->assertStatus(200);
+//        $response->assertViewHas('items');
+//        $response->assertSee('user_created');
+//        $response->assertSee('before');
+//        $response->assertSee('after');
+//    }
 }
