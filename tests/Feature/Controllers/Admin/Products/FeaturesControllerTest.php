@@ -25,7 +25,7 @@ class FeaturesControllerTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -72,7 +72,7 @@ class FeaturesControllerTest extends TestCase
         $this->get($this->path);
 
         // create and save resource
-        $attributes = factory($this->model)->make()->toArray();
+        $attributes = $this->model::factory()->make()->toArray();
 
         // submit form
         $this->followingRedirects()
@@ -94,7 +94,7 @@ class FeaturesControllerTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory($this->model)->raw([
+        $attributes = $this->model::factory()->raw([
             'name'    => null,
         ]);
 
@@ -107,7 +107,7 @@ class FeaturesControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -132,7 +132,7 @@ class FeaturesControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -147,7 +147,7 @@ class FeaturesControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

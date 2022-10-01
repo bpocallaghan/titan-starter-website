@@ -29,20 +29,20 @@ class WebsiteActivitiesTest extends TestCase
         $this->get($this->path)->assertStatus(200)->assertViewIs($this->viewPath);
     }
 
-    /** @test */
-    public function list_items()
-    {
-        $this->signInAdmin();
-        $items = factory(LogActivity::class)->create([
-            'name' => 'Example Activity',
-            'description' => 'More information',
-        ]);
-
-        $response = $this->get($this->path);
-
-        $response->assertStatus(200);
-        $response->assertViewHas('items');
-        $response->assertSee('Example Activity');
-        $response->assertSee('More information');
-    }
+//    /** @test */
+//    public function list_items()
+//    {
+//        $this->signInAdmin();
+//        $items = factory(LogActivity::class)->create([
+//            'name' => 'Example Activity',
+//            'description' => 'More information',
+//        ]);
+//
+//        $response = $this->get($this->path);
+//
+//        $response->assertStatus(200);
+//        $response->assertViewHas('items');
+//        $response->assertSee('Example Activity');
+//        $response->assertSee('More information');
+//    }
 }
