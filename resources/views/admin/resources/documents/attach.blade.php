@@ -83,8 +83,12 @@
                             var title = data.data.name;
                             var url = data.data.url;
 
-                            var active_from = data.data.active_from;
-                            var active_to = data.data.active_to;
+                            // var active_from = data.data.active_from;
+                            // var active_to = data.data.active_to;
+
+                            if($('#documentGridSortable .dd-list .col-12').length > 0){
+                                $('#documentGridSortable .dd-list .col-12').remove();
+                            }
 
                             var html ='<div class="col-6 col-md-4 col-xl-3" data-id="'+id+'">'
                                         +'<div class="dd-item card dt-table">'
