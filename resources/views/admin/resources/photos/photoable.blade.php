@@ -125,11 +125,9 @@
                     </div>
                 @empty
                     <div class="col-12">
-
                         <p class="text-muted">Please click on the panel above to upload photos
                             to {!! $photoable->name !!}.
                         </p>
-
                     </div>
                 @endforelse
             </div>

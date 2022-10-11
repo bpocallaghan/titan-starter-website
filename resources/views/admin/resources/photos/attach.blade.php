@@ -84,6 +84,10 @@
                             var url = data.data.url;
                             var thumbUrl = data.data.url;
 
+                            if($('#photoGridSortable .dd-list .col-12').length > 0){
+                                $('#photoGridSortable .dd-list .col-12').remove();
+                            }
+
                             var html ='<div class="col-6 col-md-4 col-lg-3 col-xl-2" data-id="'+id+'">'
                                         +'<div class="dd-item card dt-table">'
                                             +'<div class="card-header d-flex text-center p-2 align-items-center">'
