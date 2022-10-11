@@ -35,8 +35,8 @@ class NavigationOrderTest extends TestCase
         $this->withoutExceptionHandling();
         $this->signInAdmin();
 
-        $navigationA = factory(Navigation::class)->create();
-        $navigationB = factory(Navigation::class)->create();
+        $navigationA = Navigation::factory()->create();
+        $navigationB = Navigation::factory()->create();
 
         $attributes = [
             'list' => json_encode([

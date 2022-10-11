@@ -15,7 +15,7 @@
                     @endif
                 </ul>
                 @if(!auth()->check())
-                    <a href="/auth/login" class="btn btn-sm btn-outline-primary mr-1" data-icon="fa-sign-in-alt" {{--data-toggle="modal" data-target="#modal-login"--}}>
+                    <a href="/auth/login" class="btn btn-sm btn-outline-primary mr-1" {{--data-toggle="modal" data-target="#modal-login"--}}>
                         <i class="fa fa-sign-in"></i>
                         Login
                     </a>

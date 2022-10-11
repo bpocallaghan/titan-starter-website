@@ -23,7 +23,7 @@ class RolesTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory(Role::class)->create();
+        $resource = Role::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -58,7 +58,7 @@ class RolesTest extends TestCase
     {
         $this->signInAdmin();
 
-        $attributes = factory(Role::class)->raw();
+        $attributes = Role::factory()->raw();
 
         // view create form
         $this->get("{$this->path}/create")
@@ -90,7 +90,7 @@ class RolesTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory(Role::class)->raw([
+        $attributes = Role::factory()->raw([
             'icon'    => null,
             'slug'    => null,
             'name'    => null,
@@ -108,7 +108,7 @@ class RolesTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Role::class)->create();
+        $resource = Role::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}")
             ->assertSee($resource->name)
@@ -121,7 +121,7 @@ class RolesTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Role::class)->create();
+        $resource = Role::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -146,7 +146,7 @@ class RolesTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Role::class)->create();
+        $resource = Role::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -166,7 +166,7 @@ class RolesTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Role::class)->create();
+        $resource = Role::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

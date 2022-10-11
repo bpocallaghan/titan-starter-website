@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
             'firstname'         => 'Admin',
             'lastname'          => 'Github',
             'cellphone'         => '123456789',
-            'email'             => 'github@bpocallaghan.co.za',
+            'email'             => 'github@bpocallaghan.ie',
             'gender'            => 'male',
             'password'          => bcrypt('github'),
             'email_verified_at' => now()

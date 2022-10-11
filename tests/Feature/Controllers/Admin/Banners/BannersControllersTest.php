@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers\Admin;
+namespace Tests\Feature\Controllers\Admin\Banners;
 
 use App\Models\Banner;
 use Illuminate\Http\UploadedFile;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class BannersTest extends TestCase
+class BannersControllersTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
@@ -39,7 +39,7 @@ class BannersTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory(Banner::class)->create();
+        $resource = Banner::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -72,7 +72,6 @@ class BannersTest extends TestCase
     /** @test */
     public function user_can_create()
     {
-        $this->withoutExceptionHandling();
         $this->signInAdmin();
 
         // view create form
@@ -111,7 +110,7 @@ class BannersTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory(Banner::class)->raw([
+        $attributes = Banner::factory()->raw([
             'name' => null,
         ]);
 
@@ -123,7 +122,7 @@ class BannersTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Banner::class)->create();
+        $resource = Banner::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}")
             ->assertSee($resource->name)
@@ -136,7 +135,7 @@ class BannersTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Banner::class)->create();
+        $resource = Banner::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -161,7 +160,7 @@ class BannersTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Banner::class)->create();
+        $resource = Banner::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -176,7 +175,7 @@ class BannersTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Banner::class)->create();
+        $resource = Banner::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

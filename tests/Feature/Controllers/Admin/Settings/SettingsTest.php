@@ -23,7 +23,7 @@ class SettingsTest extends TestCase
     /** @test */
     public function guests_cannot_access_resource_actions()
     {
-        $resource = factory(Settings::class)->create();
+        $resource = Settings::factory()->create();
 
         // list
         $this->get($this->path)->assertRedirect($this->loginPath);
@@ -57,7 +57,7 @@ class SettingsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $attributes = factory(Settings::class)->raw();
+        $attributes = Settings::factory()->raw();
 
         // view create form
         $this->get("{$this->path}/create")
@@ -89,7 +89,7 @@ class SettingsTest extends TestCase
 
         $this->get("{$this->path}/create")->assertStatus(200)->assertSee($this->resourceName);
 
-        $attributes = factory(Settings::class)->raw([
+        $attributes = Settings::factory()->raw([
             'name'   => null,
             'author' => null
         ]);
@@ -104,7 +104,7 @@ class SettingsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Settings::class)->create();
+        $resource = Settings::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 
@@ -129,7 +129,7 @@ class SettingsTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory(Settings::class)->create();
+        $resource = Settings::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertStatus(200);
 

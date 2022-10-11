@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Bpocallaghan\Sluggable\HasSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class ProductCondition
+ * Class ProductFeature
  * @mixin \Eloquent
  */
 class ProductFeature extends AdminModel
 {
-    use SoftDeletes, HasSlug;
+    use HasFactory, SoftDeletes, HasSlug;
 
     protected $table = 'product_features';
 

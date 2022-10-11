@@ -28,7 +28,7 @@ class ProductsControllerTest extends TestCase
      */
     private function validParams($overrides = [])
     {
-        $attributes = factory($this->model)->make()->toArray();
+        $attributes = $this->model::factory()->make()->toArray();
 
         return array_merge($attributes, $overrides);
     }
@@ -67,6 +67,7 @@ class ProductsControllerTest extends TestCase
         $response = $this->followingRedirects()
             ->from("{$this->path}/create")
             ->post($this->path, $attributes)
+            ->assertSessionHasNoErrors()
             ->assertViewIs("{$this->viewPath}.index")
             ->assertSee(Str::plural($this->resourceName));
 
@@ -102,7 +103,7 @@ class ProductsControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertOk();
 
@@ -129,7 +130,7 @@ class ProductsControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->get("{$this->path}/{$resource->id}/edit")->assertOk();
 
@@ -148,7 +149,7 @@ class ProductsControllerTest extends TestCase
     {
         $this->signInAdmin();
 
-        $resource = factory($this->model)->create();
+        $resource = $this->model::factory()->create();
 
         $this->delete("{$this->path}/{$resource->id}", ['_id' => $resource->id]);
 

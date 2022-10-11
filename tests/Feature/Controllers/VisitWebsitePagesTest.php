@@ -24,8 +24,6 @@ class VisitWebsitePagesTest extends TestCase
     /** @test */
     public function visit_home()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSeeText(config('app.name'));
