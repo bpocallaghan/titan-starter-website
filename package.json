@@ -23,7 +23,7 @@
         "pace-js": "^1.0.2",
         "popper.js": "^1.12",
         "postcss": "^8.1.14",
-        "resolve-url-loader": "^3.1.0",
+        "resolve-url-loader": "^5.0.0",
         "sass": "^1.49.7",
         "sass-loader": "^12.4.0",
         "vue": "^2.5.17",
