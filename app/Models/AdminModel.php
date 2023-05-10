@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Models\Traits\ModifyBy;
 use Illuminate\Database\Eloquent\Model;
-use Bpocallaghan\LogActivity\Models\Traits\LogModelActivities;
+// use Bpocallaghan\LogActivity\Models\Traits\LogModelActivities;
 
 class AdminModel extends Model
 {
-    use LogModelActivities, ModifyBy;
+    use ModifyBy; // LogModelActivities,
 
     /**
      * Validation custom messages for this model

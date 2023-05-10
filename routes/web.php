@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Page;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,19 +10,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 Route::redirect('/home', '/');
 
-/*
-|------------------------------------------
-| Website
-|------------------------------------------
-*/
 
 Route::group(['namespace' => 'Website'], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -41,7 +34,7 @@ Route::group(['namespace' => 'Website'], function () {
     // shop
     Route::group(['namespace' => 'Shop'], function () {
         Route::post('/products/filter', 'ShopController@filter')->name('products_filter');
-        // Route::get('/products/basket', 'BasketController@index')->name('basket');
+        Route::get('/products/basket', 'BasketController@index')->name('basket');
         Route::post('/products/basket', 'BasketController@submitBasket')->name('basket.submit');
         Route::get('/products/show/{productSlug}', 'ShopController@show')->name('product.show');
 

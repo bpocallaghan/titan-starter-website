@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -72,4 +72,4 @@ class AlterUsersTable extends Migration
         //    $table->timestamps();
         //});
     }
-}
+};
