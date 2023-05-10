@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\ShippingAddress;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Traits\UserAdmin;
 use App\Models\Traits\UserRoles;
 use App\Models\Traits\UserHelper;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -73,12 +72,10 @@ class User extends Authenticatable
     static public $rules = [
         'firstname' => ['required', 'string', 'max:191'],
         'lastname'  => ['required', 'string', 'max:191'],
-        //'gender'    => 'required|in:male,female',
         'cellphone' => ['nullable', 'string', 'max:191'],
         'email'     => ['required', 'string', 'email', 'max:191', 'unique:users'],
         'password'  => ['required', 'string', 'min:4', 'confirmed'],
         //'token'     => 'required|exists:user_invites,token',
-        //'photo'     => 'required|max:6000|mimes:jpg,jpeg,png,bmp',
     ];
 
     /**
@@ -87,7 +84,6 @@ class User extends Authenticatable
     static public $rulesClient = [
         'firstname' => ['required', 'string', 'max:191'],
         'lastname'  => ['required', 'string', 'max:191'],
-        //'gender'    => 'required|in:male,female',
         'cellphone' => ['nullable', 'string', 'max:191'],
         'email'     => ['required', 'string', 'email', 'max:191', 'unique:users'],
         'password'  => ['required', 'string', 'min:4', 'confirmed'],

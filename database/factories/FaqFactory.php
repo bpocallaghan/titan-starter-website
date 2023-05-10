@@ -6,7 +6,7 @@ use App\Models\FAQ;
 use App\Models\FAQCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FAQFactory extends Factory
+class FaqFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

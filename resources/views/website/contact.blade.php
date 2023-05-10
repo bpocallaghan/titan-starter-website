@@ -76,14 +76,15 @@
 
 @section('scripts')
     @parent
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }}"></script>
     <script type="text/javascript" charset="utf-8">
-        $(function () {
+        function initilizeGoogleMaps(){
             var map = initGoogleMapView('js-map-contact-us', '{{ $settings->latitude }}', '{{ $settings->longitude }}', {{ $settings->zoom_level }});
             addGoogleMapMarker(map, '{{ $settings->latitude }}', '{{ $settings->longitude }}', false);
 
             var content = '<h4>{{ $settings->name }}</h4>' + $('.contact-details').html();
             addGoogleMapMarkerClick(map, '{{ $settings->name }}', '{{ $settings->latitude }}', '{{ $settings->longitude }}', content);
-        });
+        };
     </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }} &callback=initilizeGoogleMaps"></script>
+
 @endsection
