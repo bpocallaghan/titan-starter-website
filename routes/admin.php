@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth', 'auth.admin'], 'prefix' => 'admin', 'name
         Route::get('/summary', 'AnalyticsController@summary');
         Route::get('/devices', 'AnalyticsController@devices');
         Route::get('/visits-and-referrals', 'AnalyticsController@visitsReferrals');
-        Route::get('/interests', 'AnalyticsController@interests');
+        Route::get('/engagement', 'AnalyticsController@engagement');
         Route::get('/demographics', 'AnalyticsController@demographics');
     });
 

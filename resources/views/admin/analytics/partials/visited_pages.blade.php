@@ -57,7 +57,7 @@
                 $('#box-visited-pages .loading-widget').slideUp();
 
                 for (var i = 0; i < data.length; i++) {
-                    var html = '<tr><td>' + data[i]['url'] + '</td><td>' + data[i]['pageViews'] + '</td></tr>';
+                    var html = '<tr><td>' + data[i]['fullPageUrl'] + '</td><td>' + data[i]['screenPageViews'] + '</td></tr>';
                     $('#box-visited-pages table tbody').append(html);
                 }
 

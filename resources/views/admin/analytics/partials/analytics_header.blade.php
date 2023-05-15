@@ -59,8 +59,8 @@
     <div class="col-lg col-6">
         <div class="small-box bg-green">
             <div class="inner">
-                <h3 id="page-load">&nbsp;</h3>
-                <p>Avg Page Load</p>
+                <h3 id="sessions-engaged">&nbsp;</h3>
+                <p>Sessions Engaged</p>
             </div>
             <div class="icon">
                 <i class="fas fa-tachometer-alt"></i>
@@ -73,7 +73,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3 id="page-active-visitors">&nbsp;</h3>
-                    <p>Current Active Visitors</p>
+                    <p>Total Visitor(s) Today</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-user"></i>
@@ -102,12 +102,12 @@
                 doAjax('/api/analytics/bounce-rate', null, function (response) {
                     response.data['datasets'][0]['data'][0] = parseFloat(response.data['datasets'][0]['data'][0]).toFixed(2);
                     response.data['datasets'][0]['data'][1] = parseFloat(response.data['datasets'][0]['data'][1]).toFixed(2);
-                    $('#bounce-rate').html(response.data['datasets'][0]['data'][0] + '<sup style="font-size: 20px">%</sup>');
+                    $('#bounce-rate').html((response.data['datasets'][0]['data'][0] * 100).toFixed(2) + '<sup style="font-size: 20px">%</sup>');
                     doughnutChart('chart-bounce-rate', response.data);
                 });
 
-                doAjax('/api/analytics/page-load', null, function (response) {
-                    $('#page-load').html(parseFloat(response.data).toFixed(0) + '<sup style="font-size: 20px">sec</sup>');
+                doAjax('/api/analytics/sessions-engaged', null, function (response) {
+                    $('#sessions-engaged').html((parseFloat(response.data) * 100).toFixed(2) + '<sup>%</sup>');
                 });
 
                 doAjax('/api/analytics/active-visitors', null, function (response) {

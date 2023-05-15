@@ -20,7 +20,7 @@ id,name,description,slug,url,icon,help_index_title,help_index_content,help_creat
 "19","Summary","Analytics Summary","summary","/admin/analytics/summary","star-half-alt","","","","","","","1","0","18","18","2020-03-20 10:05:00","2020-03-20 10:07:00",,"0","0",
 "20","Devices","Analytics on Devices used","devices","/admin/analytics/devices","mobile-alt","","","","","","","2","0","18","18","2020-03-20 10:06:00","2020-03-20 10:07:00",,"0","0",
 "21","Visits and Referrals","Visits and Referrals","visits-and-referrals","/admin/analytics/visits-and-referrals","link","","","","","","","3","0","18","18","2020-03-20 10:07:00","2020-03-20 10:07:00",,"0","0",
-"22","Interests","Interests","interests","/admin/analytics/interests","heart","","","","","","","4","0","18","18","2020-03-20 11:27:00","2020-03-20 11:27:00",,"0","0",
+"22","Engagement","Engagement","engagement","/admin/analytics/engagement","hand-pointer","","","","","","","4","0","18","18","2020-03-20 11:27:00","2020-03-20 11:27:00",,"0","0",
 "23","Demographics","Demographics","demographics","/admin/analytics/demographics","female","","","","","","","5","0","18","18","2020-03-20 11:28:00","2020-03-20 11:28:00",,"0","0",
 "24","Resources","Resources","resources","/admin/resources","photo-video","","","","","","","6","0","0","0","2020-04-16 11:28:00","2020-04-16 11:28:00",,"0","0",
 "25","Categories","Categories","categories","/admin/resources/categories","cubes","","","","","","","1","0","24","24","2020-04-16 11:28:00","2020-04-16 11:28:00",,"0","0",

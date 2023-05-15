@@ -58,7 +58,7 @@
                 $('#box-referrers .loading-widget').slideUp();
 
                 for (var i = 0; i < data.length; i++) {
-                    var html = '<tr><td>' + data[i]['url'] + '</td><td>' + data[i]['pageViews'] + '</td></tr>';
+                    var html = '<tr><td>' + data[i]['pageReferrer'] + '</td><td>' + data[i]['screenPageViews'] + '</td></tr>';
                     $('#box-referrers table tbody').append(html);
                 }
 
