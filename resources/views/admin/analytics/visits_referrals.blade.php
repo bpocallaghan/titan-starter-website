@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            @include('admin.analytics.partials.keywords')
+            @include('admin.analytics.partials.session_group')
         </div>
     </div>
 @endsection

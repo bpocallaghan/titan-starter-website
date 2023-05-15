@@ -21,9 +21,9 @@ class AnalyticsController extends AdminController
         return $this->view('analytics.visits_referrals');
     }
 
-    public function interests()
+    public function engagement()
     {
-        return $this->view('analytics.interests');
+        return $this->view('analytics.engagement');
     }
 
     public function demographics()

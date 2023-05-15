@@ -53,9 +53,9 @@
 
         @yield('scripts')
 
-        @if(config('app.env') != 'local')
+        {{-- @if(config('app.env') != 'local') --}}
             @include('partials.analytics')
-        @endif
+        {{-- @endif --}}
 
         @include('website.partials.form.captcha')
     </body>

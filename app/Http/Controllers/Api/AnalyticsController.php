@@ -6,6 +6,7 @@ use Analytics;
 use App\Models\User;
 use App\Http\Requests;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\OrderBy;
 use App\Http\Controllers\Traits\GoogleAnalyticsHelper;
 
 class AnalyticsController extends ApiController
@@ -31,19 +32,15 @@ class AnalyticsController extends ApiController
 
         $period = Period::create($start, $end);
 
-        $data = Analytics::performQuery($period, 'ga:sessions', [
-            'dimensions'  => 'ga:country',
-            'sort'        => '-ga:sessions',
-            'max-results' => 50
-        ]);
+        $data = Analytics::get($period, ['sessions'], ['country'], 50, [OrderBy::metric('sessions', true)]);
 
         $items = [];
-        if ($data->rows) {
-            $items = $data->rows;
-        }
-
-        foreach ($items as $k => $item) {
-            $items[$k][1] = intval($items[$k][1]);
+        if ($data) {
+            foreach ($data as $k => $item) {
+                $items[$k] = [];
+                $items[$k][0] = $item['country'];
+                $items[$k][1] = intval($item['sessions']);
+            }
         }
 
         return json_response($items);

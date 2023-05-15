@@ -16,5 +16,8 @@
         <div class="col-sm-6">
             @include('admin.analytics.partials.devices')
         </div>
+        <div class="col-sm-6">
+            @include('admin.analytics.partials.resolution')
+        </div>
     </div>
 @endsection
