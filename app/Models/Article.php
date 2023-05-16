@@ -25,7 +25,10 @@ class Article extends AdminModel
 
     protected $guarded = ['id'];
 
-    protected $dates = ['active_from', 'active_to'];
+    protected $casts = [
+        'active_from' => 'datetime',
+        'active_to' => 'datetime'
+    ];
 
     public static $LARGE_SIZE = [920, 400];
 

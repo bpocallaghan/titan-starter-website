@@ -18,7 +18,7 @@ class Comment extends AdminModel
 
     protected $guarded = ['id'];
 
-    protected $dates = ['approved_at'];
+    protected $casts = ['approved_at' => 'datetime'];
 
     /**
      * Validation rules for this model

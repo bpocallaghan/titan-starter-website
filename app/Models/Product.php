@@ -22,7 +22,10 @@ class Product extends AdminModel
 
     protected $guarded = ['id'];
 
-    protected $dates = ['special_from', 'special_to'];
+    protected $casts = [
+        'special_from' => 'datetime',
+        'special_to' => 'datetime'
+    ];
 
     public static $IMAGE_BACKGROUND = true;
 
