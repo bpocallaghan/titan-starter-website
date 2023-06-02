@@ -28,6 +28,14 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('po_box')->nullable();
 
+            $table->string('fax')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('directions')->nullable();
+
+            $table->string('weekdays')->nullable();
+            $table->string('weekends')->nullable();
+            $table->string('public_holidays')->nullable();
+
             // social media
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
