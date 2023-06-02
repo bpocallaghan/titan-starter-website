@@ -225,15 +225,15 @@
 
 @section('scripts')
     @parent
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }}&libraries=places"></script>
     <script type="text/javascript" charset="utf-8">
-        $(function () {
+        function initilizeGoogleMaps(){
 
             var latitude = {{ isset($item) && strlen($item->latitude) > 2? $item->latitude : -30 }};
             var longitude = {{ isset($item) && strlen($item->longitude) > 2? $item->longitude : 24 }};
             var zoom_level = {{ isset($item) && strlen($item->zoom_level) >= 1? $item->zoom_level : 6 }};
 
             initGoogleMapEditMarker('map_canvas', latitude, longitude, zoom_level);
-        })
+        }
     </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }}&libraries=places&callback=initilizeGoogleMaps"></script>
 @endsection
