@@ -97,6 +97,32 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="fax">Fax</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control {{ form_error_class('fax', $errors) }}" id="fax" name="fax" placeholder="Enter Fax" value="{{ ($errors && $errors->any()? old('fax') : (isset($item)? $item->fax : '')) }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    {!! form_error_message('fax', $errors) !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control {{ form_error_class('whatsapp', $errors) }}" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp" value="{{ ($errors && $errors->any()? old('whatsapp') : (isset($item)? $item->whatsapp : '')) }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                    </div>
+                                    {!! form_error_message('whatsapp', $errors) !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="cellphone">Cellphone</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control {{ form_error_class('cellphone', $errors) }}" id="cellphone" name="cellphone" placeholder="Enter Cellphone" value="{{ ($errors && $errors->any()? old('cellphone') : (isset($item)? $item->cellphone : '')) }}">
@@ -110,7 +136,34 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="weekdays">Weekdays</label>
+                                <input type="text" class="form-control {{ form_error_class('weekdays', $errors) }}" id="weekdays" name="weekdays" placeholder="Enter Opening Hours for weekdays" value="{{ ($errors && $errors->any()? old('weekdays') : (isset($item)? $item->weekdays : '')) }}">
+                                {!! form_error_message('weekdays', $errors) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="weekends">Weekends</label>
+                                <input type="text" class="form-control {{ form_error_class('weekends', $errors) }}" id="weekends" name="weekends" placeholder="Enter Opening Hours for weekends" value="{{ ($errors && $errors->any()? old('weekends') : (isset($item)? $item->weekends : '')) }}">
+                                {!! form_error_message('weekends', $errors) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="public_holidays">Public Holidays</label>
+                                <input type="text" class="form-control {{ form_error_class('public_holidays', $errors) }}" id="public_holidays" name="public_holidays" placeholder="Enter Opening Hours for public holidays" value="{{ ($errors && $errors->any()? old('public_holidays') : (isset($item)? $item->public_holidays : '')) }}">
+                                {!! form_error_message('public_holidays', $errors) !!}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control {{ form_error_class('address', $errors) }}" id="address" name="address" placeholder="Enter Address" value="{{ ($errors && $errors->any()? old('address') : (isset($item)? $item->address : '')) }}">
@@ -118,7 +171,15 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="directions">Directions Link</label>
+                                <input type="text" class="form-control {{ form_error_class('directions', $errors) }}" id="directions" name="directions" placeholder="Enter Directions Link" value="{{ ($errors && $errors->any()? old('directions') : (isset($item)? $item->directions : '')) }}">
+                                {!! form_error_message('directions', $errors) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="po_box">PO BOX</label>
                                 <input type="text" class="form-control {{ form_error_class('po_box', $errors) }}" id="po_box" name="po_box" placeholder="Enter PO BOX" value="{{ ($errors && $errors->any()? old('po_box') : (isset($item)? $item->po_box : '')) }}">
